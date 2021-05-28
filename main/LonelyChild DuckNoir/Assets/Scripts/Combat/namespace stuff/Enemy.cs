@@ -8,6 +8,16 @@ namespace Combat
     //This is the library that our combat systems will universally use.
     //Battles will use instances of these structs for battle logic.
     //Simply use "using Combat;" at the top of your script!
+    [System.Serializable]
+    public enum GamePosition { PlayerChoice, EnemyDialogue, EnemyAttack };
+    //The position of a turn in battle.
+    [System.Serializable]
+    public enum SubmenuPosition { Regular, Attack, Talk, Inventory };
+    //The Submenu state. Do we display attack and talk and stuff, or the inventory for example
+    [System.Serializable]
+    public enum ButtonEnum { One, Two, Three, Four, Five };
+    //An enum for button presses
+    [System.Serializable]
     public struct Attack
     {
         //This is for Enemy's attack turn, containing basic information about the attack.
@@ -29,22 +39,49 @@ namespace Combat
         public int maxDamage;
         //The maximum damage an attack can do. If this is reached, the attack ends.
     }
-    public struct Enemy 
+    [System.Serializable]
+    public struct Enemy
     {
         //An individual enemy, with that enemy's stats and attacks.
+        public string sceneToLoad;
+        //The scene to load when we win.
+        public string name;
+        //The enemy's name to be displayed.
         public int Health;
-        //Enemy's Health.
+        //Enemy's health.
+        public int maxHealth;
+        //Enemy's max health. Set this to the health.
         public string weakness;
+        public int roundNum;
+        //how many rounds/turns have taken place?
         public Attack[] Attacks;
         //Our attacks, plain and simple.
-        public TextAsset[] dialogues;
-        //The dialogue as text files.
+
+        //The dialogue will be text files.
         //We're doing it like this to make dialogue easier, and not tied to Unity specifically.
         //Also, we can fill one array with each text line, which is cool.
+        public TextAsset[] fillerDialogue;
+        //For filler text at start of round, to be chosen from at random.
+        public TextAsset[] attackDialogue;
+        //For the attacks.
+
+        public TextAsset[] talkDialogue;
+        //For the 8 possible talks in-game.
+        public TextAsset[] generalDialogue;
+        //Need more textAssets for any specific battle script? Use this!
+        public string[] attackChoices;
+        public string[] talkChoices;
+        public string[] itemsChoices;
+        //These are the choices the buttons will be renamed to within their respective submenus.
+        public string[] toScroll;
+        //When a textasset needs to be used, its contents are dumped here first.
+        public IDictionary<string, TextAsset> inventoryDialogue;
+        //names of items / what's said when they're used.
         public Hero hero;
         //And who is our enemy fighting, exactly?
 
     }
+    [System.Serializable]
     public struct Hero
     {
         //O, basically. Player health, status effects, inventory, whatever the player needs.
@@ -56,7 +93,8 @@ namespace Combat
         //A keyword Containing the current status.
 
     }
-    
+    [System.Serializable]
+
     public struct Projectile
     {
         //This is for the individual projectiles used within prefabs spawned during attacks.
@@ -68,5 +106,5 @@ namespace Combat
         //If this contains a keyword for a status effect, the status for our player
 
     }
-    
+
 }
