@@ -11,6 +11,7 @@ public class player_main : MonoBehaviour
     [Range(0f,0.5f)][SerializeField]  float Sfriction = .5f;//in units/s
 
     [SerializeField]  float rotatationSpd = 0.1f;
+    [SerializeField] float interactHitboxOffset = 1f;
 
     float hinput = 0f;
     float vinput = 0f;
@@ -19,9 +20,13 @@ public class player_main : MonoBehaviour
     [SerializeField]  float spdAccel;
     Vector2 facing = Vector2.zero;
     Rigidbody2D rb;
+    Interactable interactableTarget;
+    GameObject interactHitbox;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        interactableTarget = null;
+        interactHitbox = transform.GetChild(0).gameObject;
     }
 
     void Update()
@@ -55,11 +60,24 @@ public class player_main : MonoBehaviour
         }else{
             rb.velocity = Vector2.zero;
         }
+        interactHitbox.transform.localPosition = facing*interactHitboxOffset;
+        if (interactableTarget!=null){
+            //TODO: show icon that something is interactable
+            if (Input.GetButtonDown("Accept")){
+                interactableTarget.Trigger();
+            }
+        }
     }
 
 
-    public void InteractableEntered(){
-        //if key press
-        //do method on interactable
+    public void InteractableEntered(Interactable thisInteractable){
+        if(interactableTarget!=thisInteractable){
+            interactableTarget=thisInteractable;
+        }
+    }
+    public void InteractableLeft(Interactable thisInteractable){
+        if(interactableTarget==thisInteractable){
+            interactableTarget=null;
+        }
     }
 }

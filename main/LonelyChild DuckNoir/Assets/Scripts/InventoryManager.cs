@@ -9,10 +9,12 @@ public class InventoryManager : MonoBehaviour
         public readonly string name;
         public readonly string description;
         public string methodName; //name of method stored in battleBehavior
-        public ivItem(string _name, string _description, string _methodName){
+        public string[] useText;
+        public ivItem(string _name, string _description, string _methodName, string[] _useText){
             name = _name;
             description = _description;
             methodName = _methodName;
+            useText = _useText;
         }
     }
 
@@ -21,10 +23,27 @@ public class InventoryManager : MonoBehaviour
         items = new List<ivItem>();
     }
 
+    void Awake(){
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("manager");
+
+        if (objs.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     public ivItem GetItemFromId(int id){
         switch(id){//using switch because no loaded memory and fast
-            case 0: return new ivItem("fart item","this an item","");
-            case 1: return new ivItem("fart item 2","after the first one","");
+            case 0: return new ivItem("fart item",
+            "this an item",
+            "",
+            TextManager.stringsToArray("this is the use text"));
+            case 1: return new ivItem("fart item 2",
+            "after the first one",
+            "",
+            TextManager.stringsToArray("this is the use text"));
             default: return null;
         }
     }
