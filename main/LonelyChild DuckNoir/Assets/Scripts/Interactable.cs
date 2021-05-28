@@ -10,10 +10,12 @@ public class Interactable : MonoBehaviour
     [SerializeField] int itemID;
     [SerializeField] int textID;
     [SerializeField] Activatable activatable;
+    static player_main playerRef;
 
     void Start(){
-        inventoryManager = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
-        textManager = GameObject.Find("TextManager").GetComponent<TextManager>();
+        inventoryManager = GameObject.Find("PersistentManager").GetComponent<InventoryManager>();
+        textManager = GameObject.Find("PersistentManager").GetComponent<TextManager>();
+        if (playerRef==null){playerRef = GameObject.Find("Player").GetComponent<player_main>();}
     }
     public enum interactableAction{
         ACTIVATE,
@@ -26,10 +28,18 @@ public class Interactable : MonoBehaviour
                 activatable.Activate();
             break;
             case interactableAction.ITEM:
-                inventoryManager.addItem(itemID);
+                inventoryManager.addItem(itemID);//TODO: add a text manager thing for getting the item
             break;
             case interactableAction.TALK:// send textManager string[] from id to UI text frontend
             break;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other){
+        playerRef.InteractableEntered(this);
+    }
+
+    private void OnTriggerExit2D(Collider2D other){
+        playerRef.InteractableLeft(this);
     }
 }
