@@ -4,28 +4,26 @@ using UnityEngine;
 
 public class player_main : MonoBehaviour
 {
-    [Range(0.001f,0.5f)]public float maxSpd = 2f;
-    [Range(0.001f,0.5f)]public float initalSpd = .1f;
-    [Range(0.1f,5f)]public float secToMax = 2f;//seconds it takes to reach max spd from itial speed
-    [Range(0f,0.5f)]public float Kfriction =.2f;//in percent of speed
-    [Range(0f,0.5f)]public float Sfriction = .5f;//in units/s
+    [Range(0.001f,0.5f)][SerializeField] float maxSpd = 2f;
+    [Range(0.001f,0.5f)][SerializeField]  float initalSpd = .1f;
+    [Range(0.1f,5f)][SerializeField]  float secToMax = 2f;//seconds it takes to reach max spd from itial speed
+    [Range(0f,0.5f)][SerializeField]  float Kfriction =.2f;//in percent of speed
+    [Range(0f,0.5f)][SerializeField]  float Sfriction = .5f;//in units/s
 
-    public float rotatationSpd = 0.1f;
+    [SerializeField]  float rotatationSpd = 0.1f;
 
     float hinput = 0f;
     float vinput = 0f;
     bool isMoving = false;
     float currentSpd = 0;
-    public float spdAccel;
+    [SerializeField]  float spdAccel;
     Vector2 facing = Vector2.zero;
     Rigidbody2D rb;
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         hinput = Input.GetAxis("Horizontal");
@@ -57,5 +55,11 @@ public class player_main : MonoBehaviour
         }else{
             rb.velocity = Vector2.zero;
         }
+    }
+
+
+    public void InteractableEntered(){
+        //if key press
+        //do method on interactable
     }
 }
