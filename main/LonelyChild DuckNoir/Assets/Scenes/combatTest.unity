@@ -149,10 +149,10 @@ Transform:
   m_GameObject: {fileID: 112838441}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.80172634, y: -1, z: -21.3}
-  m_LocalScale: {x: 9.030678, y: 2.6803253, z: 12.355446}
+  m_LocalScale: {x: 9.030678, y: 2.6803253, z: 12.355447}
   m_Children:
   - {fileID: 393468737}
-  m_Father: {fileID: 1138517428}
+  m_Father: {fileID: 430126473}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &112838443
@@ -233,12 +233,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293579033}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13, y: 7.73, z: -18.7}
-  m_LocalScale: {x: 0.14400898, y: 0.77, z: 1.5125531}
+  m_LocalPosition: {x: 13, y: 7.7300014, z: -18.7}
+  m_LocalScale: {x: 0.14400898, y: 0.77000004, z: 1.5125532}
   m_Children:
   - {fileID: 981014692}
-  m_Father: {fileID: 1138517428}
-  m_RootOrder: 6
+  m_Father: {fileID: 1262419760}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &293579035
 SpriteRenderer:
@@ -304,7 +304,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bb: {fileID: 2126877259}
-  buttonNum: 5
+  buttonNum: 4
+  sr: {fileID: 293579035}
 --- !u!65 &293579037
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -590,6 +591,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &430126472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 430126473}
+  m_Layer: 0
+  m_Name: HealthBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &430126473
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430126472}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 112838442}
+  - {fileID: 1350658437}
+  m_Father: {fileID: 1138517428}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &664732462
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,7 +699,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 664732462}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 1.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -984,12 +1017,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081846768}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.5, y: 7.73, z: -18.7}
-  m_LocalScale: {x: 0.14400898, y: 0.77, z: 1.5125531}
+  m_LocalPosition: {x: 6.4999995, y: 7.7300014, z: -18.7}
+  m_LocalScale: {x: 0.14400898, y: 0.77000004, z: 1.5125532}
   m_Children:
   - {fileID: 407338287}
-  m_Father: {fileID: 1138517428}
-  m_RootOrder: 5
+  m_Father: {fileID: 1262419760}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1081846770
 SpriteRenderer:
@@ -1055,7 +1088,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bb: {fileID: 2126877259}
-  buttonNum: 4
+  buttonNum: 3
+  sr: {fileID: 1081846770}
 --- !u!65 &1081846772
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1148,13 +1182,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -3.42, z: -1.24}
   m_LocalScale: {x: 0.34802482, y: 0.1294976, z: 0.08093601}
   m_Children:
-  - {fileID: 112838442}
-  - {fileID: 1350658437}
-  - {fileID: 1577242742}
-  - {fileID: 1787808786}
-  - {fileID: 1909407005}
-  - {fileID: 1081846769}
-  - {fileID: 293579034}
+  - {fileID: 430126473}
+  - {fileID: 1262419760}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1346,6 +1375,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1262419759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1262419760}
+  m_Layer: 0
+  m_Name: Buttons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1262419760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262419759}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1577242742}
+  - {fileID: 1787808786}
+  - {fileID: 1909407005}
+  - {fileID: 1081846769}
+  - {fileID: 293579034}
+  m_Father: {fileID: 1138517428}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1350658436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1370,11 +1434,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350658436}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.71, y: -1, z: -21.3}
+  m_LocalPosition: {x: -3.7099998, y: -1, z: -21.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 304000453}
-  m_Father: {fileID: 1138517428}
+  m_Father: {fileID: 430126473}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1507185185
@@ -1404,7 +1468,7 @@ Transform:
   m_GameObject: {fileID: 1507185185}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 6.9367, z: -3.7}
-  m_LocalScale: {x: 0.0022600277, y: 0.004574955, z: 0.008970499}
+  m_LocalScale: {x: 0.0022600277, y: 0.0085, z: 0.008970499}
   m_Children: []
   m_Father: {fileID: 1974149087}
   m_RootOrder: 0
@@ -1499,12 +1563,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577242741}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13, y: 7.73, z: -18.7}
-  m_LocalScale: {x: 0.14400898, y: 0.77, z: 1.5125531}
+  m_LocalPosition: {x: -13, y: 7.7300014, z: -18.7}
+  m_LocalScale: {x: 0.14400898, y: 0.77000004, z: 1.5125532}
   m_Children:
   - {fileID: 703469917}
-  m_Father: {fileID: 1138517428}
-  m_RootOrder: 2
+  m_Father: {fileID: 1262419760}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1577242743
 SpriteRenderer:
@@ -1570,7 +1634,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bb: {fileID: 2126877259}
-  buttonNum: 1
+  buttonNum: 0
+  sr: {fileID: 1577242743}
 --- !u!65 &1577242745
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1727,12 +1792,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1787808785}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.5, y: 7.73, z: -18.7}
-  m_LocalScale: {x: 0.14400898, y: 0.77, z: 1.5125531}
+  m_LocalPosition: {x: -6.4999995, y: 7.7300014, z: -18.7}
+  m_LocalScale: {x: 0.14400898, y: 0.77000004, z: 1.5125532}
   m_Children:
   - {fileID: 1072781013}
-  m_Father: {fileID: 1138517428}
-  m_RootOrder: 3
+  m_Father: {fileID: 1262419760}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1787808787
 SpriteRenderer:
@@ -1798,7 +1863,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bb: {fileID: 2126877259}
-  buttonNum: 2
+  buttonNum: 1
+  sr: {fileID: 1787808787}
 --- !u!65 &1787808789
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1839,12 +1905,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909407004}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.73, z: -18.7}
-  m_LocalScale: {x: 0.14400898, y: 0.77, z: 1.5125531}
+  m_LocalPosition: {x: 0, y: 7.7300014, z: -18.7}
+  m_LocalScale: {x: 0.14400898, y: 0.77000004, z: 1.5125532}
   m_Children:
   - {fileID: 1195233083}
-  m_Father: {fileID: 1138517428}
-  m_RootOrder: 4
+  m_Father: {fileID: 1262419760}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1909407006
 SpriteRenderer:
@@ -1910,7 +1976,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bb: {fileID: 2126877259}
-  buttonNum: 3
+  buttonNum: 2
+  sr: {fileID: 1909407006}
 --- !u!65 &1909407008
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2000,8 +2067,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1974149085}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.85, z: 0.47}
-  m_LocalScale: {x: 0.43, y: 0.16, z: 0.1}
+  m_LocalPosition: {x: 0, y: 4.51, z: 0.47}
+  m_LocalScale: {x: 0.43, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 1507185186}
   m_Father: {fileID: 0}
@@ -2050,3 +2117,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b293cae5f9b058e4ca540f5eb8e3dfbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy:
+    sceneToLoad: 
+    name: Test Ghost
+    Health: 10
+    maxHealth: 10
+    weakness: Flashlight
+    roundNum: 0
+    Attacks: []
+    fillerDialogue:
+    - {fileID: 0}
+    attackDialogue:
+    - {fileID: 4900000, guid: 7c8c3d1e808db53428baeca5e149fd65, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    talkDialogue:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    generalDialogue: []
+    attackChoices:
+    - Flashlight
+    - Theramin
+    - Fire Poker
+    - Garlic
+    - Back
+    talkChoices:
+    - Smile
+    - Flirt
+    - Laugh
+    - Stare
+    - Back
+    itemsChoices:
+    - Apple
+    - Ball
+    - None
+    - None
+    - Back
+    toScroll: []
+    hero:
+      health: 15
+      maxHealth: 15
+      status: 
+  submenuPosition: 0
+  gamePosition: 0
+  textBox: {fileID: 1974149085}
+  playerChoiceBox: {fileID: 1138517426}
+  fillerText: {fileID: 1507185187}
+  buttonText:
+  - {fileID: 703469918}
+  - {fileID: 1072781014}
+  - {fileID: 1195233084}
+  - {fileID: 407338288}
+  - {fileID: 981014693}
+  selectedMove: 
+  typeSpeed: 0.045
+  currentLine: 0
+  endAtLine: 0
+  whichButton: 0
+  speechTail: {fileID: 0}
