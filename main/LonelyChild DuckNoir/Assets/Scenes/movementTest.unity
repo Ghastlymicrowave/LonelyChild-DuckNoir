@@ -410,6 +410,8 @@ GameObject:
   - component: {fileID: 1387713844}
   - component: {fileID: 1387713843}
   - component: {fileID: 1387713842}
+  - component: {fileID: 1387713846}
+  - component: {fileID: 1387713845}
   m_Layer: 0
   m_Name: CameraTrigger (1)
   m_TagString: Untagged
@@ -477,6 +479,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1387713845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387713841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68cf39aac036fc4d9019131262c5117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bCol: {fileID: 1387713842}
+  boxColor: {r: 1, g: 1, b: 1, a: 1}
+  arbitraryHeight: 0.5
+  iconType: 0
+  showCube: 1
+--- !u!114 &1387713846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387713841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68cf39aac036fc4d9019131262c5117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bCol: {fileID: 1387713842}
+  boxColor: {r: 1, g: 1, b: 1, a: 1}
+  arbitraryHeight: 0.5
+  iconType: 0
+  showCube: 0
 --- !u!1 &1635842646
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +524,7 @@ GameObject:
   - component: {fileID: 1635842648}
   - component: {fileID: 1635842647}
   - component: {fileID: 1635842649}
+  - component: {fileID: 1635842650}
   m_Layer: 0
   m_Name: CameraTrigger
   m_TagString: Untagged
@@ -555,6 +592,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1635842650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635842646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68cf39aac036fc4d9019131262c5117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bCol: {fileID: 1635842649}
+  boxColor: {r: 1, g: 1, b: 1, a: 1}
+  arbitraryHeight: 0.5
+  iconType: 0
+  showCube: 1
 --- !u!1 &1907287909
 GameObject:
   m_ObjectHideFlags: 0
