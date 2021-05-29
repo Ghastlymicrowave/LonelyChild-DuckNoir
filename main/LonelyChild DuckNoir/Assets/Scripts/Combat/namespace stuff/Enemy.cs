@@ -47,6 +47,8 @@ namespace Combat
         //The scene to load when we win.
         public string name;
         //The enemy's name to be displayed.
+        public int IDBase;
+        //The ID for the earliest string. all battles will have consecutive ID's.
         public int Health;
         //Enemy's health.
         public int maxHealth;
@@ -60,14 +62,14 @@ namespace Combat
         //The dialogue will be text files.
         //We're doing it like this to make dialogue easier, and not tied to Unity specifically.
         //Also, we can fill one array with each text line, which is cool.
-        public TextAsset[] fillerDialogue;
+        //public TextAsset[] fillerDialogue;
         //For filler text at start of round, to be chosen from at random.
-        public TextAsset[] attackDialogue;
+        //public TextAsset[] attackDialogue;
         //For the attacks.
 
-        public TextAsset[] talkDialogue;
+        //public TextAsset[] talkDialogue;
         //For the 8 possible talks in-game.
-        public TextAsset[] generalDialogue;
+        //public TextAsset[] generalDialogue;
         //Need more textAssets for any specific battle script? Use this!
         public string[] attackChoices;
         public string[] talkChoices;
@@ -75,7 +77,7 @@ namespace Combat
         //These are the choices the buttons will be renamed to within their respective submenus.
         public string[] toScroll;
         //When a textasset needs to be used, its contents are dumped here first.
-        public IDictionary<string, TextAsset> inventoryDialogue;
+        //public IDictionary<string, TextAsset> inventoryDialogue;
         //names of items / what's said when they're used.
         public Hero hero;
         //And who is our enemy fighting, exactly?

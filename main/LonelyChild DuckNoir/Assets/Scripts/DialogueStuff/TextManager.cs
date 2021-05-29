@@ -20,6 +20,7 @@ public class TextManager : MonoBehaviour
 
     public string[] GetEnemyTextByID(int id){//using switch because no loaded memory and fast
         switch(id){
+            // Test Enemy. 
             case 0: return stringsToArray("text could be this",
             "or this",
             "maybe this");

@@ -8,7 +8,7 @@ using Combat;
 
 public class battleBehavior : MonoBehaviour
 {
-
+    TextManager tm;
     public Enemy enemy;
     //Our enemy.
     public SubmenuPosition submenuPosition;
@@ -42,12 +42,15 @@ public class battleBehavior : MonoBehaviour
     //our scroll
     public GameObject speechTail;
     //VisualAid used for speech
-
+    public AudioSource tick;
+    public AudioSource click;
+    //audio for textscroller
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(theScroll = TextScroll(enemy.name + " manifests into view!"));
+        tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
     }
 
     // Update is called once per frame
@@ -72,6 +75,7 @@ public class battleBehavior : MonoBehaviour
                     {
 
                         StartCoroutine(theScroll = TextScroll(enemy.toScroll[currentLine]));
+                        //click.Play();
                     }
 
                 }
@@ -85,6 +89,7 @@ public class battleBehavior : MonoBehaviour
     public void ButtonPress(ButtonEnum buttonNum)
     {
         //This gets called from the button scripts when a button gets pressed.
+        click.Play();
         switch (buttonNum)
         {
             case ButtonEnum.One:
@@ -241,6 +246,7 @@ public class battleBehavior : MonoBehaviour
     }
     void handleSubmenu()
     {
+
         switch (submenuPosition)
         {
             case SubmenuPosition.Regular:
@@ -271,18 +277,22 @@ public class battleBehavior : MonoBehaviour
 
     void EnemyDialogue()
     {
+        
         gamePosition = GamePosition.EnemyDialogue;
         playerChoiceBox.SetActive(false);
         textBox.SetActive(true);
         currentLine = 0;
+        int TheID = enemy.IDBase;
+
         switch (submenuPosition)
         {
             case SubmenuPosition.Attack:
-                enemy.toScroll = enemy.attackDialogue[whichButton - 1].text.Split('\n');
+                //enemy.toScroll = enemy.attackDialogue[whichButton - 1].text.Split('\n');
+                enemy.toScroll = tm.GetEnemyTextByID(TheID + whichButton - 1);
                 endAtLine = enemy.toScroll.Length - 1;
                 break;
             case SubmenuPosition.Talk:
-                enemy.toScroll = enemy.talkDialogue[whichButton - 1].text.Split('\n');
+                //enemy.toScroll = enemy.talkDialogue[whichButton - 1].text.Split('\n');
                 endAtLine = enemy.toScroll.Length - 1;
                 break;
             case SubmenuPosition.Inventory:
@@ -311,7 +321,7 @@ public class battleBehavior : MonoBehaviour
             { }
             else
             {
-                //play sound
+                tick.Play();
             }
             fillerText.text += lineOfText[letter];
             letter += 1;
