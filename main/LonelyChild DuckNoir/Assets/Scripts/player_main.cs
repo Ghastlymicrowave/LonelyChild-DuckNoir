@@ -14,6 +14,7 @@ public class player_main : MonoBehaviour
     [SerializeField] float interactHitboxOffset = 1f;
 
     float hinput = 0f;
+    TextManager tm;
     float vinput = 0f;
     bool isMoving = false;
     float currentSpd = 0;
@@ -27,6 +28,7 @@ public class player_main : MonoBehaviour
     public bool canMove = true;
     void Start()
     {
+        tm = new TextManager();
         rb = GetComponent<Rigidbody2D>();
         interactableTarget = null;
         interactHitbox = transform.GetChild(0).gameObject;
@@ -89,11 +91,11 @@ public class player_main : MonoBehaviour
         {
             //TODO: show icon that something is interactable
 
-          
 
-               //     if (Input.GetButtonDown("Accept")){
-               //        interactableTarget.Trigger();
-               //   }
+
+            //     if (Input.GetButtonDown("Accept")){
+            //        interactableTarget.Trigger();
+            //   }
         }
 
         if (interactableTarget != null)
@@ -101,7 +103,8 @@ public class player_main : MonoBehaviour
             if (interactableTarget.isReady)
             {
                 interactableTarget.isReady = false;
-                textScroller.ScrollText(interactableTarget.dialogueID, this.gameObject.GetComponent<player_main>());
+                string[] toScroll = tm.GetTextByID(interactableTarget.dialogueID);
+                textScroller.ScrollText(toScroll, this.gameObject.GetComponent<player_main>());
                 interactableTarget.indicator.SetActive(false);
                 interactableTarget = null;
             }

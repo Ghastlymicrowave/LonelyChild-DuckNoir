@@ -31,13 +31,13 @@ public class TextScroller : MonoBehaviour
         tm = new TextManager();
     }
 
-    public void ScrollText(int index, player_main pmReference)
+    public void ScrollText(string[] newString, player_main pmReference)
     {
         print("aw yeah");
         pm = pmReference;
         pm.canMove = false;
         theCanvas.SetActive(true);
-        toScroll = tm.GetTextByID(index);
+        toScroll = newString;
         currentLine = 0;
         endAtLine = toScroll.Length - 1;
         StartCoroutine(TextScroll(toScroll[currentLine]));
