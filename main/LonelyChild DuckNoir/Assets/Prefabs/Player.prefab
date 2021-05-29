@@ -184,6 +184,8 @@ MonoBehaviour:
   rotatationSpd: 0.4
   interactHitboxOffset: 1
   spdAccel: 0.01
+  textScroller: {fileID: 0}
+  canMove: 1
 --- !u!58 &7466410144921916771
 CircleCollider2D:
   m_ObjectHideFlags: 0

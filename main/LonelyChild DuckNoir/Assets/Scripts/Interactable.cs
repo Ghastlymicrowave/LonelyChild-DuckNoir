@@ -11,11 +11,16 @@ public class Interactable : MonoBehaviour
     [SerializeField] int textID;
     [SerializeField] Activatable activatable;
     static player_main playerRef;
+    public int dialogueID = 0;
+    public bool isReady = false;
+
+    public GameObject indicator;
 
     void Start(){
         inventoryManager = GameObject.Find("PersistentManager").GetComponent<InventoryManager>();
         textManager = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         if (playerRef==null){playerRef = GameObject.Find("Player").GetComponent<player_main>();}
+        
     }
     public enum interactableAction{
         ACTIVATE,
