@@ -26,16 +26,31 @@ public class player_main : MonoBehaviour
 
     public TextScroller textScroller;
     public bool canMove = true;
+    private CameraControl camControl;
     void Start()
     {
-        tm = new TextManager();
+        tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         rb = GetComponent<Rigidbody2D>();
         interactableTarget = null;
         interactHitbox = transform.GetChild(0).gameObject;
+        camControl = GameObject.Find("CameraControl").GetComponent<CameraControl>();
         if (textScroller == null)
         {
             textScroller = FindObjectOfType<TextScroller>();
         }
+    }
+
+    public static Vector2 rotate(Vector2 v, float delta) {
+        delta *= Mathf.Deg2Rad;
+        return new Vector2(
+            v.x * Mathf.Cos(delta) - v.y * Mathf.Sin(delta),
+            v.x * Mathf.Sin(delta) + v.y * Mathf.Cos(delta)
+        );
+    }
+
+    static Vector2 angleToVec2(float angle){
+        angle *= Mathf.Deg2Rad;
+        return new Vector2(Mathf.Cos(angle),Mathf.Sin(angle));
     }
 
     void Update()
@@ -77,41 +92,42 @@ public class player_main : MonoBehaviour
             }
         }
 
+        
+
         if (currentSpd != 0)
         {
-            //rb.MovePosition((Vector2)transform.position + new Vector2(facing.x,facing.y)*currentSpd * Time.deltaTime*100);
-            rb.MovePosition((Vector2)transform.position + new Vector2(facing.x, facing.y) * currentSpd);
+            Vector2 standardFacing = new Vector2(facing.x, facing.y) * currentSpd;
+
+            Vector2 vectorOffset = transform.position - camControl.activeCam.transform.position;
+            vectorOffset = vectorOffset.normalized;
+            float angleOffset = Mathf.Atan2( vectorOffset.x,vectorOffset.y )  * Mathf.Rad2Deg; 
+            standardFacing = rotate(standardFacing,-angleOffset);
+
+            Debug.DrawLine(camControl.activeCam.transform.position,camControl.activeCam.transform.position+(Vector3)angleToVec2(-angleOffset+90)*20f);
+
+            rb.MovePosition((Vector2)transform.position + standardFacing);
         }
         else
         {
             rb.velocity = Vector2.zero;
         }
         interactHitbox.transform.localPosition = facing * interactHitboxOffset;
-        if (interactableTarget != null)
-        {
-            //TODO: show icon that something is interactable
-
-
-
-            //     if (Input.GetButtonDown("Accept")){
-            //        interactableTarget.Trigger();
-            //   }
-        }
 
         if (interactableTarget != null)
         {
-            if (interactableTarget.isReady)
+            if (interactableTarget.isReady||Input.GetButtonDown("Submit"))//if triggered from mouse click or interact button
             {
-                interactableTarget.isReady = false;
-                string[] toScroll = tm.GetTextByID(interactableTarget.dialogueID);
-                textScroller.ScrollText(toScroll, this.gameObject.GetComponent<player_main>());
-                interactableTarget.indicator.SetActive(false);
-                interactableTarget = null;
+                interactableTarget.Trigger();
             }
         }
+        UpdateSpriteFacing();
     }
 
 
+    public void UpdateSpriteFacing(){
+        //up is -z
+        //plane is xy
+    }
     public void InteractableEntered(Interactable thisInteractable)
     {
         if (interactableTarget != thisInteractable)
@@ -128,4 +144,10 @@ public class player_main : MonoBehaviour
             interactableTarget = null;
         }
     }
+
+    public void TriggerDialogue(int textID){
+        string[] toScroll = tm.GetTextByID(textID);
+        textScroller.ScrollText(toScroll, this);
+    }
+    
 }

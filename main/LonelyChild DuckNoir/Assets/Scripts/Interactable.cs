@@ -11,8 +11,10 @@ public class Interactable : MonoBehaviour
     [SerializeField] int textID;
     [SerializeField] Activatable activatable;
     static player_main playerRef;
-    public int dialogueID = 0;
+    [Tooltip("keep less than 0 for no text")]
+    public int dialogueID = -1;
     public bool isReady = false;
+    [SerializeField] bool oneTimeUse = false;
 
     public GameObject indicator;
 
@@ -28,15 +30,24 @@ public class Interactable : MonoBehaviour
         TALK
     }
     public void Trigger(){
+        isReady=false;
         switch(action){
             case interactableAction.ACTIVATE:
                 activatable.Activate();
+                playerRef.TriggerDialogue(dialogueID);
             break;
             case interactableAction.ITEM:
                 inventoryManager.addItem(itemID);//TODO: add a text manager thing for getting the item
+                if (dialogueID>-1){
+                    playerRef.TriggerDialogue(dialogueID);
+                }
             break;
             case interactableAction.TALK:// send textManager string[] from id to UI text frontend
+            playerRef.TriggerDialogue(dialogueID);
             break;
+        }
+        if (oneTimeUse){
+            this.gameObject.SetActive(false);
         }
     }
 

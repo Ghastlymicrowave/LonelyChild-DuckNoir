@@ -22,7 +22,7 @@ public class CameraTrigger : MonoBehaviour
         LINEAR,
         INOUTSIN,
     }
-    [Range(0.001f,0.25f)]public float followSpeed;
+    public static float followSpeed = 0.2f;
     public float transitionTime;
     public TransitionCurve curve;
     [HideInInspector] public GameObject cam;
