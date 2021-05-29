@@ -14,6 +14,7 @@ public class Interactable : MonoBehaviour
     [Tooltip("keep less than 0 for no text")]
     public int dialogueID = -1;
     public bool isReady = false;
+    public bool isBusy = false;
     [SerializeField] bool oneTimeUse = false;
 
     public GameObject indicator;

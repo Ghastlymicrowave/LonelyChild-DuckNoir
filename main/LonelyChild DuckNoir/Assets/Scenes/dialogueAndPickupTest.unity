@@ -410,7 +410,6 @@ MonoBehaviour:
   boxCol: {fileID: 0}
   type: 1
   axis: 2
-  followSpeed: 0.01
   transitionTime: 2
   curve: 1
   cam: {fileID: 0}
@@ -868,6 +867,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3322247962647170510, guid: f219b1913a2a0cc44849bf9bd2986baf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3322247963585005991, guid: f219b1913a2a0cc44849bf9bd2986baf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 3322247964372850398, guid: f219b1913a2a0cc44849bf9bd2986baf, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -7,10 +7,11 @@ public class ScannerLogic : MonoBehaviour
     //This script sets the lights to a given value, index or health.
     public GameObject[] lights;
     public Animator animator;
-    
+
 
     public void DecideLights(int health, int maxHealth)
     {
+
 
         if (maxHealth == health)
         {

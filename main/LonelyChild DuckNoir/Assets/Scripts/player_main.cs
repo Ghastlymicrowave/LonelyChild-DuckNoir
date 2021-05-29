@@ -57,7 +57,12 @@ public class player_main : MonoBehaviour
     {
         if (!canMove)
         {
+            interactableTarget.isBusy = true;
             return;
+        }
+        if (interactableTarget != null)
+        {
+            interactableTarget.isBusy = false;
         }
         hinput = Input.GetAxis("Horizontal");
         vinput = Input.GetAxis("Vertical");

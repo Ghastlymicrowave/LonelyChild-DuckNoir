@@ -25,15 +25,21 @@ public class TextScroller : MonoBehaviour
     //when to end the textscroll.
     public AudioSource tickSound;
     public AudioSource clickSound;
+    private IEnumerator theClose;
 
     void Start()
     {
-        tm = new TextManager();
+        tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
     }
 
     public void ScrollText(string[] newString, player_main pmReference)
     {
         print("aw yeah");
+        if (theClose != null)
+        {
+            StopCoroutine(theClose);
+            anim.Play("NewPopUp");
+        }
         pm = pmReference;
         pm.canMove = false;
         theCanvas.SetActive(true);
@@ -41,7 +47,7 @@ public class TextScroller : MonoBehaviour
         currentLine = 0;
         endAtLine = toScroll.Length - 1;
         StartCoroutine(TextScroll(toScroll[currentLine]));
-        
+
         isUpdating = true;
     }
     void Update()
@@ -49,7 +55,7 @@ public class TextScroller : MonoBehaviour
         if (isUpdating)
         {
             //Handling the clicking through of enemy dialogue, and starting of the enemy turn.
-            if (Input.GetMouseButtonDown(0)||Input.GetButtonDown("Submit"))
+            if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Submit"))
             {
                 if (!isTyping)
                 {
@@ -80,11 +86,11 @@ public class TextScroller : MonoBehaviour
         pm.canMove = true;
         isUpdating = false;
         toScroll = null;
-        StartCoroutine(CloseIt());
+        StartCoroutine(theClose = CloseIt());
     }
     private IEnumerator CloseIt()
     {
-        anim.Play("PopDown");
+        anim.Play("NewPopDown");
         yield return new WaitForSeconds(.5f);
         theCanvas.SetActive(false);
     }

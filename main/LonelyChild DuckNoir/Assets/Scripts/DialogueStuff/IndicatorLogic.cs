@@ -13,7 +13,10 @@ public class IndicatorLogic : MonoBehaviour
     }
     void OnMouseDown()
     {
-        interactable.isReady = true;
+        if (!interactable.isBusy)
+        {
+            interactable.isReady = true;
+        }
     }
     
     private void Update(){
