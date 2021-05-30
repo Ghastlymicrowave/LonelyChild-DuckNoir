@@ -27,9 +27,13 @@ public class player_main : MonoBehaviour
     public TextScroller textScroller;
     public bool canMove = true;
     private CameraControl camControl;
+    private Animator thisAnimator;
+    private GameObject spriteObj;
     void Start()
     {
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
+        spriteObj = transform.GetChild(1).gameObject;
+        thisAnimator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         interactableTarget = null;
         interactHitbox = transform.GetChild(0).gameObject;
@@ -67,6 +71,7 @@ public class player_main : MonoBehaviour
         hinput = Input.GetAxis("Horizontal");
         vinput = Input.GetAxis("Vertical");
         isMoving = (hinput != 0f || vinput != 0f);
+        thisAnimator.SetBool("Moving",isMoving);
         if (isMoving)
         {
             if (currentSpd < initalSpd)
@@ -109,8 +114,15 @@ public class player_main : MonoBehaviour
             standardFacing = rotate(standardFacing,-angleOffset);
 
             Debug.DrawLine(camControl.activeCam.transform.position,camControl.activeCam.transform.position+(Vector3)angleToVec2(-angleOffset+90)*20f);
+            //Debug.DrawLine(transform.position,transform.position+(Vector3)angleToVec2(-angleOffset-90)*20f);
 
             rb.MovePosition((Vector2)transform.position + standardFacing);
+            float facingOffset = Mathf.Atan2( standardFacing.x,standardFacing.y )  * Mathf.Rad2Deg; 
+            Debug.Log(facingOffset-angleOffset);
+            //facing out, -angleOffset+90 and updated facing face the same way
+
+            thisAnimator.SetFloat("Angle",facingOffset-angleOffset);
+            //UpdateSpriteFacing(-angleOffset);
         }
         else
         {
@@ -125,13 +137,28 @@ public class player_main : MonoBehaviour
                 interactableTarget.Trigger();
             }
         }
-        UpdateSpriteFacing();
+        Vector3 camPos = camControl.activeCam.transform.position;
+        camPos.z = spriteObj.transform.position.z;
+        spriteObj.transform.LookAt(camPos,Vector3.back);
     }
 
 
-    public void UpdateSpriteFacing(){
+    public void UpdateSpriteFacing(float angle){
         //up is -z
         //plane is xy
+
+        //This is basically useless rn as I think we'll stick with the unity animator vs setting the frames directly 
+
+        Debug.Log(angle);
+        if (Mathf.Abs(angle)<45){//up away from camera
+
+        }else if (Mathf.Abs(angle)>135){//down, facing camera
+
+        }else if (angle>0f){//facing left
+
+        }else{//facing right
+
+        }
     }
     public void InteractableEntered(Interactable thisInteractable)
     {
