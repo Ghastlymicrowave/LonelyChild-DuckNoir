@@ -54,8 +54,11 @@ namespace Combat
         public int maxHealth;
         //Enemy's max health. Set this to the health.
         public string weakness;
+        public string resistance;
         public int roundNum;
         //how many rounds/turns have taken place?
+
+        public string sentimental;
         public Attack[] Attacks;
         //Our attacks, plain and simple.
 
@@ -73,6 +76,7 @@ namespace Combat
         //Need more textAssets for any specific battle script? Use this!
         public string[] attackChoices;
         public string[] talkChoices;
+        public string[] altTalkChoices;
         public string[] itemsChoices;
         //These are the choices the buttons will be renamed to within their respective submenus.
         public string[] toScroll;

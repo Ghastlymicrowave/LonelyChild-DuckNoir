@@ -31,21 +31,21 @@ public class ScannerLogic : MonoBehaviour
             print("retard");
             //Switch doesn't have contitional functionality, so this is the only solution I can think of.
             //Feels bad, man.
-            if (ratio > .16 && ratio <= .32)
+            if (ratio > .64 && ratio <= .9999)
             {
                 changeLights(0);
             }
 
-            else if (ratio > .32 && ratio <= .48)
+            else if (ratio > .48 && ratio <= .64)
             {
 
                 changeLights(1);
             }
-            else if (ratio > .48 && ratio <= .64)
+            else if (ratio > .32 && ratio <= .48)
             {
                 changeLights(2);
             }
-            else if (ratio > .64 && ratio <= .9999)
+            else if (ratio > .16 && ratio <= .32)
             {
                 changeLights(3);
             }

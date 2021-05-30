@@ -1475,7 +1475,6 @@ Transform:
   m_Children:
   - {fileID: 430126473}
   - {fileID: 1262419760}
-  - {fileID: 1973278963}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2596,12 +2595,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973278962}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 27.954185, z: 15.320747}
-  m_LocalScale: {x: 2.8733582, y: 7.722151, z: 12.355441}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 734580552}
-  m_Father: {fileID: 1138517428}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1974149085
 GameObject:
@@ -2734,11 +2733,13 @@ MonoBehaviour:
   enemy:
     sceneToLoad: 
     name: Test Ghost
-    IDBase: 0
-    Health: 10
-    maxHealth: 10
+    IDBase: 51
+    Health: 50
+    maxHealth: 50
     weakness: Flashlight
+    resistance: Theramin
     roundNum: 0
+    sentimental: Ball
     Attacks: []
     attackChoices:
     - Flashlight
@@ -2752,6 +2753,12 @@ MonoBehaviour:
     - Laugh
     - Stare
     - Back
+    altTalkChoices:
+    - None
+    - None
+    - None
+    - None
+    - None
     itemsChoices:
     - Apple
     - Ball
@@ -2782,6 +2789,8 @@ MonoBehaviour:
   speechTail: {fileID: 0}
   tick: {fileID: 2126877261}
   click: {fileID: 2126877260}
+  scannerLogic: {fileID: 734580553}
+  scanner: {fileID: 734580550}
 --- !u!82 &2126877260
 AudioSource:
   m_ObjectHideFlags: 0
