@@ -36,6 +36,7 @@ namespace Combat
         //We can then apply that string to the Hero if this status has been updated.
         public int minDamage;
         //The minimum damage an attack can do, should probably stay at 0.
+        public int actualDamage;
         public int maxDamage;
         //The maximum damage an attack can do. If this is reached, the attack ends.
     }
@@ -108,6 +109,12 @@ namespace Combat
         //The attack this belongs to, used to add damage on projectile collision.
         public int damage;
         //How much damage this projectile should do on collision.
+        public float speed;
+        //how fast does the projectile move?
+        public float secondarySpeed;
+        //optional value for the speed of, like, sine or whatever
+        public float secondaryValue;
+        //optional value for the size of, like, sine or whatever
         public string status;
         //If this contains a keyword for a status effect, the status for our player
 
