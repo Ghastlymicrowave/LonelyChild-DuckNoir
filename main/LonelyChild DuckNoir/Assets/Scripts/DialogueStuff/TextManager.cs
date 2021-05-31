@@ -18,6 +18,8 @@ public class TextManager : MonoBehaviour
         }
     }
 
+    //this will eventually be replace by the same method in battleBehavior, i'm keeping this here in case
+    //there are or will be any other dependencies for it for the time being.
     public string[] GetEnemyTextByID(int id){//using switch because no loaded memory and fast
         switch(id){
             // I'm leaving 0-50 for item behaviors and versatile game dialogue.

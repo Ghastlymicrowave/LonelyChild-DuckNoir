@@ -122,16 +122,21 @@ namespace Combat
 
     [System.Serializable] 
     public enum AttackActions{//actions defined here must also be defined in TextManager with a default value
-        Shout,
-        Punch,
-        Slap
+        Flashlight,
+        Theremin,
+        FirePoker,
+        Garlic
     }
 
     [System.Serializable] 
     public enum ItemsEnum{//actions defined here must also be defined in TextManager with a default value
-        SomeItem,
-        Thing,
-        OtherThing
+        Apple,
+        Ball
+    }
+
+    public enum Enemies{
+        ghostA,
+        ghostB
     }
 
 }

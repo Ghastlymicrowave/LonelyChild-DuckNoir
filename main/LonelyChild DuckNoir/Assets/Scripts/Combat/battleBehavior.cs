@@ -113,28 +113,6 @@ public class battleBehavior : MonoBehaviour
         textBox.SetActive(true);
         //handleSubmenu();
     }
-    /*void handleSubmenu()
-    {
-
-        switch (submenuPosition)
-        {
-            case SubmenuPosition.Regular:
-                updateButtonVisuals("Attack", "Talk", "Items", "Run", "Crucifix");
-                break;
-            case SubmenuPosition.Attack:
-                updateButtonVisuals(enemy.attackChoices[0], enemy.attackChoices[1], enemy.attackChoices[2], enemy.attackChoices[3], enemy.attackChoices[4]);
-                break;
-            case SubmenuPosition.Talk:
-                updateButtonVisuals(enemy.talkChoices[0], enemy.talkChoices[1], enemy.talkChoices[2], enemy.talkChoices[3], enemy.talkChoices[4]);
-                break;
-            case SubmenuPosition.Inventory:
-                updateButtonVisuals(enemy.itemsChoices[0], enemy.itemsChoices[1], enemy.itemsChoices[2], enemy.itemsChoices[3], enemy.itemsChoices[4]);
-                break;
-            default:
-                print("You put bad data in the handleSubmenu, my guy. Cringe.");
-                break;
-        }
-    }*/
 
     public void ExternalSubButtonPressed(int actionID){
         SubButtonPressed(currentAction ?? (ButtonEnum)0, actionID);
@@ -151,28 +129,8 @@ public class battleBehavior : MonoBehaviour
         int thisEnemyID = enemy.IDBase;
         ExitSubmenu();
         enemy.toScroll = GetEnemyTextByID(thisEnemyID,actionType,actionID);
-        PlayerTurnLogic();
-        endAtLine = 1;
-        /*switch (submenuPosition)
-        {
-            case SubmenuPosition.Attack:
-                //enemy.toScroll = enemy.attackDialogue[whichButton - 1].text.Split('\n');
-                enemy.toScroll = tm.GetEnemyTextByID(thisEnemyID + whichButton - 1);
-                endAtLine = enemy.toScroll.Length - 1;
-                break;
-            case SubmenuPosition.Talk:
-                //enemy.toScroll = enemy.talkDialogue[whichButton - 1].text.Split('\n');
-                endAtLine = enemy.toScroll.Length - 1;
-                break;
-            case SubmenuPosition.Inventory:
-                //Waiting for inventory system to be made
-                break;
-            case SubmenuPosition.Regular:
-                break;
-            default:
-                print("you passed bad data into Enemy Dialogue");
-                break;
-        }*/
+        endAtLine = enemy.toScroll.Length - 1;
+        scannerLogic.DecideLights(enemy.Health, enemy.maxHealth);
         StopCoroutine(theScroll);
         StartCoroutine(theScroll = TextScroll(enemy.toScroll[currentLine]));
     }
@@ -211,88 +169,38 @@ public class battleBehavior : MonoBehaviour
         textBox.SetActive(false);
         print("wediditreditt");
     }
-    void PlayerTurnLogic()
-    {
-        //the actual, hard-coded logic for attacks and stuff.
 
-        ////enemy.toScroll = tm.GetEnemyTextByID(TheID + whichButton - 1);
-        ////endAtLine = enemy.toScroll.Length - 1;
-        int damage = 0;
-        switch (selectedMove)
-        {
-            case "Flashlight":
-                enemy.toScroll = tm.GetEnemyTextByID(enemy.IDBase + ((0) + 0));
-                damage = 5;
-                break;
-            case "Theramin":
-                enemy.toScroll = tm.GetEnemyTextByID(enemy.IDBase + ((1) + 0));
-                damage = 5;
-                break;
-            case "Fire Poker":
-                enemy.toScroll = tm.GetEnemyTextByID(enemy.IDBase + ((2) + 0));
-                damage = 5;
-                break;
-            case "Garlic":
-                enemy.toScroll = tm.GetEnemyTextByID(enemy.IDBase + ((3) + 0));
-                damage = 5;
-                break;
-            case "None":
-                enemy.toScroll = tm.GetEnemyTextByID(0);
-                break;
-            case "Apple":
-                enemy.toScroll = tm.GetEnemyTextByID(1);
-                break;
-            case "Ball":
-                enemy.toScroll = tm.GetEnemyTextByID(2);
-                break;
-
-            default:
-                // print("PlayerTurnLogic is broken");
-                break;
-
-        }
-        if (selectedMove == enemy.weakness)
-        {
-            damage *= 2;
-        }
-        else if (selectedMove == enemy.resistance)
-        {
-            damage /= 2;
-        }
+    void DamageEnemy(int damage){
         enemy.Health -= damage;
+    }
+    void DamageEnemyWeak(int damage){
+        enemy.Health -= damage*2;
+    }
+    void DamageEnemyResist(int damage){
+        enemy.Health -= Mathf.FloorToInt(damage/2);
+    }
 
+    void CheckEnemyAlive(){
         if (enemy.Health < 0)
-        { enemy.Health = 0; }
+        { enemy.Health = 0;/* EnemyDead(); */ }
         else if (enemy.Health > enemy.maxHealth)
         { enemy.Health = enemy.maxHealth; }
+    }
 
+    string[] Sentimental(string[] success, string[] failiure){
+        if (enemy.Health==0){
+            //do something to end the battle
+            return success;
+        }else{
+            return failiure;
+        }
+    }
+
+    void DamagePlayer(int damage){//can be negative to increase health
         if (enemy.hero.health < 0)
-        { enemy.hero.health = 0; }
+        { enemy.hero.health = 0; /*PlayerLose();*/}
         else if (enemy.hero.health > enemy.hero.maxHealth)
         { enemy.hero.health = enemy.hero.maxHealth; }
-
-        int index = 0;
-
-        while (index < 5)
-        {
-            if (selectedMove == enemy.talkChoices[index] && enemy.talkChoices[index] != "None")
-            {
-                enemy.toScroll = tm.GetEnemyTextByID(enemy.IDBase + ((index) + 4 ));
-            }
-            else if (selectedMove == enemy.altTalkChoices[index] && enemy.altTalkChoices[index] != "None")
-            {
-                enemy.toScroll = tm.GetEnemyTextByID(enemy.IDBase + ((index) + 8));
-            }
-            index += 1;
-        }
-
-
-        if (selectedMove == enemy.sentimental && enemy.Health == 0)
-        {
-            enemy.toScroll = tm.GetEnemyTextByID(enemy.IDBase + 12);
-        }
-        endAtLine = enemy.toScroll.Length - 1;
-        scannerLogic.DecideLights(enemy.Health, enemy.maxHealth);
     }
 
     void NotSetUp(){
@@ -301,34 +209,57 @@ public class battleBehavior : MonoBehaviour
 
     public string[] GetEnemyTextByID(int enemyID, ButtonEnum actionType, int actionID){//using switch because no loaded memory and fast
         switch(actionType){
+            ////////////////////////////////////////////////////    Attack    ////////////
             case ButtonEnum.Attack:
                 switch(actionID){
-                    case (int)AttackActions.Punch:
-                        //execute what punch does
-                        return TextManager.stringsToArray("punch used");
-                    case (int)AttackActions.Shout:
-                        //execute what punch does
-                        return TextManager.stringsToArray("shout used");
-                    case (int)AttackActions.Slap://in the case where you want a specific interaction:
+                    case (int)AttackActions.Theremin:
+                        //execute what this does
+                        DamageEnemy(5);
+                        return TextManager.stringsToArray("Therimin used");
+
+                    case (int)AttackActions.FirePoker:
+                        //execute what this does
+                        DamageEnemy(5);
+                        return TextManager.stringsToArray("Fire Poker used");
+                    
+                    case (int)AttackActions.Flashlight:
+                        //execute what this does
+                        DamageEnemy(5);
+                        return TextManager.stringsToArray("Flashlight used");
+                    
+                    case (int)AttackActions.Garlic://in the case where you want a specific interaction:
                         switch(enemyID){
-                            case 0: //if the target is test enemy 0...
+                            case (int)Enemies.ghostA: //if the target is test enemy 0...
                                 //do something specific to this enemy
                                 return new string[] {"That did nothing"};
+
                             default:
-                                //execute what slap does
-                                return TextManager.stringsToArray("slap used");
-                        }
+                                //execute what this does
+                                DamageEnemy(5);
+                                return TextManager.stringsToArray("Garlic used");
+                        }          
                     default: NotSetUp(); return new string[] {"..."};
                 }
+            ////////////////////////////////////////////////////    Talk    ////////////
             case ButtonEnum.Talk:
                 //talk
                 return new string[]{"talking"};
+            ////////////////////////////////////////////////////    Items    ////////////
             case ButtonEnum.Items:
                 //use item
-                return new string[]{"using an item"};
+                switch(actionID){
+                    case (int)ItemsEnum.Apple:
+                        DamagePlayer(-5);
+                        return new string[] {"You ate the apple...",
+                        "and gained 5 health!",
+                        "\"...\""};
+                    default: NotSetUp(); return new string[] {"..."};
+                }
+            ////////////////////////////////////////////////////    Crucifix    ////////////
             case ButtonEnum.Crucifix:
                 //try to run
                 return new string[]{"using cruifix"};
+            ////////////////////////////////////////////////////    Run    ////////////
             case ButtonEnum.Run:
                 //try to run
                 return new string[]{"running"};
