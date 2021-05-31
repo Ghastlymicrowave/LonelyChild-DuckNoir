@@ -40,12 +40,12 @@ public class InventoryManager : MonoBehaviour
 
     public ivItem GetItemFromId(ItemsEnum item){
         switch(item){//using switch because no loaded memory and fast
-            case ItemsEnum.Thing: return new ivItem(
+            case ItemsEnum.Apple: return new ivItem(
                 "fart item",
                 "this an item",
                 "",
                 TextManager.stringsToArray("this is the use text"));
-            case ItemsEnum.OtherThing: return new ivItem(  
+            case ItemsEnum.Ball: return new ivItem(  
                 "fart item 2",
                 "after the first one",
                 "",
