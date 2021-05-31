@@ -7,7 +7,7 @@ public class Interactable : MonoBehaviour
     InventoryManager inventoryManager;
     TextManager textManager;
     [SerializeField] interactableAction action;
-    [SerializeField] int itemID;
+    [SerializeField] Combat.ItemsEnum item;
     [SerializeField] int textID;
     [SerializeField] Activatable activatable;
     static player_main playerRef;
@@ -38,7 +38,7 @@ public class Interactable : MonoBehaviour
                 playerRef.TriggerDialogue(dialogueID);
             break;
             case interactableAction.ITEM:
-                inventoryManager.addItem(itemID);//TODO: add a text manager thing for getting the item
+                inventoryManager.AddItem(item);//TODO: add a text manager thing for getting the item
                 if (dialogueID>-1){
                     playerRef.TriggerDialogue(dialogueID);
                 }

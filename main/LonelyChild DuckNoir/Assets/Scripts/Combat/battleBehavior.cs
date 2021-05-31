@@ -11,7 +11,7 @@ public class battleBehavior : MonoBehaviour
     TextManager tm;
     public Enemy enemy;
     //Our enemy.
-    public SubmenuPosition submenuPosition;
+    public Submenu subMenu;
     //The submenu position.
     public GamePosition gamePosition;
     //Where we are in the turn.
@@ -21,10 +21,6 @@ public class battleBehavior : MonoBehaviour
     //The textbox at the top of the screen.
     public TextMesh fillerText;
     //The text for the text at the top.
-    public TextMesh[] buttonText;
-    //The text assets for the buttons.
-    public string selectedMove;
-    //the name of what the player selected.
     public float typeSpeed = 0.035f;
     //How fast does text scroll?
     bool isTyping;
@@ -36,8 +32,8 @@ public class battleBehavior : MonoBehaviour
     //the current line within the text scroll.
     public int endAtLine;
     //when to end the textscroll.
-    public int whichButton;
-    //which of the five buttons did we press, as an enum.
+    ButtonEnum? currentAction;
+    //what submenu we're currently in
     private IEnumerator theScroll;
     //our scroll
     public GameObject speechTail;
@@ -51,12 +47,12 @@ public class battleBehavior : MonoBehaviour
     {
         StartCoroutine(theScroll = TextScroll(enemy.name + " manifests into view!"));
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
+        subMenu = GameObject.Find("SubmenuPanel").GetComponent<Submenu>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if (gamePosition == GamePosition.EnemyDialogue && timer > typeSpeed)
         {
             //Handling the clicking through of enemy dialogue, and starting of the enemy turn.
@@ -65,19 +61,15 @@ public class battleBehavior : MonoBehaviour
                 if (!isTyping)
                 {
                     currentLine += 1;
-
-                    if (currentLine > endAtLine)
+                     if (currentLine > endAtLine)
                     {
                         EnemyTurn();
                     }
-
                     else
                     {
-
                         StartCoroutine(theScroll = TextScroll(enemy.toScroll[currentLine]));
                         //click.Play();
                     }
-
                 }
                 else if (isTyping && !cancelTyping)
                 {
@@ -89,162 +81,37 @@ public class battleBehavior : MonoBehaviour
     public void ButtonPress(ButtonEnum buttonNum)
     {
         //This gets called from the button scripts when a button gets pressed.
+        ButtonPress((int)buttonNum);
+    }
+
+    public void ButtonPress(int buttonNum){
         click.Play();
-        switch (buttonNum)
-        {
-            case ButtonEnum.One:
-                button1();
-                whichButton = 1;
-                break;
-            case ButtonEnum.Two:
-                button2();
-                whichButton = 2;
-                break;
-            case ButtonEnum.Three:
-                button3();
-                whichButton = 3;
-                break;
-            case ButtonEnum.Four:
-                button4();
-                whichButton = 4;
-                break;
-            case ButtonEnum.Five:
-                button5();
-                whichButton = 5;
-                break;
-            default:
-                print("You sent bad data to buttonPress, dummy.");
-                break;
+        if (buttonNum == (int)ButtonEnum.Run || buttonNum == (int)ButtonEnum.Crucifix){
+            SubButtonPressed((ButtonEnum)buttonNum,0);
+        }else{
+            subMenu.gameObject.SetActive(true);
+            currentAction = (ButtonEnum)buttonNum;
+            subMenu.OpenMenu((ButtonEnum)buttonNum);
         }
     }
 
-    void button1()
-    {
-        //This, and the next four functions, are called from buttonpress when a button is pressed.
-        //They represent the buttons of player choices from left to right.
-        handleSubmenu();
-        switch (submenuPosition)
-        {
-            case SubmenuPosition.Regular:
-                submenuPosition = SubmenuPosition.Attack;
-                break;
-            case SubmenuPosition.Attack:
-                selectedMove = buttonText[0].text;
-                EnemyDialogue();
-                break;
-            case SubmenuPosition.Talk:
-                selectedMove = buttonText[0].text;
-                EnemyDialogue();
-                break;
-            case SubmenuPosition.Inventory:
-                selectedMove = buttonText[0].text;
-                EnemyDialogue();
-                break;
+    public void ExitSubmenu(){
+        if (currentAction!=null){
+            currentAction = null;
         }
-        handleSubmenu();
+        subMenu.gameObject.SetActive(false);
     }
-    void button2()
-    {
-        handleSubmenu();
-        switch (submenuPosition)
-        {
-            case SubmenuPosition.Regular:
-                submenuPosition = SubmenuPosition.Talk;
-                break;
-            case SubmenuPosition.Attack:
-                selectedMove = buttonText[1].text;
-                EnemyDialogue();
-                break;
-            case SubmenuPosition.Talk:
-                selectedMove = buttonText[1].text;
-                EnemyDialogue();
-                break;
-            case SubmenuPosition.Inventory:
-                selectedMove = buttonText[1].text;
-                EnemyDialogue();
-                break;
-        }
-        handleSubmenu();
-    }
-    void button3()
-    {
-        handleSubmenu();
-        switch (submenuPosition)
-        {
-            case SubmenuPosition.Regular:
-                submenuPosition = SubmenuPosition.Inventory;
-                break;
-            case SubmenuPosition.Attack:
-                selectedMove = buttonText[2].text;
-                EnemyDialogue();
-                break;
-            case SubmenuPosition.Talk:
-                selectedMove = buttonText[2].text;
-                EnemyDialogue();
-                break;
-            case SubmenuPosition.Inventory:
-                selectedMove = buttonText[2].text;
-                EnemyDialogue();
-                break;
-        }
-        handleSubmenu();
-    }
-    void button4()
-    {
-        handleSubmenu();
-        switch (submenuPosition)
-        {
-            case SubmenuPosition.Regular:
-                selectedMove = "Run";
-                EnemyDialogue();
-                break;
-            case SubmenuPosition.Attack:
-                selectedMove = buttonText[3].text;
-                EnemyDialogue();
-                break;
-            case SubmenuPosition.Talk:
-                selectedMove = buttonText[3].text;
-                EnemyDialogue();
-                break;
-            case SubmenuPosition.Inventory:
-                selectedMove = buttonText[3].text;
-                EnemyDialogue();
-                break;
-        }
-        handleSubmenu();
-    }
-    void button5()
-    {
-        handleSubmenu();
-        switch (submenuPosition)
-        {
-            case SubmenuPosition.Regular:
-                selectedMove = "Crucifix";
-                EnemyDialogue();
-                break;
-            case SubmenuPosition.Attack:
-                submenuPosition = SubmenuPosition.Regular;
-                break;
-            case SubmenuPosition.Talk:
-                submenuPosition = SubmenuPosition.Regular;
-                break;
-            case SubmenuPosition.Inventory:
-                submenuPosition = SubmenuPosition.Regular;
-                break;
-        }
-        handleSubmenu();
-    }
+
 
     void beginTurn()
     {
         //The logic for beginning a turn.
         gamePosition = GamePosition.PlayerChoice;
-        submenuPosition = SubmenuPosition.Regular;
         playerChoiceBox.SetActive(true);
         textBox.SetActive(true);
-        handleSubmenu();
+        //handleSubmenu();
     }
-    void handleSubmenu()
+    /*void handleSubmenu()
     {
 
         switch (submenuPosition)
@@ -265,30 +132,28 @@ public class battleBehavior : MonoBehaviour
                 print("You put bad data in the handleSubmenu, my guy. Cringe.");
                 break;
         }
-    }
-    void updateButtonVisuals(string a, string b, string c, string d, string e)
-    {
-        buttonText[0].text = a;
-        buttonText[1].text = b;
-        buttonText[2].text = c;
-        buttonText[3].text = d;
-        buttonText[4].text = e;
+    }*/
+
+    public void ExternalSubButtonPressed(int actionID){
+        SubButtonPressed(currentAction ?? (ButtonEnum)0, actionID);
     }
 
-    void EnemyDialogue()
+    void SubButtonPressed(ButtonEnum actionType, int actionID)
     {
         
         gamePosition = GamePosition.EnemyDialogue;
         playerChoiceBox.SetActive(false);
         textBox.SetActive(true);
         currentLine = 0;
-        int TheID = enemy.IDBase;
+        int thisEnemyID = enemy.IDBase;
+        ExitSubmenu();
+        enemy.toScroll = GetEnemyTextByID(thisEnemyID,actionType,actionID);
 
-        switch (submenuPosition)
+        /*switch (submenuPosition)
         {
             case SubmenuPosition.Attack:
                 //enemy.toScroll = enemy.attackDialogue[whichButton - 1].text.Split('\n');
-                enemy.toScroll = tm.GetEnemyTextByID(TheID + whichButton - 1);
+                enemy.toScroll = tm.GetEnemyTextByID(thisEnemyID + whichButton - 1);
                 endAtLine = enemy.toScroll.Length - 1;
                 break;
             case SubmenuPosition.Talk:
@@ -303,7 +168,7 @@ public class battleBehavior : MonoBehaviour
             default:
                 print("you passed bad data into Enemy Dialogue");
                 break;
-        }
+        }*/
         StopCoroutine(theScroll);
         StartCoroutine(theScroll = TextScroll(enemy.toScroll[currentLine]));
     }
@@ -342,5 +207,44 @@ public class battleBehavior : MonoBehaviour
         print("wediditreditt");
     }
 
+    void NotSetUp(){
+        Debug.Log("action ID not set up in battleBehavior");
+    }
 
+    public string[] GetEnemyTextByID(int enemyID, ButtonEnum actionType, int actionID){//using switch because no loaded memory and fast
+        switch(actionType){
+            case ButtonEnum.Attack:
+                switch(actionID){
+                    case (int)AttackActions.Punch:
+                        //execute what punch does
+                        return TextManager.stringsToArray("punch used");
+                    case (int)AttackActions.Shout:
+                        //execute what punch does
+                        return TextManager.stringsToArray("shout used");
+                    case (int)AttackActions.Slap://in the case where you want a specific interaction:
+                        switch(enemyID){
+                            case 0: //if the target is test enemy 0...
+                                //do something specific to this enemy
+                                return new string[] {"That did nothing"};
+                            default:
+                                //execute what slap does
+                                return TextManager.stringsToArray("slap used");
+                        }
+                    default: NotSetUp(); return new string[] {"..."};
+                }
+            case ButtonEnum.Talk:
+                //talk
+                return new string[]{"talking"};
+            case ButtonEnum.Items:
+                //use item
+                return new string[]{"using an item"};
+            case ButtonEnum.Crucifix:
+                //try to run
+                return new string[]{"using cruifix"};
+            case ButtonEnum.Run:
+                //try to run
+                return new string[]{"running"};
+            default: return new string[]{""};//should never be reached
+        }
+    }
 }

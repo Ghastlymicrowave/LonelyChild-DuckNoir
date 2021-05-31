@@ -15,7 +15,7 @@ namespace Combat
     public enum SubmenuPosition { Regular, Attack, Talk, Inventory };
     //The Submenu state. Do we display attack and talk and stuff, or the inventory for example
     [System.Serializable]
-    public enum ButtonEnum { One, Two, Three, Four, Five };
+    public enum ButtonEnum { Attack,Talk,Items,Run,Crucifix };
     //An enum for button presses
     [System.Serializable]
     public struct Attack
@@ -107,6 +107,20 @@ namespace Combat
         public string status;
         //If this contains a keyword for a status effect, the status for our player
 
+    }
+
+    [System.Serializable] 
+    public enum AttackActions{//actions defined here must also be defined in TextManager with a default value
+        Shout,
+        Punch,
+        Slap
+    }
+
+    [System.Serializable] 
+    public enum ItemsEnum{//actions defined here must also be defined in TextManager with a default value
+        SomeItem,
+        Thing,
+        OtherThing
     }
 
 }

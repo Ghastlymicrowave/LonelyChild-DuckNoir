@@ -27,46 +27,23 @@ public class ScannerLogic : MonoBehaviour
         else
         {
             animator.Play("ScannerIdle");
-            float ratio = (((float)health) / ((float)maxHealth));
-            print("retard");
-            //Switch doesn't have contitional functionality, so this is the only solution I can think of.
-            //Feels bad, man.
-            if (ratio > .16 && ratio <= .32)
-            {
-                changeLights(0);
-            }
-
-            else if (ratio > .32 && ratio <= .48)
-            {
-
-                changeLights(1);
-            }
-            else if (ratio > .48 && ratio <= .64)
-            {
-                changeLights(2);
-            }
-            else if (ratio > .64 && ratio <= .9999)
-            {
-                changeLights(3);
-            }
+            changeLights(Mathf.FloorToInt(health*lights.Length/maxHealth)*lights.Length);
         }
-
     }
     public void changeLights(int index)
     {
-        foreach (GameObject lig in lights)
+        foreach (GameObject lig in lights)//disables all lights
         {
             lig.SetActive(false);
         }
-        if (index != 6)
+        if (index >= lights.Length){
+            Debug.Log("Changing more lights than exist as game objects");
+            index = lights.Length-1;
+        }
+        while (index > -1)
         {
-
-            while (index > -1)
-            {
-                lights[index].SetActive(true);
-                index -= 1;
-            }
-
+            lights[index].SetActive(true);
+            index -= 1;
         }
     }
 }
