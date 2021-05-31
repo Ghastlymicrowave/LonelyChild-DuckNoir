@@ -41,6 +41,8 @@ public class battleBehavior : MonoBehaviour
     public AudioSource tick;
     public AudioSource click;
     //audio for textscroller
+    public ScannerLogic scannerLogic;
+    public GameObject scanner;
 
     // Start is called before the first frame update
     void Start()
@@ -140,7 +142,8 @@ public class battleBehavior : MonoBehaviour
 
     void SubButtonPressed(ButtonEnum actionType, int actionID)
     {
-        
+
+
         gamePosition = GamePosition.EnemyDialogue;
         playerChoiceBox.SetActive(false);
         textBox.SetActive(true);
@@ -148,7 +151,8 @@ public class battleBehavior : MonoBehaviour
         int thisEnemyID = enemy.IDBase;
         ExitSubmenu();
         enemy.toScroll = GetEnemyTextByID(thisEnemyID,actionType,actionID);
-
+        PlayerTurnLogic();
+        endAtLine = 1;
         /*switch (submenuPosition)
         {
             case SubmenuPosition.Attack:
@@ -201,10 +205,94 @@ public class battleBehavior : MonoBehaviour
     }
     void EnemyTurn()
     {
+        scanner.SetActive(false);
         gamePosition = GamePosition.EnemyAttack;
         playerChoiceBox.SetActive(false);
         textBox.SetActive(false);
         print("wediditreditt");
+    }
+    void PlayerTurnLogic()
+    {
+        //the actual, hard-coded logic for attacks and stuff.
+
+        ////enemy.toScroll = tm.GetEnemyTextByID(TheID + whichButton - 1);
+        ////endAtLine = enemy.toScroll.Length - 1;
+        int damage = 0;
+        switch (selectedMove)
+        {
+            case "Flashlight":
+                enemy.toScroll = tm.GetEnemyTextByID(enemy.IDBase + ((0) + 0));
+                damage = 5;
+                break;
+            case "Theramin":
+                enemy.toScroll = tm.GetEnemyTextByID(enemy.IDBase + ((1) + 0));
+                damage = 5;
+                break;
+            case "Fire Poker":
+                enemy.toScroll = tm.GetEnemyTextByID(enemy.IDBase + ((2) + 0));
+                damage = 5;
+                break;
+            case "Garlic":
+                enemy.toScroll = tm.GetEnemyTextByID(enemy.IDBase + ((3) + 0));
+                damage = 5;
+                break;
+            case "None":
+                enemy.toScroll = tm.GetEnemyTextByID(0);
+                break;
+            case "Apple":
+                enemy.toScroll = tm.GetEnemyTextByID(1);
+                break;
+            case "Ball":
+                enemy.toScroll = tm.GetEnemyTextByID(2);
+                break;
+
+            default:
+                // print("PlayerTurnLogic is broken");
+                break;
+
+        }
+        if (selectedMove == enemy.weakness)
+        {
+            damage *= 2;
+        }
+        else if (selectedMove == enemy.resistance)
+        {
+            damage /= 2;
+        }
+        enemy.Health -= damage;
+
+        if (enemy.Health < 0)
+        { enemy.Health = 0; }
+        else if (enemy.Health > enemy.maxHealth)
+        { enemy.Health = enemy.maxHealth; }
+
+        if (enemy.hero.health < 0)
+        { enemy.hero.health = 0; }
+        else if (enemy.hero.health > enemy.hero.maxHealth)
+        { enemy.hero.health = enemy.hero.maxHealth; }
+
+        int index = 0;
+
+        while (index < 5)
+        {
+            if (selectedMove == enemy.talkChoices[index] && enemy.talkChoices[index] != "None")
+            {
+                enemy.toScroll = tm.GetEnemyTextByID(enemy.IDBase + ((index) + 4 ));
+            }
+            else if (selectedMove == enemy.altTalkChoices[index] && enemy.altTalkChoices[index] != "None")
+            {
+                enemy.toScroll = tm.GetEnemyTextByID(enemy.IDBase + ((index) + 8));
+            }
+            index += 1;
+        }
+
+
+        if (selectedMove == enemy.sentimental && enemy.Health == 0)
+        {
+            enemy.toScroll = tm.GetEnemyTextByID(enemy.IDBase + 12);
+        }
+        endAtLine = enemy.toScroll.Length - 1;
+        scannerLogic.DecideLights(enemy.Health, enemy.maxHealth);
     }
 
     void NotSetUp(){
