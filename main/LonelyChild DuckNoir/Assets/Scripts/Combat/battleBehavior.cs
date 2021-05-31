@@ -50,6 +50,7 @@ public class battleBehavior : MonoBehaviour
         StartCoroutine(theScroll = TextScroll(enemy.name + " manifests into view!"));
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         subMenu = GameObject.Find("SubmenuPanel").GetComponent<Submenu>();
+        subMenu.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
