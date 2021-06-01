@@ -26,7 +26,8 @@ public class Submenu : MonoBehaviour
         switch(actionType){
             case ButtonEnum.Attack:
                 for (int i = 0; i < inventoryManager.attacks.Count;i++){
-                    //Generate new thing
+                    Sprite spr = InventoryManager.LoadAttackSprite(inventoryManager.attacks[i]);
+                    AddItem(spr,(int)inventoryManager.attacks[i]);
                 }
             break;
             case ButtonEnum.Talk:
