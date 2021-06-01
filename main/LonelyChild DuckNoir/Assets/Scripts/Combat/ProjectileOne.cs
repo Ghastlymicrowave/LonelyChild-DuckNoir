@@ -53,10 +53,14 @@ public class ProjectileOne : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
+        /*
         if(col.gameObject.tag == "Player")
         {
             print("THIS WAS CALLED");
-            //TODO: send damage to player object.
+            PlayerCursor playerCursor = col.GetComponent<PlayerCursor>();
+            playerCursor.Damage(projectile.damage);
+            Destroy(this.gameObject);
         }
+        */
     }
 }

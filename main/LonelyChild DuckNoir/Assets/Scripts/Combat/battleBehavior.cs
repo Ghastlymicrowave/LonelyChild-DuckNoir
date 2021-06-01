@@ -19,7 +19,7 @@ public class battleBehavior : MonoBehaviour
     //The textbox at the top of the screen.
     public GameObject playerChoiceBox;
     //The textbox at the top of the screen.
-    public TextMesh fillerText;
+    public Text fillerText;
     //The text for the text at the top.
     public float typeSpeed = 0.035f;
     //How fast does text scroll?
