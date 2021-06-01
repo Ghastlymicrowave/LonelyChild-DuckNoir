@@ -41,7 +41,7 @@ namespace Combat
         //The maximum damage an attack can do. If this is reached, the attack ends.
     }
     [System.Serializable]
-    public struct Enemy
+    public class Enemy
     {
         //An individual enemy, with that enemy's stats and attacks.
         public string sceneToLoad;
@@ -59,7 +59,7 @@ namespace Combat
         public int roundNum;
         //how many rounds/turns have taken place?
 
-        public string sentimental;
+        public List<int> sentimental;
         public Attack[] Attacks;
         //Our attacks, plain and simple.
 
@@ -88,6 +88,7 @@ namespace Combat
         //And who is our enemy fighting, exactly?
 
     }
+
     [System.Serializable]
     public struct Hero
     {

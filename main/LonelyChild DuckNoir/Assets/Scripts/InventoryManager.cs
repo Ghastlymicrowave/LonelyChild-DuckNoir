@@ -71,13 +71,13 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public Sprite LoadAttackSprite(AttackActions attack){
+    public static Sprite LoadAttackSprite(AttackActions attack){
         switch(attack){//TODO: fill this out with sprites
             default:return Resources.Load("2D Assets/Programmer Art/ghosttemp") as Sprite;
         } 
     } 
 
-    public Sprite LoadItemSprite(int itemID){
+    public static Sprite LoadItemSprite(int itemID){
         switch(itemID){//TODO: fill this out with sprites
             default:return Resources.Load("2D Assets/Programmer Art/ghosttemp") as Sprite;
         } 

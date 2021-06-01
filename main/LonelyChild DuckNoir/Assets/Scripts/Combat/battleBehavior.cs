@@ -171,14 +171,17 @@ public class battleBehavior : MonoBehaviour
         print("wediditreditt");
     }
 
-    void DamageEnemy(int damage){
+    public void DamageEnemy(int damage){
         enemy.Health -= damage;
+        CheckEnemyAlive();
     }
-    void DamageEnemyWeak(int damage){
+    public void DamageEnemyWeak(int damage){
         enemy.Health -= damage*2;
+        CheckEnemyAlive();
     }
-    void DamageEnemyResist(int damage){
+    public void DamageEnemyResist(int damage){
         enemy.Health -= Mathf.FloorToInt(damage/2);
+        CheckEnemyAlive();
     }
 
     void CheckEnemyAlive(){
@@ -197,7 +200,7 @@ public class battleBehavior : MonoBehaviour
         }
     }
 
-    void DamagePlayer(int damage){//can be negative to increase health
+    public void DamagePlayer(int damage){//can be negative to increase health
         if (enemy.hero.health < 0)
         { enemy.hero.health = 0; /*PlayerLose();*/}
         else if (enemy.hero.health > enemy.hero.maxHealth)
@@ -208,31 +211,68 @@ public class battleBehavior : MonoBehaviour
         Debug.Log("action ID not set up in battleBehavior");
     }
 
+    public void PlayerAttackStart(params int[] attackParams){//attack id, various parameters
+        //create minigame stuff based on params
+    }
+    public void PlayerAttackEnd(){
+        //remove minigame stuff
+    }
+    public void EnemyAttackStart(params int[] attackParams){//attack id, various parameters
+        //create minigame stuff based on params
+    }
+    public void EnemyAttackEnd(){
+        //remove minigame stuff
+    }
     public string[] GetEnemyTextByID(int enemyID, ButtonEnum actionType, int actionID){//using switch because no loaded memory and fast
         switch(actionType){
             ////////////////////////////////////////////////////    Attack    ////////////
             case ButtonEnum.Attack:
                 switch(actionID){
                     case (int)AttackActions.Theremin:
-                        //execute what this does
-                        DamageEnemy(5);
-                        return TextManager.stringsToArray("Therimin used");
+                        switch(enemyID){
+                            case (int)Enemies.ghostA:
+                                return new string[] {"You attacked with the theramin...",
+                                "The ghost... liked it?",
+                                "\"That's nice...\"",
+                                "\"Not really my genre though.\"",
+                                "\"I'm more of a 'Boos' kind of guy.\""};
+                            default:
+                                DamageEnemy(5);
+                                return new string[] {"You attacked with the therimin...",
+                                "The ghost's form wavers.",
+                                "\"Looks like it hurt a little...\""};
+                        }
 
                     case (int)AttackActions.FirePoker:
-                        //execute what this does
-                        DamageEnemy(5);
-                        return TextManager.stringsToArray("Fire Poker used");
+                        switch(enemyID){
+                            default:
+                                DamageEnemy(5);
+                                return new string[] {"You Attacked with the Fire Poker...",
+                                "It worked fine!",
+                                "\"Hey, cut that out!\""};
+                        }
                     
                     case (int)AttackActions.Flashlight:
-                        //execute what this does
-                        DamageEnemy(5);
-                        return TextManager.stringsToArray("Flashlight used");
+                        switch(enemyID){
+                            case (int)Enemies.ghostA:
+                                DamageEnemyWeak(5);
+                                return new string[] {"You attacked with the flashlight...",
+                                "It was especially effective!",
+                                "\"Ow, who turned on the lights?\""};
+                            default:
+                                DamageEnemyWeak(5);
+                                return new string[] {"You attacked with the flashlight...",
+                                "The ghost tries to evade the beam.",
+                                "Looks like it hurt a bit..."};
+                        }
                     
                     case (int)AttackActions.Garlic://in the case where you want a specific interaction:
                         switch(enemyID){
                             case (int)Enemies.ghostA: //if the target is test enemy 0...
                                 //do something specific to this enemy
-                                return new string[] {"That did nothing"};
+                                return new string[] {"You Attacked with the Garlic...",
+                                "It worked fine!",
+                                "\"I'm a ghost, not a vampire...\""};
 
                             default:
                                 //execute what this does
@@ -254,6 +294,21 @@ public class battleBehavior : MonoBehaviour
                         return new string[] {"You ate the apple...",
                         "and gained 5 health!",
                         "\"...\""};
+                    case (int)ItemsEnum.Ball:
+                        switch(enemyID){
+                            case (int)Enemies.ghostA:
+                                return Sentimental(new string[]{"You showed the ball to the ghost...",
+                                "It felt... right.",
+                                "\"Thank you...\""},
+                                new string[]{"The ghost hesitates and looks at the ball...",
+                                "Does this ball mean something to it?",
+                                "It snaps out of it's trance, you must have been too soon."});
+
+                        }
+                        return new string[] {"You held the ball out to the being...",
+                        "But it cannot see it!",
+                        "Your machine needs more charge!",
+                        "\"...\""};
                     default: NotSetUp(); return new string[] {"..."};
                 }
             ////////////////////////////////////////////////////    Crucifix    ////////////
@@ -265,6 +320,22 @@ public class battleBehavior : MonoBehaviour
                 //try to run
                 return new string[]{"running"};
             default: return new string[]{""};//should never be reached
+        }
+    }
+
+    public void EnemyAttack(){
+        switch(enemy.IDBase){
+            case (int)Enemies.ghostA:
+                switch(Random.Range(0,2)){
+                    case 0:
+                    break;
+                    case 1:
+                    break;
+                }
+            break;
+            default:
+            Debug.Log("enemy id not set up for EnemyAttack");
+            break;
         }
     }
 }
