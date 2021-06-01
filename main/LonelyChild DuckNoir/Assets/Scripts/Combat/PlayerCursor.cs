@@ -29,7 +29,7 @@ public class PlayerCursor : MonoBehaviour
             {
              //   Debug.Log("X " + mousePos.x + " Y " + mousePos.y);
            // Debug.Log("ERER" + cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane)));
-            realPos = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 2f));
+            realPos = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 1f));
             if (realPos.y > yBound)
             {
                 realPos = new Vector3(realPos.x, yBound, realPos.z);
