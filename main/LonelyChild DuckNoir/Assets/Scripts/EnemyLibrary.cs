@@ -11,13 +11,17 @@ public static class EnemyLibrary{
     }
 }
 public abstract class EnemyClass{
-    public void DamageEnemy(int val){
-        hp-=val;
-        if (hp<0){hp=0;}
-    }
-    protected int hp;
-    protected int maxHP;
-    protected EnemyActionCase[] sentiment;
+    public int id;
+    public string name;
+    public string[] toScroll;
+    public int hp;
+    public int maxHP;
+    public List<EnemyActionCase> sentiment;
+}
+
+public class HeroClass{
+    public int hp = 10;
+    public int maxHP = 10;
 }
 
 public class EnemyActionCase{
@@ -29,9 +33,13 @@ public class EnemyActionCase{
     }
 }
 
-public class Enemy1 : EnemyClass{
+public class Enemy1 : EnemyClass{//example of an actual enemy
     public Enemy1(){
-        base.sentiment = new EnemyActionCase[1]{
-            new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Ball)};
+        sentiment = new List<EnemyActionCase>{
+            new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
+        name = "Enemy 1";
+        hp = 10;
+        maxHP = 10;
+        id = 1;
     }
 }

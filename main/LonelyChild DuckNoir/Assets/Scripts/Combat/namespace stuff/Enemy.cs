@@ -142,4 +142,9 @@ public float duration;
         ghostB
     }
 
+    public enum TalkEnum{
+        Flirt,
+        Chat
+    }
+
 }
