@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCursor : MonoBehaviour
 {
     public AttackLogic bb;
+    public AudioSource audioSource;
     private Camera cam;
     Vector3 realPos;
     Vector3 mousePos;
@@ -54,6 +55,7 @@ public class PlayerCursor : MonoBehaviour
     public void Damage(int damage)
     {
         bb.Damage(damage);
+        audioSource.Play();
     }
         void OnTriggerEnter2D(Collider2D col)
     {
