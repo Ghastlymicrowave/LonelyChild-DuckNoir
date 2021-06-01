@@ -4,6 +4,7 @@ using UnityEngine;
 using Combat;
 public class InventoryManager : MonoBehaviour
 {
+    public int enemyID;//current enemy you're fighting, if -1, you're not fighting an enemy and encounters won't happen
     public List<ivItem> items;
     public List<AttackActions> attacks; //stored as attack id's
     public class ivItem{

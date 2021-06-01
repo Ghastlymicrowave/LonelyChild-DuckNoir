@@ -9,8 +9,9 @@ using Combat;
 public class battleBehavior : MonoBehaviour
 {
     TextManager tm;
-    public Enemy enemy;
+    public EnemyClass enemy;
     //Our enemy.
+    public HeroClass hero;
     public Submenu subMenu;
     //The submenu position.
     public GamePosition gamePosition;
@@ -43,14 +44,19 @@ public class battleBehavior : MonoBehaviour
     //audio for textscroller
     public ScannerLogic scannerLogic;
     public GameObject scanner;
+    InventoryManager inventoryManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(theScroll = TextScroll(enemy.name + " manifests into view!"));
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
+        inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
+        enemy = EnemyLibrary.GetEnemyFromId(inventoryManager.enemyID);
+        StartCoroutine(theScroll = TextScroll(enemy.name + " manifests into view!"));
+        
         subMenu = GameObject.Find("SubmenuPanel").GetComponent<Submenu>();
         subMenu.gameObject.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -71,7 +77,7 @@ public class battleBehavior : MonoBehaviour
                     else
                     {
                         StartCoroutine(theScroll = TextScroll(enemy.toScroll[currentLine]));
-                        //click.Play();
+                        click.Play();
                     }
                 }
                 else if (isTyping && !cancelTyping)
@@ -112,7 +118,6 @@ public class battleBehavior : MonoBehaviour
         gamePosition = GamePosition.PlayerChoice;
         playerChoiceBox.SetActive(true);
         textBox.SetActive(true);
-        //handleSubmenu();
     }
 
     public void ExternalSubButtonPressed(int actionID){
@@ -127,13 +132,14 @@ public class battleBehavior : MonoBehaviour
         playerChoiceBox.SetActive(false);
         textBox.SetActive(true);
         currentLine = 0;
-        int thisEnemyID = enemy.IDBase;
+        int thisEnemyID = enemy.id;
         ExitSubmenu();
         enemy.toScroll = GetEnemyTextByID(thisEnemyID,actionType,actionID);
         endAtLine = enemy.toScroll.Length - 1;
-        scannerLogic.DecideLights(enemy.Health, enemy.maxHealth);
+        scannerLogic.DecideLights(enemy.hp, enemy.maxHP);
         StopCoroutine(theScroll);
         StartCoroutine(theScroll = TextScroll(enemy.toScroll[currentLine]));
+        SentimentalItemUsed(new EnemyActionCase((int)actionType,actionID));
     }
     private IEnumerator TextScroll(string lineOfText)
     {
@@ -172,39 +178,51 @@ public class battleBehavior : MonoBehaviour
     }
 
     public void DamageEnemy(int damage){
-        enemy.Health -= damage;
+        enemy.hp -= damage;
         CheckEnemyAlive();
     }
     public void DamageEnemyWeak(int damage){
-        enemy.Health -= damage*2;
+        enemy.hp -= damage*2;
         CheckEnemyAlive();
     }
     public void DamageEnemyResist(int damage){
-        enemy.Health -= Mathf.FloorToInt(damage/2);
+        enemy.hp -= Mathf.FloorToInt(damage/2);
         CheckEnemyAlive();
     }
 
     void CheckEnemyAlive(){
-        if (enemy.Health < 0)
-        { enemy.Health = 0;/* EnemyDead(); */ }
-        else if (enemy.Health > enemy.maxHealth)
-        { enemy.Health = enemy.maxHealth; }
+        if (enemy.hp < 0)
+        { enemy.hp = 0;/* EnemyDead(); */ }
+        else if (enemy.hp > enemy.maxHP)
+        { enemy.hp = enemy.maxHP; }
     }
 
     string[] Sentimental(string[] success, string[] failiure){
-        if (enemy.Health==0){
+        if (enemy.sentiment.Count<=0){
             //do something to end the battle
-            return success;
+            SentimentalVictory();
+            return success;//combat ended
         }else{
-            return failiure;
+            return failiure;//
         }
     }
 
+    void SentimentalItemUsed(EnemyActionCase action){
+        if (enemy.sentiment.Contains(action)){
+            enemy.sentiment.Remove(action);
+        }
+        //Tick Sentiment meter
+    }
+
+    void SentimentalVictory(){
+        
+    }
+
     public void DamagePlayer(int damage){//can be negative to increase health
-        if (enemy.hero.health < 0)
-        { enemy.hero.health = 0; /*PlayerLose();*/}
-        else if (enemy.hero.health > enemy.hero.maxHealth)
-        { enemy.hero.health = enemy.hero.maxHealth; }
+        if (hero.hp < 0)
+        {hero.hp = 0; /*PlayerLose();*/}
+        else if (hero.hp > hero.maxHP)
+        { hero.hp = hero.maxHP; }
     }
 
     void NotSetUp(){
@@ -284,7 +302,19 @@ public class battleBehavior : MonoBehaviour
             ////////////////////////////////////////////////////    Talk    ////////////
             case ButtonEnum.Talk:
                 //talk
-                return new string[]{"talking"};
+                switch(actionID){
+                    case (int)TalkEnum.Chat:
+                        switch(enemyID){
+                            case 0:
+                                return new string[] {"You had a chat with the ghost...",
+                                "The ghost really enjoyed that.",
+                                "You think it might have smiled a little"};
+                            default:
+                                return new string[] {"You had a chat with the ghost...",
+                                "The ghost seemed bored..."};  
+                        }
+                    default: NotSetUp(); return new string[] {"..."};
+                }
             ////////////////////////////////////////////////////    Items    ////////////
             case ButtonEnum.Items:
                 //use item
@@ -324,7 +354,7 @@ public class battleBehavior : MonoBehaviour
     }
 
     public void EnemyAttack(){
-        switch(enemy.IDBase){
+        switch(enemy.id){
             case (int)Enemies.ghostA:
                 switch(Random.Range(0,2)){
                     case 0:
