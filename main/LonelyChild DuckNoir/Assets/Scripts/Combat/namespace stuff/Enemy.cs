@@ -29,6 +29,8 @@ namespace Combat
         //When to Instantiate from projectiles.
         public Transform[] spawnLocations;
         //Where are we spawning these things?
+public float duration;
+        //How long is the attack?
         public int damage;
         //The total damage done by the attack. 
         public string status;
@@ -36,7 +38,7 @@ namespace Combat
         //We can then apply that string to the Hero if this status has been updated.
         public int minDamage;
         //The minimum damage an attack can do, should probably stay at 0.
-        public int actualDamage;
+
         public int maxDamage;
         //The maximum damage an attack can do. If this is reached, the attack ends.
     }
