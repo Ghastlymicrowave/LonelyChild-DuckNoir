@@ -37,7 +37,7 @@ public class MainMenu : MonoBehaviour
         {
             inventoryManager.ghostsRoaming.Add(ghost);
         }
-        inventoryManager.playerPosOnStart = new Vector3(4.92f, 92.67f, 4.311f);
+        inventoryManager.playerPosOnStart = new Vector3(999999f, 999999f, 999999f);
         SceneManager.LoadScene(ToLoad);
     }
     public void QuitButton()
