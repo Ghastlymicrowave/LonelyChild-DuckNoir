@@ -7,14 +7,19 @@ public class InventoryManager : MonoBehaviour
     public int enemyID;//current enemy you're fighting, if -1, you're not fighting an enemy and encounters won't happen
     public List<ivItem> items;
     public List<AttackActions> attacks; //stored as attack id's
-    public class ivItem{
+    public List<int> ghostsRoaming; //not yet defeated, used to spawn one in overworld when scene is loaded, removed when defeated
+    public List<int> ghostsAscended; // list of ghosts beaten with sentimental victory
+    public List<int> ghostsCrucified; // list of ghosts beaten with crucifix
+    public class ivItem
+    {
         public readonly string name;
         public readonly string description;
         public string methodName; //name of method to be used out of combat on player_main NOT IN RN
         public string[] useText;
 
         //TODO add an image
-        public ivItem(string _name, string _description, string _methodName, string[] _useText){
+        public ivItem(string _name, string _description, string _methodName, string[] _useText)
+        {
             name = _name;
             description = _description;
             methodName = _methodName;
@@ -23,12 +28,14 @@ public class InventoryManager : MonoBehaviour
     }
 
 
-    
-    void Start(){
+
+    void Start()
+    {
         items = new List<ivItem>();
     }
 
-    void Awake(){
+    void Awake()
+    {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("manager");
 
         if (objs.Length > 1)
@@ -39,56 +46,74 @@ public class InventoryManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public ivItem GetItemFromId(ItemsEnum item){
-        switch(item){//using switch because no loaded memory and fast
-            case ItemsEnum.Apple: return new ivItem(
-                "fart item",
-                "this an item",
-                "",
-                TextManager.stringsToArray("this is the use text"));
-            case ItemsEnum.Ball: return new ivItem(  
-                "fart item 2",
-                "after the first one",
-                "",
-                TextManager.stringsToArray("this is the use text"));
+    public ivItem GetItemFromId(ItemsEnum item)
+    {
+        switch (item)
+        {//using switch because no loaded memory and fast
+            case ItemsEnum.Apple:
+                return new ivItem(
+"fart item",
+"this an item",
+"",
+TextManager.stringsToArray("this is the use text"));
+            case ItemsEnum.Ball:
+                return new ivItem(
+"fart item 2",
+"after the first one",
+"",
+TextManager.stringsToArray("this is the use text"));
             default: return null;
         }
     }
 
-    public void AddItem(ItemsEnum item){
+    public void AddItem(ItemsEnum item)
+    {
         items.Add(GetItemFromId(item));
     }
-    public void AddItem(ivItem item){
+    public void AddItem(ivItem item)
+    {
         items.Add(item);
     }
-    public void RemoveItem(ivItem item){
-        if (items.Contains(item)){
+    public void RemoveItem(ivItem item)
+    {
+        if (items.Contains(item))
+        {
             items.Remove(item);
         }
     }
-    public void AddAttack(AttackActions attack){
-        if (!attacks.Contains(attack)){
+    public void AddAttack(AttackActions attack)
+    {
+        if (!attacks.Contains(attack))
+        {
             attacks.Add(attack);
         }
     }
 
-    public static Sprite LoadAttackSprite(AttackActions attack){
-        switch(attack){//TODO: fill this out with sprites
-            default:return Resources.Load("2D Assets/Programmer Art/ghosttemp") as Sprite;
-        } 
-    } 
+    public static Sprite LoadAttackSprite(AttackActions attack)
+    {
+        switch (attack)
+        {//TODO: fill this out with sprites
+            default: return Resources.Load("2D Assets/Programmer Art/ghosttemp") as Sprite;
+        }
+    }
 
-    public static Sprite LoadItemSprite(int itemID){
-        switch(itemID){//TODO: fill this out with sprites
-            default:return Resources.Load("2D Assets/Programmer Art/ghosttemp") as Sprite;
-        } 
-    } 
+    public static Sprite LoadItemSprite(int itemID)
+    {
+        switch (itemID)
+        {//TODO: fill this out with sprites
+            default: return Resources.Load("2D Assets/Programmer Art/ghosttemp") as Sprite;
+        }
+    }
 
 
-    public void callItem(ivItem item){ //This can be moved into BattleBehavior
-        if (item.methodName!=""){
-            Invoke(item.methodName,0f);
-        }else{
+    public void callItem(ivItem item)
+    { //This can be moved into BattleBehavior
+        if (item.methodName != "")
+        {
+            Invoke(item.methodName, 0f);
+        }
+        else
+        {
             Debug.Log("Trying to invoke an empty method name");
         }
     }

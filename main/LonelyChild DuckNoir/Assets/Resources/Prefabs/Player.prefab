@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 5358240908709131565}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,7 +216,6 @@ MonoBehaviour:
   Sfriction: 0.01
   rotatationSpd: 0.4
   interactHitboxOffset: 1
-  scalePerUnitDistance: 0.02
   spdAccel: 0.01
   textScroller: {fileID: 0}
   canMove: 1
@@ -267,7 +266,7 @@ Animator:
   m_GameObject: {fileID: 7466410144921916769}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0a334fbcd77234c4c93529307063fba3, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
