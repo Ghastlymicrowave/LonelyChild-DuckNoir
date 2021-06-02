@@ -16,12 +16,14 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
+        
         if (textScroller == null)
         {
             textScroller = FindObjectOfType<TextScroller>();
         }
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
+        
     }
 
     // Update is called once per frame
@@ -35,6 +37,7 @@ public class MainMenu : MonoBehaviour
         {
             inventoryManager.ghostsRoaming.Add(ghost);
         }
+        inventoryManager.playerPosOnStart = new Vector3(4.92f, 92.67f, 4.311f);
         SceneManager.LoadScene(ToLoad);
     }
     public void QuitButton()

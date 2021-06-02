@@ -63,6 +63,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            inventoryManager.playerPosOnStart = collision.gameObject.transform.position;
             inventoryManager.enemyID = enemyID;
             SceneManager.LoadScene(ToLoad);
         }

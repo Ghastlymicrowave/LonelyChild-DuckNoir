@@ -15,6 +15,7 @@ public class player_main : MonoBehaviour
 
     float hinput = 0f;
     TextManager tm;
+    InventoryManager inventoryManager;
     float vinput = 0f;
     bool isMoving = false;
     float currentSpd = 0;
@@ -29,15 +30,35 @@ public class player_main : MonoBehaviour
     private CameraControl camControl;
     private Animator thisAnimator;
     private GameObject spriteObj;
+
+    //playerposonstart
+    public bool MovePlayerOnStart = true;
+      [HideInInspector] public CameraTrigger cam;
+
     void Start()
     {
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
+        inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
+
+        
+
         spriteObj = transform.GetChild(1).gameObject;
         thisAnimator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         interactableTarget = null;
         interactHitbox = transform.GetChild(0).gameObject;
         camControl = GameObject.Find("CameraControl").GetComponent<CameraControl>();
+
+
+        //player pos on start
+        Vector3 tempForComparison = new Vector3(999999f, 999999f, 999999f);
+        if (inventoryManager.playerPosOnStart != tempForComparison && MovePlayerOnStart)
+        {
+            this.gameObject.transform.position = inventoryManager.playerPosOnStart;
+           // FindClosestCamera();
+        }
+
+
         if (textScroller == null)
         {
             textScroller = FindObjectOfType<TextScroller>();
@@ -140,6 +161,26 @@ public class player_main : MonoBehaviour
         Vector3 camPos = camControl.activeCam.transform.position;
         camPos.z = spriteObj.transform.position.z;
         spriteObj.transform.LookAt(camPos,Vector3.back);
+    }
+
+    void FindClosestCamera()
+    {
+        CameraTrigger[] allCam = FindObjectsOfType<CameraTrigger>();
+        
+        float closestYet = Mathf.Infinity;
+        foreach (CameraTrigger ct in allCam)
+        {
+            float distance = (ct.transform.position - this.transform.position).sqrMagnitude;
+            if(distance < closestYet)
+            {
+                cam = ct;
+            }
+        }
+        if (cam != null)
+        {
+            camControl.activeCam = cam.gameObject.transform.GetChild(0).gameObject;
+            print("findclosestcamera is being called" + cam.gameObject.name);
+        }
     }
 
 
