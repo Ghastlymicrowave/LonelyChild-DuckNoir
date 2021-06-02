@@ -14,6 +14,22 @@ public class TextManager : MonoBehaviour
             case 0: return stringsToArray("fart",
             "fart 2",
             "fart 3, return of the fart");
+            case 1: return stringsToArray("This is the tutorial for The Lonely Child.\nYou may click anywhere to read more.",
+            "Use WASD To move and the mouse to interact with things.",
+            "Interactables show up as '!' and can be clicked on to engage text and maybe add an item to your inventory.",
+            "The ghosts walking around out there... if they touch you...",
+            "You'll be sucked into turn based combat.",
+            "You'll be able to attack with four weapons, with enemies having various weaknesses and resistances to them.",
+            "During the enemy's turn, you'll have to dodge their attacks on your ghost finder using the mouse.",
+            "Deal enough damage, and you'll be able to end the battle in one of two ways:",
+            "Crucify (Mean and unfulfilling, but fast)\nOr...",
+            "Show them the right sentimental item from your inventory to save their soul.\n(Long, but you're a good person I guess.)",
+            "Get to the end and defeat the boss to beat the Alpha version!~",
+            "But don't think it'll be that easy, however...",
+            "There's puzzles to solve... An orphanage to navigate...",
+            "And...\nOf course...",
+            "This place IS haunted, you know..."
+            );
             default: Debug.Log("got bad text id");return null;
         }
     }

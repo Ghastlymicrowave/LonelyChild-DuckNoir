@@ -40,8 +40,13 @@ public class TextScroller : MonoBehaviour
             StopCoroutine(theClose);
             anim.Play("NewPopUp");
         }
+
+
         pm = pmReference;
-        pm.canMove = false;
+        if (pm != null)
+        {
+            pm.canMove = false;
+        }
         theCanvas.SetActive(true);
         toScroll = newString;
         currentLine = 0;
@@ -83,7 +88,10 @@ public class TextScroller : MonoBehaviour
     }
     void CloseDialogue()
     {
-        pm.canMove = true;
+        if (pm != null)
+        {
+            pm.canMove = true;
+        }
         isUpdating = false;
         toScroll = null;
         StartCoroutine(theClose = CloseIt());
