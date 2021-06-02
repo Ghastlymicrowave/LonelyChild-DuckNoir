@@ -16,9 +16,9 @@ public class InventoryManager : MonoBehaviour
         public readonly string description;
         public string methodName; //name of method to be used out of combat on player_main NOT IN RN
         public string[] useText;
-
+        public int id;
         //TODO add an image
-        public ivItem(string _name, string _description, string _methodName, string[] _useText)
+        public ivItem(string _name, string _description, string _methodName, string[] _useText, int id)
         {
             name = _name;
             description = _description;
@@ -32,6 +32,9 @@ public class InventoryManager : MonoBehaviour
     void Start()
     {
         items = new List<ivItem>();
+        //debug only for now
+        attacks.Add(AttackActions.Flashlight);
+        items.Add(GetItemFromId(ItemsEnum.Apple));
     }
 
     void Awake()
@@ -52,16 +55,16 @@ public class InventoryManager : MonoBehaviour
         {//using switch because no loaded memory and fast
             case ItemsEnum.Apple:
                 return new ivItem(
-"fart item",
-"this an item",
-"",
-TextManager.stringsToArray("this is the use text"));
+                    "Apple",
+                    "An ordinary apple",
+                    "",
+                    TextManager.stringsToArray("you used an apple"), (int)ItemsEnum.Apple);
             case ItemsEnum.Ball:
                 return new ivItem(
-"fart item 2",
-"after the first one",
-"",
-TextManager.stringsToArray("this is the use text"));
+                    "Ball",
+                    "A small rubber ball",
+                    "",
+                    TextManager.stringsToArray("you used a ball"), (int)ItemsEnum.Apple);
             default: return null;
         }
     }
@@ -93,7 +96,7 @@ TextManager.stringsToArray("this is the use text"));
     {
         switch (attack)
         {//TODO: fill this out with sprites
-            default: return Resources.Load("2D Assets/Programmer Art/ghosttemp") as Sprite;
+            default: return Resources.Load("2D Assets/Programmer Art/ghosttemp",typeof(Sprite)) as Sprite;
         }
     }
 
@@ -101,7 +104,15 @@ TextManager.stringsToArray("this is the use text"));
     {
         switch (itemID)
         {//TODO: fill this out with sprites
-            default: return Resources.Load("2D Assets/Programmer Art/ghosttemp") as Sprite;
+            default: return Resources.Load("2D Assets/Programmer Art/ghosttemp",typeof(Sprite)) as Sprite;
+        }
+    }
+
+    public static Sprite LoadTalkSprite(int itemID)
+    {
+        switch (itemID)
+        {//TODO: fill this out with sprites
+            default: return Resources.Load("2D Assets/Programmer Art/ghosttemp",typeof(Sprite)) as Sprite;
         }
     }
 

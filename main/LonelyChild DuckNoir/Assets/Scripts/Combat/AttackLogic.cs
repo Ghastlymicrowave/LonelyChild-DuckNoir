@@ -10,11 +10,6 @@ public class AttackLogic : MonoBehaviour
     public Attack attack;
     float timer = 0f;
 
-    void Start()
-    {
-        playerCursor.bb = this;
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -40,6 +35,7 @@ public class AttackLogic : MonoBehaviour
         //battle behavior end enemy turn
         this.gameObject.SetActive(false);
         print("endturn");
+        bb.EnemyAttackEnd();
     }
     public void Damage(int damage)
     {

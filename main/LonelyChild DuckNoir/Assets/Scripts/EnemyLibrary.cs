@@ -16,7 +16,26 @@ public abstract class EnemyClass{
     public string[] toScroll;
     public int hp;
     public int maxHP;
+    public string[] attackPrefabNames;
     public List<EnemyActionCase> sentiment;
+    public string folderPath = "2D Assets/Programmer Art/GhostSprites";
+    public string fileName = "ghost1";
+    public int animationFrames = 1;
+    public TalkEnum[] talkActions;
+    public Sprite[,] GetSprites(){//TODO: FInISH
+        Sprite[,] toReturn = new Sprite[4,animationFrames];
+        string loadstring = folderPath+"/"+fileName;
+        for(int i = 0; i < animationFrames; i++){
+            toReturn[0,i] = Resources.Load<Sprite>(loadstring + "Forward"+i.ToString());
+            toReturn[1,i] = Resources.Load<Sprite>(loadstring + "Backward"+i.ToString());
+            toReturn[2,i] = Resources.Load<Sprite>(loadstring + "Left"+i.ToString());
+            toReturn[3,i] = Resources.Load<Sprite>(loadstring + "Right"+i.ToString());
+        }
+        return toReturn;
+    }
+    public GameObject GetRandomAttack(){
+        return Resources.Load(attackPrefabNames[0],typeof(GameObject)) as GameObject;//attackPrefabNames[Random.Range(0,attackPrefabNames.Length)]
+    }
 }
 
 public class HeroClass{
@@ -38,8 +57,13 @@ public class Enemy1 : EnemyClass{//example of an actual enemy
         sentiment = new List<EnemyActionCase>{
             new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
         name = "Enemy 1";
-        hp = 10;
-        maxHP = 10;
+        hp = 20;
+        maxHP = 20;
         id = 1;
+        attackPrefabNames = new string[] {
+            "Prefabs/combatEnemyTurn/attacks/Mix/Mix_Easy",
+            "Prefabs/combatEnemyTurn/attacks/Sine/Sine_TooEasy"};
+        talkActions = new TalkEnum[1] {TalkEnum.Chat};
     }
+    
 }

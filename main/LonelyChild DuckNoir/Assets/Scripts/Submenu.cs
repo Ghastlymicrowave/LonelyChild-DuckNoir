@@ -16,9 +16,12 @@ public class Submenu : MonoBehaviour
     }
 
     public void ClearItems(){
-        for(int i = content.transform.childCount; i > -1; i--){
-            Destroy(content.transform.GetChild(i).gameObject);
+        if (content.transform.childCount>0){
+            for(int i = content.transform.childCount-1; i > -1; i--){
+                Destroy(content.transform.GetChild(i).gameObject);
+            }
         }
+        
     }
 
     public void OpenMenu(ButtonEnum actionType){
@@ -31,14 +34,23 @@ public class Submenu : MonoBehaviour
                 }
             break;
             case ButtonEnum.Talk:
+                for (int i = 0; i < battleBehavior.enemy.talkActions.Length;i++){
+                    Sprite spr = InventoryManager.LoadTalkSprite((int)battleBehavior.enemy.talkActions[i]);
+                    AddItem(spr,(int)battleBehavior.enemy.talkActions[i]);
+                }
             break;
             case ButtonEnum.Items:
+                for (int i = 0; i < inventoryManager.items.Count;i++){
+                    Sprite spr = InventoryManager.LoadItemSprite((int)inventoryManager.items[i].id);
+                    AddItem(spr,(int)inventoryManager.items[i].id);
+                }
             break;
         }
     }
 
     public void AddItem(Sprite spr, int actionID){
-        GameObject item = Instantiate(Resources.Load("Assets/Prefabs/SubmenuItem") as GameObject,content.transform);
+        Debug.Log(spr);
+        GameObject item = Instantiate(Resources.Load("Prefabs/SubmenuItem") as GameObject,content.transform);
         Image image = item.GetComponent<Image>();
         image.sprite = spr;
         Button btn = item.GetComponent<Button>();

@@ -18,8 +18,8 @@ public class battleBehavior : MonoBehaviour
     //Where we are in the turn.
     public GameObject textBox;
     //The textbox at the top of the screen.
-    public GameObject playerChoiceBox;
-    //The textbox at the top of the screen.
+    public GameObject MenuPanel;
+    //menu with player commands
     public Text fillerText;
     //The text for the text at the top.
     public float typeSpeed = 0.035f;
@@ -41,11 +41,13 @@ public class battleBehavior : MonoBehaviour
     //VisualAid used for speech
     public AudioSource tick;
     public AudioSource click;
+    public AudioSource Damage;
     //audio for textscroller
     public ScannerLogic scannerLogic;
     public GameObject scanner;
     InventoryManager inventoryManager;
 
+    GameObject? minigame;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,10 +55,9 @@ public class battleBehavior : MonoBehaviour
         inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
         enemy = EnemyLibrary.GetEnemyFromId(inventoryManager.enemyID);
         StartCoroutine(theScroll = TextScroll(enemy.name + " manifests into view!"));
-        
+        MenuPanel = GameObject.Find("MenuPanel");
         subMenu = GameObject.Find("SubmenuPanel").GetComponent<Submenu>();
         subMenu.gameObject.SetActive(false);
-        
     }
 
     // Update is called once per frame
@@ -100,6 +101,7 @@ public class battleBehavior : MonoBehaviour
         }else{
             subMenu.gameObject.SetActive(true);
             currentAction = (ButtonEnum)buttonNum;
+            Debug.Log(subMenu);
             subMenu.OpenMenu((ButtonEnum)buttonNum);
         }
     }
@@ -116,8 +118,14 @@ public class battleBehavior : MonoBehaviour
     {
         //The logic for beginning a turn.
         gamePosition = GamePosition.PlayerChoice;
-        playerChoiceBox.SetActive(true);
         textBox.SetActive(true);
+        MenuPanel.SetActive(true);
+        scanner.SetActive(true);
+        enemy.toScroll = new string[] {"this enemy has" + enemy.hp+" of " + enemy.maxHP+" hitpoints"};
+        endAtLine = enemy.toScroll.Length - 1;
+        currentLine = 0;
+        StopCoroutine(theScroll);
+        StartCoroutine(theScroll = TextScroll(enemy.toScroll[currentLine]));
     }
 
     public void ExternalSubButtonPressed(int actionID){
@@ -126,20 +134,19 @@ public class battleBehavior : MonoBehaviour
 
     void SubButtonPressed(ButtonEnum actionType, int actionID)
     {
-
-
         gamePosition = GamePosition.EnemyDialogue;
-        playerChoiceBox.SetActive(false);
         textBox.SetActive(true);
         currentLine = 0;
         int thisEnemyID = enemy.id;
         ExitSubmenu();
+        MenuPanel.SetActive(false);
         enemy.toScroll = GetEnemyTextByID(thisEnemyID,actionType,actionID);
         endAtLine = enemy.toScroll.Length - 1;
         scannerLogic.DecideLights(enemy.hp, enemy.maxHP);
         StopCoroutine(theScroll);
         StartCoroutine(theScroll = TextScroll(enemy.toScroll[currentLine]));
         SentimentalItemUsed(new EnemyActionCase((int)actionType,actionID));
+        ExitSubmenu();
     }
     private IEnumerator TextScroll(string lineOfText)
     {
@@ -172,22 +179,20 @@ public class battleBehavior : MonoBehaviour
     {
         scanner.SetActive(false);
         gamePosition = GamePosition.EnemyAttack;
-        playerChoiceBox.SetActive(false);
         textBox.SetActive(false);
-        print("wediditreditt");
+        EnemyAttackStart();
     }
 
     public void DamageEnemy(int damage){
         enemy.hp -= damage;
         CheckEnemyAlive();
+        Debug.Log(enemy.hp);
     }
     public void DamageEnemyWeak(int damage){
-        enemy.hp -= damage*2;
-        CheckEnemyAlive();
+        DamageEnemy(damage*2);
     }
     public void DamageEnemyResist(int damage){
-        enemy.hp -= Mathf.FloorToInt(damage/2);
-        CheckEnemyAlive();
+        DamageEnemy(Mathf.FloorToInt(damage/2));
     }
 
     void CheckEnemyAlive(){
@@ -229,17 +234,22 @@ public class battleBehavior : MonoBehaviour
         Debug.Log("action ID not set up in battleBehavior");
     }
 
-    public void PlayerAttackStart(params int[] attackParams){//attack id, various parameters
+    public void PlayerAttackStart(){//attack id, various parameters
         //create minigame stuff based on params
     }
     public void PlayerAttackEnd(){
         //remove minigame stuff
+        Destroy(minigame);
     }
-    public void EnemyAttackStart(params int[] attackParams){//attack id, various parameters
+    public void EnemyAttackStart(){//attack id, various parameters
+        AttackLogic logic = Instantiate(enemy.GetRandomAttack(),null).GetComponent<AttackLogic>();
+        logic.bb=this;
         //create minigame stuff based on params
     }
     public void EnemyAttackEnd(){
         //remove minigame stuff
+        Destroy(minigame);
+        beginTurn();
     }
     public string[] GetEnemyTextByID(int enemyID, ButtonEnum actionType, int actionID){//using switch because no loaded memory and fast
         switch(actionType){
@@ -273,12 +283,12 @@ public class battleBehavior : MonoBehaviour
                     case (int)AttackActions.Flashlight:
                         switch(enemyID){
                             case (int)Enemies.ghostA:
-                                DamageEnemyWeak(5);
+                                DamageEnemyWeak(1);
                                 return new string[] {"You attacked with the flashlight...",
                                 "It was especially effective!",
                                 "\"Ow, who turned on the lights?\""};
                             default:
-                                DamageEnemyWeak(5);
+                                DamageEnemy(2);
                                 return new string[] {"You attacked with the flashlight...",
                                 "The ghost tries to evade the beam.",
                                 "Looks like it hurt a bit..."};

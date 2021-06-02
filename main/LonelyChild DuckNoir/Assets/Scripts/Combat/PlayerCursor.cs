@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCursor : MonoBehaviour
 {
-    public AttackLogic bb;
+    private AttackLogic attackLogic;
     public AudioSource audioSource;
     private Camera cam;
     Vector3 realPos;
@@ -21,6 +21,8 @@ public class PlayerCursor : MonoBehaviour
     {
         //camera.main is amateur, but there's no reason for cameras to change in battle, so it's probably fine.
         cam = Camera.main;
+        attackLogic=transform.parent.GetComponent<AttackLogic>();
+        audioSource = attackLogic.bb.Damage;
     }
 
     // Update is called once per frame
@@ -54,7 +56,7 @@ public class PlayerCursor : MonoBehaviour
     }
     public void Damage(int damage)
     {
-        bb.Damage(damage);
+        attackLogic.Damage(damage);
         audioSource.Play();
     }
         void OnTriggerEnter2D(Collider2D col)
