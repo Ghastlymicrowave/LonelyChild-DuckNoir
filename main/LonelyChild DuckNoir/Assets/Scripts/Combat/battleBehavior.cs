@@ -278,6 +278,7 @@ public class battleBehavior : MonoBehaviour
     }
     public void EnemyAttackStart(){//attack id, various parameters
         AttackLogic logic = Instantiate(enemy.GetRandomAttack(),null).GetComponent<AttackLogic>();
+        logic.transform.parent = this.transform.parent;
         logic.bb=this;
         //create minigame stuff based on params
     }

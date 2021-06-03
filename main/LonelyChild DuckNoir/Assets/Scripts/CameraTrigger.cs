@@ -52,8 +52,10 @@ public class CameraTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Triggered();
-        Debug.Log("Triggered");
+        if (other.tag == "Player"){
+            Triggered();
+            Debug.Log("Triggered");
+        }
     }
 
     public void Triggered(){

@@ -53,21 +53,21 @@ public class EnemyBehavior : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
 
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player")//pathfind
         {
             patrol = false;
             player = col.gameObject;
-
         }
 
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")//triggle combat
         {
             inventoryManager.playerPosOnStart = collision.gameObject.transform.position;
             inventoryManager.enemyID = enemyID;
             gameSceneManager.EnterCombat();
+            gameObject.SetActive(false);
         }
     }
 }
