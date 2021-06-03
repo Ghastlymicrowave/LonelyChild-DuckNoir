@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EnemyBehavior : MonoBehaviour
 {
+    GameSceneManager gameSceneManager;
     static CameraControl camControl;
     public Transform sprite;
     public bool isMoving = true;
@@ -28,6 +29,7 @@ public class EnemyBehavior : MonoBehaviour
         }
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
+        gameSceneManager = tm.gameObject.GetComponent<GameSceneManager>();
     }
     private void Update()
     {
@@ -65,7 +67,7 @@ public class EnemyBehavior : MonoBehaviour
         {
             inventoryManager.playerPosOnStart = collision.gameObject.transform.position;
             inventoryManager.enemyID = enemyID;
-            SceneManager.LoadScene(ToLoad);
+            gameSceneManager.EnterCombat();
         }
     }
 }

@@ -684,6 +684,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2010046392 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7702230763314335052, guid: e9ec3f40a33a5a04a9ed0201eb9ad950, type: 3}
+  m_PrefabInstance: {fileID: 7702230763718198996}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2010046396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010046392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584cc631ca706c347a5ddbadb177a4ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatSceneName: combatTest
 --- !u!1001 &2077860631
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -266,7 +266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 89328493}
   m_Layer: 0
-  m_Name: CombatTest
+  m_Name: CombatScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -464,7 +464,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1007449163}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.99981934
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1549,7 +1549,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -655.0675, y: 186.19998}
+  m_AnchoredPosition: {x: -655.0675, y: 0}
   m_SizeDelta: {x: 0, y: 186.2}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &727044050

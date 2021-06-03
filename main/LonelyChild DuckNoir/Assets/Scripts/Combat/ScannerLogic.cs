@@ -11,27 +11,26 @@ public class ScannerLogic : MonoBehaviour
 
     public void DecideLights(int health, int maxHealth)
     {
+        Debug.Log(health.ToString() +"/"+ maxHealth.ToString() + "length"+lights.Length.ToString());
 
-
-        if (maxHealth == health)
-        {
-            changeLights(6);
-
-        }
-        else if (health == 0)
+        if (health == 0)
         {
             animator.Play("ScannerMove");
-            changeLights(4);
+            changeLights(5);
 
         }
         else
         {
             animator.Play("ScannerIdle");
-            changeLights(Mathf.FloorToInt(health*lights.Length/maxHealth)*lights.Length);
+            float h = lights.Length;
+            float hp = health;
+            float maxHP = maxHealth;
+            changeLights(Mathf.FloorToInt(h-1-(hp*((h-1)/maxHP))));
         }
     }
     public void changeLights(int index)
     {
+        Debug.Log("change lights, "+index.ToString());
         foreach (GameObject lig in lights)//disables all lights
         {
             lig.SetActive(false);
@@ -43,7 +42,9 @@ public class ScannerLogic : MonoBehaviour
         while (index > -1)
         {
             lights[index].SetActive(true);
+            Debug.Log("changing index "+index.ToString());
             index -= 1;
+            
         }
     }
 }

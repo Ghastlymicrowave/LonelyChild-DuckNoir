@@ -46,18 +46,31 @@ public class battleBehavior : MonoBehaviour
     public ScannerLogic scannerLogic;
     public GameObject scanner;
     InventoryManager inventoryManager;
+    Image healthbarFilled;
 
-    GameObject? minigame;
+    GameSceneManager gameSceneManager;
+    enum endCon{
+        SENTIMENT,
+        DEFEAT,
+        RUN,
+        CRUCIFIX
+    }
+    float baseRunChance = 0.2f;
+    GameObject minigame;
     // Start is called before the first frame update
     void Start()
     {
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
+        gameSceneManager = tm.gameObject.GetComponent<GameSceneManager>();
         enemy = EnemyLibrary.GetEnemyFromId(inventoryManager.enemyID);
         StartCoroutine(theScroll = TextScroll(enemy.name + " manifests into view!"));
         MenuPanel = GameObject.Find("MenuPanel");
         subMenu = GameObject.Find("SubmenuPanel").GetComponent<Submenu>();
         subMenu.gameObject.SetActive(false);
+        scannerLogic.DecideLights(enemy.hp, enemy.maxHP);
+        healthbarFilled = GameObject.Find("HealthbarFilled").GetComponent<Image>();
+        
     }
 
     // Update is called once per frame
@@ -87,6 +100,9 @@ public class battleBehavior : MonoBehaviour
                 }
             }
         }
+    }
+    public void UpdatePlayerHp(){
+        healthbarFilled.fillAmount = (float)hero.hp/(float)hero.maxHP;
     }
     public void ButtonPress(ButtonEnum buttonNum)
     {
@@ -142,10 +158,11 @@ public class battleBehavior : MonoBehaviour
         MenuPanel.SetActive(false);
         enemy.toScroll = GetEnemyTextByID(thisEnemyID,actionType,actionID);
         endAtLine = enemy.toScroll.Length - 1;
-        scannerLogic.DecideLights(enemy.hp, enemy.maxHP);
+        
         StopCoroutine(theScroll);
         StartCoroutine(theScroll = TextScroll(enemy.toScroll[currentLine]));
         SentimentalItemUsed(new EnemyActionCase((int)actionType,actionID));
+        scannerLogic.DecideLights(enemy.hp, enemy.maxHP);
         ExitSubmenu();
     }
     private IEnumerator TextScroll(string lineOfText)
@@ -205,7 +222,7 @@ public class battleBehavior : MonoBehaviour
     string[] Sentimental(string[] success, string[] failiure){
         if (enemy.sentiment.Count<=0){
             //do something to end the battle
-            SentimentalVictory();
+            EndCombat(endCon.SENTIMENT);
             return success;//combat ended
         }else{
             return failiure;//
@@ -213,14 +230,27 @@ public class battleBehavior : MonoBehaviour
     }
 
     void SentimentalItemUsed(EnemyActionCase action){
-        if (enemy.sentiment.Contains(action)){
+        if (enemy.hp==0&&enemy.sentiment.Contains(action)){
             enemy.sentiment.Remove(action);
         }
         //Tick Sentiment meter
     }
 
-    void SentimentalVictory(){
-        
+    void EndCombat(endCon condition){
+        switch(condition){
+            case endCon.DEFEAT:
+                gameSceneManager.GameOver();
+            break;
+            case endCon.SENTIMENT:
+                gameSceneManager.ExitCombat();
+            break;
+            case endCon.RUN:
+                gameSceneManager.ExitCombat();
+            break;
+            case endCon.CRUCIFIX:
+                gameSceneManager.ExitCombat();
+            break;
+        }
     }
 
     public void DamagePlayer(int damage){//can be negative to increase health
@@ -228,6 +258,7 @@ public class battleBehavior : MonoBehaviour
         {hero.hp = 0; /*PlayerLose();*/}
         else if (hero.hp > hero.maxHP)
         { hero.hp = hero.maxHP; }
+        UpdatePlayerHp();
     }
 
     void NotSetUp(){
@@ -288,7 +319,7 @@ public class battleBehavior : MonoBehaviour
                                 "It was especially effective!",
                                 "\"Ow, who turned on the lights?\""};
                             default:
-                                DamageEnemy(2);
+                                DamageEnemy(5);
                                 return new string[] {"You attacked with the flashlight...",
                                 "The ghost tries to evade the beam.",
                                 "Looks like it hurt a bit..."};
@@ -353,29 +384,29 @@ public class battleBehavior : MonoBehaviour
                 }
             ////////////////////////////////////////////////////    Crucifix    ////////////
             case ButtonEnum.Crucifix:
-                //try to run
-                return new string[]{"using cruifix"};
+                //try to crucifix
+                if (enemy.hp ==0){
+                    //enemy banished
+                    EndCombat(endCon.CRUCIFIX);
+                    //add text about crucifix 
+                    return new string[]{"the ghost whiters away in a a blinding flash"};
+                }else{
+                    return new string[]{"The ghost was still too powerfull"};
+                }
+                
             ////////////////////////////////////////////////////    Run    ////////////
             case ButtonEnum.Run:
                 //try to run
-                return new string[]{"running"};
-            default: return new string[]{""};//should never be reached
-        }
-    }
-
-    public void EnemyAttack(){
-        switch(enemy.id){
-            case (int)Enemies.ghostA:
-                switch(Random.Range(0,2)){
-                    case 0:
-                    break;
-                    case 1:
-                    break;
+                if (Random.Range(0f,1f) > baseRunChance + (1-baseRunChance)*(1-(float)enemy.hp/(float)enemy.maxHP)){
+                    //add text about escaping 
+                    EndCombat(endCon.RUN);
+                    return new string[]{"you got away safely"};
+                }else{
+                    //add text about not being able to run
+                    return new string[]{"couldn't get away"};
                 }
-            break;
-            default:
-            Debug.Log("enemy id not set up for EnemyAttack");
-            break;
+                
+            default: return new string[]{""};//should never be reached
         }
     }
 }
