@@ -67,3 +67,7 @@ public class Enemy1 : EnemyClass{//example of an actual enemy
     }
     
 }
+
+public class SomeEnemy : EnemyClass{
+    
+}

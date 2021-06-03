@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7702230763314335054}
   - component: {fileID: 7702230763314335053}
   - component: {fileID: -6587634965331317486}
+  - component: {fileID: 2010046396}
   m_Layer: 0
   m_Name: PersistentManager
   m_TagString: manager
@@ -64,6 +65,19 @@ MonoBehaviour:
   ghostsAscended: 
   ghostsCrucified: 
 --- !u!114 &-6587634965331317486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7702230763314335052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584cc631ca706c347a5ddbadb177a4ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatSceneName: combatTest
+--- !u!114 &2010046396
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
