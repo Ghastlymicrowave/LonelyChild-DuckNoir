@@ -68,6 +68,8 @@ public class EnemyBehavior : MonoBehaviour
             inventoryManager.playerPosOnStart = collision.gameObject.transform.position;
             inventoryManager.enemyID = enemyID;
             gameSceneManager.EnterCombat();
+            this.gameObject.SetActive(false);
+
         }
     }
 }
