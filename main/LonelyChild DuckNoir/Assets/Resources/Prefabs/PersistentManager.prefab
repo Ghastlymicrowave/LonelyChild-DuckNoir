@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7702230763314335055}
   - component: {fileID: 7702230763314335054}
   - component: {fileID: 7702230763314335053}
+  - component: {fileID: -6587634965331317486}
   m_Layer: 0
   m_Name: PersistentManager
   m_TagString: manager
@@ -56,3 +57,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef1dcd1ce159524f891b3f72feb0c61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 0
+  playerPosOnStart: {x: 0, y: 0, z: 0}
+  attacks: 
+  ghostsRoaming: 
+  ghostsAscended: 
+  ghostsCrucified: 
+--- !u!114 &-6587634965331317486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7702230763314335052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584cc631ca706c347a5ddbadb177a4ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatSceneName: combatTest
