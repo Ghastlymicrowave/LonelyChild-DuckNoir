@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Combat;
+using UnityEngine.UI;
 
 
 public class battleBehavior : MonoBehaviour
@@ -55,6 +55,7 @@ public class battleBehavior : MonoBehaviour
         RUN,
         CRUCIFIX
     }
+    int battleEnded = -1;
     float baseRunChance = 0.2f;
     GameObject minigame;
     // Start is called before the first frame update
@@ -86,6 +87,9 @@ public class battleBehavior : MonoBehaviour
                     currentLine += 1;
                      if (currentLine > endAtLine)
                     {
+                        if (battleEnded >-1){
+                            EndCombat((endCon)battleEnded);
+                        }
                         EnemyTurn();
                     }
                     else
@@ -222,7 +226,7 @@ public class battleBehavior : MonoBehaviour
     string[] Sentimental(string[] success, string[] failiure){
         if (enemy.sentiment.Count<=0){
             //do something to end the battle
-            EndCombat(endCon.SENTIMENT);
+            battleEnded = (int)endCon.SENTIMENT;
             return success;//combat ended
         }else{
             return failiure;//
@@ -387,7 +391,7 @@ public class battleBehavior : MonoBehaviour
                 //try to crucifix
                 if (enemy.hp ==0){
                     //enemy banished
-                    EndCombat(endCon.CRUCIFIX);
+                    battleEnded = (int)endCon.CRUCIFIX;
                     //add text about crucifix 
                     return new string[]{"the ghost whiters away in a a blinding flash"};
                 }else{
@@ -399,7 +403,7 @@ public class battleBehavior : MonoBehaviour
                 //try to run
                 if (Random.Range(0f,1f) > baseRunChance + (1-baseRunChance)*(1-(float)enemy.hp/(float)enemy.maxHP)){
                     //add text about escaping 
-                    EndCombat(endCon.RUN);
+                    battleEnded = (int)endCon.RUN;
                     return new string[]{"you got away safely"};
                 }else{
                     //add text about not being able to run
