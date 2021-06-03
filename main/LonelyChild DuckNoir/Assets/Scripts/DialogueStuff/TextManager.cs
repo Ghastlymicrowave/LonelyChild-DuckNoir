@@ -30,6 +30,9 @@ public class TextManager : MonoBehaviour
             "And...\nOf course...",
             "This place IS haunted, you know..."
             );
+            case 2: return stringsToArray("This is the end.",
+            "Walk through this door, and you won't come back.",
+            "Consider your decision wisely.");
             default: Debug.Log("got bad text id");return null;
         }
     }
