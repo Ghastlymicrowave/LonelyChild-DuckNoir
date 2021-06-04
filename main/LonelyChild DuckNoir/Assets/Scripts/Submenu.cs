@@ -30,30 +30,49 @@ public class Submenu : MonoBehaviour
             case ButtonEnum.Attack:
                 for (int i = 0; i < inventoryManager.attacks.Count;i++){
                     Sprite spr = InventoryManager.LoadAttackSprite(inventoryManager.attacks[i]);
-                    AddItem(spr,(int)inventoryManager.attacks[i]);
+                    AddItem(spr,(int)actionType,(int)inventoryManager.attacks[i]);
                 }
             break;
             case ButtonEnum.Talk:
                 for (int i = 0; i < battleBehavior.enemy.talkActions.Length;i++){
                     Sprite spr = InventoryManager.LoadTalkSprite((int)battleBehavior.enemy.talkActions[i]);
-                    AddItem(spr,(int)battleBehavior.enemy.talkActions[i]);
+                    AddItem(spr,(int)actionType,(int)battleBehavior.enemy.talkActions[i]);
                 }
             break;
             case ButtonEnum.Items:
                 for (int i = 0; i < inventoryManager.items.Count;i++){
                     Sprite spr = InventoryManager.LoadItemSprite((int)inventoryManager.items[i].id);
-                    AddItem(spr,(int)inventoryManager.items[i].id);
+                    AddItem(spr,(int)actionType,(int)inventoryManager.items[i].id);
                 }
             break;
         }
     }
 
-    public void AddItem(Sprite spr, int actionID){
+    static string RemoveUnderscores(string instring){
+        return instring.Replace("_"," ");
+    }
+
+    public static string GetActionName(int actionType, int actionID){
+        switch(actionType){
+            case (int)ButtonEnum.Attack:
+            return RemoveUnderscores(((AttackActions)actionID).ToString());
+            case (int)ButtonEnum.Talk:
+            return RemoveUnderscores(((TalkEnum)actionID).ToString());
+            case (int)ButtonEnum.Items:
+            return RemoveUnderscores(((ItemsEnum)actionID).ToString());
+            default: return "?";
+        }
+    }
+
+    public void AddItem(Sprite spr,int actionType, int actionID){
         Debug.Log(spr);
         GameObject item = Instantiate(Resources.Load("Prefabs/SubmenuItem") as GameObject,content.transform);
         Image image = item.GetComponent<Image>();
         image.sprite = spr;
         Button btn = item.GetComponent<Button>();
         btn.onClick.AddListener(delegate {battleBehavior.ExternalSubButtonPressed(actionID);});
+        Text text = item.transform.GetChild(0).GetComponent<Text>();
+        text.text = GetActionName(actionType,actionID);
     }
 }
+    

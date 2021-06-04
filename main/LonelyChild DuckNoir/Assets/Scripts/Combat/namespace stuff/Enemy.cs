@@ -127,7 +127,7 @@ public float duration;
     public enum AttackActions{//actions defined here must also be defined in TextManager with a default value
         Flashlight,
         Theremin,
-        FirePoker,
+        Fire_Poker,
         Garlic
     }
 
@@ -140,14 +140,14 @@ public float duration;
     public enum Enemies{
         ghostA,
         ghostB,
-        PoorDog
+        Poor_Dog
     }
 
     public enum TalkEnum{
         Flirt,
         Chat,
         Pet,
-        FakeThrow
+        Fake_Throw
     }
 
 }

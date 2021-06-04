@@ -300,7 +300,7 @@ public class battleBehavior : MonoBehaviour
                                 "\"That's nice...\"",
                                 "\"Not really my genre though.\"",
                                 "\"I'm more of a 'Boos' kind of guy.\""};
-                                case (int)Enemies.PoorDog:
+                                case (int)Enemies.Poor_Dog:
                                 DamageEnemyWeak(2);
                                 return new string[] {"You attacked with the theremin...",
                                 "The ghost recoils at the pitch!",
@@ -312,9 +312,9 @@ public class battleBehavior : MonoBehaviour
                                 "\"Looks like it hurt a little...\""};
                         }
 
-                    case (int)AttackActions.FirePoker:
+                    case (int)AttackActions.Fire_Poker:
                         switch(enemyID){
-                            case (int)Enemies.PoorDog:
+                            case (int)Enemies.Poor_Dog:
                                 DamageEnemy(2);
                                 return new string[] {"You attacked with the FirePoker...",
                                 "The ghost isn't loving it... but isn't hating it, either.",
@@ -334,7 +334,7 @@ public class battleBehavior : MonoBehaviour
                                 return new string[] {"You attacked with the flashlight...",
                                 "It was especially effective!",
                                 "\"Ow, who turned on the lights?\""};
-                                case (int)Enemies.PoorDog:
+                                case (int)Enemies.Poor_Dog:
                                 DamageEnemyResist(2);
                                 return new string[] {"You attacked with the flashlight...",
                                 "The ghost starts darting after the light, thinking it's a ball!",
@@ -356,7 +356,7 @@ public class battleBehavior : MonoBehaviour
                                 return new string[] {"You Attacked with the Garlic...",
                                 "It worked fine!",
                                 "\"I'm a ghost, not a vampire...\""};
-                                case (int)Enemies.PoorDog:
+                                case (int)Enemies.Poor_Dog:
                                 DamageEnemyWeak(2);
                                 return new string[] {"You attacked with the Garlic...",
                                 "The ghost hates it!",
@@ -379,7 +379,7 @@ public class battleBehavior : MonoBehaviour
                                 return new string[] {"You had a chat with the ghost...",
                                 "The ghost really enjoyed that.",
                                 "You think it might have smiled a little"};
-                            case (int)Enemies.PoorDog:
+                            case (int)Enemies.Poor_Dog:
                                 return new string[] { "You started talking with the ghost...",
                             "You might've briefly mentioned something that sounds vaguely like the word 'ball'.",
                             "\"Ball!?!?!?!?!?\"",
@@ -388,10 +388,10 @@ public class battleBehavior : MonoBehaviour
                                 return new string[] {"You had a chat with the ghost...",
                                 "The ghost seemed bored..."};  
                         }
-                        case (int)TalkEnum.FakeThrow:
+                        case (int)TalkEnum.Fake_Throw:
                         switch(enemyID){
                             
-                            case (int)Enemies.PoorDog:
+                            case (int)Enemies.Poor_Dog:
                                 return new string[] { "You made a throwing motion with your arm...",
                             "But there was nothing in your arm?",
                             "\"How could you!!!????\""};
@@ -402,7 +402,7 @@ public class battleBehavior : MonoBehaviour
                         case (int)TalkEnum.Pet:
                         switch(enemyID){
                             
-                            case (int)Enemies.PoorDog:
+                            case (int)Enemies.Poor_Dog:
                                 return new string[] { "You tried to pet the ghost...",
                             "But your arm phased right through 'em, so...",
                             "You just kinda made a petting motion with your arm.",
@@ -432,7 +432,7 @@ public class battleBehavior : MonoBehaviour
                                 new string[]{"The ghost hesitates and looks at the ball...",
                                 "Does this ball mean something to it?",
                                 "It snaps out of it's trance, you must have been too soon."});
-                                case (int)Enemies.PoorDog:
+                                case (int)Enemies.Poor_Dog:
                                 return Sentimental(new string[]{"You showed the ball to the ghost...",
                                 "It felt... right.",
                                 "\"BALL!?!?!???!?\"",

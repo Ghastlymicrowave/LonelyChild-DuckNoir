@@ -9,6 +9,7 @@ public static class EnemyLibrary
         switch (id)
         {
             case 0: return new Enemy1();
+            case 1: return new PoorDog();
             default: return null;
         }
     }
@@ -89,13 +90,13 @@ public class PoorDog : EnemyClass
         hp = 10;
         maxHP = 10;
         id = 2;
-        folderPath = "EnemySprites/PoorDogConcept";
+        folderPath = "2D Assets/PoorDogConcept";
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Straight/Straight_TooEasy2",
             "Prefabs/combatEnemyTurn/attacks/Straight/Straight_TooEasy",
             "Prefabs/combatEnemyTurn/attacks/Sine Reversal/SineReverse_Tooeasy2",
             "Prefabs/combatEnemyTurn/attacks/Sine/Sine_TooEasy"};
-        talkActions = new TalkEnum[3] { TalkEnum.Pet, TalkEnum.Chat, TalkEnum.FakeThrow };
+        talkActions = new TalkEnum[3] { TalkEnum.Pet, TalkEnum.Chat, TalkEnum.Fake_Throw };
         
 
     }
