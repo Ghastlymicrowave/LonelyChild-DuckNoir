@@ -20,6 +20,7 @@ public class EnemyBehavior : MonoBehaviour
     public float constantZ;
     public Transform[] patrolSpots;
     public int startingPatrol = 0;
+    int hitCount = 0;
     private void Start()
     {
         constantZ = transform.position.z;
@@ -64,10 +65,15 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")//triggle combat
         {
+            if(hitCount < 1)
+            {
             inventoryManager.playerPosOnStart = collision.gameObject.transform.position;
             inventoryManager.enemyID = enemyID;
+            print("This enemybehavior was called");
+            hitCount += 1;
             gameSceneManager.EnterCombat();
             gameObject.SetActive(false);
         }
+    }
     }
 }
