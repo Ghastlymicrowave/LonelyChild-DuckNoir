@@ -34,6 +34,8 @@ public abstract class EnemyClass
         string loadstring = folderPath + "/" + fileName;
         for (int i = 0; i < animationFrames; i++)
         {
+            string istring = i.ToString();
+            if (istring.Length<2){istring = "0"+istring;}
             toReturn[0, i] = Resources.Load<Sprite>(loadstring + "Forward" + i.ToString());
             toReturn[1, i] = Resources.Load<Sprite>(loadstring + "Backward" + i.ToString());
             toReturn[2, i] = Resources.Load<Sprite>(loadstring + "Left" + i.ToString());
