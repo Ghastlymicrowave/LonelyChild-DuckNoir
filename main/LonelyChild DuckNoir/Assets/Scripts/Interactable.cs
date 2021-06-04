@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Combat;
 
 public class Interactable : MonoBehaviour
 {
@@ -12,13 +13,16 @@ public class Interactable : MonoBehaviour
     [SerializeField] Activatable activatable;
     static player_main playerRef;
     [Tooltip("keep less than 0 for no text")]
-    public int dialogueID = -1;
+    [SerializeField] int dialogueID = -1;
     public bool isReady = false;
     public bool isBusy = false;
     [SerializeField] bool oneTimeUse = false;
 
     public GameObject indicator;
 
+    [SerializeField] bool needsItemUse = false;
+    [SerializeField] ItemsEnum requiredItem;
+    [SerializeField] int notCompleteItemUseTextID;//id of text to trigger when interacting while item hasn't been used
     void Start(){
         inventoryManager = GameObject.Find("PersistentManager").GetComponent<InventoryManager>();
         textManager = GameObject.Find("PersistentManager").GetComponent<TextManager>();
@@ -26,11 +30,17 @@ public class Interactable : MonoBehaviour
         
     }
     public enum interactableAction{
-        ACTIVATE,
-        ITEM,
-        TALK
+        ACTIVATE,//activates an interactable
+        ITEM,//gives the player an item
+        TALK//just gives the player some text
     }
     public void Trigger(){
+        if (needsItemUse){
+            if (dialogueID>-1){
+                    playerRef.TriggerDialogue(notCompleteItemUseTextID);
+                }
+            return;
+        }
         isReady=false;
         switch(action){
             case interactableAction.ACTIVATE:
@@ -48,6 +58,7 @@ public class Interactable : MonoBehaviour
             break;
         }
         if (oneTimeUse){
+            playerRef.InteractableLeft(this);
             this.gameObject.SetActive(false);
         }
     }
@@ -58,5 +69,15 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other){
         playerRef.InteractableLeft(this);
+    }
+
+    public void CheckItemUse(int itemID){
+        if ((int)requiredItem == itemID){
+            Trigger();
+        }else{
+            if (dialogueID>-1){
+                playerRef.TriggerDialogue(-1);
+            }
+        }
     }
 }

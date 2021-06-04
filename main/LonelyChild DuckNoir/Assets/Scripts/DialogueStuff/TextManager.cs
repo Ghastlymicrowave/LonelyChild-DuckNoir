@@ -11,6 +11,8 @@ public class TextManager : MonoBehaviour
 
     public static string[] GetTextByID(int id){//using switch because no loaded memory and fast
         switch(id){
+            case -2: return new string[] {"What were you going to use that on?","You decide to put it back away"};
+            case -1: return new string[] {"It seems that didn't work. Maybe something else will?"};//for when item interaction doesn't work
             case 0: return stringsToArray("fart",
             "fart 2",
             "fart 3, return of the fart");

@@ -218,6 +218,12 @@ public class player_main : MonoBehaviour
         }
     }
 
+    public void UseItemOnInteractable(int itemID){
+        if(interactableTarget!=null){
+            interactableTarget.CheckItemUse(itemID);
+        }
+    }
+
     public void TriggerDialogue(int textID){
         string[] toScroll = TextManager.GetTextByID(textID);
         textScroller.ScrollText(toScroll, this);
