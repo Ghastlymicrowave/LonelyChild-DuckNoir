@@ -25,6 +25,7 @@ public abstract class EnemyClass
     public List<EnemyActionCase> sentiment;
     public string folderPath = "2D Assets/Programmer Art/GhostSprites";
     public string fileName = "ghost1";
+    public string spritePath = "";
     public string displayPrefabPath = "";
     public int animationFrames = 1;
     public TalkEnum[] talkActions;
