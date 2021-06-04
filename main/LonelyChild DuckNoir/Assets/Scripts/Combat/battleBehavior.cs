@@ -71,7 +71,7 @@ public class battleBehavior : MonoBehaviour
         subMenu.gameObject.SetActive(false);
         scannerLogic.DecideLights(enemy.hp, enemy.maxHP);
         healthbarFilled = GameObject.Find("HealthbarFilled").GetComponent<Image>();
-        
+        hero = new HeroClass();
     }
 
     // Update is called once per frame
