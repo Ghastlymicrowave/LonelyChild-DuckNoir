@@ -407,7 +407,7 @@ public class battleBehavior : MonoBehaviour
                             "But your arm phased right through 'em, so...",
                             "You just kinda made a petting motion with your arm.",
                             "Between you and me, I don't think he knows the difference.",
-                            ":)"};
+                            "\":)\""};
                             default:
                                 return new string[] {"You threw something that didn't exist...",
                                 "The ghost seemed bored..."};  
