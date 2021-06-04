@@ -141,7 +141,7 @@ public class battleBehavior : MonoBehaviour
         textBox.SetActive(true);
         MenuPanel.SetActive(true);
         scanner.SetActive(true);
-        enemy.toScroll = new string[] {"this enemy has" + enemy.hp+" of " + enemy.maxHP+" hitpoints"};
+        enemy.toScroll = new string[] {"This enemy has " + enemy.hp+" of " + enemy.maxHP+" hitpoints."};
         endAtLine = enemy.toScroll.Length - 1;
         currentLine = 0;
         StopCoroutine(theScroll);
@@ -461,7 +461,7 @@ public class battleBehavior : MonoBehaviour
                     //enemy banished
                     battleEnded = (int)endCon.CRUCIFIX;
                     //add text about crucifix 
-                    return new string[]{"the ghost withers away in a a blinding flash"};
+                    return new string[]{"The ghost withers away in a a blinding flash!"};
                 }else{
                     return new string[]{"The ghost was still too powerfull"};
                 }

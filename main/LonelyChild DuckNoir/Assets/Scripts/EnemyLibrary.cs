@@ -91,7 +91,7 @@ public class PoorDog : EnemyClass
         hp = 10;
         maxHP = 10;
         id = 2;
-        folderPath = "2D Assets/PoorDogConcept";
+        spritePath = "Prefabs/EnemySpritePrefabs/PoorDogSprite";
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Straight/Straight_TooEasy2",
             "Prefabs/combatEnemyTurn/attacks/Straight/Straight_TooEasy",
