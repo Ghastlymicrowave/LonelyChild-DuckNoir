@@ -35,6 +35,29 @@ public class TextManager : MonoBehaviour
             case 2: return stringsToArray("This is the end.",
             "Walk through this door, and you won't come back.",
             "Consider your decision wisely.");
+            //items / attacks
+            case 3: return stringsToArray("You picked up a Theremin!",
+            "This is an attack dealing sound damage in battle.",
+            "So THIS is where you left it.");
+            case 4: return stringsToArray("You picked up a Fire Poker!",
+            "This is an attack dealing physical damage in battle.",
+            "The orphanage doesn't have a fireplace. What's this doing here?");
+            case 5: return stringsToArray("You picked up some Garlic!",
+            "This is an attack dealing smell damage in battle.",
+            "How long has this been sitting here?");
+            case 6: return stringsToArray("You picked up a ball.",
+            "Looks like it'd be fun to play with.");
+            case 7: return stringsToArray("You picked up an apple.",
+            "Who keeps leaving fruits and veggies everywhere?");
+            case 8: return stringsToArray("You picked up a Photo.",
+            "It looks rather mundane... but it might mean something more to someone.");
+            //Descriptors
+            case 9:
+                return stringsToArray("A cute little playroom table set.",
+                "You've got to wonder why they make 'em so big.");
+            case 10:
+                return stringsToArray("You've always wanted to learn how to play the piano.",
+                "Too bad all you have is this big freakin' capsule.");
             default: Debug.Log("got bad text id");return null;
         }
     }
