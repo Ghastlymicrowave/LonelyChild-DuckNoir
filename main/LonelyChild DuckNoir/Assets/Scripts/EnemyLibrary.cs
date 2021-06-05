@@ -10,6 +10,7 @@ public static class EnemyLibrary
         {
             case 0: return new Enemy1();
             case 1: return new PoorDog();
+            case 2: return new RepressedGhost();
             default: return null;
         }
     }
@@ -73,12 +74,13 @@ public class Enemy1 : EnemyClass
     {
         sentiment = new List<EnemyActionCase>{
             new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
-        name = "Enemy 1";
+        name = "Bored Ghost";
         hp = 20;
         maxHP = 20;
         id = 1;
+        spritePath = "Prefabs/EnemySpritePrefabs/BoredGhostSprite";
         attackPrefabNames = new string[] {
-            "Prefabs/combatEnemyTurn/attacks/Mix/Mix_Easy",
+            "Prefabs/combatEnemyTurn/attacks/Straight/Straight_TooEasy",
             "Prefabs/combatEnemyTurn/attacks/Sine/Sine_TooEasy"};
         talkActions = new TalkEnum[1] { TalkEnum.Chat };
     }
@@ -103,6 +105,28 @@ public class PoorDog : EnemyClass
         talkActions = new TalkEnum[3] { TalkEnum.Pet, TalkEnum.Chat, TalkEnum.Fake_Throw };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/PoorDogSprite";
+    }
+
+}
+public class RepressedGhost : EnemyClass
+{//example of an actual enemy
+    public RepressedGhost()
+    {
+        sentiment = new List<EnemyActionCase>{
+            new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
+        name = "The Ghost Of Repressed Emotions";
+        hp = 40;
+        maxHP = 40;
+        id = 3;
+        spritePath = "Prefabs/EnemySpritePrefabs/RepressedGhostSprite";
+        attackPrefabNames = new string[] {
+            "Prefabs/combatEnemyTurn/attacks/Sine/Sine_Harder_Reverse",
+            "Prefabs/combatEnemyTurn/attacks/Sine/Sine_Harder",
+            "Prefabs/combatEnemyTurn/attacks/Sine Reversal/SineReverse_Easy2",
+            "Prefabs/combatEnemyTurn/attacks/Mix/Mix_Easy"};
+        talkActions = new TalkEnum[2] { TalkEnum.Chat, TalkEnum.ChatTwo };
+        
+
     }
 
 }

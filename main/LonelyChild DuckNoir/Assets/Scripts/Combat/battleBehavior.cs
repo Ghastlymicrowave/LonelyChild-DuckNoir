@@ -391,6 +391,7 @@ public class battleBehavior : MonoBehaviour
                                 return new string[] { "You started talking with the ghost...",
                             "You might've briefly mentioned something that sounds vaguely like the word 'ball'.",
                             "\"Ball!?!?!?!?!?\"",
+                            "\"...\"",
                             "\"Ohh... False Ball-arm...\"" };
                             default:
                                 return new string[] {"You had a chat with the ghost...",
@@ -401,8 +402,8 @@ public class battleBehavior : MonoBehaviour
                             
                             case (int)Enemies.Poor_Dog:
                                 return new string[] { "You made a throwing motion with your arm...",
-                            "But there was nothing in your arm?",
-                            "\"How could you!!!????\""};
+                            "But there was nothing in your hand?",
+                            "\"How could you!!!???? >:( >:( >:(\""};
                             default:
                                 return new string[] {"You threw something that didn't exist...",
                                 "The ghost seemed bored..."};  
@@ -415,9 +416,9 @@ public class battleBehavior : MonoBehaviour
                             "But your arm phased right through 'em, so...",
                             "You just kinda made a petting motion with your arm.",
                             "Between you and me, I don't think he knows the difference.",
-                            "\":)\""};
+                            "\"Woof!~ :)\""};
                             default:
-                                return new string[] {"You threw something that didn't exist...",
+                                return new string[] {"You pet the ghost...",
                                 "The ghost seemed bored..."};  
                         }
                     default: NotSetUp(); return new string[] {"..."};

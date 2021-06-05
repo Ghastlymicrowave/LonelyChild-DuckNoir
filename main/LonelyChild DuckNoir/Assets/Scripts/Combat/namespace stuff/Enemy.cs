@@ -134,7 +134,8 @@ public float duration;
     [System.Serializable] 
     public enum ItemsEnum{//actions defined here must also be defined in TextManager with a default value
         Apple,
-        Ball
+        Ball,
+        Photo
     }
 
     public enum Enemies{
@@ -146,6 +147,7 @@ public float duration;
     public enum TalkEnum{
         Flirt,
         Chat,
+        ChatTwo,
         Pet,
         Fake_Throw
     }

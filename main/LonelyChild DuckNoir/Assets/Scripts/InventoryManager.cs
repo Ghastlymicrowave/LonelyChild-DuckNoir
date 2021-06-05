@@ -66,6 +66,12 @@ public class InventoryManager : MonoBehaviour
                     "A small rubber ball",
                     "",
                     TextManager.stringsToArray("you used a ball"), (int)ItemsEnum.Apple);
+            case ItemsEnum.Photo:
+                return new ivItem(
+                    "Photo",
+                    "It means nothing to you, but it might be a bit much for someone in particular...",
+                    "",
+                    TextManager.stringsToArray("you used a ball"), (int)ItemsEnum.Apple);
             default: return null;
         }
     }
