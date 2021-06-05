@@ -12,11 +12,13 @@ public class OverworldInventory : MonoBehaviour
     [SerializeField] GameObject itemPrefab;
     GameObject content;
     player_main player;
+    InventoryManager inventoryManager;
     void Start()
     {
         buttonTxt = toggleButton.transform.GetChild(0).GetComponent<Text>();
         content = transform.GetChild(0).GetChild(0).gameObject;
         player = GameObject.Find("Player").GetComponent<player_main>();
+        inventoryManager = GameObject.Find("PersistentManager").GetComponent<InventoryManager>();
     }
 
     public void ToggleMenu(){
@@ -24,9 +26,19 @@ public class OverworldInventory : MonoBehaviour
         if (menuOpen){
             buttonTxt.text="Close";
             animator.Play("Open",0);
+            GenerateItems();
         }else{
             buttonTxt.text="Open";
             animator.Play("Close",0);
+        }
+    }
+
+    void GenerateItems(){
+        for(int i = content.transform.childCount-1; i > -1; i -= 1){
+            Destroy(content.transform.GetChild(i).gameObject);
+        }
+        foreach( InventoryManager.ivItem i in inventoryManager.items){
+            AddItem(i);
         }
     }
 
@@ -36,7 +48,7 @@ public class OverworldInventory : MonoBehaviour
 
     void AddItem(InventoryManager.ivItem item){
         GameObject newItemObj = Instantiate(itemPrefab,Vector3.zero,Quaternion.identity);
-        newItemObj.transform.parent = content.transform;
+        newItemObj.transform.SetParent(content.transform);
         newItemObj.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = InventoryManager.LoadItemSprite(item.id);//image
         newItemObj.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = item.name;//name
         newItemObj.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = item.description;//description

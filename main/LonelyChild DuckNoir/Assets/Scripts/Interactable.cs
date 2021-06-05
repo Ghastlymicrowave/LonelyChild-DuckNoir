@@ -11,6 +11,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] Combat.ItemsEnum item;
     [SerializeField] int textID;
     [SerializeField] Activatable activatable;
+    [SerializeField] AttackActions attack;
     static player_main playerRef;
     [Tooltip("keep less than 0 for no text")]
     [SerializeField] int dialogueID = -1;
@@ -32,7 +33,8 @@ public class Interactable : MonoBehaviour
     public enum interactableAction{
         ACTIVATE,//activates an interactable
         ITEM,//gives the player an item
-        TALK//just gives the player some text
+        TALK,//just gives the player some text
+        ATTACK//Gives the player a new attack
     }
     public void Trigger(){
         if (needsItemUse){
@@ -55,6 +57,10 @@ public class Interactable : MonoBehaviour
             break;
             case interactableAction.TALK:// send textManager string[] from id to UI text frontend
             playerRef.TriggerDialogue(dialogueID);
+            break;
+            case interactableAction.ATTACK:
+            playerRef.TriggerDialogue(dialogueID);
+            inventoryManager.AddAttack(attack);
             break;
         }
         if (oneTimeUse){
