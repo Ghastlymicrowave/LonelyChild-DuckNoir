@@ -544,11 +544,15 @@ PrefabInstance:
       objectReference: {fileID: 440323214}
     - target: {fileID: 1431919295885399728, guid: 36fb4b8d5cfa4f7458a92742aec4aa64, type: 3}
       propertyPath: ghostIDs.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1431919295885399728, guid: 36fb4b8d5cfa4f7458a92742aec4aa64, type: 3}
       propertyPath: ghostIDs.Array.data[1]
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431919295885399728, guid: 36fb4b8d5cfa4f7458a92742aec4aa64, type: 3}
+      propertyPath: ghostIDs.Array.data[2]
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1431919296065539586, guid: 36fb4b8d5cfa4f7458a92742aec4aa64, type: 3}
       propertyPath: m_Name
