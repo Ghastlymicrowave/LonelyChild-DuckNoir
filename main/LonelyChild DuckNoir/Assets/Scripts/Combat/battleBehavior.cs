@@ -300,6 +300,11 @@ public class battleBehavior : MonoBehaviour
                                 "\"That's nice...\"",
                                 "\"Not really my genre though.\"",
                                 "\"I'm more of a 'Boos' kind of guy.\""};
+                                case (int)Enemies.RepressedGhost:
+                                DamageEnemyResist(4);
+                                return new string[] {"You attacked with the theramin...",
+                                "The ghost looks indifferent",
+                                "\"Are you picking on me?\""};
                                 case (int)Enemies.Poor_Dog:
                                 DamageEnemyWeak(2);
                                 return new string[] {"You attacked with the theremin...",
@@ -320,6 +325,12 @@ public class battleBehavior : MonoBehaviour
                                 "The ghost isn't loving it... but isn't hating it, either.",
                                 "\"Too heavy to be stick...\nTo long to be ball...\"",
                                 "\":(\""};
+                            case (int)Enemies.RepressedGhost:
+                                DamageEnemyResist(2);
+                                return new string[] {"You attacked with the FirePoker...",
+                                "The ghost is unphased",
+                                "\"I couldn't feel that... I haven't been able to feel for a while...\"",
+                                "\"I'll take a little damage, I guess... For you...\""};
                             default:
                                 DamageEnemy(5);
                                 return new string[] {"You Attacked with the Fire Poker...",
@@ -334,7 +345,12 @@ public class battleBehavior : MonoBehaviour
                                 return new string[] {"You attacked with the flashlight...",
                                 "It was especially effective!",
                                 "\"Ow, who turned on the lights?\""};
-                                case (int)Enemies.Poor_Dog:
+                            case (int)Enemies.RepressedGhost:
+                                DamageEnemyWeak(4);
+                                return new string[] {"You attacked with the flashlight...",
+                                "The ghost has a painful expression on his face.",
+                                "\"Please don't do that...\""};
+                            case (int)Enemies.Poor_Dog:
                                 DamageEnemyResist(2);
                                 return new string[] {"You attacked with the flashlight...",
                                 "The ghost starts darting after the light, thinking it's a ball!",
@@ -356,6 +372,11 @@ public class battleBehavior : MonoBehaviour
                                 return new string[] {"You Attacked with the Garlic...",
                                 "It worked fine!",
                                 "\"I'm a ghost, not a vampire...\""};
+                                case (int)Enemies.RepressedGhost:
+                                DamageEnemy(4);
+                                return new string[] {"You attacked with the Garlic...",
+                                "The ghost didn't like that too much.",
+                                "\"Eww...\""};
                                 case (int)Enemies.Poor_Dog:
                                 DamageEnemyWeak(2);
                                 return new string[] {"You attacked with the Garlic...",
@@ -385,11 +406,27 @@ public class battleBehavior : MonoBehaviour
                             "\"Ball!?!?!?!?!?\"",
                             "\"...\"",
                             "\"Ohh... False Ball-arm...\"" };
+                            case (int)Enemies.RepressedGhost:
+                                return new string[] { "You started talking with the ghost...",
+                            "\"I just wish things had been different, you know?\""};
                             default:
                                 return new string[] {"You had a chat with the ghost...",
                                 "The ghost seemed bored..."};  
                         }
-                        case (int)TalkEnum.Fake_Throw:
+                        case (int)TalkEnum.ChatTwo:
+                        switch(enemyID){
+
+                            case (int)Enemies.RepressedGhost:
+                                return new string[] { "You started talking with the ghost in another way...",
+                                "\"Well, it's just...\"",
+                                "\"They wanted different things from what I wanted...\"",
+                            "\"But what does that mean?\""};
+                            default:
+                                return new string[] {"You had a chat with the ghost...",
+                                "The ghost seemed bored..."};  
+                        }
+                        
+                    case (int)TalkEnum.Fake_Throw:
                         switch(enemyID){
                             
                             case (int)Enemies.Poor_Dog:
@@ -447,6 +484,13 @@ public class battleBehavior : MonoBehaviour
                                 "\"I feel like there could be ball...?\"",
                                 "\"But... No see ball?????\"",
                                 "It snaps out of it's trance, you must have been too soon."});
+                                case (int)Enemies.RepressedGhost:
+                                return Sentimental(new string[]{"You showed the Photo to the ghost...",
+                                "It felt... right.",
+                                "\"Thaaaank yyooouu\""},
+                                new string[]{"The ghost hesitates and looks at the Photo...",
+                                "That expression on his face looks painful.",
+                                "\"Oh why, oh why...\""});
 
                         }
                         return new string[] {"You held the ball out to the being...",
