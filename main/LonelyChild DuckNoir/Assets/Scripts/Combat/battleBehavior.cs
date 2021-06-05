@@ -49,6 +49,7 @@ public class battleBehavior : MonoBehaviour
     Image healthbarFilled;
 
     GameSceneManager gameSceneManager;
+    GameObject enemyParent;
     enum endCon{
         SENTIMENT,
         DEFEAT,
@@ -72,6 +73,11 @@ public class battleBehavior : MonoBehaviour
         scannerLogic.DecideLights(enemy.hp, enemy.maxHP);
         healthbarFilled = GameObject.Find("HealthbarFilled").GetComponent<Image>();
         hero = new HeroClass();
+        enemyParent = GameObject.Find("EnemyParent");
+        GameObject toInstantiate = (GameObject)Resources.Load(enemy.displayPrefabPath) as GameObject;
+        GameObject enemyImage = Instantiate(toInstantiate);
+        enemyImage.transform.SetParent(enemyParent.transform);
+        enemyImage.transform.localPosition = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -107,6 +113,7 @@ public class battleBehavior : MonoBehaviour
     }
     public void UpdatePlayerHp(){
         healthbarFilled.fillAmount = (float)hero.hp/(float)hero.maxHP;
+        Debug.Log(healthbarFilled.fillAmount.ToString());
     }
     public void ButtonPress(ButtonEnum buttonNum)
     {
@@ -258,8 +265,9 @@ public class battleBehavior : MonoBehaviour
     }
 
     public void DamagePlayer(int damage){//can be negative to increase health
-        if (hero.hp < 0)
-        {hero.hp = 0; /*PlayerLose();*/}
+        hero.hp -= damage;
+        if (hero.hp <= 0)
+        {hero.hp = 0; EndCombat(endCon.DEFEAT); }
         else if (hero.hp > hero.maxHP)
         { hero.hp = hero.maxHP; }
         UpdatePlayerHp();

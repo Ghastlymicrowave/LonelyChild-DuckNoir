@@ -104,7 +104,7 @@ public class PoorDog : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/Sine/Sine_TooEasy"};
         talkActions = new TalkEnum[3] { TalkEnum.Pet, TalkEnum.Chat, TalkEnum.Fake_Throw };
         
-
+        displayPrefabPath = "Prefabs/EnemySpritePrefabs/PoorDogSprite";
     }
 
 }

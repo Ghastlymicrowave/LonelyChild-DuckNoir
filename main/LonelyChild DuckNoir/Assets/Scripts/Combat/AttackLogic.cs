@@ -50,5 +50,6 @@ public class AttackLogic : MonoBehaviour
             attack.damage += damage;
             //battlebehavior damage player (damage)
         }
+        bb.DamagePlayer(damage);
     }
 }
