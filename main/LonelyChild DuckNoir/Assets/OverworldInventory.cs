@@ -42,8 +42,14 @@ public class OverworldInventory : MonoBehaviour
         }
     }
 
-    public void UseItem(int itemID){
-        player.UseItemOnInteractable(itemID);
+    public void UseItem(InventoryManager.ivItem item){
+        Debug.Log("using");
+        player.UseItemOnInteractable(item);
+    }
+
+    public void InspectItem(InventoryManager.ivItem item){
+        Debug.Log("inspecting");
+        player.TriggerDialogue(item.inspect);
     }
 
     void AddItem(InventoryManager.ivItem item){
@@ -52,7 +58,21 @@ public class OverworldInventory : MonoBehaviour
         newItemObj.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = InventoryManager.LoadItemSprite(item.id);//image
         newItemObj.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = item.name;//name
         newItemObj.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = item.description;//description
-        newItemObj.transform.GetChild(0).GetChild(3).GetComponent<Button>().onClick.AddListener(delegate {UseItem(item.id);});//button 
+
+        GameObject useButton = newItemObj.transform.GetChild(0).GetChild(4).gameObject;
+        GameObject inspectButton = newItemObj.transform.GetChild(0).GetChild(3).gameObject;
+        if (item.inspect != new string[]{""}){//inspect button
+            inspectButton.GetComponent<Button>().onClick.AddListener(delegate {InspectItem(item);});
+        }else{
+            inspectButton.SetActive(false);
+        }
+        
+        if (item.methodName !=""){//use button
+            useButton.GetComponent<Button>().onClick.AddListener(delegate {UseItem(item);});
+        }else{
+            useButton.SetActive(false);
+        }
+        
     }
     
 }

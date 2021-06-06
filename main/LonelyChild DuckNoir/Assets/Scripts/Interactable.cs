@@ -9,7 +9,6 @@ public class Interactable : MonoBehaviour
     TextManager textManager;
     [SerializeField] interactableAction action;
     [SerializeField] Combat.ItemsEnum item;
-    [SerializeField] int textID;
     [SerializeField] Activatable activatable;
     [SerializeField] AttackActions attack;
     static player_main playerRef;
@@ -23,7 +22,8 @@ public class Interactable : MonoBehaviour
 
     [SerializeField] bool needsItemUse = false;
     [SerializeField] ItemsEnum requiredItem;
-    [SerializeField] int notCompleteItemUseTextID;//id of text to trigger when interacting while item hasn't been used
+    [SerializeField] int notCompleteItemUseTextID;//id of text to trigger when interacting while item hasn't been used, like to inspect
+    [SerializeField] int usedRequiredItemTextId;
     void Start(){
         inventoryManager = GameObject.Find("PersistentManager").GetComponent<InventoryManager>();
         textManager = GameObject.Find("PersistentManager").GetComponent<TextManager>();
@@ -51,6 +51,7 @@ public class Interactable : MonoBehaviour
             break;
             case interactableAction.ITEM:
                 inventoryManager.AddItem(item);//TODO: add a text manager thing for getting the item
+                Debug.Log(item.ToString()+" added to inventory");
                 if (dialogueID>-1){
                     playerRef.TriggerDialogue(dialogueID);
                 }
@@ -69,6 +70,9 @@ public class Interactable : MonoBehaviour
         }
     }
 
+    public void Test(){
+        Debug.Log("THIS IS A TEST");
+    }
     private void OnTriggerEnter2D(Collider2D other){
         playerRef.InteractableEntered(this);
     }
@@ -77,11 +81,17 @@ public class Interactable : MonoBehaviour
         playerRef.InteractableLeft(this);
     }
 
-    public void CheckItemUse(int itemID){
-        if ((int)requiredItem == itemID){
-            Trigger();
+    public void CheckItemUse(InventoryManager.ivItem item){
+        if (needsItemUse==false){
+            playerRef.UseItem(item);
+            return;
+        }
+        if ((int)requiredItem == item.id){
+            needsItemUse = false;
+            playerRef.TriggerDialogue(usedRequiredItemTextId);
         }else{
             if (dialogueID>-1){
+                Debug.Log("Item didn't work");
                 playerRef.TriggerDialogue(-1);
             }
         }

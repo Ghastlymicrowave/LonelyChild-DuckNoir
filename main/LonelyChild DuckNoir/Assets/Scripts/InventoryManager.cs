@@ -18,13 +18,16 @@ public class InventoryManager : MonoBehaviour
         public string methodName; //name of method to be used out of combat on player_main NOT IN RN
         public string[] useText;
         public int id;
+        public string[] inspect;//text shown when inspecting item
         //TODO add an image
-        public ivItem(string _name, string _description, string _methodName, string[] _useText, int id)
+        public ivItem(string _name, string _description, string[] _inspect, string _methodName, string[] _useText, int _id)
         {
             name = _name;
             description = _description;
             methodName = _methodName;
             useText = _useText;
+            id = _id;
+            inspect = _inspect;
         }
     }
 
@@ -57,19 +60,22 @@ public class InventoryManager : MonoBehaviour
             case ItemsEnum.Apple:
                 return new ivItem(
                     "Apple",
-                    "An ordinary apple",
+                    "An ordinary apple, eat it to regain 5 health in combat.",
+                    new string[] {"just an ordinary red apple. Has a nice smell."},
                     "",
                     TextManager.stringsToArray("you used an apple"), (int)ItemsEnum.Apple);
             case ItemsEnum.Ball:
                 return new ivItem(
                     "Ball",
                     "A small rubber ball",
+                    new string[] {"This old rubber ball still has some of it's bounce"},
                     "",
                     TextManager.stringsToArray("you used a ball"), (int)ItemsEnum.Apple);
             case ItemsEnum.Photo:
                 return new ivItem(
                     "Photo",
                     "It means nothing to you, but it might be a bit much for someone in particular...",
+                    new string[]{"You don't recognize the people in this photo. Were they important?"},
                     "",
                     TextManager.stringsToArray("you used a ball"), (int)ItemsEnum.Apple);
             default: return null;
@@ -122,19 +128,4 @@ public class InventoryManager : MonoBehaviour
             default: return Resources.Load("2D Assets/Programmer Art/ghosttemp",typeof(Sprite)) as Sprite;
         }
     }
-
-
-    public void callItem(ivItem item)
-    { //This can be moved into BattleBehavior
-        if (item.methodName != "")
-        {
-            Invoke(item.methodName, 0f);
-        }
-        else
-        {
-            Debug.Log("Trying to invoke an empty method name");
-        }
-    }
-
-
 }

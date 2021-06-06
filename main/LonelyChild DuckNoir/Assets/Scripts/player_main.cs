@@ -82,7 +82,9 @@ public class player_main : MonoBehaviour
     {
         if (!canMove)
         {
-            interactableTarget.isBusy = true;
+            if (interactableTarget!=null){
+                interactableTarget.isBusy = true;
+            }
             return;
         }
         if (interactableTarget != null)
@@ -139,7 +141,7 @@ public class player_main : MonoBehaviour
 
             rb.MovePosition((Vector2)transform.position + standardFacing);
             float facingOffset = Mathf.Atan2( standardFacing.x,standardFacing.y )  * Mathf.Rad2Deg; 
-            Debug.Log(facingOffset-angleOffset);
+            //Debug.Log(facingOffset-angleOffset);
             //facing out, -angleOffset+90 and updated facing face the same way
 
             thisAnimator.SetFloat("Angle",facingOffset-angleOffset);
@@ -151,7 +153,7 @@ public class player_main : MonoBehaviour
         }
         interactHitbox.transform.localPosition = facing * interactHitboxOffset;
 
-        if (interactableTarget != null)
+        if (interactableTarget != null && canMove)
         {
             if (interactableTarget.isReady||Input.GetButtonDown("Submit"))//if triggered from mouse click or interact button
             {
@@ -218,15 +220,27 @@ public class player_main : MonoBehaviour
         }
     }
 
-    public void UseItemOnInteractable(int itemID){
+    public void UseItemOnInteractable(InventoryManager.ivItem item){
         if(interactableTarget!=null){
-            interactableTarget.CheckItemUse(itemID);
+            interactableTarget.CheckItemUse(item);
+        }else{
+            UseItem(item);
+        }
+    }
+
+    public void UseItem(InventoryManager.ivItem item){//if can't use on interactable, use normally
+        if (item.methodName!=""){
+            Invoke(item.methodName,0f);
         }
     }
 
     public void TriggerDialogue(int textID){
+        Debug.Log("triggering dialogue: "+textID.ToString());
         string[] toScroll = TextManager.GetTextByID(textID);
         textScroller.ScrollText(toScroll, this);
     }
-    
+    public void TriggerDialogue(string[] text){
+        string[] toScroll = text;
+        textScroller.ScrollText(toScroll, this);
+    }
 }

@@ -11,6 +11,7 @@ public static class EnemyLibrary
             case 0: return new Enemy1();
             case 1: return new PoorDog();
             case 2: return new RepressedGhost();
+            case 3: return new BoredGhost();
             default: return null;
         }
     }
@@ -77,7 +78,7 @@ public class Enemy1 : EnemyClass
         name = "Bored Ghost";
         hp = 20;
         maxHP = 20;
-        id = 1;
+        id = 0;
         spritePath = "Prefabs/EnemySpritePrefabs/BoredGhostSprite";
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Straight/Straight_TooEasy",
@@ -95,7 +96,7 @@ public class PoorDog : EnemyClass
         name = "Poor Dog";
         hp = 10;
         maxHP = 10;
-        id = 2;
+        id = 1;
         spritePath = "Prefabs/EnemySpritePrefabs/PoorDogSprite";
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Straight/Straight_TooEasy2",
@@ -117,7 +118,7 @@ public class RepressedGhost : EnemyClass
         name = "The Ghost Of Repressed Emotions";
         hp = 40;
         maxHP = 40;
-        id = 3;
+        id = 2;
         spritePath = "Prefabs/EnemySpritePrefabs/RepressedGhostSprite";
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Sine/Sine_Harder_Reverse",
@@ -125,10 +126,23 @@ public class RepressedGhost : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/Sine Reversal/SineReverse_Easy2",
             "Prefabs/combatEnemyTurn/attacks/Mix/Mix_Easy"};
         talkActions = new TalkEnum[2] { TalkEnum.Chat, TalkEnum.ChatTwo };
-        
-
+        displayPrefabPath = "Prefabs/EnemySpritePrefabs/RepressedGhostSprite";
     }
 
+}
+
+public class BoredGhost : EnemyClass{
+    public BoredGhost(){
+        //sentiment
+        name = "Bored Ghost";
+        hp = 20;
+        maxHP = 20;
+        id = 3;
+        //spritePath
+        //attackPrefabNames
+        //talkActions
+        displayPrefabPath = "Prefabs/EnemySpritePrefabs/BoredGhostSprite";
+    }
 }
 
 public class SomeEnemy : EnemyClass
