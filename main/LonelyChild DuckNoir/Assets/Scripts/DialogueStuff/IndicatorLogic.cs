@@ -15,7 +15,7 @@ public class IndicatorLogic : MonoBehaviour
     {
         if (!interactable.isBusy)
         {
-            //interactable.isReady = true;
+            interactable.isReady = true;
         }
     }
     
