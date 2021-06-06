@@ -5,7 +5,7 @@ using UnityEngine;
 public class Activatable : MonoBehaviour
 {
     // Start is called before the first frame update
-    public void Activate(){
-        
+    virtual public void Activate(){
+        Debug.Log("Activate not set up for " + this.GetType().ToString());
     }
 }
