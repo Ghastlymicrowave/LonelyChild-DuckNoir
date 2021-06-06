@@ -205,6 +205,11 @@ public class player_main : MonoBehaviour
     }
     public void InteractableEntered(Interactable thisInteractable)
     {
+        //the change 8:49 pm
+        if(interactableTarget != null)
+        {
+            InteractableLeft(interactableTarget);
+        }
         if (interactableTarget != thisInteractable)
         {
             interactableTarget = thisInteractable;
