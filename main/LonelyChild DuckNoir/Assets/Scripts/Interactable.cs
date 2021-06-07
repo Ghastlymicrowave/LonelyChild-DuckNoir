@@ -28,7 +28,7 @@ public class Interactable : MonoBehaviour
         inventoryManager = GameObject.Find("PersistentManager").GetComponent<InventoryManager>();
         textManager = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         if (playerRef==null){playerRef = GameObject.Find("Player").GetComponent<player_main>();}
-        
+        Debug.Log(inventoryManager);
     }
     public enum interactableAction{
         ACTIVATE,//activates an interactable
@@ -54,8 +54,9 @@ public class Interactable : MonoBehaviour
                 playerRef.TriggerDialogue(dialogueID);
             break;
             case interactableAction.ITEM:
-                inventoryManager.AddItem(item);//TODO: add a text manager thing for getting the item
                 Debug.Log(item.ToString()+" added to inventory");
+                Debug.Log(inventoryManager);
+                inventoryManager.AddItem(item);//TODO: add a text manager thing for getting the item
                 if (dialogueID>-1){
                     playerRef.TriggerDialogue(dialogueID);
                 }

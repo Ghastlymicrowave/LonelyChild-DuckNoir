@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameSceneManager : MonoBehaviour
 {
     GameObject overworld;
+    InventoryManager inventoryManager;
     public string combatSceneName = "CombatScene";
 
     void Awake(){
@@ -20,6 +21,9 @@ public class GameSceneManager : MonoBehaviour
                 go.transform.SetParent(overworld.transform);
             }
         }
+    }
+    void Start(){
+        inventoryManager = GetComponent<InventoryManager>();
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -39,6 +43,7 @@ public class GameSceneManager : MonoBehaviour
     }
 
     public void GameOver(){
+        inventoryManager.Reset();
         Destroy(GameObject.Find("CombatScene"));
         SceneManager.LoadScene("GameOver");
     }

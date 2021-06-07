@@ -11,11 +11,7 @@ public class TextManager : MonoBehaviour
 
     public static string[] GetTextByID(int id){//using switch because no loaded memory and fast
         switch(id){
-            case -2: return new string[] {"What were you going to use that on?","You decide to put it back away"};
-            case -1: return new string[] {"It seems that didn't work. Maybe something else will?"};//for when item interaction doesn't work
-            case 0: return stringsToArray("fart",
-            "fart 2",
-            "fart 3, return of the fart");
+            case 0: return stringsToArray("That didn't work");
             case 1: return stringsToArray("This is the tutorial for The Lonely Child.\nYou may click anywhere to read more.",
             "Use WASD To move and the mouse to interact with things.",
             "Interactables show up as '!' and can be clicked on to engage text and maybe add an item to your inventory.",
@@ -58,10 +54,13 @@ public class TextManager : MonoBehaviour
             case 10:
                 return stringsToArray("You've always wanted to learn how to play the piano.",
                 "Too bad all you have is this big freakin' capsule.");
+            case 11:
+                return new string[] {"Looks like that worked"};
             default: Debug.Log("got bad text id");return null;
         }
     }
 
+    /*
     //this will eventually be replace by the same method in battleBehavior, i'm keeping this here in case
     //there are or will be any other dependencies for it for the time being.
     public string[] GetEnemyTextByID(int id){//using switch because no loaded memory and fast
@@ -128,5 +127,5 @@ public class TextManager : MonoBehaviour
             "\"Thank you...\"");
             default: Debug.Log("got bad text id");return null;
         }
-    }
+    }*/
 }

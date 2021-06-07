@@ -172,7 +172,7 @@ public class player_main : MonoBehaviour
 
         if (interactableTarget != null && canMove)
         {
-            if (interactableTarget.isReady||Input.GetButtonDown("Submit"))//if triggered from mouse click or interact button
+            if (interactableTarget.isReady||Input.GetButtonDown("Interact"))//if triggered from mouse click or interact button
             {
                 interactableTarget.Trigger();
             }

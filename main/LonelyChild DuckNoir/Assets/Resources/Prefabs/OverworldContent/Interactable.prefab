@@ -234,12 +234,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 1
-  itemID: 0
-  textID: 0
+  item: 0
   activatable: {fileID: 0}
+  attack: 0
   dialogueID: 0
   isReady: 0
+  isBusy: 0
+  oneTimeUse: 0
   indicator: {fileID: 282066490}
+  needsItemUse: 0
+  requiredItem: 0
+  notCompleteItemUseTextID: 0
+  usedRequiredItemTextId: 11
 --- !u!114 &900663479
 MonoBehaviour:
   m_ObjectHideFlags: 0

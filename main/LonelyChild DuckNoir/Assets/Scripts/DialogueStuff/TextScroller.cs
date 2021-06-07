@@ -60,7 +60,7 @@ public class TextScroller : MonoBehaviour
         if (isUpdating)
         {
             //Handling the clicking through of enemy dialogue, and starting of the enemy turn.
-            if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Submit"))
+            if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Interact"))
             {
                 if (!isTyping)
                 {

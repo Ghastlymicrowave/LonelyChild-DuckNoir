@@ -16,7 +16,6 @@ public class IndicatorLogic : MonoBehaviour
         if (!interactable.isBusy)
         {
             interactable.isReady = true;
-            Debug.Log("AFFUCK");
         }
     }
     

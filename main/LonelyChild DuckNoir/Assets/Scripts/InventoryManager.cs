@@ -31,14 +31,17 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-
+    public void Reset(){
+        attacks.Clear();
+        attacks.Add(AttackActions.Flashlight);
+        items.Clear();
+        items.Add(GetItemFromId(ItemsEnum.Apple));
+    }
 
     void Start()
     {
         items = new List<ivItem>();
-        //debug only for now
-        attacks.Add(AttackActions.Flashlight);
-        items.Add(GetItemFromId(ItemsEnum.Apple));
+        Reset();
     }
 
     void Awake()
@@ -84,6 +87,7 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(ItemsEnum item)
     {
+        Debug.Log("adding item from enum: "+items.ToString());
         items.Add(GetItemFromId(item));
     }
     public void AddItem(ivItem item)
