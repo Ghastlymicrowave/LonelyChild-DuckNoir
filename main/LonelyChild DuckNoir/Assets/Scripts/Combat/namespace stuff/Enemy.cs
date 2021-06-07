@@ -139,10 +139,10 @@ public float duration;
     }
 
     public enum Enemies{
-        ghostA,
-        ghostB,
+        testGhost,
         Poor_Dog,
-        RepressedGhost
+        Repressed_Ghost,
+        BoredGhost
     }
 
     public enum TalkEnum{

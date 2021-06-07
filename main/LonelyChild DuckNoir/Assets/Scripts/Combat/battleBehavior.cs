@@ -306,13 +306,13 @@ public class battleBehavior : MonoBehaviour
                 switch(actionID){
                     case (int)AttackActions.Theremin:
                         switch(enemyID){
-                            case (int)Enemies.ghostA:
+                            case (int)Enemies.testGhost:
                                 return new string[] {"You attacked with the theramin...",
                                 "The ghost... liked it?",
                                 "\"That's nice...\"",
                                 "\"Not really my genre though.\"",
                                 "\"I'm more of a 'Boos' kind of guy.\""};
-                                case (int)Enemies.RepressedGhost:
+                                case (int)Enemies.Repressed_Ghost:
                                 DamageEnemyResist(4);
                                 return new string[] {"You attacked with the theramin...",
                                 "The ghost looks indifferent",
@@ -337,7 +337,7 @@ public class battleBehavior : MonoBehaviour
                                 "The ghost isn't loving it... but isn't hating it, either.",
                                 "\"Too heavy to be stick...\nTo long to be ball...\"",
                                 "\":(\""};
-                            case (int)Enemies.RepressedGhost:
+                            case (int)Enemies.Repressed_Ghost:
                                 DamageEnemyResist(2);
                                 return new string[] {"You attacked with the FirePoker...",
                                 "The ghost is unphased",
@@ -352,12 +352,12 @@ public class battleBehavior : MonoBehaviour
                     
                     case (int)AttackActions.Flashlight:
                         switch(enemyID){
-                            case (int)Enemies.ghostA:
+                            case (int)Enemies.testGhost:
                                 DamageEnemyWeak(2);
                                 return new string[] {"You attacked with the flashlight...",
                                 "It was especially effective!",
                                 "\"Ow, who turned on the lights?\""};
-                            case (int)Enemies.RepressedGhost:
+                            case (int)Enemies.Repressed_Ghost:
                                 DamageEnemyWeak(4);
                                 return new string[] {"You attacked with the flashlight...",
                                 "The ghost has a painful expression on his face.",
@@ -379,12 +379,12 @@ public class battleBehavior : MonoBehaviour
                     
                     case (int)AttackActions.Garlic://in the case where you want a specific interaction:
                         switch(enemyID){
-                            case (int)Enemies.ghostA: //if the target is test enemy 0...
+                            case (int)Enemies.testGhost: //if the target is test enemy 0...
                                 //do something specific to this enemy
                                 return new string[] {"You Attacked with the Garlic...",
                                 "It worked fine!",
                                 "\"I'm a ghost, not a vampire...\""};
-                                case (int)Enemies.RepressedGhost:
+                                case (int)Enemies.Repressed_Ghost:
                                 DamageEnemy(4);
                                 return new string[] {"You attacked with the Garlic...",
                                 "The ghost didn't like that too much.",
@@ -418,7 +418,7 @@ public class battleBehavior : MonoBehaviour
                             "\"Ball!?!?!?!?!?\"",
                             "\"...\"",
                             "\"Ohh... False Ball-arm...\"" };
-                            case (int)Enemies.RepressedGhost:
+                            case (int)Enemies.Repressed_Ghost:
                                 return new string[] { "You started talking with the ghost...",
                             "\"I just wish things had been different, you know?\""};
                             default:
@@ -428,7 +428,7 @@ public class battleBehavior : MonoBehaviour
                         case (int)TalkEnum.ChatTwo:
                         switch(enemyID){
 
-                            case (int)Enemies.RepressedGhost:
+                            case (int)Enemies.Repressed_Ghost:
                                 return new string[] { "You started talking with the ghost in another way...",
                                 "\"Well, it's just...\"",
                                 "\"They wanted different things from what I wanted...\"",
@@ -475,7 +475,7 @@ public class battleBehavior : MonoBehaviour
                         "\"...\""};
                     case (int)ItemsEnum.Ball:
                         switch(enemyID){
-                            case (int)Enemies.ghostA:
+                            case (int)Enemies.testGhost:
                                 return Sentimental(new string[]{"You showed the ball to the ghost...",
                                 "It felt... right.",
                                 "\"Thank you...\""},
@@ -496,7 +496,7 @@ public class battleBehavior : MonoBehaviour
                                 "\"I feel like there could be ball...?\"",
                                 "\"But... No see ball?????\"",
                                 "It snaps out of it's trance, you must have been too soon."});
-                                case (int)Enemies.RepressedGhost:
+                                case (int)Enemies.Repressed_Ghost:
                                 return Sentimental(new string[]{"You showed the Photo to the ghost...",
                                 "It felt... right.",
                                 "\"Thaaaank yyooouu\""},
