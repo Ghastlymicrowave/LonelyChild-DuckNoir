@@ -92,7 +92,7 @@ public class PoorDog : EnemyClass
     public PoorDog()
     {
         sentiment = new List<EnemyActionCase>{
-            new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
+            new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Pet)};
         name = "Poor Dog";
         hp = 10;
         maxHP = 10;

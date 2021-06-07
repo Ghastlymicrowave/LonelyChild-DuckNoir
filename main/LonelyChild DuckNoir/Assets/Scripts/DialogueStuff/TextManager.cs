@@ -56,6 +56,10 @@ public class TextManager : MonoBehaviour
                 "Too bad all you have is this big freakin' capsule.");
             case 11:
                 return new string[] {"Looks like that worked"};
+            //Another Item
+            case 12:
+                return stringsToArray("You picked up a key!", "Go to a door you need to open and press the button on the left side of your screen...", 
+                "Press 'Use with' to get the party started...");
             default: Debug.Log("got bad text id");return null;
         }
     }

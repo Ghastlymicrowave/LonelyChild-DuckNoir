@@ -420,7 +420,12 @@ public class battleBehavior : MonoBehaviour
                             "\"Ohh... False Ball-arm...\"" };
                             case (int)Enemies.Repressed_Ghost:
                                 return new string[] { "You started talking with the ghost...",
+                                "This seemed very important",
                             "\"I just wish things had been different, you know?\""};
+                            case (int)Enemies.BoredGhost:
+                                return new string[] { "You started talking with the ghost...",
+                                "This seemed very important",
+                            "\"Sigh... Alright...\""};
                             default:
                                 return new string[] {"You had a chat with the ghost...",
                                 "The ghost seemed bored..."};  
@@ -457,11 +462,13 @@ public class battleBehavior : MonoBehaviour
                             "But your arm phased right through 'em, so...",
                             "You just kinda made a petting motion with your arm.",
                             "Between you and me, I don't think he knows the difference.",
+                            "This seemed very important",
                             "\"Woof!~ :)\""};
                             default:
                                 return new string[] {"You pet the ghost...",
                                 "The ghost seemed bored..."};  
                         }
+                        
                     default: NotSetUp(); return new string[] {"..."};
                 }
             ////////////////////////////////////////////////////    Items    ////////////
@@ -472,6 +479,11 @@ public class battleBehavior : MonoBehaviour
                         DamagePlayer(-5);
                         return new string[] {"You ate the apple...",
                         "and gained 5 health!",
+                        "\"...\""};
+                    case (int)ItemsEnum.Key:
+                        return new string[] {"You tried to use the key on the ghost...",
+                        "That's a ghost, not a lock!",
+                        "What's wrong with you?",
                         "\"...\""};
                     case (int)ItemsEnum.Ball:
                         switch(enemyID){
@@ -495,7 +507,7 @@ public class battleBehavior : MonoBehaviour
                                 "Does this ball mean something to it?",
                                 "\"I feel like there could be ball...?\"",
                                 "\"But... No see ball?????\"",
-                                "It snaps out of it's trance, you must have been too soon."});
+                                "It snaps out of it's trance, was there something you needed to do first?"});
                                 case (int)Enemies.Repressed_Ghost:
                                 return Sentimental(new string[]{"You showed the Photo to the ghost...",
                                 "It felt... right.",
@@ -505,6 +517,7 @@ public class battleBehavior : MonoBehaviour
                                 "\"Oh why, oh why...\""});
 
                         }
+                        
                         return new string[] {"You held the ball out to the being...",
                         "But it cannot see it!",
                         "Your machine needs more charge!",

@@ -135,7 +135,8 @@ public float duration;
     public enum ItemsEnum{//actions defined here must also be defined in TextManager with a default value
         Apple,
         Ball,
-        Photo
+        Photo,
+        Key
     }
 
     public enum Enemies{
