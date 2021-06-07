@@ -896,7 +896,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 619042250434018314, guid: 9b0082740161f39469a3b3a0cc1ae58d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.2236129
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 619042250434018314, guid: 9b0082740161f39469a3b3a0cc1ae58d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -950,6 +950,10 @@ PrefabInstance:
       propertyPath: activatable
       value: 
       objectReference: {fileID: 1528411444}
+    - target: {fileID: 619042250434018316, guid: 9b0082740161f39469a3b3a0cc1ae58d, type: 3}
+      propertyPath: needsItemUse
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 619042250434018317, guid: 9b0082740161f39469a3b3a0cc1ae58d, type: 3}
       propertyPath: m_Name
       value: Interactable

@@ -50,6 +50,7 @@ public class battleBehavior : MonoBehaviour
 
     GameSceneManager gameSceneManager;
     GameObject enemyParent;
+    Animator healthbarAnim;
     enum endCon{
         SENTIMENT,
         DEFEAT,
@@ -78,6 +79,7 @@ public class battleBehavior : MonoBehaviour
         GameObject enemyImage = Instantiate(toInstantiate);
         enemyImage.transform.SetParent(enemyParent.transform);
         enemyImage.transform.localPosition = Vector3.zero;
+        healthbarAnim = healthbarFilled.transform.parent.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -147,6 +149,7 @@ public class battleBehavior : MonoBehaviour
         gamePosition = GamePosition.PlayerChoice;
         textBox.SetActive(true);
         MenuPanel.SetActive(true);
+        healthbarAnim.SetBool("IsMinigame",false);
         scanner.SetActive(true);
         enemy.toScroll = new string[] {"This enemy has " + enemy.hp+" of " + enemy.maxHP+" hitpoints."};
         endAtLine = enemy.toScroll.Length - 1;
@@ -167,6 +170,7 @@ public class battleBehavior : MonoBehaviour
         int thisEnemyID = enemy.id;
         ExitSubmenu();
         MenuPanel.SetActive(false);
+        healthbarAnim.SetBool("IsMinigame",true);
         enemy.toScroll = GetEnemyTextByID(thisEnemyID,actionType,actionID);
         endAtLine = enemy.toScroll.Length - 1;
         

@@ -41,13 +41,13 @@ public class Interactable : MonoBehaviour
         return needsItemUse;
     }
     public void Trigger(){
+        isReady=false;
         if (needsItemUse){
             if (dialogueID>-1){
                     playerRef.TriggerDialogue(notCompleteItemUseTextID);
                 }
             return;
         }
-        isReady=false;
         switch(action){
             case interactableAction.ACTIVATE:
                 activatable.Activate();

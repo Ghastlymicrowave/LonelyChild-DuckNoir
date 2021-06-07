@@ -66,7 +66,7 @@ public class Submenu : MonoBehaviour
 
     public void AddItem(Sprite spr,int actionType, int actionID){
         Debug.Log(spr);
-        GameObject item = Instantiate(Resources.Load("Prefabs/SubmenuItem") as GameObject,content.transform);
+        GameObject item = Instantiate(Resources.Load("Prefabs/OverworldEnginePrefabs/SubmenuItem") as GameObject,content.transform);
         Image image = item.GetComponent<Image>();
         image.sprite = spr;
         Button btn = item.GetComponent<Button>();

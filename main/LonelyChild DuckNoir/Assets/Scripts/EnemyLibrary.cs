@@ -48,7 +48,7 @@ public abstract class EnemyClass
     }
     public GameObject GetRandomAttack()
     {
-        return Resources.Load(attackPrefabNames[0], typeof(GameObject)) as GameObject;//attackPrefabNames[Random.Range(0,attackPrefabNames.Length)]
+        return Resources.Load(attackPrefabNames[Random.Range(0,attackPrefabNames.Length)], typeof(GameObject)) as GameObject;
     }
 }
 
