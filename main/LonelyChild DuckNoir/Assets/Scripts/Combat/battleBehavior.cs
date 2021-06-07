@@ -151,7 +151,7 @@ public class battleBehavior : MonoBehaviour
         MenuPanel.SetActive(true);
         healthbarAnim.SetBool("IsMinigame",false);
         scanner.SetActive(true);
-        enemy.toScroll = new string[] {"This enemy has " + enemy.hp+" of " + enemy.maxHP+" hitpoints."};
+        //enemy.toScroll = new string[] {"This enemy has " + enemy.hp+" of " + enemy.maxHP+" hitpoints."};
         endAtLine = enemy.toScroll.Length - 1;
         currentLine = 0;
         StopCoroutine(theScroll);

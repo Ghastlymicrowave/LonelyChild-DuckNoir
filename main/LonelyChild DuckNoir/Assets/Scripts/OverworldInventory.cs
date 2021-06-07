@@ -70,7 +70,7 @@ public class OverworldInventory : MonoBehaviour
 
     void AddItem(InventoryManager.ivItem item){
         GameObject newItemObj = Instantiate(itemPrefab,Vector3.zero,Quaternion.identity);
-        newItemObj.transform.SetParent(content.transform);
+        newItemObj.transform.SetParent(content.transform,false);
         newItemObj.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = InventoryManager.LoadItemSprite(item.id);//image
         newItemObj.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = item.name;//name
         newItemObj.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = item.description;//description
