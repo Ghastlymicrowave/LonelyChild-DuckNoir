@@ -17,7 +17,7 @@ public class GameSceneManager : MonoBehaviour
             GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>() ;
             foreach(GameObject go in allObjects)
             if (go !=null && go != this.gameObject && go.transform.parent==null && go != overworld && go){
-                go.transform.parent = overworld.transform;
+                go.transform.SetParent(overworld.transform);
             }
         }
     }

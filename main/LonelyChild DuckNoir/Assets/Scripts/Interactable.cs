@@ -36,6 +36,10 @@ public class Interactable : MonoBehaviour
         TALK,//just gives the player some text
         ATTACK//Gives the player a new attack
     }
+
+    public bool HasItemUse(){
+        return needsItemUse;
+    }
     public void Trigger(){
         if (needsItemUse){
             if (dialogueID>-1){

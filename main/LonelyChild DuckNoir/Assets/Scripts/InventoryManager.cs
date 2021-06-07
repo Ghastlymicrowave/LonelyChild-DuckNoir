@@ -62,7 +62,7 @@ public class InventoryManager : MonoBehaviour
                     "Apple",
                     "An ordinary apple, eat it to regain 5 health in combat.",
                     new string[] {"just an ordinary red apple. Has a nice smell."},
-                    "",
+                    "Apple",
                     TextManager.stringsToArray("you used an apple"), (int)ItemsEnum.Apple);
             case ItemsEnum.Ball:
                 return new ivItem(

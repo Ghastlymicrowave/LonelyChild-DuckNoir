@@ -22,6 +22,10 @@ public class OverworldInventory : MonoBehaviour
     }
 
     public void ToggleMenu(){
+        if (!player.canMove){
+            Debug.Log("refusing to open inventory because of player.canMove");
+            return;
+        }
         menuOpen = !menuOpen;
         if (menuOpen){
             buttonTxt.text="Close";
@@ -31,6 +35,16 @@ public class OverworldInventory : MonoBehaviour
             buttonTxt.text="Open";
             animator.Play("Close",0);
         }
+        player.InventoryOpen = menuOpen;
+    }
+
+    public void CloseMenu(){
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("InventoyIsClosed")&&!animator.GetCurrentAnimatorStateInfo(0).IsName("Close")){
+            buttonTxt.text="Open";
+            animator.Play("Close",0);
+            menuOpen = false;
+        }
+        player.InventoryOpen = menuOpen;
     }
 
     void GenerateItems(){
@@ -44,11 +58,13 @@ public class OverworldInventory : MonoBehaviour
 
     public void UseItem(InventoryManager.ivItem item){
         Debug.Log("using");
+        CloseMenu();
         player.UseItemOnInteractable(item);
     }
 
     public void InspectItem(InventoryManager.ivItem item){
         Debug.Log("inspecting");
+        CloseMenu();
         player.TriggerDialogue(item.inspect);
     }
 
@@ -67,8 +83,11 @@ public class OverworldInventory : MonoBehaviour
             inspectButton.SetActive(false);
         }
         
-        if (item.methodName !=""){//use button
+        if (item.methodName !="" || player.ValidRequiresItem()){//use button
             useButton.GetComponent<Button>().onClick.AddListener(delegate {UseItem(item);});
+            if (player.ValidRequiresItem()){
+                useButton.transform.GetChild(0).GetComponent<Text>().text = "use with";
+            }
         }else{
             useButton.SetActive(false);
         }

@@ -27,6 +27,7 @@ public class player_main : MonoBehaviour
 
     public TextScroller textScroller;
     public bool canMove = true;
+    public bool InventoryOpen = false;
     private CameraControl camControl;
     private Animator thisAnimator;
     private GameObject spriteObj;
@@ -78,6 +79,15 @@ public class player_main : MonoBehaviour
         return new Vector2(Mathf.Cos(angle),Mathf.Sin(angle));
     }
 
+    public bool ValidRequiresItem(){
+        if (interactableTarget!=null){
+            return interactableTarget.HasItemUse();
+        }else{
+            return false;
+        }
+        
+    }
+
     void Update()
     {
         if (!canMove)
@@ -85,8 +95,15 @@ public class player_main : MonoBehaviour
             if (interactableTarget!=null){
                 interactableTarget.isBusy = true;
             }
+            thisAnimator.SetBool("Moving",false);
             return;
         }
+
+        if (InventoryOpen){
+            thisAnimator.SetBool("Moving",false);
+            return;
+        }
+
         if (interactableTarget != null)
         {
             interactableTarget.isBusy = false;
@@ -247,5 +264,11 @@ public class player_main : MonoBehaviour
     public void TriggerDialogue(string[] text){
         string[] toScroll = text;
         textScroller.ScrollText(toScroll, this);
+    }
+
+
+    // ITEM METHODS:
+    void Apple(){
+        TriggerDialogue(new string[]{"You're not really that hungry right now","Maybe a ghost will want this?"});
     }
 }
