@@ -61,6 +61,14 @@ public class TextManager : MonoBehaviour
             case 12:
                 return stringsToArray("You picked up a key!", "Go to a door you need to open and press the button on the left side of your screen...", 
                 "Press 'Use with' to get the party started...");
+                // door stuff
+            case 13:
+                return stringsToArray("A locked door...", "You'll need to unlock it before you can use it.", 
+                "Press 'Use with' to get the party started...");
+            case 14:
+                return stringsToArray("You unlocked the door!", "Click on it again to open it!");
+            case 15:
+                return stringsToArray("The door opened!");
             default: Debug.Log("got bad text id");return null;
         }
     }
