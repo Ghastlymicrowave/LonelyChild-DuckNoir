@@ -36,9 +36,6 @@ public class InventoryManager : MonoBehaviour
         attacks.Add(AttackActions.Flashlight);
         items.Clear();
         items.Add(GetItemFromId(ItemsEnum.Apple));
-
-        attacks.Add(AttackActions.Theremin);
-        items.Add(GetItemFromId(ItemsEnum.Ball));
     }
 
     void Start()
