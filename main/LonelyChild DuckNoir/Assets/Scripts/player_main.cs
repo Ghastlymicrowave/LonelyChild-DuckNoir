@@ -92,6 +92,9 @@ public class player_main : MonoBehaviour
 
     void Update()
     {
+        Vector3 camPos = camControl.activeCam.transform.position;
+        camPos.z = spriteObj.transform.position.z;
+        spriteObj.transform.LookAt(camPos,Vector3.back);
         if (!canMove)
         {
             if (interactableTarget!=null){
@@ -180,9 +183,7 @@ public class player_main : MonoBehaviour
                 dontUseTime = .2f;
             }
         }
-        Vector3 camPos = camControl.activeCam.transform.position;
-        camPos.z = spriteObj.transform.position.z;
-        spriteObj.transform.LookAt(camPos,Vector3.back);
+        
 
         if (Input.GetButton("Pause")){
             gameSceneManager.Pause();
@@ -190,6 +191,17 @@ public class player_main : MonoBehaviour
 
         if (dontUseTime > 0 ){
             dontUseTime = Mathf.Max(dontUseTime - Time.deltaTime,0f);
+        }
+
+        if (Input.GetKeyDown(KeyCode.K)){
+            inventoryManager.AddAttack(Combat.AttackActions.Flashlight);
+            inventoryManager.AddAttack(Combat.AttackActions.Theremin);
+            inventoryManager.AddAttack(Combat.AttackActions.Fire_Poker);
+            inventoryManager.AddAttack(Combat.AttackActions.Garlic);
+            inventoryManager.AddItem(Combat.ItemsEnum.Apple);
+            inventoryManager.AddItem(Combat.ItemsEnum.Ball);
+            inventoryManager.AddItem(Combat.ItemsEnum.Photo);
+            inventoryManager.AddItem(Combat.ItemsEnum.Key);
         }
     }
 
