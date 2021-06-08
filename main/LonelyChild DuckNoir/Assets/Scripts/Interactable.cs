@@ -31,6 +31,7 @@ public class Interactable : MonoBehaviour
         if (playerRef==null){playerRef = GameObject.Find("Player").GetComponent<player_main>();}
         Debug.Log(inventoryManager);
     }
+
     public enum interactableAction{
         ACTIVATE,//activates an interactable
         ITEM,//gives the player an item
@@ -74,10 +75,6 @@ public class Interactable : MonoBehaviour
             playerRef.InteractableLeft(this);
             this.gameObject.SetActive(false);
         }
-    }
-
-    public void Test(){
-        Debug.Log("THIS IS A TEST");
     }
     private void OnTriggerEnter2D(Collider2D other){
         playerRef.InteractableEntered(this);
