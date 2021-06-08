@@ -10,6 +10,7 @@ public class PlayerCursor : MonoBehaviour
     Vector3 realPos;
     Vector3 mousePos;
     Vector3 lerpPos;
+    public Rigidbody2D rb;
     public float xBound = 1f;
     public float yBound = 1f;
     public float xNegBound = -1f;
@@ -23,6 +24,7 @@ public class PlayerCursor : MonoBehaviour
         cam = Camera.main;
         attackLogic=transform.parent.GetComponent<AttackLogic>();
         audioSource = attackLogic.bb.Damage;
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -52,7 +54,9 @@ public class PlayerCursor : MonoBehaviour
         }
         lerpPos = Vector3.Lerp(gameObject.transform.position, realPos, lerpMult);
         // realPos = new Vector3(realPos.x, realPos.y, gameObject.transform.position.z);
-        gameObject.transform.position = lerpPos;
+
+        ///// gameObject.transform.position = lerpPos;
+        rb.MovePosition(lerpPos);
     }
     public void Damage(int damage)
     {
