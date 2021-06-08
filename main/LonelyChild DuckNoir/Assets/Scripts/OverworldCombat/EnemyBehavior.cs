@@ -19,6 +19,7 @@ public class EnemyBehavior : MonoBehaviour
     public string ToLoad = "combatTest";
     public float constantZ;
     public Transform[] patrolSpots;
+    public player_main pm = null;
     public int startingPatrol = 0;
     int hitCount = 0;
     private void Start()
@@ -28,12 +29,22 @@ public class EnemyBehavior : MonoBehaviour
         {
             camControl = GameObject.Find("CameraControl").GetComponent<CameraControl>();
         }
+        if (pm == null)
+        {
+            pm = GameObject.Find("Player").GetComponent<player_main>();
+        }
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
         gameSceneManager = tm.gameObject.GetComponent<GameSceneManager>();
     }
     private void Update()
-    {
+    {if (pm != null)
+        {
+            if (!pm.canMove)
+            {
+                return;
+            }
+        }
         sprite.LookAt(camControl.activeCam.transform.position, Vector3.back);
         if (patrol && isMoving)
         {
@@ -58,6 +69,7 @@ public class EnemyBehavior : MonoBehaviour
         {
             patrol = false;
             player = col.gameObject;
+            //pm = player.GetComponent<player_main>();
         }
 
     }
