@@ -113,8 +113,8 @@ public class player_main : MonoBehaviour
         {
             interactableTarget.isBusy = false;
         }
-        hinput = Input.GetAxis("Horizontal");
-        vinput = Input.GetAxis("Vertical");
+        hinput = Input.GetAxis("HMove");
+        vinput = Input.GetAxis("VMove");
         isMoving = (hinput != 0f || vinput != 0f);
         thisAnimator.SetBool("Moving",isMoving);
         if (isMoving)
