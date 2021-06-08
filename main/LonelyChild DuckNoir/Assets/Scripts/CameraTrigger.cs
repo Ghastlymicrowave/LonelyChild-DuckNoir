@@ -54,7 +54,6 @@ public class CameraTrigger : MonoBehaviour
     {
         if (other.tag == "Player"){
             Triggered();
-            Debug.Log("Triggered");
         }
     }
 

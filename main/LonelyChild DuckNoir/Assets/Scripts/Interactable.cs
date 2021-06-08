@@ -29,7 +29,6 @@ public class Interactable : MonoBehaviour
         inventoryManager = GameObject.Find("PersistentManager").GetComponent<InventoryManager>();
         textManager = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         if (playerRef==null){playerRef = GameObject.Find("Player").GetComponent<player_main>();}
-        Debug.Log(inventoryManager);
     }
 
     public enum interactableAction{

@@ -109,6 +109,12 @@ public class InventoryManager : MonoBehaviour
         switch(action){
             case AttackActions.Flashlight:
             return new Flashlight();
+            case AttackActions.Fire_Poker:
+            return new Fire_Poker();
+            case AttackActions.Garlic:
+            return new Garlic();
+            case AttackActions.Theremin:
+            return new Theremin();
             default: return null;
         }
     }
@@ -159,6 +165,7 @@ public class InventoryManager : MonoBehaviour
 
     public void AddAttack(AttackActions attack)
     {
+        Debug.Log("adding attack: "+ attack.ToString());
         if (!attacks.Contains(attack))
         {
             attacks.Add(attack);
