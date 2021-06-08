@@ -97,7 +97,7 @@ public class InventoryManager : MonoBehaviour
                     "",
                     new string[]{""}, 
                     (int)ItemsEnum.Key,
-                    "2D Assets/Programmer Art/ghosttemp");   
+                    "2D Assets/Items/Key");   
             default: return null;
         }
     }
