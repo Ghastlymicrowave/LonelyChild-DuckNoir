@@ -19,8 +19,9 @@ public class InventoryManager : MonoBehaviour
         public string[] useText;
         public int id;
         public string[] inspect;//text shown when inspecting item
+        public string spritePath;
         //TODO add an image
-        public ivItem(string _name, string _description, string[] _inspect, string _methodName, string[] _useText, int _id)
+        public ivItem(string _name, string _description, string[] _inspect, string _methodName, string[] _useText, int _id, string _spritePath)
         {
             name = _name;
             description = _description;
@@ -28,6 +29,7 @@ public class InventoryManager : MonoBehaviour
             useText = _useText;
             id = _id;
             inspect = _inspect;
+            spritePath = _spritePath;
         }
     }
 
@@ -56,7 +58,7 @@ public class InventoryManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public ivItem GetItemFromId(ItemsEnum item)
+    public static ivItem GetItemFromId(ItemsEnum item)
     {
         switch (item)
         {//using switch because no loaded memory and fast
@@ -66,8 +68,9 @@ public class InventoryManager : MonoBehaviour
                     "An ordinary apple, eat it to regain 5 health in combat.",
                     new string[] {"just an ordinary red apple. Has a nice smell."},
                     "Apple",
-                    new string[]{""}, 
-                    (int)ItemsEnum.Apple);
+                    new string[]{""},
+                    (int)ItemsEnum.Apple,
+                    "2D Assets/Programmer Art/ghosttemp"); 
             case ItemsEnum.Ball:
                 return new ivItem(
                     "Ball",
@@ -75,7 +78,8 @@ public class InventoryManager : MonoBehaviour
                     new string[] {"This old rubber ball still has some of it's bounce"},
                     "",
                     new string[]{""}, 
-                    (int)ItemsEnum.Ball);
+                    (int)ItemsEnum.Ball,
+                    "2D Assets/Programmer Art/ghosttemp");
             case ItemsEnum.Photo:
                 return new ivItem(
                     "Photo",
@@ -83,7 +87,8 @@ public class InventoryManager : MonoBehaviour
                     new string[]{"You don't recognize the people in this photo. Were they important?"},
                     "",
                     new string[]{""}, 
-                    (int)ItemsEnum.Photo);
+                    (int)ItemsEnum.Photo,
+                    "2D Assets/Programmer Art/ghosttemp");
             case ItemsEnum.Key:
                 return new ivItem(
                     "Key",
@@ -91,7 +96,8 @@ public class InventoryManager : MonoBehaviour
                     new string[]{"This key appears to be for use on locked doors."},
                     "",
                     new string[]{""}, 
-                    (int)ItemsEnum.Key);   
+                    (int)ItemsEnum.Key,
+                    "2D Assets/Programmer Art/ghosttemp");   
             default: return null;
         }
     }
@@ -134,10 +140,7 @@ public class InventoryManager : MonoBehaviour
 
     public static Sprite LoadItemSprite(int itemID)
     {
-        switch (itemID)
-        {//TODO: fill this out with sprites
-            default: return Resources.Load("2D Assets/Programmer Art/ghosttemp",typeof(Sprite)) as Sprite;
-        }
+        return Resources.Load(GetItemFromId((ItemsEnum)itemID).spritePath,typeof(Sprite)) as Sprite;
     }
 
     public static Sprite LoadTalkSprite(int itemID)
