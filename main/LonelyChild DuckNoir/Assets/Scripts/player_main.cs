@@ -193,6 +193,7 @@ public class player_main : MonoBehaviour
             dontUseTime = Mathf.Max(dontUseTime - Time.deltaTime,0f);
         }
 
+        /*
         if (Input.GetKeyDown(KeyCode.K)){
             inventoryManager.AddAttack(Combat.AttackActions.Flashlight);
             inventoryManager.AddAttack(Combat.AttackActions.Theremin);
@@ -203,6 +204,7 @@ public class player_main : MonoBehaviour
             inventoryManager.AddItem(Combat.ItemsEnum.Photo);
             inventoryManager.AddItem(Combat.ItemsEnum.Key);
         }
+        */
     }
 
     void FindClosestCamera()
