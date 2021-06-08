@@ -31,6 +31,8 @@ public class player_main : MonoBehaviour
     private CameraControl camControl;
     private Animator thisAnimator;
     private GameObject spriteObj;
+    private GameSceneManager gameSceneManager;
+    private float dontUseTime = .1f;
 
     //playerposonstart
     public bool MovePlayerOnStart = true;
@@ -40,7 +42,7 @@ public class player_main : MonoBehaviour
     {
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
-
+        gameSceneManager = tm.gameObject.GetComponent<GameSceneManager>();
         
 
         spriteObj = transform.GetChild(1).gameObject;
@@ -172,14 +174,23 @@ public class player_main : MonoBehaviour
 
         if (interactableTarget != null && canMove)
         {
-            if (interactableTarget.isReady||Input.GetButtonDown("Interact"))//if triggered from mouse click or interact button
+            if (interactableTarget.isReady||Input.GetButtonDown("Interact") && dontUseTime ==0)//if triggered from mouse click or interact button
             {
                 interactableTarget.Trigger();
+                dontUseTime = .2f;
             }
         }
         Vector3 camPos = camControl.activeCam.transform.position;
         camPos.z = spriteObj.transform.position.z;
         spriteObj.transform.LookAt(camPos,Vector3.back);
+
+        if (Input.GetButton("Pause")){
+            gameSceneManager.Pause();
+        }
+
+        if (dontUseTime > 0 ){
+            dontUseTime = Mathf.Max(dontUseTime - Time.deltaTime,0f);
+        }
     }
 
     void FindClosestCamera()

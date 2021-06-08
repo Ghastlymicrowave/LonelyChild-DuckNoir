@@ -112,6 +112,10 @@ public class InventoryManager : MonoBehaviour
             items.Remove(item);
         }
     }
+    public void RemoveItem(int itemId){
+        RemoveItem(items.Find(ivItem => ivItem.id == itemId));
+    }
+
     public void AddAttack(AttackActions attack)
     {
         if (!attacks.Contains(attack))

@@ -7,6 +7,7 @@ public class GameSceneManager : MonoBehaviour
     GameObject overworld;
     InventoryManager inventoryManager;
     public string combatSceneName = "CombatScene";
+    public string pauseSceneName = "PauseScene";
 
     void Awake(){
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -31,7 +32,6 @@ public class GameSceneManager : MonoBehaviour
         if (scene.name == "PlayroomWB"){
             PackEverything();
         }
-        Debug.Log("FD");
     }
     public void EnterCombat(){
         SceneManager.LoadScene(combatSceneName,LoadSceneMode.Additive);
@@ -42,9 +42,22 @@ public class GameSceneManager : MonoBehaviour
         overworld.SetActive(true);
     }
 
+    public void Pause(){
+        SceneManager.LoadScene(pauseSceneName,LoadSceneMode.Additive);
+        overworld.SetActive(false);
+    }
+    public void Unpause(){
+        SceneManager.UnloadSceneAsync("PauseScene");
+        overworld.SetActive(true);
+    }
+
     public void GameOver(){
         inventoryManager.Reset();
         Destroy(GameObject.Find("CombatScene"));
         SceneManager.LoadScene("GameOver");
+    }
+
+    public void Title(){
+        SceneManager.LoadScene("MainMenu");
     }
 }

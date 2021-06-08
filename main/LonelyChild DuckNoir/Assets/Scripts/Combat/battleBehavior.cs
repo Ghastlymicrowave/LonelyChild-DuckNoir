@@ -56,7 +56,7 @@ public class battleBehavior : MonoBehaviour
         CRUCIFIX
     }
     int battleEnded = -1;
-    float baseRunChance = 0.2f;
+    float baseRunChance = 0.4f;
     GameObject minigame;
     List<string> toScroll;
     // Start is called before the first frame update
@@ -490,6 +490,7 @@ public class battleBehavior : MonoBehaviour
                 switch(actionID){
                     case (int)ItemsEnum.Apple:
                         DamagePlayer(-5);
+                        inventoryManager.RemoveItem((int)ItemsEnum.Apple);
                         return new string[] {"You ate the apple...",
                         "and gained 5 health!",
                         "\"...\""};
@@ -574,7 +575,9 @@ public class battleBehavior : MonoBehaviour
             ////////////////////////////////////////////////////    Run    ////////////
             case ButtonEnum.Run:
                 //try to run
-                if (Random.Range(0f,1f) > baseRunChance + (1-baseRunChance)*(1-(float)enemy.hp/(float)enemy.maxHP)){
+                float chance = Random.Range(0f,1f);
+                Debug.Log("chance: "+ (baseRunChance + (1f-baseRunChance)*(1f-(float)enemy.hp/(float)enemy.maxHP)).ToString()+ " got: "+ chance.ToString());
+                if (chance < baseRunChance + (1f-baseRunChance)*(1f-(float)enemy.hp/(float)enemy.maxHP)){
                     //add text about escaping 
                     battleEnded = (int)endCon.RUN;
                     return new string[]{"you got away safely"};
