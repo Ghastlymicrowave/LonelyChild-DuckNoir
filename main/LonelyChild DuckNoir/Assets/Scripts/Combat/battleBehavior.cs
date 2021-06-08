@@ -31,8 +31,6 @@ public class battleBehavior : MonoBehaviour
     //How long into texts scrolling are we?
     public int currentLine;
     //the current line within the text scroll.
-    public int endAtLine;
-    //when to end the textscroll.
     ButtonEnum? currentAction;
     //what submenu we're currently in
     private IEnumerator theScroll;
@@ -60,6 +58,7 @@ public class battleBehavior : MonoBehaviour
     int battleEnded = -1;
     float baseRunChance = 0.2f;
     GameObject minigame;
+    List<string> toScroll;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +79,7 @@ public class battleBehavior : MonoBehaviour
         enemyImage.transform.SetParent(enemyParent.transform);
         enemyImage.transform.localPosition = Vector3.zero;
         healthbarAnim = healthbarFilled.transform.parent.GetComponent<Animator>();
+        toScroll = new List<string>();
     }
 
     // Update is called once per frame
@@ -93,7 +93,7 @@ public class battleBehavior : MonoBehaviour
                 if (!isTyping)
                 {
                     currentLine += 1;
-                     if (currentLine > endAtLine)
+                     if (currentLine > toScroll.Count-1)
                     {
                         if (battleEnded >-1){
                             EndCombat((endCon)battleEnded);
@@ -102,7 +102,7 @@ public class battleBehavior : MonoBehaviour
                     }
                     else
                     {
-                        StartCoroutine(theScroll = TextScroll(enemy.toScroll[currentLine]));
+                        StartCoroutine(theScroll = TextScroll(toScroll[currentLine]));
                         click.Play();
                     }
                 }
@@ -152,10 +152,10 @@ public class battleBehavior : MonoBehaviour
         healthbarAnim.SetBool("IsMinigame",false);
         scanner.SetActive(true);
         //enemy.toScroll = new string[] {"This enemy has " + enemy.hp+" of " + enemy.maxHP+" hitpoints."};
-        endAtLine = enemy.toScroll.Length - 1;
+        //endAtLine = toScroll.Length - 1;
         currentLine = 0;
         StopCoroutine(theScroll);
-        StartCoroutine(theScroll = TextScroll(enemy.toScroll[currentLine]));
+        StartCoroutine(theScroll = TextScroll(toScroll[currentLine]));
     }
 
     public void ExternalSubButtonPressed(int actionID){
@@ -171,11 +171,11 @@ public class battleBehavior : MonoBehaviour
         ExitSubmenu();
         MenuPanel.SetActive(false);
         healthbarAnim.SetBool("IsMinigame",true);
-        enemy.toScroll = GetEnemyTextByID(thisEnemyID,actionType,actionID);
-        endAtLine = enemy.toScroll.Length - 1;
+        toScroll.Clear();
+        toScroll.AddRange(GetEnemyTextByID(thisEnemyID,actionType,actionID));
         
         StopCoroutine(theScroll);
-        StartCoroutine(theScroll = TextScroll(enemy.toScroll[currentLine]));
+        StartCoroutine(theScroll = TextScroll(toScroll[currentLine]));
         SentimentalItemUsed(new EnemyActionCase((int)actionType,actionID));
         scannerLogic.DecideLights(enemy.hp, enemy.maxHP);
         ExitSubmenu();
@@ -245,10 +245,24 @@ public class battleBehavior : MonoBehaviour
     }
 
     void SentimentalItemUsed(EnemyActionCase action){
-        if (enemy.hp==0&&enemy.sentiment.Contains(action)){
-            enemy.sentiment.Remove(action);
+        Debug.Log("sentimental tried using");
+        Debug.Log(enemy.sentiment);
+        Debug.Log(action);
+
+        for(int i = enemy.sentiment.Count-1; i > -1; i-=1){
+            if (enemy.sentiment[i].actionType==action.actionType && enemy.sentiment[i].actionID==action.actionID){
+                Debug.Log("SENTIMENTAL ITEM USED, "+enemy.sentiment.Count.ToString() +" remaining");
+                toScroll.Add("...It seems the ghost really liked that...");
+                enemy.sentiment.RemoveAt(i);
+                if (enemy.sentiment.Count>0){
+                    toScroll.Add("You have a feeling it still wants more- but of something else.");
+                    break;
+                }else{
+                    toScroll.Add("It seems to be waiting for something important to happen.");
+                    break;
+                }
+            }
         }
-        //Tick Sentiment meter
     }
 
     void EndCombat(endCon condition){

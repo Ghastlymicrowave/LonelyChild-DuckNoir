@@ -60,8 +60,8 @@ public class HeroClass
 
 public class EnemyActionCase
 {
-    int actionType;
-    int actionID;
+    public int actionType;
+    public int actionID;
     public EnemyActionCase(int type, int action)
     {
         actionType = type;
