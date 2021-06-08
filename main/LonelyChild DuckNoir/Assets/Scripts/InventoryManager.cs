@@ -66,28 +66,32 @@ public class InventoryManager : MonoBehaviour
                     "An ordinary apple, eat it to regain 5 health in combat.",
                     new string[] {"just an ordinary red apple. Has a nice smell."},
                     "Apple",
-                    TextManager.stringsToArray("you used an apple"), (int)ItemsEnum.Apple);
+                    new string[]{""}, 
+                    (int)ItemsEnum.Apple);
             case ItemsEnum.Ball:
                 return new ivItem(
                     "Ball",
                     "A small rubber ball",
                     new string[] {"This old rubber ball still has some of it's bounce"},
                     "",
-                    TextManager.stringsToArray("you used a ball"), (int)ItemsEnum.Ball);
+                    new string[]{""}, 
+                    (int)ItemsEnum.Ball);
             case ItemsEnum.Photo:
                 return new ivItem(
                     "Photo",
                     "It means nothing to you, but it might be a bit much for someone in particular...",
                     new string[]{"You don't recognize the people in this photo. Were they important?"},
                     "",
-                    TextManager.stringsToArray("you used a Photo"), (int)ItemsEnum.Photo);
+                    new string[]{""}, 
+                    (int)ItemsEnum.Photo);
             case ItemsEnum.Key:
                 return new ivItem(
                     "Key",
                     "This looks like a 'key' item. Heh.",
                     new string[]{"This key appears to be for use on locked doors."},
                     "",
-                    TextManager.stringsToArray("you used a Photo"), (int)ItemsEnum.Key);   
+                    new string[]{""}, 
+                    (int)ItemsEnum.Key);   
             default: return null;
         }
     }

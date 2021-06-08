@@ -22,6 +22,7 @@ public class Interactable : MonoBehaviour
 
     [SerializeField] bool needsItemUse = false;
     [SerializeField] ItemsEnum requiredItem;
+    [SerializeField] bool deleteRequiredItem;
     [SerializeField] int notCompleteItemUseTextID;//id of text to trigger when interacting while item hasn't been used, like to inspect
     [SerializeField] int usedRequiredItemTextId;
     void Start(){
@@ -94,10 +95,13 @@ public class Interactable : MonoBehaviour
         if ((int)requiredItem == item.id){
             needsItemUse = false;
             playerRef.TriggerDialogue(usedRequiredItemTextId);
+            if (deleteRequiredItem){
+                inventoryManager.items.Remove(item);
+            }
         }else{
             if (dialogueID>-1){
                 Debug.Log("Item didn't work");
-                playerRef.TriggerDialogue(-1);
+                playerRef.TriggerDialogue(0);
             }
         }
     }
