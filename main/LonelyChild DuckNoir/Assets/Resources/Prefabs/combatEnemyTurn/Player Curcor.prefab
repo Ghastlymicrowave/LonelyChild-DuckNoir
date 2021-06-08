@@ -137,13 +137,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c85d13a78daca5f4d9f8e179d28c3d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bb: {fileID: 0}
   audioSource: {fileID: 7181805686592616481}
   xBound: 0.35
   yBound: 0.16
   xNegBound: -0.4
   yNegBound: -0.3
-  lerpMult: 0.055
+  lerpMult: 0.4
 --- !u!61 &1708051609
 BoxCollider2D:
   m_ObjectHideFlags: 0
