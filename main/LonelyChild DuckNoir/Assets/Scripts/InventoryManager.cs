@@ -139,7 +139,7 @@ public class InventoryManager : MonoBehaviour
 
     class Garlic : ivAttack{
         public Garlic(){
-            spritePath = "2D Assets/Programmer Art/ghosttemp";
+            spritePath = "2D Assets/Items/Garlic";
         }
     }
 
