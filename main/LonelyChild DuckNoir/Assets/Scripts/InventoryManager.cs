@@ -70,7 +70,7 @@ public class InventoryManager : MonoBehaviour
                     "Apple",
                     new string[]{""},
                     (int)ItemsEnum.Apple,
-                    "2D Assets/Programmer Art/ghosttemp"); 
+                    "2D Assets/Items/Apple"); 
             case ItemsEnum.Ball:
                 return new ivItem(
                     "Ball",
@@ -79,7 +79,7 @@ public class InventoryManager : MonoBehaviour
                     "",
                     new string[]{""}, 
                     (int)ItemsEnum.Ball,
-                    "2D Assets/Programmer Art/ghosttemp");
+                    "2D Assets/Items/Ball");
             case ItemsEnum.Photo:
                 return new ivItem(
                     "Photo",
@@ -88,7 +88,7 @@ public class InventoryManager : MonoBehaviour
                     "",
                     new string[]{""}, 
                     (int)ItemsEnum.Photo,
-                    "2D Assets/Programmer Art/ghosttemp");
+                    "2D Assets/Items/Polaroid");
             case ItemsEnum.Key:
                 return new ivItem(
                     "Key",
@@ -99,6 +99,41 @@ public class InventoryManager : MonoBehaviour
                     (int)ItemsEnum.Key,
                     "2D Assets/Programmer Art/ghosttemp");   
             default: return null;
+        }
+    }
+
+    public class ivAttack{//soon to replace the big switch
+        public string spritePath;
+    }
+    public static ivAttack GetAttackFromId(AttackActions action){
+        switch(action){
+            case AttackActions.Flashlight:
+            return new Flashlight();
+            default: return null;
+        }
+    }
+
+    class Flashlight : ivAttack{
+        public Flashlight(){
+            spritePath = "2D Assets/Weapons/Flashlight";
+        }
+    }
+
+    class Theremin : ivAttack{
+        public Theremin(){
+            spritePath = "2D Assets/Weapons/Theremin";
+        }
+    }
+
+    class Fire_Poker : ivAttack{
+        public Fire_Poker(){
+            spritePath = "2D Assets/Weapons/Fireplace_Poker";
+        }
+    }
+
+    class Garlic : ivAttack{
+        public Garlic(){
+            spritePath = "2D Assets/Programmer Art/ghosttemp";
         }
     }
 
@@ -132,10 +167,7 @@ public class InventoryManager : MonoBehaviour
 
     public static Sprite LoadAttackSprite(AttackActions attack)
     {
-        switch (attack)
-        {//TODO: fill this out with sprites
-            default: return Resources.Load("2D Assets/Programmer Art/ghosttemp",typeof(Sprite)) as Sprite;
-        }
+        return Resources.Load(GetAttackFromId(attack).spritePath,typeof(Sprite)) as Sprite;
     }
 
     public static Sprite LoadItemSprite(int itemID)

@@ -151,6 +151,18 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6383363686584983745, guid: 89d96360746b871488bc9cd25bdf339b, type: 3}
+      propertyPath: m_Size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383363686584983745, guid: 89d96360746b871488bc9cd25bdf339b, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383363686584983745, guid: 89d96360746b871488bc9cd25bdf339b, type: 3}
+      propertyPath: m_NumberOfSteps
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6383363686852759266, guid: 89d96360746b871488bc9cd25bdf339b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -242,6 +254,10 @@ PrefabInstance:
     - target: {fileID: 6383363687234044168, guid: 89d96360746b871488bc9cd25bdf339b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383363687234044169, guid: 89d96360746b871488bc9cd25bdf339b, type: 3}
+      propertyPath: m_ScrollSensitivity
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6383363687234044407, guid: 89d96360746b871488bc9cd25bdf339b, type: 3}
       propertyPath: m_Name
