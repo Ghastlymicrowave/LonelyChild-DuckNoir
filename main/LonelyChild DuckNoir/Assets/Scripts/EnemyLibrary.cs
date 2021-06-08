@@ -116,8 +116,8 @@ public class RepressedGhost : EnemyClass
         sentiment = new List<EnemyActionCase>{
             new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
         name = "The Ghost Of Repressed Emotions";
-        hp = 40;
-        maxHP = 40;
+        hp = 30;
+        maxHP = 30;
         id = 2;
         spritePath = "Prefabs/EnemySpritePrefabs/RepressedGhostSprite";
         attackPrefabNames = new string[] {
@@ -133,14 +133,20 @@ public class RepressedGhost : EnemyClass
 
 public class BoredGhost : EnemyClass{
     public BoredGhost(){
-        //sentiment
+        sentiment = new List<EnemyActionCase>{
+            new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
         name = "Bored Ghost";
         hp = 20;
         maxHP = 20;
         id = 3;
-        //spritePath
+        spritePath = "Prefabs/EnemySpritePrefabs/BoredGhostSprite";
+        attackPrefabNames = new string[] {
+            "Prefabs/combatEnemyTurn/attacks/Straight/Straight_Easy 5",
+            "Prefabs/combatEnemyTurn/attacks/Sine Reversal/SineReverse_Easy2",
+            "Prefabs/combatEnemyTurn/attacks/Sine Reversal/SineReverse_Easy1",
+            "Prefabs/combatEnemyTurn/attacks/Sine/Sine_TooEasy"};
         //attackPrefabNames
-        //talkActions
+        talkActions = new TalkEnum[1] { TalkEnum.Chat };
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/BoredGhostSprite";
     }
 }

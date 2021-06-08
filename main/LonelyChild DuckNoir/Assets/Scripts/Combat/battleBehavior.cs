@@ -320,7 +320,7 @@ public class battleBehavior : MonoBehaviour
                 switch(actionID){
                     case (int)AttackActions.Theremin:
                         switch(enemyID){
-                            case (int)Enemies.testGhost:
+                            case (int)Enemies.BoredGhost:
                                 return new string[] {"You attacked with the theramin...",
                                 "The ghost... liked it?",
                                 "\"That's nice...\"",
@@ -338,7 +338,7 @@ public class battleBehavior : MonoBehaviour
                                 "\"Whine.... Turn it off...\""};
                             default:
                                 DamageEnemy(5);
-                                return new string[] {"You attacked with the therimin...",
+                                return new string[] {"You attacked with the theremin...",
                                 "The ghost's form wavers.",
                                 "\"Looks like it hurt a little...\""};
                         }
@@ -366,8 +366,8 @@ public class battleBehavior : MonoBehaviour
                     
                     case (int)AttackActions.Flashlight:
                         switch(enemyID){
-                            case (int)Enemies.testGhost:
-                                DamageEnemyWeak(2);
+                            case (int)Enemies.BoredGhost:
+                                DamageEnemyWeak(5);
                                 return new string[] {"You attacked with the flashlight...",
                                 "It was especially effective!",
                                 "\"Ow, who turned on the lights?\""};
@@ -412,7 +412,9 @@ public class battleBehavior : MonoBehaviour
                             default:
                                 //execute what this does
                                 DamageEnemy(5);
-                                return TextManager.stringsToArray("Garlic used");
+                                return new string[] {"You Attacked with the Garlic...",
+                                "It worked fine!",
+                                "\"I'm a ghost, not a vampire...\""};
                         }          
                     default: NotSetUp(); return new string[] {"..."};
                 }
@@ -434,11 +436,9 @@ public class battleBehavior : MonoBehaviour
                             "\"Ohh... False Ball-arm...\"" };
                             case (int)Enemies.Repressed_Ghost:
                                 return new string[] { "You started talking with the ghost...",
-                                "This seemed very important",
                             "\"I just wish things had been different, you know?\""};
                             case (int)Enemies.BoredGhost:
                                 return new string[] { "You started talking with the ghost...",
-                                "This seemed very important",
                             "\"Sigh... Alright...\""};
                             default:
                                 return new string[] {"You had a chat with the ghost...",
@@ -476,7 +476,6 @@ public class battleBehavior : MonoBehaviour
                             "But your arm phased right through 'em, so...",
                             "You just kinda made a petting motion with your arm.",
                             "Between you and me, I don't think he knows the difference.",
-                            "This seemed very important",
                             "\"Woof!~ :)\""};
                             default:
                                 return new string[] {"You pet the ghost...",
@@ -499,6 +498,8 @@ public class battleBehavior : MonoBehaviour
                         "That's a ghost, not a lock!",
                         "What's wrong with you?",
                         "\"...\""};
+                       
+
                     case (int)ItemsEnum.Ball:
                         switch(enemyID){
                             case (int)Enemies.testGhost:
@@ -522,6 +523,25 @@ public class battleBehavior : MonoBehaviour
                                 "\"I feel like there could be ball...?\"",
                                 "\"But... No see ball?????\"",
                                 "It snaps out of it's trance, was there something you needed to do first?"});
+                                
+                                case (int)Enemies.BoredGhost:
+                                return Sentimental(new string[]{"You showed the ball to the ghost...",
+                                "It felt... right.",
+                                "\"This is interesting, I guess...\""},
+                                new string[]{"The ghost hesitates and looks at the ball...",
+                                "Does this ball mean something to it?",
+                                "\"Reality seems marginally less boring for some reason.\"",
+                                "It snaps out of it's trance, was there something you needed to do first?",
+                                "\"Nevermind.\""});
+
+                        }
+                        
+                        return new string[] {"You held the ball out to the being...",
+                        "But it cannot see it!",
+                        "\"...\""};
+                        case (int)ItemsEnum.Photo:
+                        switch(enemyID){
+
                                 case (int)Enemies.Repressed_Ghost:
                                 return Sentimental(new string[]{"You showed the Photo to the ghost...",
                                 "It felt... right.",
@@ -530,13 +550,14 @@ public class battleBehavior : MonoBehaviour
                                 "That expression on his face looks painful.",
                                 "\"Oh why, oh why...\""});
 
+
                         }
                         
-                        return new string[] {"You held the ball out to the being...",
+                        return new string[] {"You held the Photo out to the being...",
                         "But it cannot see it!",
-                        "Your machine needs more charge!",
                         "\"...\""};
                     default: NotSetUp(); return new string[] {"..."};
+                    
                 }
             ////////////////////////////////////////////////////    Crucifix    ////////////
             case ButtonEnum.Crucifix:

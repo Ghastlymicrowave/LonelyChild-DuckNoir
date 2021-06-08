@@ -21,6 +21,7 @@ public class TextManager : MonoBehaviour
             "During the enemy's turn, you'll have to dodge their attacks on your ghost finder using the mouse.",
             "Deal enough damage, and you'll be able to end the battle in one of two ways:",
             "Crucify (Mean and unfulfilling, but fast)\nOr...",
+            "Select the right 'Talk' functionality, and then...",
             "Show them the right sentimental item from your inventory to save their soul.\n(Long, but you're a good person I guess.)",
             "Get to the end and defeat the boss to beat the Alpha version!~",
             "But don't think it'll be that easy, however...",
