@@ -4,20 +4,21 @@ using UnityEngine;
 using Combat;
 public static class EnemyLibrary
 {
-    public static EnemyClass GetEnemyFromId(int id)
+    public static EnemyClass GetEnemyFromId(int id, battleBehavior thisBehavior)
     {
         switch (id)
         {
-            case 0: return new Enemy1();
-            case 1: return new PoorDog();
-            case 2: return new RepressedGhost();
-            case 3: return new BoredGhost();
+            case 0: return new Enemy1(thisBehavior);
+            case 1: return new PoorDog(thisBehavior);
+            case 2: return new RepressedGhost(thisBehavior);
+            case 3: return new BoredGhost(thisBehavior);
             default: return null;
         }
     }
 }
 public abstract class EnemyClass
 {
+    battleBehavior thisBehavior;
     public int id;
     public string name;
     public string[] toScroll;
@@ -31,8 +32,9 @@ public abstract class EnemyClass
     public string displayPrefabPath = "";
     public int animationFrames = 1;
     public TalkEnum[] talkActions;
+    public EnemyResponse[] responses;
     public Sprite[,] GetSprites()
-    {//TODO: FInISH
+    {
         Sprite[,] toReturn = new Sprite[4, animationFrames];
         string loadstring = folderPath + "/" + fileName;
         for (int i = 0; i < animationFrames; i++)
@@ -49,6 +51,49 @@ public abstract class EnemyClass
     public GameObject GetRandomAttack()
     {
         return Resources.Load(attackPrefabNames[Random.Range(0,attackPrefabNames.Length)], typeof(GameObject)) as GameObject;
+    }
+
+    public EnemyClass(battleBehavior battle){
+        thisBehavior = battle;
+    }
+
+    protected object[][] SingleMethod(object[] ob){
+        return new object[][]{
+            ob
+        };
+    }
+
+    protected EnemyResponse GenResponse(ButtonEnum attack, int actionID, string methodName, object[][] parameters, string[] text){
+        return new EnemyResponse(new EnemyActionCase((int)attack,actionID), new EnemyReaction[]{
+            new EnemyReaction(new System.Reflection.MethodInfo[]{
+                typeof(battleBehavior).GetMethod(methodName)//response methods names in battleBehavior
+            }, 
+            parameters,
+            text,
+            thisBehavior)
+        });
+    }
+}
+
+public class EnemyResponse{//a response containing a trigger and a reaction
+    public EnemyActionCase trigger;
+    EnemyReaction[] reactions;//to be invoked
+    public EnemyResponse(EnemyActionCase triggerAction, EnemyReaction[] triggerReaction){
+        trigger = triggerAction;
+        reactions = triggerReaction;
+    }
+}
+
+public class EnemyReaction{
+    public string[] toDisplay;
+    public System.Action React = () => { };
+    public EnemyReaction(System.Reflection.MethodInfo[] methodInfos, object[][] methodParameters, string[] displayText, battleBehavior battle){
+        toDisplay = displayText;  
+        for (int i = 0; i < methodInfos.Length;i++){
+            React += () => {
+                methodInfos[i].Invoke(battle,methodParameters[i]);
+            };
+        }
     }
 }
 
@@ -71,7 +116,7 @@ public class EnemyActionCase
 
 public class Enemy1 : EnemyClass
 {//example of an actual enemy
-    public Enemy1()
+    public Enemy1(battleBehavior battle) : base(battle)
     {
         sentiment = new List<EnemyActionCase>{
             new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
@@ -89,7 +134,7 @@ public class Enemy1 : EnemyClass
 }
 public class PoorDog : EnemyClass
 {//example of an actual enemy
-    public PoorDog()
+    public PoorDog(battleBehavior battle) : base(battle)
     {
         sentiment = new List<EnemyActionCase>{
             new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Pet)};
@@ -106,12 +151,29 @@ public class PoorDog : EnemyClass
         talkActions = new TalkEnum[3] { TalkEnum.Pet, TalkEnum.Chat, TalkEnum.Fake_Throw };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/PoorDogSprite";
-    }
 
+        responses = new EnemyResponse[]{
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Theremin,"DamageEnemyWeak",
+                SingleMethod(new object[]{(object)2}),
+                new string[]{
+                    "You attacked with the theremin...",
+                    "The ghost recoils at the pitch!",
+                    "\"Whine.... Turn it off...\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,"DamageEnemy",
+                SingleMethod(new object[]{(object)2}),
+                new string[]{
+                    "You attacked with the FirePoker...",
+                    "The ghost isn't loving it... but isn't hating it, either.",
+                    "\"Too heavy to be stick...\nTo long to be ball...\"",
+                    "\":(\""
+            })
+        };
+    }
 }
 public class RepressedGhost : EnemyClass
 {//example of an actual enemy
-    public RepressedGhost()
+    public RepressedGhost(battleBehavior battle) : base(battle)
     {
         sentiment = new List<EnemyActionCase>{
             new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
@@ -132,7 +194,7 @@ public class RepressedGhost : EnemyClass
 }
 
 public class BoredGhost : EnemyClass{
-    public BoredGhost(){
+    public BoredGhost(battleBehavior battle) : base(battle){
         sentiment = new List<EnemyActionCase>{
             new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
         name = "Bored Ghost";
@@ -149,9 +211,4 @@ public class BoredGhost : EnemyClass{
         talkActions = new TalkEnum[1] { TalkEnum.Chat };
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/BoredGhostSprite";
     }
-}
-
-public class SomeEnemy : EnemyClass
-{
-
 }

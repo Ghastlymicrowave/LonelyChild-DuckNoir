@@ -65,7 +65,7 @@ public class battleBehavior : MonoBehaviour
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
         gameSceneManager = tm.gameObject.GetComponent<GameSceneManager>();
-        enemy = EnemyLibrary.GetEnemyFromId(inventoryManager.enemyID);
+        enemy = EnemyLibrary.GetEnemyFromId(inventoryManager.enemyID,this);
         StartCoroutine(theScroll = TextScroll(enemy.name + " manifests into view!"));
         MenuPanel = GameObject.Find("MenuPanel");
         subMenu = GameObject.Find("SubmenuPanel").GetComponent<Submenu>();
