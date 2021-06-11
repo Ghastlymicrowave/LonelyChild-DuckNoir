@@ -174,7 +174,12 @@ public class battleBehavior : MonoBehaviour
         toScroll.Clear();
         TriggerEnemyReaction(enemy,actionType,actionID);
         //toScroll.AddRange(GetEnemyTextByID(thisEnemyID,actionType,actionID));
-        
+        if (enemy.sentimentalTrigger.actionType == (int)actionType && enemy.sentimentalTrigger.actionID == (int)actionID){
+            Sentimental();
+        }
+        if (toScroll.Count<1){
+            toScroll.Add("you shouldn't be seeing this- there's something missing in the code");
+        }
         StopCoroutine(theScroll);
         StartCoroutine(theScroll = TextScroll(toScroll[currentLine]));
         SentimentalItemUsed(new EnemyActionCase((int)actionType,actionID));
@@ -219,7 +224,7 @@ public class battleBehavior : MonoBehaviour
     public void DamageEnemy(int damage){
         enemy.hp -= damage;
         CheckEnemyAlive();
-        Debug.Log(enemy.hp);
+        Debug.Log("Dealt Damage: "+damage.ToString()+ "current HP: "+enemy.hp.ToString());
     }
     public void DamageEnemyWeak(int damage){
         DamageEnemy(damage*2);
@@ -235,13 +240,14 @@ public class battleBehavior : MonoBehaviour
         { enemy.hp = enemy.maxHP; }
     }
 
-    string[] Sentimental(string[] success, string[] failiure){
+    public void Sentimental(){
+        Debug.Log("using sentimental");
         if (enemy.sentiment.Count<=0){
             //do something to end the battle
             battleEnded = (int)endCon.SENTIMENT;
-            return success;//combat ended
+            toScroll.AddRange(enemy.sentimentalSuccess);//combat ended
         }else{
-            return failiure;//
+            toScroll.AddRange(enemy.sentimentalFaliure);
         }
     }
 
@@ -322,6 +328,7 @@ public class battleBehavior : MonoBehaviour
             reactions.React();
         }
     }
+    /*
     public string[] GetEnemyTextByID(int enemyID, ButtonEnum actionType, int actionID){//using switch because no loaded memory and fast
         switch(actionType){
             ////////////////////////////////////////////////////    Attack    ////////////
@@ -597,5 +604,5 @@ public class battleBehavior : MonoBehaviour
                 
             default: return new string[]{""};//should never be reached
         }
-    }
+    }*/
 }
