@@ -172,7 +172,8 @@ public class battleBehavior : MonoBehaviour
         MenuPanel.SetActive(false);
         healthbarAnim.SetBool("IsMinigame",true);
         toScroll.Clear();
-        toScroll.AddRange(GetEnemyTextByID(thisEnemyID,actionType,actionID));
+        TriggerEnemyReaction(enemy,actionType,actionID);
+        //toScroll.AddRange(GetEnemyTextByID(thisEnemyID,actionType,actionID));
         
         StopCoroutine(theScroll);
         StartCoroutine(theScroll = TextScroll(toScroll[currentLine]));
@@ -312,6 +313,14 @@ public class battleBehavior : MonoBehaviour
         //remove minigame stuff
         Destroy(minigame);
         beginTurn();
+    }
+
+    public void TriggerEnemyReaction(EnemyClass enemy, ButtonEnum actionType, int actionID){
+        EnemyReaction reactions = enemy.GetReaction(actionType,actionID);
+        if (reactions!=null){
+            toScroll.AddRange(reactions.toDisplay);
+            reactions.React();
+        }
     }
     public string[] GetEnemyTextByID(int enemyID, ButtonEnum actionType, int actionID){//using switch because no loaded memory and fast
         switch(actionType){

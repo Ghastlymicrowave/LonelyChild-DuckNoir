@@ -48,6 +48,14 @@ public abstract class EnemyClass
         }
         return toReturn;
     }
+    public EnemyReaction GetReaction(ButtonEnum type, int actionID){//returns reactions array or null
+        for (int i = 0; i < responses.Length;i++){
+            if (responses[i].trigger==new EnemyActionCase((int)type,actionID)){
+                return responses[i].reactions;
+            }
+        }
+        return null;
+    }
     public GameObject GetRandomAttack()
     {
         return Resources.Load(attackPrefabNames[Random.Range(0,attackPrefabNames.Length)], typeof(GameObject)) as GameObject;
@@ -64,21 +72,20 @@ public abstract class EnemyClass
     }
 
     protected EnemyResponse GenResponse(ButtonEnum attack, int actionID, string methodName, object[][] parameters, string[] text){
-        return new EnemyResponse(new EnemyActionCase((int)attack,actionID), new EnemyReaction[]{
-            new EnemyReaction(new System.Reflection.MethodInfo[]{
-                typeof(battleBehavior).GetMethod(methodName)//response methods names in battleBehavior
-            }, 
-            parameters,
-            text,
-            thisBehavior)
-        });
+        return new EnemyResponse(new EnemyActionCase((int)attack,actionID), 
+        new EnemyReaction(new System.Reflection.MethodInfo[]{
+            typeof(battleBehavior).GetMethod(methodName)//response methods names in battleBehavior
+        }, 
+        parameters,
+        text,
+        thisBehavior));
     }
 }
 
 public class EnemyResponse{//a response containing a trigger and a reaction
     public EnemyActionCase trigger;
-    EnemyReaction[] reactions;//to be invoked
-    public EnemyResponse(EnemyActionCase triggerAction, EnemyReaction[] triggerReaction){
+    public EnemyReaction reactions;//to be invoked
+    public EnemyResponse(EnemyActionCase triggerAction, EnemyReaction triggerReaction){
         trigger = triggerAction;
         reactions = triggerReaction;
     }
