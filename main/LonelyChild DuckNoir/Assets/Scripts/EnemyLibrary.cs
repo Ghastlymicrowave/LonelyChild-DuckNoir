@@ -33,6 +33,9 @@ public abstract class EnemyClass
     public int animationFrames = 1;
     public TalkEnum[] talkActions;
     public EnemyResponse[] responses;
+    public string[] sentimentalSuccess;
+    public string[] sentimentalFaliure;
+    public EnemyActionCase sentimentalTrigger;
     public Sprite[,] GetSprites()
     {
         Sprite[,] toReturn = new Sprite[4, animationFrames];
@@ -50,7 +53,7 @@ public abstract class EnemyClass
     }
     public EnemyReaction GetReaction(ButtonEnum type, int actionID){//returns reactions array or null
         for (int i = 0; i < responses.Length;i++){
-            if (responses[i].trigger==new EnemyActionCase((int)type,actionID)){
+            if (responses[i].trigger.actionType==(int)type && responses[i].trigger.actionID==actionID){
                 return responses[i].reactions;
             }
         }
@@ -65,17 +68,14 @@ public abstract class EnemyClass
         thisBehavior = battle;
     }
 
-    protected object[][] SingleMethod(object[] ob){
-        return new object[][]{
-            ob
-        };
+    protected object[] SingleMethod(params object[] ob){
+        return ob;
     }
 
-    protected EnemyResponse GenResponse(ButtonEnum attack, int actionID, string methodName, object[][] parameters, string[] text){
+    protected EnemyResponse GenResponse(ButtonEnum attack, int actionID, string methodName, object[] parameters, string[] text){
         return new EnemyResponse(new EnemyActionCase((int)attack,actionID), 
-        new EnemyReaction(new System.Reflection.MethodInfo[]{
-            typeof(battleBehavior).GetMethod(methodName)//response methods names in battleBehavior
-        }, 
+        new EnemyReaction(
+        typeof(battleBehavior).GetMethod(methodName), 
         parameters,
         text,
         thisBehavior));
@@ -94,13 +94,9 @@ public class EnemyResponse{//a response containing a trigger and a reaction
 public class EnemyReaction{
     public string[] toDisplay;
     public System.Action React = () => { };
-    public EnemyReaction(System.Reflection.MethodInfo[] methodInfos, object[][] methodParameters, string[] displayText, battleBehavior battle){
+    public EnemyReaction(System.Reflection.MethodInfo methodInfo, object[] methodParameters, string[] displayText, battleBehavior battle){
         toDisplay = displayText;  
-        for (int i = 0; i < methodInfos.Length;i++){
-            React += () => {
-                methodInfos[i].Invoke(battle,methodParameters[i]);
-            };
-        }
+        React = () => {methodInfo.Invoke(battle, methodParameters);};
     }
 }
 
@@ -158,22 +154,82 @@ public class PoorDog : EnemyClass
         talkActions = new TalkEnum[3] { TalkEnum.Pet, TalkEnum.Chat, TalkEnum.Fake_Throw };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/PoorDogSprite";
+        
+        sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Ball);
+
+        sentimentalSuccess = new string[]{
+            "It felt... right.",
+            "\"BALL!?!?!???!?\"",
+            "\"!?!?!?!???!??!!?!??!??!?!??!?!?!??!?\"",
+            "\"!?!?!?!???!??!!?!!?!?!?!??!?!?!?!?!????!??!?!??!?!?!??!?\"",
+            "\"!?!?!?!?!?!?!?!????!??!?!??!?!???!??!!?!!?!?!?!??!?!?!?!?!????!??!?!??!?!?!??!?\"",
+            "..."
+        };
+        sentimentalFaliure = new string[]{
+            "The ghost hesitates and looks at the ball...",
+            "Does this ball mean something to it?",
+            "\"I feel like there could be ball...?\"",
+            "\"But... No see ball?????\"",
+            "It snaps out of it's trance, was there something you needed to do first?"
+        };
 
         responses = new EnemyResponse[]{
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Theremin,"DamageEnemyWeak",
-                SingleMethod(new object[]{(object)2}),
+                SingleMethod((object)2),
                 new string[]{
                     "You attacked with the theremin...",
                     "The ghost recoils at the pitch!",
                     "\"Whine.... Turn it off...\""
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,"DamageEnemy",
-                SingleMethod(new object[]{(object)2}),
+                SingleMethod((object)2),
                 new string[]{
                     "You attacked with the FirePoker...",
                     "The ghost isn't loving it... but isn't hating it, either.",
                     "\"Too heavy to be stick...\nTo long to be ball...\"",
                     "\":(\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,"DamageEnemyResist",
+                SingleMethod((object)2),
+                new string[]{
+                    "You attacked with the flashlight...",
+                    "The ghost starts darting after the light, thinking it's a ball!",
+                    "You go on for a few minutes, making the ghost run in circles.",
+                    "This isn't exactly effective...",
+                    "\"Where did flat ball go?????\"",
+                    "\"Do you have better ball!?!?!?!?!?\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,"DamageEnemyWeak",
+                SingleMethod((object)2),
+                new string[]{
+                    "You attacked with the Garlic...",
+                    "The ghost hates it!",
+                    "\"Smelly ball bad for me!!! Give better ball >:(\""
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,"DamageEnemy",
+                SingleMethod((object)0),
+                new string[]{
+                    "You started talking with the ghost...",
+                    "You might've briefly mentioned something that sounds vaguely like the word 'ball'.",
+                    "\"Ball!?!?!?!?!?\"",
+                    "\"...\"",
+                    "\"Ohh... False Ball-arm...\""
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Fake_Throw,"DamageEnemy",
+                SingleMethod((object)0),
+                new string[]{
+                    "You made a throwing motion with your arm...",
+                    "But there was nothing in your hand?",
+                    "\"How could you!!!???? >:( >:( >:(\""
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Pet,"DamageEnemy",
+                SingleMethod((object)0),
+                new string[]{
+                    "You tried to pet the ghost...",
+                    "But your arm phased right through 'em, so...",
+                    "You just kinda made a petting motion with your arm.",
+                    "Between you and me, I don't think he knows the difference.",
+                    "\"Woof!~ :)\""
             })
         };
     }
