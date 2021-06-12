@@ -173,12 +173,11 @@ public class battleBehavior : MonoBehaviour
         healthbarAnim.SetBool("IsMinigame",true);
         toScroll.Clear();
         TriggerEnemyReaction(enemy,actionType,actionID);
-        //toScroll.AddRange(GetEnemyTextByID(thisEnemyID,actionType,actionID));
         if (enemy.sentimentalTrigger.actionType == (int)actionType && enemy.sentimentalTrigger.actionID == (int)actionID){
             Sentimental();
         }
         if (toScroll.Count<1){
-            toScroll.Add("you shouldn't be seeing this- there's something missing in the code");
+            toScroll.Add("you shouldn't be seeing this- there's something missing in the code?");
         }
         StopCoroutine(theScroll);
         StartCoroutine(theScroll = TextScroll(toScroll[currentLine]));
@@ -225,12 +224,6 @@ public class battleBehavior : MonoBehaviour
         enemy.hp -= damage;
         CheckEnemyAlive();
         Debug.Log("Dealt Damage: "+damage.ToString()+ "current HP: "+enemy.hp.ToString());
-    }
-    public void DamageEnemyWeak(int damage){
-        DamageEnemy(damage*2);
-    }
-    public void DamageEnemyResist(int damage){
-        DamageEnemy(Mathf.FloorToInt(damage/2));
     }
 
     void CheckEnemyAlive(){
@@ -326,269 +319,134 @@ public class battleBehavior : MonoBehaviour
         if (reactions!=null){
             toScroll.AddRange(reactions.toDisplay);
             reactions.React();
+        }else{
+            ActionDefault(actionType,actionID);
         }
     }
-    /*
-    public string[] GetEnemyTextByID(int enemyID, ButtonEnum actionType, int actionID){//using switch because no loaded memory and fast
+
+    void Missing(ButtonEnum actionType, int actionID){
+        Debug.Log("Missing default response for action "+actionType.ToString()+" : "+actionID.ToString());
+    }
+
+    public void ActionDefault(ButtonEnum actionType, int actionID){
         switch(actionType){
-            ////////////////////////////////////////////////////    Attack    ////////////
             case ButtonEnum.Attack:
                 switch(actionID){
-                    case (int)AttackActions.Theremin:
-                        switch(enemyID){
-                            case (int)Enemies.BoredGhost:
-                                return new string[] {"You attacked with the theramin...",
-                                "The ghost... liked it?",
-                                "\"That's nice...\"",
-                                "\"Not really my genre though.\"",
-                                "\"I'm more of a 'Boos' kind of guy.\""};
-                                case (int)Enemies.Repressed_Ghost:
-                                DamageEnemyResist(4);
-                                return new string[] {"You attacked with the theramin...",
-                                "The ghost looks indifferent",
-                                "\"Are you picking on me?\""};
-                                case (int)Enemies.Poor_Dog:
-                                DamageEnemyWeak(2);
-                                return new string[] {"You attacked with the theremin...",
-                                "The ghost recoils at the pitch!",
-                                "\"Whine.... Turn it off...\""};
-                            default:
-                                DamageEnemy(5);
-                                return new string[] {"You attacked with the theremin...",
-                                "The ghost's form wavers.",
-                                "\"Looks like it hurt a little...\""};
-                        }
-
-                    case (int)AttackActions.Fire_Poker:
-                        switch(enemyID){
-                            case (int)Enemies.Poor_Dog:
-                                DamageEnemy(2);
-                                return new string[] {"You attacked with the FirePoker...",
-                                "The ghost isn't loving it... but isn't hating it, either.",
-                                "\"Too heavy to be stick...\nTo long to be ball...\"",
-                                "\":(\""};
-                            case (int)Enemies.Repressed_Ghost:
-                                DamageEnemyResist(2);
-                                return new string[] {"You attacked with the FirePoker...",
-                                "The ghost is unphased",
-                                "\"I couldn't feel that... I haven't been able to feel for a while...\"",
-                                "\"I'll take a little damage, I guess... For you...\""};
-                            default:
-                                DamageEnemy(5);
-                                return new string[] {"You Attacked with the Fire Poker...",
-                                "It worked fine!",
-                                "\"Hey, cut that out!\""};
-                        }
-                    
+                    case (int)AttackActions.Fire_Poker: 
+                        DamageEnemy(1);
+                        toScroll.AddRange(new string[]{
+                            "You Attacked with the Fire Poker...",
+                            "It worked fine!",
+                            "\"Hey, cut that out!\""
+                        });
+                    break;
                     case (int)AttackActions.Flashlight:
-                        switch(enemyID){
-                            case (int)Enemies.BoredGhost:
-                                DamageEnemyWeak(5);
-                                return new string[] {"You attacked with the flashlight...",
-                                "It was especially effective!",
-                                "\"Ow, who turned on the lights?\""};
-                            case (int)Enemies.Repressed_Ghost:
-                                DamageEnemyWeak(4);
-                                return new string[] {"You attacked with the flashlight...",
-                                "The ghost has a painful expression on his face.",
-                                "\"Please don't do that...\""};
-                            case (int)Enemies.Poor_Dog:
-                                DamageEnemyResist(2);
-                                return new string[] {"You attacked with the flashlight...",
-                                "The ghost starts darting after the light, thinking it's a ball!",
-                                "You go on for a few minutes, making the ghost run in circles.",
-                                "This isn't exactly effective...",
-                                "\"Where did flat ball go?????\"",
-                                "\"Do you have better ball!?!?!?!?!?\""};
-                            default:
-                                DamageEnemy(5);
-                                return new string[] {"You attacked with the flashlight...",
-                                "The ghost tries to evade the beam.",
-                                "Looks like it hurt a bit..."};
-                        }
-                    
-                    case (int)AttackActions.Garlic://in the case where you want a specific interaction:
-                        switch(enemyID){
-                            case (int)Enemies.testGhost: //if the target is test enemy 0...
-                                //do something specific to this enemy
-                                return new string[] {"You Attacked with the Garlic...",
+                        DamageEnemy(1);
+                        toScroll.AddRange(new string[]{
+                            "You attacked with the flashlight...",
+                            "The ghost tries to evade the beam.",
+                            "Looks like it hurt a bit..."
+                        });
+                    break;
+                    case (int)AttackActions.Garlic:
+                        DamageEnemy(1);
+                        toScroll.AddRange(new string[]{
+                            "You Attacked with the Garlic...",
                                 "It worked fine!",
-                                "\"I'm a ghost, not a vampire...\""};
-                                case (int)Enemies.Repressed_Ghost:
-                                DamageEnemy(4);
-                                return new string[] {"You attacked with the Garlic...",
-                                "The ghost didn't like that too much.",
-                                "\"Eww...\""};
-                                case (int)Enemies.Poor_Dog:
-                                DamageEnemyWeak(2);
-                                return new string[] {"You attacked with the Garlic...",
-                                "The ghost hates it!",
-                                "\"Smelly ball bad for me!!! Give better ball >:(\""};
-
-                            default:
-                                //execute what this does
-                                DamageEnemy(5);
-                                return new string[] {"You Attacked with the Garlic...",
-                                "It worked fine!",
-                                "\"I'm a ghost, not a vampire...\""};
-                        }          
-                    default: NotSetUp(); return new string[] {"..."};
+                                "\"I'm a ghost, not a vampire...\""
+                        });
+                    break;
+                    case (int)AttackActions.Theremin:
+                        DamageEnemy(1);
+                        toScroll.AddRange(new string[]{
+                            "You attacked with the theremin...",
+                            "The ghost recoils at the pitch!",
+                            "\"Whine.... Turn it off...\""
+                        });
+                    break;
+                    default: Missing(actionType,actionID);break;
                 }
-            ////////////////////////////////////////////////////    Talk    ////////////
+            break;
             case ButtonEnum.Talk:
-                //talk
                 switch(actionID){
                     case (int)TalkEnum.Chat:
-                        switch(enemyID){
-                            case 0:
-                                return new string[] {"You had a chat with the ghost...",
-                                "The ghost really enjoyed that.",
-                                "You think it might have smiled a little"};
-                            case (int)Enemies.Poor_Dog:
-                                return new string[] { "You started talking with the ghost...",
-                            "You might've briefly mentioned something that sounds vaguely like the word 'ball'.",
-                            "\"Ball!?!?!?!?!?\"",
-                            "\"...\"",
-                            "\"Ohh... False Ball-arm...\"" };
-                            case (int)Enemies.Repressed_Ghost:
-                                return new string[] { "You started talking with the ghost...",
-                            "\"I just wish things had been different, you know?\""};
-                            case (int)Enemies.BoredGhost:
-                                return new string[] { "You started talking with the ghost...",
-                            "\"Sigh... Alright...\""};
-                            default:
-                                return new string[] {"You had a chat with the ghost...",
-                                "The ghost seemed bored..."};  
-                        }
-                        case (int)TalkEnum.ChatTwo:
-                        switch(enemyID){
-
-                            case (int)Enemies.Repressed_Ghost:
-                                return new string[] { "You started talking with the ghost in another way...",
-                                "\"Well, it's just...\"",
-                                "\"They wanted different things from what I wanted...\"",
-                            "\"But what does that mean?\""};
-                            default:
-                                return new string[] {"You had a chat with the ghost...",
-                                "The ghost seemed bored..."};  
-                        }
-                        
+                        DamageEnemy(1);
+                        toScroll.AddRange(new string[]{
+                            "You had a chat with the ghost...",
+                            "The ghost seemed bored..."
+                        });
+                    break;
+                    case (int)TalkEnum.ChatTwo:
+                        DamageEnemy(1);
+                        toScroll.AddRange(new string[]{
+                            "You had a chat with the ghost...",
+                            "The ghost seemed bored..."
+                        });
+                    break;
                     case (int)TalkEnum.Fake_Throw:
-                        switch(enemyID){
-                            
-                            case (int)Enemies.Poor_Dog:
-                                return new string[] { "You made a throwing motion with your arm...",
-                            "But there was nothing in your hand?",
-                            "\"How could you!!!???? >:( >:( >:(\""};
-                            default:
-                                return new string[] {"You threw something that didn't exist...",
-                                "The ghost seemed bored..."};  
-                        }
-                        case (int)TalkEnum.Pet:
-                        switch(enemyID){
-                            
-                            case (int)Enemies.Poor_Dog:
-                                return new string[] { "You tried to pet the ghost...",
-                            "But your arm phased right through 'em, so...",
-                            "You just kinda made a petting motion with your arm.",
-                            "Between you and me, I don't think he knows the difference.",
-                            "\"Woof!~ :)\""};
-                            default:
-                                return new string[] {"You pet the ghost...",
-                                "The ghost seemed bored..."};  
-                        }
-                        
-                    default: NotSetUp(); return new string[] {"..."};
+                        DamageEnemy(1);
+                        toScroll.AddRange(new string[]{
+                            "You threw something that didn't exist...",
+                            "The ghost seemed bored..."
+                        });
+                    break;
+                    case (int)TalkEnum.Flirt:
+                        DamageEnemy(1);
+                        toScroll.AddRange(new string[]{
+                            "You tried to flirt with the ghost...",
+                            "The ghost seems to not care..."
+                        });
+                    break;
+                    case (int)TalkEnum.Pet:
+                        DamageEnemy(1);
+                        toScroll.AddRange(new string[]{
+                            "You tried to pet the ghost...",
+                            "The ghost doesn't seem to care..."
+                        });
+                    break;
+                    default: Missing(actionType,actionID);break;
                 }
-            ////////////////////////////////////////////////////    Items    ////////////
+            break;
             case ButtonEnum.Items:
-                //use item
                 switch(actionID){
                     case (int)ItemsEnum.Apple:
                         DamagePlayer(-5);
                         inventoryManager.RemoveItem((int)ItemsEnum.Apple);
-                        return new string[] {"You ate the apple...",
+                        toScroll.AddRange(new string[] {"You ate the apple...",
                         "and gained 5 health!",
-                        "\"...\""};
+                        "\"...\""});
+                    break;
+                    case (int)ItemsEnum.Ball:
+                        toScroll.AddRange(new string[] {
+                        "You showed the ball to the ghost...",
+                        "It didn't seem to care..."});
+                    break;
                     case (int)ItemsEnum.Key:
-                        return new string[] {"You tried to use the key on the ghost...",
+                        toScroll.AddRange(new string[] {
+                        "You tried to use the key on the ghost...",
                         "That's a ghost, not a lock!",
                         "What's wrong with you?",
-                        "\"...\""};
-                       
-
-                    case (int)ItemsEnum.Ball:
-                        switch(enemyID){
-                            case (int)Enemies.testGhost:
-                                return Sentimental(new string[]{"You showed the ball to the ghost...",
-                                "It felt... right.",
-                                "\"Thank you...\""},
-                                new string[]{"The ghost hesitates and looks at the ball...",
-                                "Does this ball mean something to it?",
-                                "It snaps out of it's trance, you must have been too soon."});
-                                case (int)Enemies.Poor_Dog:
-                                return Sentimental(new string[]{"You showed the ball to the ghost...",
-                                "It felt... right.",
-                                "\"BALL!?!?!???!?\"",
-                                "\"!?!?!?!???!??!!?!??!??!?!??!?!?!??!?\"",
-                                "\"!?!?!?!???!??!!?!!?!?!?!??!?!?!?!?!????!??!?!??!?!?!??!?\"",
-                                "\"!?!?!?!?!?!?!?!????!??!?!??!?!???!??!!?!!?!?!?!??!?!?!?!?!????!??!?!??!?!?!??!?\"",
-                                "...",
-                                "\"!?\""},
-                                new string[]{"The ghost hesitates and looks at the ball...",
-                                "Does this ball mean something to it?",
-                                "\"I feel like there could be ball...?\"",
-                                "\"But... No see ball?????\"",
-                                "It snaps out of it's trance, was there something you needed to do first?"});
-                                
-                                case (int)Enemies.BoredGhost:
-                                return Sentimental(new string[]{"You showed the ball to the ghost...",
-                                "It felt... right.",
-                                "\"This is interesting, I guess...\""},
-                                new string[]{"The ghost hesitates and looks at the ball...",
-                                "Does this ball mean something to it?",
-                                "\"Reality seems marginally less boring for some reason.\"",
-                                "It snaps out of it's trance, was there something you needed to do first?",
-                                "\"Nevermind.\""});
-
-                        }
-                        
-                        return new string[] {"You held the ball out to the being...",
-                        "But it cannot see it!",
-                        "\"...\""};
-                        case (int)ItemsEnum.Photo:
-                        switch(enemyID){
-
-                                case (int)Enemies.Repressed_Ghost:
-                                return Sentimental(new string[]{"You showed the Photo to the ghost...",
-                                "It felt... right.",
-                                "\"Thaaaank yyooouu\""},
-                                new string[]{"The ghost hesitates and looks at the Photo...",
-                                "That expression on his face looks painful.",
-                                "\"Oh why, oh why...\""});
-
-
-                        }
-                        
-                        return new string[] {"You held the Photo out to the being...",
-                        "But it cannot see it!",
-                        "\"...\""};
-                    default: NotSetUp(); return new string[] {"..."};
-                    
+                        "\"...\""});
+                    break;
+                    case (int)ItemsEnum.Photo:
+                        toScroll.AddRange(new string[] {
+                        "You held the Photo out to the being...",
+                        "But it seems it cannot see it..."});
+                    break;
+                    default: Missing(actionType,actionID);break;
                 }
-            ////////////////////////////////////////////////////    Crucifix    ////////////
+            break;
             case ButtonEnum.Crucifix:
                 //try to crucifix
                 if (enemy.hp ==0){
                     //enemy banished
                     battleEnded = (int)endCon.CRUCIFIX;
                     //add text about crucifix 
-                    return new string[]{"The ghost withers away in a a blinding flash!"};
+                    toScroll.AddRange(new string[]{"The ghost withers away in a a blinding flash!"});
                 }else{
-                    return new string[]{"The ghost was still too powerfull"};
+                    toScroll.AddRange(new string[]{"The ghost was still too powerfull"});
                 }
-                
-            ////////////////////////////////////////////////////    Run    ////////////
+            break;
             case ButtonEnum.Run:
                 //try to run
                 float chance = Random.Range(0f,1f);
@@ -596,13 +454,12 @@ public class battleBehavior : MonoBehaviour
                 if (chance < baseRunChance + (1f-baseRunChance)*(1f-(float)enemy.hp/(float)enemy.maxHP)){
                     //add text about escaping 
                     battleEnded = (int)endCon.RUN;
-                    return new string[]{"you got away safely"};
+                    toScroll.AddRange( new string[]{"you got away safely"});
                 }else{
                     //add text about not being able to run
-                    return new string[]{"couldn't get away"};
+                    toScroll.AddRange( new string[]{"couldn't get away"});
                 }
-                
-            default: return new string[]{""};//should never be reached
+            break;
         }
-    }*/
+    }
 }

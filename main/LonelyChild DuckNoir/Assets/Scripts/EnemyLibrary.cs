@@ -174,8 +174,8 @@ public class PoorDog : EnemyClass
         };
 
         responses = new EnemyResponse[]{
-            GenResponse(ButtonEnum.Attack,(int)AttackActions.Theremin,"DamageEnemyWeak",
-                SingleMethod((object)2),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Theremin,"DamageEnemy",
+                SingleMethod((object)4),
                 new string[]{
                     "You attacked with the theremin...",
                     "The ghost recoils at the pitch!",
@@ -189,8 +189,8 @@ public class PoorDog : EnemyClass
                     "\"Too heavy to be stick...\nTo long to be ball...\"",
                     "\":(\""
             }),
-            GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,"DamageEnemyResist",
-                SingleMethod((object)2),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,"DamageEnemy",
+                SingleMethod((object)1),
                 new string[]{
                     "You attacked with the flashlight...",
                     "The ghost starts darting after the light, thinking it's a ball!",
@@ -199,15 +199,15 @@ public class PoorDog : EnemyClass
                     "\"Where did flat ball go?????\"",
                     "\"Do you have better ball!?!?!?!?!?\""
             }),
-            GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,"DamageEnemyWeak",
-                SingleMethod((object)2),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,"DamageEnemy",
+                SingleMethod((object)4),
                 new string[]{
                     "You attacked with the Garlic...",
                     "The ghost hates it!",
                     "\"Smelly ball bad for me!!! Give better ball >:(\""
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,"DamageEnemy",
-                SingleMethod((object)0),
+                SingleMethod((object)1),
                 new string[]{
                     "You started talking with the ghost...",
                     "You might've briefly mentioned something that sounds vaguely like the word 'ball'.",
@@ -216,14 +216,14 @@ public class PoorDog : EnemyClass
                     "\"Ohh... False Ball-arm...\""
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Fake_Throw,"DamageEnemy",
-                SingleMethod((object)0),
+                SingleMethod((object)2),
                 new string[]{
                     "You made a throwing motion with your arm...",
                     "But there was nothing in your hand?",
                     "\"How could you!!!???? >:( >:( >:(\""
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Pet,"DamageEnemy",
-                SingleMethod((object)0),
+                SingleMethod((object)2),
                 new string[]{
                     "You tried to pet the ghost...",
                     "But your arm phased right through 'em, so...",
@@ -252,6 +252,64 @@ public class RepressedGhost : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/Mix/Mix_Easy"};
         talkActions = new TalkEnum[2] { TalkEnum.Chat, TalkEnum.ChatTwo };
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/RepressedGhostSprite";
+
+        sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Photo);
+
+        sentimentalSuccess = new string[]{
+            "You showed the Photo to the ghost...",
+            "It felt... right.",
+            "\"Thaaaank yyooouu\""
+        };
+        sentimentalFaliure = new string[]{
+            "The ghost hesitates and looks at the Photo...",
+            "That expression on his face looks painful.",
+            "\"Oh why, oh why...\""
+        };
+
+        responses = new EnemyResponse[]{
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Theremin,"DamageEnemy",
+                SingleMethod((object)2),
+                new string[]{
+                    "You attacked with the theramin...",
+                    "The ghost looks indifferent",
+                    "\"Are you picking on me?\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,"DamageEnemy",
+                SingleMethod((object)1),
+                new string[]{
+                    "You attacked with the FirePoker...",
+                    "The ghost is unphased",
+                    "\"I couldn't feel that... I haven't been able to feel for a while...\"",
+                    "\"Ouch that hurts...? is that want you want me to say?\""
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,"DamageEnemy",
+                SingleMethod((object)1),
+                new string[]{
+                    "You started talking with the ghost...",
+                    "\"I just wish things had been different, you know?\""
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.ChatTwo,"DamageEnemy",
+                SingleMethod((object)1),
+                new string[]{
+                    "You started talking with the ghost about their life...",
+                    "\"Well, it's just...\"",
+                    "\"They wanted different things from what I wanted...\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,"DamageEnemy",
+                SingleMethod((object)5),
+                new string[]{
+                    "You attacked with the flashlight...",
+                    "The ghost has a painful expression on his face.",
+                    "\"Please don't do that...\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,"DamageEnemy",
+                SingleMethod((object)4),
+                new string[]{
+                    "You attacked with the Garlic...",
+                    "The ghost didn't like that too much.",
+                    "\"Eww...\""
+            })
+        };
     }
 
 }
@@ -273,5 +331,41 @@ public class BoredGhost : EnemyClass{
         //attackPrefabNames
         talkActions = new TalkEnum[1] { TalkEnum.Chat };
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/BoredGhostSprite";
+
+        sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Ball);
+        sentimentalSuccess = new string[] {
+            "You showed the ball to the ghost...",
+            "It felt... right.",
+            "\"Thank you...\""
+        };
+        sentimentalFaliure = new string[]{
+            "The ghost hesitates and looks at the ball...",
+            "Does this ball mean something to it?",
+            "It snaps out of it's trance, you must have been too soon."
+        };
+
+        responses = new EnemyResponse[]{
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Theremin,"DamageEnemy",
+                SingleMethod((object)2),
+                new string[]{
+                    "The ghost... liked it?",
+                    "\"That's nice...\"",
+                    "\"Not really my genre though.\"",
+                    "\"I'm more of a 'Boos' kind of guy.\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,"DamageEnemy",
+                SingleMethod((object)6),
+                new string[]{
+                    "You attacked with the flashlight...",
+                    "It was especially effective!",
+                    "\"Ow, who turned on the lights?\""
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,"DamageEnemy",
+                SingleMethod((object)1),
+                new string[]{
+                    "You started talking with the ghost...",
+                    "\"Sigh... Alright...\""
+            })
+        };
     }
 }
