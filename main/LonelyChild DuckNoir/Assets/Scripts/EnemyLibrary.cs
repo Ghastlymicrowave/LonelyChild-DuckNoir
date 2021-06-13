@@ -19,6 +19,7 @@ public static class EnemyLibrary
 public abstract class EnemyClass
 {
     battleBehavior thisBehavior;
+    public bool canRun = true;
     public int id;
     public string name;
     public string[] toScroll;
@@ -36,6 +37,7 @@ public abstract class EnemyClass
     public string[] sentimentalSuccess;
     public string[] sentimentalFaliure;
     public EnemyActionCase sentimentalTrigger;
+    public string[] splashTexts = new string[]{"The ghost hovers ominously..."};
     public Sprite[,] GetSprites()
     {
         Sprite[,] toReturn = new Sprite[4, animationFrames];

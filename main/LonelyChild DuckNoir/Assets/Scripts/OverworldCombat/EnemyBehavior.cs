@@ -16,15 +16,22 @@ public class EnemyBehavior : MonoBehaviour
     GameObject player;
     public int enemyID = 1;
     TextManager tm;
-    public string ToLoad = "combatTest";
-    public float constantZ;
-    public Transform[] patrolSpots;
-    public player_main pm = null;
-    public int startingPatrol = 0;
-    int hitCount = 0;
+    public string ToLoad = "combatScene";
+    player_main pm = null;
+    int currentPatrol = 0;
+    int patrolChunk = 0;
+    bool patrolBackwards = false; 
+    [SerializeField] Transform positionContainer;
+    Transform[][] positionChunks;
+    [SerializeField] float defaultRespawnTime = 10f;
+    float currentRespawnTime = 0f;
+    bool spawned = true;
+    [SerializeField] float unspawnedZ;
+    float spawnedZ;
+    GameObject visualGhost;
+    public bool stillInScene = true;
     private void Start()
     {
-        constantZ = transform.position.z;
         if (camControl == null)
         {
             camControl = GameObject.Find("CameraControl").GetComponent<CameraControl>();
@@ -33,14 +40,24 @@ public class EnemyBehavior : MonoBehaviour
         {
             pm = GameObject.Find("Player").GetComponent<player_main>();
         }
+        spawnedZ = transform.position.z;
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
         gameSceneManager = tm.gameObject.GetComponent<GameSceneManager>();
+        visualGhost = transform.GetChild(0).gameObject;
+        positionChunks = new Transform[positionContainer.childCount][];
+        for(int i = 0; i < positionContainer.childCount; i++){
+            Transform thisChunk = positionContainer.GetChild(i);
+            positionChunks[i] = new Transform[thisChunk.childCount];
+            for(int a = 0; a < thisChunk.childCount; a++){
+                positionChunks[i][a] = thisChunk.GetChild(a);
+            }
+        }
     }
     private void Update()
     {if (pm != null)
         {
-            if (!pm.canMove)
+            if (!pm.canMove||!spawned)
             {
                 return;
             }
@@ -48,44 +65,90 @@ public class EnemyBehavior : MonoBehaviour
         sprite.LookAt(camControl.activeCam.transform.position, Vector3.back);
         if (patrol && isMoving)
         {
-            transform.position = Vector3.MoveTowards(transform.position, patrolSpots[startingPatrol].position, (speed / 3) * Time.deltaTime);
-            transform.position = new Vector3(transform.position.x, transform.position.y, constantZ);
-            if (Vector3.Distance(patrolSpots[startingPatrol].position, transform.position) < .5f)
+            Vector3 targetPos = positionChunks[patrolChunk][currentPatrol].position;
+            targetPos.z = transform.position.z;
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, (speed / 3) * Time.deltaTime);
+            if (Vector3.Distance(positionChunks[patrolChunk][currentPatrol].position, transform.position) < .5f)
             {
-                startingPatrol = Random.Range(0, patrolSpots.Length);
+                //Debug.Log("enemy "+enemyID.ToString()+" chunk:"+patrolChunk.ToString()+" of "+positionChunks.Length.ToString()+"   patrol:"+currentPatrol.ToString()+" of "+positionChunks[patrolChunk].Length.ToString());
+                if (patrolBackwards){
+                    if (currentPatrol > 0){
+                        currentPatrol--;
+                    }else{
+                        if (Random.value>0.5f){
+                            patrolBackwards = !patrolBackwards;
+                        }else{
+                            currentPatrol = positionChunks[patrolChunk].Length-1;
+                        }
+                    }
+                }else{
+                    if (currentPatrol < positionChunks[patrolChunk].Length-1){
+                        currentPatrol++;
+                    }else{
+                        if (Random.value>0.5f){
+                            patrolBackwards = !patrolBackwards;
+                        }else{
+                            currentPatrol = 0;
+                        }
+                    }
+                }
+                //Debug.Log("NEW enemy "+enemyID.ToString()+" chunk:"+patrolChunk.ToString()+" patrol:"+currentPatrol.ToString());
             }
         }
         else if (chasePlayer)
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-            transform.position = new Vector3(transform.position.x, transform.position.y, constantZ);
+            Vector3 targetPos = player.transform.position;
+            targetPos.z = transform.position.z;
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
         }
 
     }
+
+    void TryRespawn(){
+        patrolChunk = Random.Range(0,positionChunks.Length);
+        currentPatrol = Random.Range(0,positionChunks[patrolChunk].Length);
+        Vector3 targetPos = positionChunks[patrolChunk][currentPatrol].position;
+        targetPos.z = player.transform.position.z;
+        if (Vector3.Distance(player.transform.position,targetPos)>10f){
+            spawned=true;
+            visualGhost.SetActive(true);
+            //TODO: add a spawned animation, probably by smoothing the position from a set z value. (so it arrises from the floor)
+        }
+    }
+
+    public void DespawnGhost(){
+        visualGhost.SetActive(false);
+        spawned=false;
+        currentRespawnTime = defaultRespawnTime;
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
 
-        if (col.gameObject.tag == "Player")//pathfind
+        if (col.gameObject.tag == "Player" && spawned)//pathfind
         {
             patrol = false;
             player = col.gameObject;
-            //pm = player.GetComponent<player_main>();
         }
 
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")//triggle combat
+        if (collision.gameObject.tag == "Player"  && spawned)//trigger combat
         {
-            if(hitCount < 1)
-            {
-            inventoryManager.playerPosOnStart = collision.gameObject.transform.position;
+            DespawnGhost();
             inventoryManager.enemyID = enemyID;
-            print("This enemybehavior was called");
-            hitCount += 1;
             gameSceneManager.EnterCombat();
-            gameObject.SetActive(false);
         }
     }
+
+    void update(){
+        if (stillInScene){
+            if (currentRespawnTime>0){
+                currentRespawnTime = Mathf.Max(0f,currentRespawnTime-Time.deltaTime);
+            }else if (spawned==false){
+                TryRespawn();
+            }
+        }
     }
 }

@@ -151,8 +151,8 @@ public class battleBehavior : MonoBehaviour
         MenuPanel.SetActive(true);
         healthbarAnim.SetBool("IsMinigame",false);
         scanner.SetActive(true);
-        //enemy.toScroll = new string[] {"This enemy has " + enemy.hp+" of " + enemy.maxHP+" hitpoints."};
-        //endAtLine = toScroll.Length - 1;
+        toScroll.Clear();
+        toScroll.Add(enemy.splashTexts[Random.Range(0,enemy.splashTexts.Length)]);
         currentLine = 0;
         StopCoroutine(theScroll);
         StartCoroutine(theScroll = TextScroll(toScroll[currentLine]));
@@ -451,13 +451,17 @@ public class battleBehavior : MonoBehaviour
                 //try to run
                 float chance = Random.Range(0f,1f);
                 Debug.Log("chance: "+ (baseRunChance + (1f-baseRunChance)*(1f-(float)enemy.hp/(float)enemy.maxHP)).ToString()+ " got: "+ chance.ToString());
-                if (chance < baseRunChance + (1f-baseRunChance)*(1f-(float)enemy.hp/(float)enemy.maxHP)){
-                    //add text about escaping 
-                    battleEnded = (int)endCon.RUN;
-                    toScroll.AddRange( new string[]{"you got away safely"});
+                if (enemy.canRun){
+                    if (chance < baseRunChance + (1f-baseRunChance)*(1f-(float)enemy.hp/(float)enemy.maxHP)){
+                        //add text about escaping 
+                        battleEnded = (int)endCon.RUN;
+                        toScroll.AddRange( new string[]{"you got away safely"});
+                    }else{
+                        //add text about not being able to run
+                        toScroll.AddRange( new string[]{"couldn't get away"});
+                    }
                 }else{
-                    //add text about not being able to run
-                    toScroll.AddRange( new string[]{"couldn't get away"});
+                    toScroll.AddRange( new string[]{"You can't get away from this enemy!","If you want to leave, you'll have to deal with it first!"});
                 }
             break;
         }

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1708051609}
   - component: {fileID: 7181805686592616481}
   m_Layer: 0
-  m_Name: Player Curcor
+  m_Name: Player Cursor
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!58 &1096534973168721955
 CircleCollider2D:
@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 7181805686592616481}
+  rb: {fileID: 0}
   xBound: 0.35
   yBound: 0.16
   xNegBound: -0.4
