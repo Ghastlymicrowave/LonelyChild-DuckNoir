@@ -55,7 +55,15 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
     private void Update()
-    {if (pm != null)
+    {
+        if (stillInScene){
+            if (currentRespawnTime>0){
+                currentRespawnTime = Mathf.Max(0f,currentRespawnTime-Time.deltaTime);
+            }else if (spawned==false){
+                TryRespawn();
+            }
+        }
+        if (pm != null)
         {
             if (!pm.canMove||!spawned)
             {
@@ -139,16 +147,6 @@ public class EnemyBehavior : MonoBehaviour
             DespawnGhost();
             inventoryManager.enemyID = enemyID;
             gameSceneManager.EnterCombat();
-        }
-    }
-
-    void update(){
-        if (stillInScene){
-            if (currentRespawnTime>0){
-                currentRespawnTime = Mathf.Max(0f,currentRespawnTime-Time.deltaTime);
-            }else if (spawned==false){
-                TryRespawn();
-            }
         }
     }
 }
