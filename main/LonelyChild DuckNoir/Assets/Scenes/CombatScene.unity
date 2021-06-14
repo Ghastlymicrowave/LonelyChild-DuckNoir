@@ -464,7 +464,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1007449163}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.99989307
+  m_Size: 0.9999831
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1521,7 +1521,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -655.0675, y: 0}
+  m_AnchoredPosition: {x: -655.06714, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &727044050
@@ -3923,7 +3923,6 @@ MonoBehaviour:
   fillerText: {fileID: 988352345}
   typeSpeed: 0.045
   currentLine: 0
-  endAtLine: 0
   speechTail: {fileID: 0}
   tick: {fileID: 2126877261}
   click: {fileID: 2126877260}
