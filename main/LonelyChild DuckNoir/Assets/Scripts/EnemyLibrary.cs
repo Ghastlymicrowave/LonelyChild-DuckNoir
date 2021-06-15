@@ -131,8 +131,8 @@ public class Enemy1 : EnemyClass
         id = 0;
         spritePath = "Prefabs/EnemySpritePrefabs/BoredGhostSprite";
         attackPrefabNames = new string[] {
-            "Prefabs/combatEnemyTurn/attacks/Straight/Straight_TooEasy",
-            "Prefabs/combatEnemyTurn/attacks/Sine/Sine_TooEasy"};
+            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
+            "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
         talkActions = new TalkEnum[1] { TalkEnum.Chat };
     }
 
@@ -149,10 +149,10 @@ public class PoorDog : EnemyClass
         id = 1;
         spritePath = "Prefabs/EnemySpritePrefabs/PoorDogSprite";
         attackPrefabNames = new string[] {
-            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy2"};//,
-                                                                 //"Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
-                                                                 //"Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2",
-                                                                 //"Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
+            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy2",
+            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
+            "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2",
+            "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
         talkActions = new TalkEnum[3] { TalkEnum.Pet, TalkEnum.Chat, TalkEnum.Fake_Throw };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/PoorDogSprite";
@@ -248,10 +248,10 @@ public class RepressedGhost : EnemyClass
         id = 2;
         spritePath = "Prefabs/EnemySpritePrefabs/RepressedGhostSprite";
         attackPrefabNames = new string[] {
-            "Prefabs/combatEnemyTurn/attacks/Sine/Sine_Harder_Reverse",
-            "Prefabs/combatEnemyTurn/attacks/Sine/Sine_Harder",
-            "Prefabs/combatEnemyTurn/attacks/Sine Reversal/SineReverse_Easy2",
-            "Prefabs/combatEnemyTurn/attacks/Mix/Mix_Easy"};
+            "Prefabs/combatEnemyTurn/attacks/Sine_Harder_Reverse",
+            "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
+            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
+            "Prefabs/combatEnemyTurn/attacks/Mix_Easy"};
         talkActions = new TalkEnum[2] { TalkEnum.Chat, TalkEnum.ChatTwo };
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/RepressedGhostSprite";
 
@@ -326,10 +326,10 @@ public class BoredGhost : EnemyClass{
         id = 3;
         spritePath = "Prefabs/EnemySpritePrefabs/BoredGhostSprite";
         attackPrefabNames = new string[] {
-            "Prefabs/combatEnemyTurn/attacks/Straight/Straight_Easy 5",
-            "Prefabs/combatEnemyTurn/attacks/Sine Reversal/SineReverse_Easy2",
-            "Prefabs/combatEnemyTurn/attacks/Sine Reversal/SineReverse_Easy1",
-            "Prefabs/combatEnemyTurn/attacks/Sine/Sine_TooEasy"};
+            "Prefabs/combatEnemyTurn/attacks/Straight_Easy 5",
+            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
+            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy1",
+            "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
         //attackPrefabNames
         talkActions = new TalkEnum[1] { TalkEnum.Chat };
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/BoredGhostSprite";
