@@ -59,6 +59,7 @@ public class battleBehavior : MonoBehaviour
     float baseRunChance = 0.4f;
     GameObject minigame;
     List<string> toScroll;
+    DisplayEnemy enemyImage;
     // Start is called before the first frame update
     void Start()
     {
@@ -75,9 +76,10 @@ public class battleBehavior : MonoBehaviour
         hero = new HeroClass();
         enemyParent = GameObject.Find("EnemyParent");
         GameObject toInstantiate = (GameObject)Resources.Load(enemy.displayPrefabPath) as GameObject;
-        GameObject enemyImage = Instantiate(toInstantiate);
-        enemyImage.transform.SetParent(enemyParent.transform);
-        enemyImage.transform.localPosition = Vector3.zero;
+        GameObject enemyImageObj = Instantiate(toInstantiate);
+        enemyImageObj.transform.SetParent(enemyParent.transform);
+        enemyImageObj.transform.localPosition = Vector3.zero;
+        enemyImage = enemyImageObj.GetComponent<DisplayEnemy>();
         healthbarAnim = healthbarFilled.transform.parent.GetComponent<Animator>();
         toScroll = new List<string>();
     }
@@ -88,7 +90,7 @@ public class battleBehavior : MonoBehaviour
         if (gamePosition == GamePosition.EnemyDialogue && timer > typeSpeed)
         {
             //Handling the clicking through of enemy dialogue, and starting of the enemy turn.
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0)||Input.GetButtonDown("Interact"))
             {
                 if (!isTyping)
                 {
@@ -172,9 +174,11 @@ public class battleBehavior : MonoBehaviour
         MenuPanel.SetActive(false);
         healthbarAnim.SetBool("IsMinigame",true);
         toScroll.Clear();
-        TriggerEnemyReaction(enemy,actionType,actionID);
+        
         if (enemy.sentimentalTrigger.actionType == (int)actionType && enemy.sentimentalTrigger.actionID == (int)actionID){
             Sentimental();
+        }else{
+            TriggerEnemyReaction(enemy,actionType,actionID);
         }
         if (toScroll.Count<1){
             toScroll.Add("you shouldn't be seeing this- there's something missing in the code?");
@@ -271,12 +275,16 @@ public class battleBehavior : MonoBehaviour
                 gameSceneManager.GameOver();
             break;
             case endCon.SENTIMENT:
+            inventoryManager.ghostsRoaming.Remove(enemy.id);
+            inventoryManager.ghostsAscended.Add(enemy.id);
                 gameSceneManager.ExitCombat();
             break;
             case endCon.RUN:
                 gameSceneManager.ExitCombat();
             break;
             case endCon.CRUCIFIX:
+            inventoryManager.ghostsRoaming.Remove(enemy.id);
+            inventoryManager.ghostsCrucified.Add(enemy.id);
                 gameSceneManager.ExitCombat();
             break;
         }

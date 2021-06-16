@@ -41,6 +41,7 @@ public class Submenu : MonoBehaviour
             break;
             case ButtonEnum.Items:
                 for (int i = 0; i < inventoryManager.items.Count;i++){
+                    if (inventoryManager.items[i].id==(int)ItemsEnum.Fire_Poker){continue;}
                     Sprite spr = InventoryManager.LoadItemSprite((int)inventoryManager.items[i].id);
                     AddItem(spr,(int)actionType,(int)inventoryManager.items[i].id);
                 }

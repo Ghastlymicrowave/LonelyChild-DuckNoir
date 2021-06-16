@@ -23,14 +23,12 @@ public class EnemyManager : MonoBehaviour
     }
 
     public void ReLoaded(){
-        int index = IDBase;
-        foreach (GameObject ghost in ghosts)
+        foreach (EnemyBehavior ghost in ghostBehaviors)
         {
-            if (!inventoryManager.ghostsRoaming.Contains(index))
+            if (!inventoryManager.ghostsRoaming.Contains(ghost.enemyID))
             {
-                ghostBehaviors[index].stillInScene = false;
+                ghost.stillInScene = false;
             }
-            index += 1;
         }
     }
 }

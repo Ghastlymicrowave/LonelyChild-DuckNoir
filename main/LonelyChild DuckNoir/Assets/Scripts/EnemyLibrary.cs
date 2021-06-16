@@ -155,7 +155,7 @@ public class PoorDog : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
         talkActions = new TalkEnum[3] { TalkEnum.Pet, TalkEnum.Chat, TalkEnum.Fake_Throw };
         
-        displayPrefabPath = "Prefabs/EnemySpritePrefabs/PoorDogSprite";
+        displayPrefabPath = "Prefabs/EnemySpritePrefabs/PoorDogDisplay";
         
         sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Ball);
 
@@ -253,7 +253,7 @@ public class RepressedGhost : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
             "Prefabs/combatEnemyTurn/attacks/Mix_Easy"};
         talkActions = new TalkEnum[2] { TalkEnum.Chat, TalkEnum.ChatTwo };
-        displayPrefabPath = "Prefabs/EnemySpritePrefabs/RepressedGhostSprite";
+        displayPrefabPath = "Prefabs/EnemySpritePrefabs/RepressedGhostDisplay";
 
         sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Photo);
 
@@ -332,7 +332,7 @@ public class BoredGhost : EnemyClass{
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
         //attackPrefabNames
         talkActions = new TalkEnum[1] { TalkEnum.Chat };
-        displayPrefabPath = "Prefabs/EnemySpritePrefabs/BoredGhostSprite";
+        displayPrefabPath = "Prefabs/EnemySpritePrefabs/BoredGhostDisplay";
 
         sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Ball);
         sentimentalSuccess = new string[] {
