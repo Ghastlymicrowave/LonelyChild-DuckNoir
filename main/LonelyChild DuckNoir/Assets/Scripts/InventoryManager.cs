@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Combat;
+using System.IO;
 public class InventoryManager : MonoBehaviour
 {
+    string json = "LonelyChild";
     public int enemyID;//current enemy you're fighting, if -1, you're not fighting an enemy and encounters won't happen
     public Vector3 playerPosOnStart;
     public List<ivItem> items;
@@ -32,7 +34,6 @@ public class InventoryManager : MonoBehaviour
             spritePath = _spritePath;
         }
     }
-
     public void Reset(){
         attacks.Clear();
         attacks.Add(AttackActions.Flashlight);
@@ -98,6 +99,15 @@ public class InventoryManager : MonoBehaviour
                     new string[]{""}, 
                     (int)ItemsEnum.Key,
                     "2D Assets/Items/Key");   
+            case ItemsEnum.Fire_Poker:
+                return new ivItem(
+                    "Fire Poker",
+                    "An old metal fire-poker, for poking fire, and other things.",
+                    new string[]{"Watch where you point this thing, you could poke someone's eye out!"},
+                    "",
+                    new string[]{""},
+                    (int)ItemsEnum.Fire_Poker,
+                    "2D Assets/Items/Fireplace_Poker");
             default: return null;
         }
     }
@@ -115,10 +125,17 @@ public class InventoryManager : MonoBehaviour
             return new Garlic();
             case AttackActions.Theremin:
             return new Theremin();
+            case AttackActions.Ruler:
+            return new Ruler(); 
             default: return null;
         }
     }
 
+    class Ruler : ivAttack{
+        public Ruler(){
+            spritePath = "2D Assets/Weapons/Flashlight";//TODO: change this sprite
+        }
+    }
     class Flashlight : ivAttack{
         public Flashlight(){
             spritePath = "2D Assets/Weapons/Flashlight";
@@ -189,4 +206,48 @@ public class InventoryManager : MonoBehaviour
             default: return Resources.Load("2D Assets/Programmer Art/ghosttemp",typeof(Sprite)) as Sprite;
         }
     }
+
+    public void ResetSave(){
+        string file = Application.persistentDataPath+"/"+json+".json";
+        string contents = ""; //default level data upon reset
+        if (File.Exists(file)){
+            File.WriteAllText(file,contents);
+        }
+    }
+    public void SaveJSON(){
+        string file = Application.persistentDataPath+"/"+json+".json";
+        string outString = "";
+        File.WriteAllText(file,outString);
+    }
+    public void LoadJSON(){
+        string file = Application.persistentDataPath+"/"+json+".json";
+        if (File.Exists(file)){
+            string contents = File.ReadAllText(file);
+            SaveData save = JsonUtility.FromJson<SaveData>(contents);
+            items.Clear();
+            for (int i = 0; i < save.items.Length;i++){
+                items.Add(GetItemFromId((Combat.ItemsEnum)save.items[i]));
+            }
+            for (int i = 0; i < save.attacks.Length;i++){
+                AddAttack((AttackActions)save.attacks[i]);
+            }
+            ghostsRoaming.Clear();
+            ghostsRoaming.AddRange(save.roaming);
+            ghostsAscended.Clear();
+            ghostsAscended.AddRange(save.ascended);
+            ghostsCrucified.Clear();
+            ghostsCrucified.AddRange(save.crucified);
+
+        }else{
+            ResetSave();
+        }
+    }
 }
+[System.Serializable]
+public class SaveData{
+        public int[] items;//item id's only for the time being
+        public int[] attacks;
+        public int[] roaming;
+        public int[] ascended;
+        public int[] crucified;
+    }

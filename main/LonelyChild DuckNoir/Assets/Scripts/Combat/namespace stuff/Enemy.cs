@@ -128,7 +128,8 @@ public float duration;
         Flashlight,
         Theremin,
         Fire_Poker,
-        Garlic
+        Garlic,
+        Ruler
     }
 
     [System.Serializable] 
@@ -136,7 +137,8 @@ public float duration;
         Apple,
         Ball,
         Photo,
-        Key
+        Key,
+        Fire_Poker
     }
 
     public enum Enemies{

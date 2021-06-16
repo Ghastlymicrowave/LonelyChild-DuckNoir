@@ -79,12 +79,12 @@ public class TextManager : MonoBehaviour
                 return new string[]{"This bathroom is waaaay nicer than that nasty one downstairs.  I wonder why that is..."};
                 //cool ghost
             case 18: return new string[]{"Hey man, I been waiting for this elevator for the last two centuries.  I’m startin’ to think the ole girl aint workin…"};
-            case 20: return new string[]{"If you wanna get downstairs...best find another way, kid"};
-            case 21: return new string[]{"You’re pretty fly...for an alive guy."};
+            case 19: return new string[]{"If you wanna get downstairs...best find another way, kid"};
+            case 20: return new string[]{"You’re pretty fly...for an alive guy."};
             //grief stricken nun
+            case 21: return new string[]{"???"};
             case 22: return new string[]{"???"};
             case 23: return new string[]{"???"};
-            case 24: return new string[]{"???"};
             default: Debug.Log("got bad text id");return null;
         }
     }

@@ -37,7 +37,8 @@ public class Interactable : MonoBehaviour
         ACTIVATE,//activates an interactable
         ITEM,//gives the player an item
         TALK,//just gives the player some text
-        ATTACK//Gives the player a new attack
+        ATTACK,//Gives the player a new attack
+        ITEMandATTACK
     }
 
     public bool HasItemUse(){
@@ -66,25 +67,34 @@ public class Interactable : MonoBehaviour
                 Debug.Log(inventoryManager);
                 inventoryManager.AddItem(item);//TODO: add a text manager thing for getting the item
                 if (rand){
-                        playerRef.TriggerDialogue(randomdialogueIDs[Random.Range(0,randomdialogueIDs.Length)]);
-                    }else if (dialogueID>-1){
-                        playerRef.TriggerDialogue(dialogueID);
-                    }
+                    playerRef.TriggerDialogue(randomdialogueIDs[Random.Range(0,randomdialogueIDs.Length)]);
+                }else if (dialogueID>-1){
+                    playerRef.TriggerDialogue(dialogueID);
+                }
             break;
             case interactableAction.TALK:// send textManager string[] from id to UI text frontend
             if (rand){
-                        playerRef.TriggerDialogue(randomdialogueIDs[Random.Range(0,randomdialogueIDs.Length)]);
-                    }else if (dialogueID>-1){
-                        playerRef.TriggerDialogue(dialogueID);
-                    }
+                playerRef.TriggerDialogue(randomdialogueIDs[Random.Range(0,randomdialogueIDs.Length)]);
+            }else if (dialogueID>-1){
+                playerRef.TriggerDialogue(dialogueID);
+            }
             break;
             case interactableAction.ATTACK:
             if (rand){
-                        playerRef.TriggerDialogue(randomdialogueIDs[Random.Range(0,randomdialogueIDs.Length)]);
-                    }else if (dialogueID>-1){
-                        playerRef.TriggerDialogue(dialogueID);
-                    }
+                playerRef.TriggerDialogue(randomdialogueIDs[Random.Range(0,randomdialogueIDs.Length)]);
+            }else if (dialogueID>-1){
+                playerRef.TriggerDialogue(dialogueID);
+            }
             inventoryManager.AddAttack(attack);
+            break;
+            case interactableAction.ITEMandATTACK:
+            if (rand){
+                playerRef.TriggerDialogue(randomdialogueIDs[Random.Range(0,randomdialogueIDs.Length)]);
+            }else if (dialogueID>-1){
+                playerRef.TriggerDialogue(dialogueID);
+            }
+            inventoryManager.AddAttack(attack);
+            inventoryManager.AddItem(item);
             break;
         }
         if (oneTimeUse){
