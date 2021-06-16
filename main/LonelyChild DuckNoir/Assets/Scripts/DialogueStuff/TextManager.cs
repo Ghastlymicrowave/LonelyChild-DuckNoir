@@ -69,6 +69,22 @@ public class TextManager : MonoBehaviour
                 return stringsToArray("You unlocked the door!", "Click on it again to open it!");
             case 15:
                 return stringsToArray("The door opened!");
+            case 16://friendly ghost text
+            //actually ghost
+                return new string[]{"“You know, I’ve read every book in that library...",
+                "The living have no comprehension of ghosts. It’s all ‘ghosts are evil, they haunt old mansions and flee at the sound of theremins...’",
+                "Actually, most ghosts I know are very nice if you give ‘em the chance...",
+                "I happen to like theremins, and I only hang out in this old dump because, well..."};
+            case 17://complaney ghost
+                return new string[]{"This bathroom is waaaay nicer than that nasty one downstairs.  I wonder why that is..."};
+                //cool ghost
+            case 18: return new string[]{"Hey man, I been waiting for this elevator for the last two centuries.  I’m startin’ to think the ole girl aint workin…"};
+            case 20: return new string[]{"If you wanna get downstairs...best find another way, kid"};
+            case 21: return new string[]{"You’re pretty fly...for an alive guy."};
+            //grief stricken nun
+            case 22: return new string[]{"???"};
+            case 23: return new string[]{"???"};
+            case 24: return new string[]{"???"};
             default: Debug.Log("got bad text id");return null;
         }
     }

@@ -13,7 +13,8 @@ public class Interactable : MonoBehaviour
     [SerializeField] AttackActions attack;
     static player_main playerRef;
     [Tooltip("keep less than 0 for no text")]
-    [SerializeField] int dialogueID = -1;
+    [SerializeField] int dialogueID = -1;//KEEP -1 IF YOU WANT TO USE RANDOM
+    [SerializeField] int[] randomdialogueIDs;
     public bool isReady = false;
     public bool isBusy = false;
     [SerializeField] bool oneTimeUse = false;
@@ -29,6 +30,7 @@ public class Interactable : MonoBehaviour
         inventoryManager = GameObject.Find("PersistentManager").GetComponent<InventoryManager>();
         textManager = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         if (playerRef==null){playerRef = GameObject.Find("Player").GetComponent<player_main>();}
+        if (randomdialogueIDs ==null){randomdialogueIDs = new int[0];}
     }
 
     public enum interactableAction{
@@ -42,9 +44,10 @@ public class Interactable : MonoBehaviour
         return needsItemUse;
     }
     public void Trigger(){
+        bool rand = (randomdialogueIDs.Length>0);
         isReady=false;
         if (needsItemUse){
-            if (dialogueID>-1){
+            if (dialogueID>-1||rand){
                     playerRef.TriggerDialogue(notCompleteItemUseTextID);
                 }
             return;
@@ -52,21 +55,35 @@ public class Interactable : MonoBehaviour
         switch(action){
             case interactableAction.ACTIVATE:
                 activatable.Activate();
-                playerRef.TriggerDialogue(dialogueID);
+                if (rand){
+                        playerRef.TriggerDialogue(randomdialogueIDs[Random.Range(0,randomdialogueIDs.Length)]);
+                    }else if (dialogueID>-1){
+                        playerRef.TriggerDialogue(dialogueID);
+                    }
             break;
             case interactableAction.ITEM:
                 Debug.Log(item.ToString()+" added to inventory");
                 Debug.Log(inventoryManager);
                 inventoryManager.AddItem(item);//TODO: add a text manager thing for getting the item
-                if (dialogueID>-1){
-                    playerRef.TriggerDialogue(dialogueID);
-                }
+                if (rand){
+                        playerRef.TriggerDialogue(randomdialogueIDs[Random.Range(0,randomdialogueIDs.Length)]);
+                    }else if (dialogueID>-1){
+                        playerRef.TriggerDialogue(dialogueID);
+                    }
             break;
             case interactableAction.TALK:// send textManager string[] from id to UI text frontend
-            playerRef.TriggerDialogue(dialogueID);
+            if (rand){
+                        playerRef.TriggerDialogue(randomdialogueIDs[Random.Range(0,randomdialogueIDs.Length)]);
+                    }else if (dialogueID>-1){
+                        playerRef.TriggerDialogue(dialogueID);
+                    }
             break;
             case interactableAction.ATTACK:
-            playerRef.TriggerDialogue(dialogueID);
+            if (rand){
+                        playerRef.TriggerDialogue(randomdialogueIDs[Random.Range(0,randomdialogueIDs.Length)]);
+                    }else if (dialogueID>-1){
+                        playerRef.TriggerDialogue(dialogueID);
+                    }
             inventoryManager.AddAttack(attack);
             break;
         }
