@@ -207,20 +207,24 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public string jsonFile(){
+        return Application.persistentDataPath+"/"+json+".json";;
+    }
+
     public void ResetSave(){
-        string file = Application.persistentDataPath+"/"+json+".json";
+        string file = jsonFile();
         string contents = ""; //default level data upon reset
         if (File.Exists(file)){
             File.WriteAllText(file,contents);
         }
     }
     public void SaveJSON(){
-        string file = Application.persistentDataPath+"/"+json+".json";
+        string file = jsonFile();
         string outString = "";
         File.WriteAllText(file,outString);
     }
     public void LoadJSON(){
-        string file = Application.persistentDataPath+"/"+json+".json";
+        string file = jsonFile();
         if (File.Exists(file)){
             string contents = File.ReadAllText(file);
             SaveData save = JsonUtility.FromJson<SaveData>(contents);

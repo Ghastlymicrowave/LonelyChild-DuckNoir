@@ -27,11 +27,20 @@ public class GameSceneManager : MonoBehaviour
         inventoryManager = GetComponent<InventoryManager>();
     }
 
+    public void TransitionScene(string sceneName){
+        inventoryManager.SaveJSON();
+        SceneManager.LoadScene(sceneName);
+    }
+    public void LoadCheckpoint(string sceneName){
+        inventoryManager.LoadJSON();
+        SceneManager.LoadScene(sceneName);
+    }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "PlayroomWB"){
             PackEverything();
         }
+        inventoryManager.LoadJSON();
     }
     public void EnterCombat(){
         SceneManager.LoadScene(combatSceneName,LoadSceneMode.Additive);

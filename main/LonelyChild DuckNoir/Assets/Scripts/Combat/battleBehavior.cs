@@ -341,13 +341,20 @@ public class battleBehavior : MonoBehaviour
             case ButtonEnum.Attack:
                 switch(actionID){
                     case (int)AttackActions.Fire_Poker: 
-                        DamageEnemy(1);
+                        DamageEnemy(2);
                         toScroll.AddRange(new string[]{
                             "You Attacked with the Fire Poker...",
                             "It worked fine!",
                             "\"Hey, cut that out!\""
                         });
                     break;
+                    case (int)AttackActions.Ruler:
+                        DamageEnemy(3);
+                        toScroll.AddRange(new string[]{
+                            "You attacked with the ruler...",
+                            "Ouch, looks like that hurt quite a bit!"
+                        });
+                        break;
                     case (int)AttackActions.Flashlight:
                         DamageEnemy(1);
                         toScroll.AddRange(new string[]{
