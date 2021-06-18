@@ -108,6 +108,22 @@ public class InventoryManager : MonoBehaviour
                     new string[]{""},
                     (int)ItemsEnum.Fire_Poker,
                     "2D Assets/Items/Fireplace_Poker");
+            case ItemsEnum.Manual:
+                return new ivItem(
+                    "Ghost Hunting Manual",
+                    "A ghost hunting manual. Some pages are missing, others have bite marks.",
+                    new string[]{"You crack open the manual and have a read. The manual reads thusly:", "\"If you are unfortunate enough to face a ghost, here's what you do.\"",
+                    "\"1: Talk to the ghost. Say the right thing, and the next steps will go smoother.\"",
+                    "\"2: Attack the ghost's senses until the ghost emmits energy.\"", "\"If you set up your bulbs like in chapter one, they should be lit up\"",
+                    "\"Now, you've got some options.\"",
+                    "\"3A: Use your crucifix and destroy the ghost. Or....\"",
+                    "\"Make sure you've said the right thing first and then...\"",
+                    "\"3B: Hold out an item that means something to the ghost.\"",
+                    "\"Congrats! you've just hunted your first ghost!\""},
+                    "",
+                    new string[]{""},
+                    (int)ItemsEnum.Manual,
+                    "2D Assets/Items/Old_Book");
             default: return null;
         }
     }

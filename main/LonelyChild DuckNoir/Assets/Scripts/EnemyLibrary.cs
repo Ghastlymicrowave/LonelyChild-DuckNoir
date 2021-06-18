@@ -12,6 +12,7 @@ public static class EnemyLibrary
             case 1: return new PoorDog(thisBehavior);
             case 2: return new RepressedGhost(thisBehavior);
             case 3: return new BoredGhost(thisBehavior);
+            case 4: return new Tutorial(thisBehavior);
             default: return null;
         }
     }
@@ -233,6 +234,96 @@ public class PoorDog : EnemyClass
                     "Between you and me, I don't think he knows the difference.",
                     "\"Woof!~ :)\""
             })
+        };
+    }
+}
+public class Tutorial : EnemyClass
+{//example of an actual enemy
+    public Tutorial(battleBehavior battle) : base(battle)
+    {
+        sentiment = new List<EnemyActionCase>{
+            new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Pet)};
+        name = "Ghost Hunting Nerd";
+        hp = 6;
+        maxHP = 6;
+        id = 4;
+        canRun = true;
+        spritePath = "Prefabs/EnemySpritePrefabs/PoorDogSprite";
+        attackPrefabNames = new string[] {
+            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
+            "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2",
+            "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
+        talkActions = new TalkEnum[1] {TalkEnum.Chat};
+        
+        displayPrefabPath = "Prefabs/EnemySpritePrefabs/TutorialDisplay";
+        
+        sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Manual);
+
+        sentimentalSuccess = new string[]{
+            "Oh, I see... You already have a manual...",
+            "\"I suppose I've taught you everything you need to know about battle sequences...\"",
+            "\"I guess I’m just not useful anymore…\"",
+            "\"That’s okay with me!  Sayonara!\"",
+            
+        };
+        sentimentalFaliure = new string[]{
+            "The ghost hesitates and looks at the manual...",
+            "Does this manual mean something to it?",
+            "\"Ooh, this is my favorite part! Let me hear you out!\"",
+            "\"You're supposed to show me the thing AFTER you beat me up and talk to me!\"",
+            "\"It's the cool way to end battles!\"",
+            "It snaps out of it's trance, was there something you needed to do first?"
+        };
+
+        responses = new EnemyResponse[]{
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Theremin,"DamageEnemy",
+                SingleMethod((object)1),
+                new string[]{
+                    "You attacked with the theremin...",
+                    "The ghost is relatively unfazed!",
+                    "\"Ooh, budy, I got a resistance to this attack.\"",
+                    "\"You've gotta try the other attack!\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,"DamageEnemy",
+                SingleMethod((object)2),
+                new string[]{
+                    "You attacked with the FirePoker...",
+                    "The ghost isn't loving it... but isn't hating it, either.",
+                    "\"Too heavy to be stick...\nTo long to be ball...\"",
+                    "\":(\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,"DamageEnemy",
+                SingleMethod((object)2),
+                new string[]{
+                    "You attacked with the flashlight...",
+                    "\"Oh god! My eyes! It burns!\"",
+                    "\"Ha. Just kidding.\" \"I don't have eyes.\"",
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,"DamageEnemy",
+                SingleMethod((object)4),
+                new string[]{
+                    "You attacked with the Garlic...",
+                    "The ghost hates it!",
+                    "\"How'd you even get that?\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Ruler,"DamageEnemy",
+                SingleMethod((object)6),
+                new string[]{
+                    "You attacked with the Ruler...",
+                    "\"...\"",
+                    "\"What's wrong with you?'\""
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,"DamageEnemy",
+                SingleMethod((object)1),
+                new string[]{
+                    "You started talking with the ghost...",
+                    "\"Hey! You're talking to me!\"",
+                    "\"Have you been reading the manual?\"",
+                    "\"You can talk to ghosts around here to figure out what their issue is!\"",
+                    "\"I don't have any issues, I'm just a tutorial, but some of these guys are absolute class acts...\"",
+                    "\"...They won't stop fighting unless you really level with them.\""
+            }),
+            
         };
     }
 }

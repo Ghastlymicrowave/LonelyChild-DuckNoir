@@ -138,7 +138,8 @@ public float duration;
         Ball,
         Photo,
         Key,
-        Fire_Poker
+        Fire_Poker,
+        Manual
     }
 
     public enum Enemies{
