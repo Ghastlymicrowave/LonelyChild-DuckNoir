@@ -16,6 +16,18 @@ public static class EnemyLibrary
             default: return null;
         }
     }
+    public static EnemyClass GetRawEnemyFromId(int id)
+    {
+        Debug.Log("Getting raw enemy data");
+        switch (id)
+        {
+            case 0: return new Enemy1();
+            case 1: return new PoorDog();
+            case 2: return new RepressedGhost();
+            case 3: return new BoredGhost();
+            default: return null;
+        }
+    }
 }
 public abstract class EnemyClass
 {
@@ -28,9 +40,7 @@ public abstract class EnemyClass
     public int maxHP;
     public string[] attackPrefabNames;
     public List<EnemyActionCase> sentiment;
-    public string folderPath = "2D Assets/Programmer Art/GhostSprites";
-    public string fileName = "ghost1";
-    public string spritePath = "";
+    public string folderPath = "2D Assets/OverworldGhost/Overworld_Ghost_";
     public string displayPrefabPath = "";
     public int animationFrames = 1;
     public TalkEnum[] talkActions;
@@ -41,16 +51,19 @@ public abstract class EnemyClass
     public string[] splashTexts = new string[]{"The ghost hovers ominously..."};
     public Sprite[,] GetSprites()
     {
-        Sprite[,] toReturn = new Sprite[4, animationFrames];
-        string loadstring = folderPath + "/" + fileName;
-        for (int i = 0; i < animationFrames; i++)
+        Debug.Log("Getting sprites");
+        Sprite[,] toReturn = new Sprite[3, animationFrames];
+        
+        for (int i = 1; i < animationFrames+1; i++)
         {
+            Debug.Log("current: "+i.ToString()+" out of frames: "+animationFrames.ToString());
             string istring = i.ToString();
+            string loadstring = folderPath;
             if (istring.Length<2){istring = "0"+istring;}
-            toReturn[0, i] = Resources.Load<Sprite>(loadstring + "Forward" + i.ToString());
-            toReturn[1, i] = Resources.Load<Sprite>(loadstring + "Backward" + i.ToString());
-            toReturn[2, i] = Resources.Load<Sprite>(loadstring + "Left" + i.ToString());
-            toReturn[3, i] = Resources.Load<Sprite>(loadstring + "Right" + i.ToString());
+            toReturn[0, i-1] = Resources.Load<Sprite>(loadstring + "Front" + istring);
+            toReturn[1, i-1] = Resources.Load<Sprite>(loadstring + "Back" + istring);
+            toReturn[2, i-1] = Resources.Load<Sprite>(loadstring + "Side" + istring);
+            Debug.Log(toReturn[0, i-1].ToString()+toReturn[0, i-1].ToString()+toReturn[0, i-1].ToString());
         }
         return toReturn;
     }
@@ -67,8 +80,9 @@ public abstract class EnemyClass
         return Resources.Load(attackPrefabNames[Random.Range(0,attackPrefabNames.Length)], typeof(GameObject)) as GameObject;
     }
 
-    public EnemyClass(battleBehavior battle){
-        thisBehavior = battle;
+    public EnemyClass(battleBehavior battle = null){
+        
+        if (battle!=null){thisBehavior = battle;}
     }
 
     protected object[] SingleMethod(params object[] ob){
@@ -97,7 +111,8 @@ public class EnemyResponse{//a response containing a trigger and a reaction
 public class EnemyReaction{
     public string[] toDisplay;
     public System.Action React = () => { };
-    public EnemyReaction(System.Reflection.MethodInfo methodInfo, object[] methodParameters, string[] displayText, battleBehavior battle){
+    public EnemyReaction(System.Reflection.MethodInfo methodInfo, object[] methodParameters, string[] displayText, battleBehavior battle = null){
+        if( battle==null){return;}
         toDisplay = displayText;  
         React = () => {methodInfo.Invoke(battle, methodParameters);};
     }
@@ -122,7 +137,7 @@ public class EnemyActionCase
 
 public class Enemy1 : EnemyClass
 {//example of an actual enemy
-    public Enemy1(battleBehavior battle) : base(battle)
+    public Enemy1(battleBehavior battle = null) : base(battle)
     {
         sentiment = new List<EnemyActionCase>{
             new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
@@ -130,7 +145,6 @@ public class Enemy1 : EnemyClass
         hp = 20;
         maxHP = 20;
         id = 0;
-        spritePath = "Prefabs/EnemySpritePrefabs/BoredGhostSprite";
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
@@ -140,7 +154,7 @@ public class Enemy1 : EnemyClass
 }
 public class PoorDog : EnemyClass
 {//example of an actual enemy
-    public PoorDog(battleBehavior battle) : base(battle)
+    public PoorDog(battleBehavior battle = null) : base(battle)
     {
         sentiment = new List<EnemyActionCase>{
             new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Pet)};
@@ -148,7 +162,7 @@ public class PoorDog : EnemyClass
         hp = 10;
         maxHP = 10;
         id = 1;
-        spritePath = "Prefabs/EnemySpritePrefabs/PoorDogSprite";
+        //spritepath
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy2",
             "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
@@ -248,7 +262,6 @@ public class Tutorial : EnemyClass
         maxHP = 6;
         id = 4;
         canRun = true;
-        spritePath = "Prefabs/EnemySpritePrefabs/PoorDogSprite";
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2",
@@ -329,7 +342,7 @@ public class Tutorial : EnemyClass
 }
 public class RepressedGhost : EnemyClass
 {//example of an actual enemy
-    public RepressedGhost(battleBehavior battle) : base(battle)
+    public RepressedGhost(battleBehavior battle = null) : base(battle)
     {
         sentiment = new List<EnemyActionCase>{
             new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
@@ -337,7 +350,6 @@ public class RepressedGhost : EnemyClass
         hp = 30;
         maxHP = 30;
         id = 2;
-        spritePath = "Prefabs/EnemySpritePrefabs/RepressedGhostSprite";
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Sine_Harder_Reverse",
             "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
@@ -408,14 +420,13 @@ public class RepressedGhost : EnemyClass
 }
 
 public class BoredGhost : EnemyClass{
-    public BoredGhost(battleBehavior battle) : base(battle){
+    public BoredGhost(battleBehavior battle = null) : base(battle){
         sentiment = new List<EnemyActionCase>{
             new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
         name = "Bored Ghost";
         hp = 20;
         maxHP = 20;
         id = 3;
-        spritePath = "Prefabs/EnemySpritePrefabs/BoredGhostSprite";
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Straight_Easy 5",
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",

@@ -54,10 +54,10 @@ MonoBehaviour:
   speed: 6
   enemyID: 1
   ToLoad: combatScene
-  patrolSpots:
-  - {fileID: 0}
-  pm: {fileID: 0}
-  currentPatrol: 0
+  positionContainer: {fileID: 0}
+  defaultRespawnTime: 10
+  unspawnedZ: 0
+  stillInScene: 1
 --- !u!61 &6843191285701972374
 BoxCollider2D:
   m_ObjectHideFlags: 0

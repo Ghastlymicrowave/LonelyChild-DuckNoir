@@ -13,11 +13,11 @@ public class EnemyBehavior : MonoBehaviour
     bool patrol = true;
     public float speed = 2f;
     InventoryManager inventoryManager;
-    GameObject player;
+     GameObject player;
     public int enemyID = 1;
     TextManager tm;
     public string ToLoad = "combatScene";
-    player_main pm = null;
+     player_main pm = null;
     int currentPatrol = 0;
     int patrolChunk = 0;
     bool patrolBackwards = false; 
@@ -30,15 +30,20 @@ public class EnemyBehavior : MonoBehaviour
     float spawnedZ;
     GameObject visualGhost;
     public bool stillInScene = true;
+    EnemyClass thisEnemy;
+    SpriteRenderer drawSprite;
+    Sprite[,] spriteList;
     private void Start()
     {
+        drawSprite = sprite.gameObject.GetComponent<SpriteRenderer>();
         if (camControl == null)
         {
             camControl = GameObject.Find("CameraControl").GetComponent<CameraControl>();
         }
         if (pm == null)
         {
-            pm = GameObject.Find("Player").GetComponent<player_main>();
+            player = GameObject.Find("Player");
+            pm = player.GetComponent<player_main>();
         }
         spawnedZ = transform.position.z;
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
@@ -53,6 +58,8 @@ public class EnemyBehavior : MonoBehaviour
                 positionChunks[i][a] = thisChunk.GetChild(a);
             }
         }
+        thisEnemy = EnemyLibrary.GetRawEnemyFromId(enemyID);
+        spriteList = thisEnemy.GetSprites();
     }
     private void Update()
     {
@@ -63,6 +70,8 @@ public class EnemyBehavior : MonoBehaviour
                 TryRespawn();
             }
         }
+        sprite.LookAt(camControl.activeCam.transform.position, Vector3.back);
+        SetSpriteFacing();
         if (pm != null)
         {
             if (!pm.canMove||!spawned)
@@ -70,7 +79,7 @@ public class EnemyBehavior : MonoBehaviour
                 return;
             }
         }
-        sprite.LookAt(camControl.activeCam.transform.position, Vector3.back);
+        
         if (patrol && isMoving)
         {
             Vector3 targetPos = positionChunks[patrolChunk][currentPatrol].position;
@@ -110,6 +119,41 @@ public class EnemyBehavior : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
         }
 
+    }
+
+    void SetSpriteFacing(){
+        Vector3 facing = positionChunks[patrolChunk][currentPatrol].position;
+        facing.z = transform.position.z;
+        facing-= transform.position;
+        Vector3 camFacing = camControl.transform.position;
+        camFacing.z = transform.position.z;
+        Vector3 playerPos = player.transform.position;
+        playerPos.z = transform.position.z;
+        camFacing = playerPos - camFacing;
+        float upDown = Vector3.Dot(facing,camFacing)*-.5f*2f;//down -1 back 1
+        camFacing = camControl.activeCam.transform.right;
+        camFacing.z = transform.position.z;
+        float rightLeft = Vector3.Dot(facing,camFacing)*-.5f*2f;//right 1 left -1
+        //0 front
+        //1 back
+        //2 right side
+        if (Mathf.Abs(upDown)>Mathf.Abs(rightLeft)){//updown priority
+            if (upDown>0f){//back
+                drawSprite.sprite = spriteList[1,0];
+                drawSprite.flipX = false;
+            }else{//front
+                drawSprite.sprite = spriteList[0,0];
+                drawSprite.flipX = false;
+            }
+        }else{//right left priority
+            if (rightLeft>0f){//right
+                drawSprite.sprite = spriteList[2,0];
+                drawSprite.flipX = false;
+            }else{//left
+                drawSprite.sprite = spriteList[2,0];
+                drawSprite.flipX = true;
+            }
+        }
     }
 
     void TryRespawn(){
