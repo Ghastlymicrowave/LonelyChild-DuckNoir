@@ -262,7 +262,6 @@ public class Tutorial : EnemyClass
         maxHP = 6;
         id = 4;
         canRun = true;
-        spritePath = "Prefabs/EnemySpritePrefabs/PoorDogSprite";
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2",
