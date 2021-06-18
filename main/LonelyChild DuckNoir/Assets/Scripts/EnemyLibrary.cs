@@ -282,7 +282,7 @@ public class Tutorial : EnemyClass
         sentimentalFaliure = new string[]{
             "The ghost hesitates and looks at the manual...",
             "Does this manual mean something to it?",
-            "\"Ooh, this is my favorite part! Let me hear you out!\"",
+            "\"Ooh, this is my favorite part! Let me help you out!\"",
             "\"You're supposed to show me the thing AFTER you beat me up and talk to me!\"",
             "\"It's the cool way to end battles!\"",
             "It snaps out of it's trance, was there something you needed to do first?"

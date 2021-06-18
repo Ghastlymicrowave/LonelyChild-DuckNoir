@@ -240,7 +240,8 @@ public class InventoryManager : MonoBehaviour
         save.roaming = new int[3]{1,2,3};
         save.attacks = new int[1]{(int)AttackActions.Flashlight};
         save.items = new int[1]{(int)ItemsEnum.Apple};
-        save.checkpointScene = "PlayroomWB";
+        //change back to PlayroomWB if needed
+        save.checkpointScene = "SecondFloor";
         File.WriteAllText(file,JsonUtility.ToJson(save));
     }
     public void SaveJSON(){
