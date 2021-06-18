@@ -103,11 +103,15 @@ public class Interactable : MonoBehaviour
         }
     }
     private void OnTriggerEnter2D(Collider2D other){
-        playerRef.InteractableEntered(this);
+        if (other.tag=="Player"){
+            playerRef.InteractableEntered(this);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other){
-        playerRef.InteractableLeft(this);
+        if (other.tag=="Player"){
+            playerRef.InteractableLeft(this);
+        }
     }
 
     public void CheckItemUse(InventoryManager.ivItem item){

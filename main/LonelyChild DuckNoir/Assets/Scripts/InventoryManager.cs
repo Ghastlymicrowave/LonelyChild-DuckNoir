@@ -13,6 +13,9 @@ public class InventoryManager : MonoBehaviour
     public List<int> ghostsRoaming; //not yet defeated, used to spawn one in overworld when scene is loaded, removed when defeated
     public List<int> ghostsAscended; // list of ghosts beaten with sentimental victory
     public List<int> ghostsCrucified; // list of ghosts beaten with crucifix
+    GameSceneManager gameSceneManager;
+    InventoryManager inventoryManager;
+    public string checkpointScene = "";
     public class ivItem
     {
         public readonly string name;
@@ -45,6 +48,8 @@ public class InventoryManager : MonoBehaviour
     {
         items = new List<ivItem>();
         Reset();
+        gameSceneManager = gameObject.GetComponent<GameSceneManager>();
+        inventoryManager = gameSceneManager.GetComponent<InventoryManager>();
     }
 
     void Awake()
@@ -223,24 +228,41 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public string jsonFile(){
+        return Application.persistentDataPath+"/"+json+".json";;
+    }
+
     public void ResetSave(){
-        string file = Application.persistentDataPath+"/"+json+".json";
-        string contents = ""; //default level data upon reset
-        if (File.Exists(file)){
-            File.WriteAllText(file,contents);
-        }
+        string file = jsonFile();
+        SaveData save = new SaveData();
+        save.ascended = new int[0];
+        save.crucified = new int[0];
+        save.roaming = new int[3]{1,2,3};
+        save.attacks = new int[1]{(int)AttackActions.Flashlight};
+        save.items = new int[1]{(int)ItemsEnum.Apple};
+        save.checkpointScene = "PlayroomWB";
+        File.WriteAllText(file,JsonUtility.ToJson(save));
     }
     public void SaveJSON(){
-        string file = Application.persistentDataPath+"/"+json+".json";
-        string outString = "";
-        File.WriteAllText(file,outString);
+        string file = jsonFile();
+        SaveData save = new SaveData();
+        save.ascended=ghostsAscended.ToArray();
+        save.attacks = new int[attacks.Count];
+        for(int i =0; i < attacks.Count; i++){
+            save.attacks[i] = (int)attacks[i];
+        }
+        save.crucified = ghostsCrucified.ToArray();
+        save.roaming = ghostsRoaming.ToArray();
+        save.checkpointScene = gameSceneManager.SceneName();
+        
+        File.WriteAllText(file,JsonUtility.ToJson(save));
     }
     public void LoadJSON(){
-        string file = Application.persistentDataPath+"/"+json+".json";
+        string file = jsonFile();
         if (File.Exists(file)){
             string contents = File.ReadAllText(file);
             SaveData save = JsonUtility.FromJson<SaveData>(contents);
-            items.Clear();
+            items = new List<ivItem>();
             for (int i = 0; i < save.items.Length;i++){
                 items.Add(GetItemFromId((Combat.ItemsEnum)save.items[i]));
             }
@@ -253,9 +275,11 @@ public class InventoryManager : MonoBehaviour
             ghostsAscended.AddRange(save.ascended);
             ghostsCrucified.Clear();
             ghostsCrucified.AddRange(save.crucified);
+            inventoryManager.checkpointScene = save.checkpointScene;
 
         }else{
             ResetSave();
+            LoadJSON();
         }
     }
 }
@@ -266,4 +290,5 @@ public class SaveData{
         public int[] roaming;
         public int[] ascended;
         public int[] crucified;
+        public string checkpointScene;
     }
