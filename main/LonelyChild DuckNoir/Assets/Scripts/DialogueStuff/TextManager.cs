@@ -85,6 +85,9 @@ public class TextManager : MonoBehaviour
             case 21: return new string[]{"???"};
             case 22: return new string[]{"???"};
             case 23: return new string[]{"???"};
+            //Manual
+            case 24: return stringsToArray("You picked up a ghost hunting manual.",
+            "You might want to click the button on the left of your screen and inspect this thing.");
             default: Debug.Log("got bad text id");return null;
         }
     }

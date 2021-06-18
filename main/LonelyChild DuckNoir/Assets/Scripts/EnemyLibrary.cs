@@ -256,7 +256,7 @@ public class Tutorial : EnemyClass
     public Tutorial(battleBehavior battle) : base(battle)
     {
         sentiment = new List<EnemyActionCase>{
-            new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Pet)};
+            new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
         name = "Ghost Hunting Nerd";
         hp = 6;
         maxHP = 6;
@@ -273,10 +273,10 @@ public class Tutorial : EnemyClass
         sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Manual);
 
         sentimentalSuccess = new string[]{
-            "Oh, I see... You already have a manual...",
+            "Oh, I see... You have the manual!",
             "\"I suppose I've taught you everything you need to know about battle sequences...\"",
             "\"I guess I’m just not useful anymore…\"",
-            "\"That’s okay with me!  Sayonara!\"",
+            "\"That’s okay with me! Sayonara!\"",
             
         };
         sentimentalFaliure = new string[]{
@@ -294,7 +294,7 @@ public class Tutorial : EnemyClass
                 new string[]{
                     "You attacked with the theremin...",
                     "The ghost is relatively unfazed!",
-                    "\"Ooh, budy, I got a resistance to this attack.\"",
+                    "\"Ooh, buddy, I got a resistance to this attack.\"",
                     "\"You've gotta try the other attack!\""
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,"DamageEnemy",
@@ -302,8 +302,7 @@ public class Tutorial : EnemyClass
                 new string[]{
                     "You attacked with the FirePoker...",
                     "The ghost isn't loving it... but isn't hating it, either.",
-                    "\"Too heavy to be stick...\nTo long to be ball...\"",
-                    "\":(\""
+                    "\"Buddy...\"\n\"You're not supposed to have that yet...\""
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,"DamageEnemy",
                 SingleMethod((object)2),
@@ -311,6 +310,7 @@ public class Tutorial : EnemyClass
                     "You attacked with the flashlight...",
                     "\"Oh god! My eyes! It burns!\"",
                     "\"Ha. Just kidding.\" \"I don't have eyes.\"",
+                    "\"You're gonna wanna keep the attacks coming until all the bulbs are lit on your scanner!\" \n\"When that happens, talk to me!\""
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,"DamageEnemy",
                 SingleMethod((object)4),
@@ -334,7 +334,9 @@ public class Tutorial : EnemyClass
                     "\"Have you been reading the manual?\"",
                     "\"You can talk to ghosts around here to figure out what their issue is!\"",
                     "\"I don't have any issues, I'm just a tutorial, but some of these guys are absolute class acts...\"",
-                    "\"...They won't stop fighting unless you really level with them.\""
+                    "\"...They won't stop fighting unless you really level with them.\"",
+                    "\"After doing so, you can use a certain item with sentimental value to save them, or a crucifix to destroy them.\"",
+                    "\"My item was right in front of me, it was a manual.\" \n\"Go ahead and use it on me!\""
             }),
             
         };
