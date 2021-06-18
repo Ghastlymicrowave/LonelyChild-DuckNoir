@@ -8,8 +8,10 @@ public class GameSceneManager : MonoBehaviour
     InventoryManager inventoryManager;
     public string combatSceneName = "CombatScene";
     public string pauseSceneName = "PauseScene";
+    public bool loadCheckpoint = false;
 
     void Awake(){
+        inventoryManager = GetComponent<InventoryManager>();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     void PackEverything(){
@@ -23,24 +25,33 @@ public class GameSceneManager : MonoBehaviour
             }
         }
     }
-    void Start(){
-        inventoryManager = GetComponent<InventoryManager>();
-    }
 
     public void TransitionScene(string sceneName){
+        loadCheckpoint = true;
         inventoryManager.SaveJSON();
         SceneManager.LoadScene(sceneName);
     }
-    public void LoadCheckpoint(string sceneName){
+    public void LoadInitalScene(string sceneName){
+        loadCheckpoint =true;
         inventoryManager.LoadJSON();
+        SceneManager.LoadScene(inventoryManager.checkpointScene);
+    }
+    public void LoadScene(string sceneName){
         SceneManager.LoadScene(sceneName);
+    }
+    public string SceneName(){
+        return SceneManager.GetActiveScene().name;
+    }
+    public void LoadCheckpoint(){
+        inventoryManager.LoadJSON();
+        SceneManager.LoadScene(inventoryManager.checkpointScene);
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "PlayroomWB"){
+        if (loadCheckpoint){
             PackEverything();
+            loadCheckpoint = false;
         }
-        inventoryManager.LoadJSON();
     }
     public void EnterCombat(){
         SceneManager.LoadScene(combatSceneName,LoadSceneMode.Additive);

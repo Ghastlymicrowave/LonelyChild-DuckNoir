@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
 
     TextManager tm;
     InventoryManager inventoryManager;
+    GameSceneManager gameSceneManager;
 
     void Start()
     {
@@ -23,7 +24,7 @@ public class MainMenu : MonoBehaviour
         }
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
-        
+        gameSceneManager = tm.gameObject.GetComponent<GameSceneManager>();
     }
 
     // Update is called once per frame
@@ -39,7 +40,8 @@ public class MainMenu : MonoBehaviour
         }
         //inventoryManager.playerPosOnStart = new Vector3(999999f, 999999f, 999999f);
         inventoryManager.ResetSave();
-        SceneManager.LoadScene(ToLoad);
+        gameSceneManager.LoadInitalScene(inventoryManager.checkpointScene);//to start new game, otherwise, load current data and use that scene
+        
     }
     public void QuitButton()
     {
@@ -47,7 +49,7 @@ public class MainMenu : MonoBehaviour
     }
     public void HowToPlayButton()
     {
-        if (textScroller.theCanvas.active == false)
+        if (textScroller.theCanvas.activeSelf == false)
         {
             string[] toScroll = TextManager.GetTextByID(textID);
             textScroller.ScrollText(toScroll, player_Main);
