@@ -122,27 +122,32 @@ public class EnemyBehavior : MonoBehaviour
     }
 
     void SetSpriteFacing(){
-        Vector3 facing = positionChunks[patrolChunk][currentPatrol].position;
-        facing.z = transform.position.z;
-        facing-= transform.position;
-        Vector3 camFacing = camControl.transform.position;
-        camFacing.z = transform.position.z;
-        Vector3 playerPos = player.transform.position;
-        playerPos.z = transform.position.z;
-        camFacing = playerPos - camFacing;
+        Vector3 facing = positionChunks[patrolChunk][currentPatrol].position;//enemy facing direction
+        if (!patrol){
+         facing = player.transform.position;   
+        }
+        facing.z = 0f;
+        facing-= new Vector3(transform.position.x,transform.position.y,0f);
+        facing.Normalize();
+        Vector3 camFacing = camControl.activeCam.transform.forward;
+        camFacing.z = 0f;
+        camFacing.Normalize();
+        //Debug.Log("facing:"+facing.ToString()+"camFacing: "+camFacing.ToString());
         float upDown = Vector3.Dot(facing,camFacing)*-.5f*2f;//down -1 back 1
         camFacing = camControl.activeCam.transform.right;
-        camFacing.z = transform.position.z;
+        camFacing.z = 0f;
         float rightLeft = Vector3.Dot(facing,camFacing)*-.5f*2f;//right 1 left -1
         //0 front
         //1 back
         //2 right side
+        
+        Debug.Log("ghost:"+thisEnemy.name+"\nv:"+upDown.ToString()+"\nh:"+rightLeft.ToString());
         if (Mathf.Abs(upDown)>Mathf.Abs(rightLeft)){//updown priority
-            if (upDown>0f){//back
-                drawSprite.sprite = spriteList[1,0];
-                drawSprite.flipX = false;
-            }else{//front
+            if (upDown>0f){//front
                 drawSprite.sprite = spriteList[0,0];
+                drawSprite.flipX = false;
+            }else{//back
+                drawSprite.sprite = spriteList[1,0];
                 drawSprite.flipX = false;
             }
         }else{//right left priority

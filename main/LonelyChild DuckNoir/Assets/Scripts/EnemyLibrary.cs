@@ -19,13 +19,13 @@ public static class EnemyLibrary
     }
     public static EnemyClass GetRawEnemyFromId(int id)
     {
-        Debug.Log("Getting raw enemy data");
         switch (id)
         {
             case 0: return new Enemy1();
             case 1: return new PoorDog();
             case 2: return new RepressedGhost();
             case 3: return new BoredGhost();
+            case 4: return new Tutorial();
             default: return null;
         }
     }
@@ -346,7 +346,7 @@ public class PoorDog : EnemyClass
 }
 public class Tutorial : EnemyClass
 {//example of an actual enemy
-    public Tutorial(battleBehavior battle) : base(battle)
+    public Tutorial(battleBehavior battle = null) : base(battle)
     {
         sentiment = new List<EnemyActionCase>{
             new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};

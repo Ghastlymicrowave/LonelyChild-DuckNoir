@@ -88,23 +88,34 @@ public class TextManager : MonoBehaviour
             //Manual, hourglass
             case 24: return stringsToArray("You picked up a ghost hunting manual.",
             "You might want to click the button on the left of your screen and inspect this thing.");
-            case 25: return stringsToArray("You picked up an hourglass.");
+<<<<<<< HEAD
+            case 30: return stringsToArray("You picked up an hourglass.");
             //specific doors
-            case 26:
+            case 31:
                 return stringsToArray("The master bedroom, locked as usual...", "You'll need to unlock it before you can use it.", 
                 "Press 'Use with' to get the party started...");
-            case 27:
+            case 32:
                 return stringsToArray("The staircase, believe it or not, has a lock on it...", "You'll need to unlock it before you can use it.", 
                 "Press 'Use with' to get the party started...");
-            case 28:
+            case 33:
                 return stringsToArray("The showing room, where lucky children get a chance at a home...\nAnd it's locked.", "You'll need to unlock it before you can use it.", 
                 "Press 'Use with' to get the party started...");
-            case 29:
+            case 34:
                 return stringsToArray("His bed.", "You feel shivers down your spine.");
-            case 30:
+            case 35:
                 return stringsToArray("Crayon drawings are strewn about.\nYou almost feel nostalgic.", "You remember your peers who drew this. Are they okay?");
-            case 31:
+            case 36:
                 return stringsToArray("He ate here.\nnever let you anywhere near.", "Look at you now, breaking the rules!\nYou little anti-establishmentarian, you!");
+=======
+            case 25: return new string[]{"It's an evil looking eye. You could probably get rid of it if you stabbed it with something."};//eye interact
+            case 26: return new string[]{"You ready your fire poker and get ready to jam it in the eye."};//eye firepoker used
+            case 27: return new string[]{"The eye lets out a wheezing sound as it withers away into dust...",
+            "You feel the floor rumble beneath you, whatever this is- it's getting weaker."};
+            case 28: return new string[]{"The eye writhes in pain, thrashing wildly before stiffening and disintegrating...",
+            "The tendrils underneath it seem to recoil, you're dealt this thing a great blow."};
+            case 29: return new string[]{"As the eye makes a loud poping sound, splashing some dark oily liquid over you before crumbling into dust.",
+            "You can tell that hurt."};
+>>>>>>> 23e0444055fe517ede4843bb86d77780c478996b
             default: Debug.Log("got bad text id");return null;
         }
     }
