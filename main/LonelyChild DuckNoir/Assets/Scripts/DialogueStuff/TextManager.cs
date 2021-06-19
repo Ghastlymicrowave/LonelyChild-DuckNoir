@@ -88,6 +88,14 @@ public class TextManager : MonoBehaviour
             //Manual
             case 24: return stringsToArray("You picked up a ghost hunting manual.",
             "You might want to click the button on the left of your screen and inspect this thing.");
+            case 25: return new string[]{"It's an evil looking eye. You could probably get rid of it if you stabbed it with something."};//eye interact
+            case 26: return new string[]{"You ready your fire poker and get ready to jam it in the eye."};//eye firepoker used
+            case 27: return new string[]{"The eye lets out a wheezing sound as it withers away into dust...",
+            "You feel the floor rumble beneath you, whatever this is- it's getting weaker."};
+            case 28: return new string[]{"The eye writhes in pain, thrashing wildly before stiffening and disintegrating...",
+            "The tendrils underneath it seem to recoil, you're dealt this thing a great blow."};
+            case 29: return new string[]{"As the eye makes a loud poping sound, splashing some dark oily liquid over you before crumbling into dust.",
+            "You can tell that hurt."};
             default: Debug.Log("got bad text id");return null;
         }
     }

@@ -7,6 +7,7 @@ public class Interactable : MonoBehaviour
 {
     InventoryManager inventoryManager;
     TextManager textManager;
+    GameSceneManager gameSceneManager;
     [SerializeField] interactableAction action;
     [SerializeField] Combat.ItemsEnum item;
     [SerializeField] Activatable activatable;
@@ -26,8 +27,10 @@ public class Interactable : MonoBehaviour
     [SerializeField] bool deleteRequiredItem;
     [SerializeField] int notCompleteItemUseTextID;//id of text to trigger when interacting while item hasn't been used, like to inspect
     [SerializeField] int usedRequiredItemTextId;
+    [SerializeField] string sceneName;
     void Start(){
         inventoryManager = GameObject.Find("PersistentManager").GetComponent<InventoryManager>();
+        gameSceneManager = inventoryManager.gameObject.GetComponent<GameSceneManager>();
         textManager = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         if (playerRef==null){playerRef = GameObject.Find("Player").GetComponent<player_main>();}
         if (randomdialogueIDs ==null){randomdialogueIDs = new int[0];}
@@ -38,7 +41,8 @@ public class Interactable : MonoBehaviour
         ITEM,//gives the player an item
         TALK,//just gives the player some text
         ATTACK,//Gives the player a new attack
-        ITEMandATTACK
+        ITEMandATTACK,
+        CHANGELEVEL
     }
 
     public bool HasItemUse(){
@@ -96,10 +100,18 @@ public class Interactable : MonoBehaviour
             inventoryManager.AddAttack(attack);
             inventoryManager.AddItem(item);
             break;
+            case interactableAction.CHANGELEVEL:
+            if (rand){
+                playerRef.TriggerDialogue(randomdialogueIDs[Random.Range(0,randomdialogueIDs.Length)]);
+            }else if (dialogueID>-1){
+                playerRef.TriggerDialogue(dialogueID);
+            }
+            gameSceneManager.TransitionScene(sceneName);
+            break;
         }
         if (oneTimeUse){
             playerRef.InteractableLeft(this);
-            this.gameObject.SetActive(false);
+            this.enabled = false;
         }
     }
     private void OnTriggerEnter2D(Collider2D other){
