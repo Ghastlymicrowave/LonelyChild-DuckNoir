@@ -138,6 +138,11 @@ public float duration;
         Ball,
         Photo,
         Key,
+        StaircaseKey,
+        MasterBedroomKey,
+        ShowingRoomKey,
+        Hourglass,
+
         Fire_Poker,
         Manual
     }
@@ -154,7 +159,8 @@ public float duration;
         Chat,
         ChatTwo,
         Pet,
-        Fake_Throw
+        Fake_Throw,
+        Call_Him_Bald
     }
 
 }

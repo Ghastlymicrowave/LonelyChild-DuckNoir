@@ -104,6 +104,33 @@ public class InventoryManager : MonoBehaviour
                     new string[]{""}, 
                     (int)ItemsEnum.Key,
                     "2D Assets/Items/Key");   
+            case ItemsEnum.StaircaseKey:
+                return new ivItem(
+                    "Staircase Key",
+                    "I might actually be able to get somewhere with this.",
+                    new string[]{"I want to say this was to unlock the gate by the showing room."},
+                    "",
+                    new string[]{""}, 
+                    (int)ItemsEnum.StaircaseKey,
+                    "2D Assets/Items/Key"); 
+            case ItemsEnum.MasterBedroomKey:
+                return new ivItem(
+                    "Master Bedroom Key",
+                    "I was never really allowed in the master bedroom. Could be dicey.",
+                    new string[]{"This looks like a 'key' item. Heh.", "For use on locked doors."},
+                    "",
+                    new string[]{""}, 
+                    (int)ItemsEnum.MasterBedroomKey,
+                    "2D Assets/Items/Key"); 
+            case ItemsEnum.ShowingRoomKey:
+                return new ivItem(
+                    "Showing Room Key",
+                    "Opens the place where parents to be meet us for the first time.",
+                    new string[]{"Not really how I anticipated my first time through that door, but oh well."},
+                    "",
+                    new string[]{""}, 
+                    (int)ItemsEnum.ShowingRoomKey,
+                    "2D Assets/Items/Key"); 
             case ItemsEnum.Fire_Poker:
                 return new ivItem(
                     "Fire Poker",
@@ -113,6 +140,17 @@ public class InventoryManager : MonoBehaviour
                     new string[]{""},
                     (int)ItemsEnum.Fire_Poker,
                     "2D Assets/Items/Fireplace_Poker");
+            case ItemsEnum.Hourglass:
+                return new ivItem(
+                    "Hourglass",
+                    "A time measuring device as old as... well... time.",
+                    new string[]{"Looking at this hourglass, you can't help but think of time. \nAnd how little of it you have; that we all have.",
+                    "\"What am I going to do with my life?\"\n\"What is the point OF life?\"",
+                    "You can feel yourself getting more full of yourself by the second.\nYou should stop."},
+                    "",
+                    new string[]{""},
+                    (int)ItemsEnum.Hourglass,
+                    "2D Assets/Items/Hourglass");
             case ItemsEnum.Manual:
                 return new ivItem(
                     "Ghost Hunting Manual",

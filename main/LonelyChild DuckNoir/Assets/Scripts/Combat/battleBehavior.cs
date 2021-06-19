@@ -435,6 +435,31 @@ public class battleBehavior : MonoBehaviour
                         toScroll.AddRange(new string[] {
                         "You showed the ball to the ghost...",
                         "It didn't seem to care..."});
+                        break;
+                    case (int)ItemsEnum.Manual:
+                        toScroll.AddRange(new string[] {
+                        "You showed the manual to the ghost...",
+                        "It didn't seem to care..."});
+                        break;
+                    case (int)ItemsEnum.StaircaseKey:
+                        toScroll.AddRange(new string[] {
+                        "You showed the staircase key to the ghost...",
+                        "It didn't seem to care..."});
+                        break;
+                    case (int)ItemsEnum.ShowingRoomKey:
+                        toScroll.AddRange(new string[] {
+                        "You showed the showing room key to the ghost...",
+                        "It didn't seem to care..."});
+                        break;
+                    case (int)ItemsEnum.MasterBedroomKey:
+                        toScroll.AddRange(new string[] {
+                        "You showed the master bedroom key to the ghost...",
+                        "It didn't seem to care..."});
+                        break;
+                    case (int)ItemsEnum.Hourglass:
+                        toScroll.AddRange(new string[] {
+                        "You showed the hourglass to the ghost...",
+                        "It didn't seem to care..."});
                     break;
                     case (int)ItemsEnum.Key:
                         toScroll.AddRange(new string[] {

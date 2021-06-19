@@ -12,7 +12,7 @@ public class TextManager : MonoBehaviour
     public static string[] GetTextByID(int id){//using switch because no loaded memory and fast
         switch(id){
             case 0: return stringsToArray("That didn't work");
-            case 1: return stringsToArray("This is the tutorial for The Lonely Child.\nYou may click anywhere to read more.",
+            case 1: return stringsToArray("This is the tutorial for The Lonely Child's BETA VERSION!~.\nYou may click anywhere to read more.",
             "Use WASD To move and the mouse to interact with things.",
             "Interactables show up as '!' and can be clicked on to engage text and maybe add an item to your inventory.",
             "The ghosts walking around out there... if they touch you...",
@@ -23,7 +23,7 @@ public class TextManager : MonoBehaviour
             "Crucify (Mean and unfulfilling, but fast)\nOr...",
             "Select the right 'Talk' functionality, and then...",
             "Show them the right sentimental item from your inventory to save their soul.\n(Long, but you're a good person I guess.)",
-            "Get to the end and defeat the boss to beat the Alpha version!~",
+            "Get to the end and defeat the boss to beat the Beta version!~",
             "But don't think it'll be that easy, however...",
             "There's puzzles to solve... An orphanage to navigate...",
             "And...\nOf course...",
@@ -85,9 +85,26 @@ public class TextManager : MonoBehaviour
             case 21: return new string[]{"???"};
             case 22: return new string[]{"???"};
             case 23: return new string[]{"???"};
-            //Manual
+            //Manual, hourglass
             case 24: return stringsToArray("You picked up a ghost hunting manual.",
             "You might want to click the button on the left of your screen and inspect this thing.");
+            case 25: return stringsToArray("You picked up an hourglass.");
+            //specific doors
+            case 26:
+                return stringsToArray("The master bedroom, locked as usual...", "You'll need to unlock it before you can use it.", 
+                "Press 'Use with' to get the party started...");
+            case 27:
+                return stringsToArray("The staircase, believe it or not, has a lock on it...", "You'll need to unlock it before you can use it.", 
+                "Press 'Use with' to get the party started...");
+            case 28:
+                return stringsToArray("The showing room, where lucky children get a chance at a home...\nAnd it's locked.", "You'll need to unlock it before you can use it.", 
+                "Press 'Use with' to get the party started...");
+            case 29:
+                return stringsToArray("His bed.", "You feel shivers down your spine.");
+            case 30:
+                return stringsToArray("Crayon drawings are strewn about.\nYou almost feel nostalgic.", "You remember your peers who drew this. Are they okay?");
+            case 31:
+                return stringsToArray("He ate here.\nnever let you anywhere near.", "Look at you now, breaking the rules!\nYou little anti-establishmentarian, you!");
             default: Debug.Log("got bad text id");return null;
         }
     }

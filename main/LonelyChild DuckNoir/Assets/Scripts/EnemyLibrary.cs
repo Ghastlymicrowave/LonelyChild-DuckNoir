@@ -13,6 +13,7 @@ public static class EnemyLibrary
             case 2: return new RepressedGhost(thisBehavior);
             case 3: return new BoredGhost(thisBehavior);
             case 4: return new Tutorial(thisBehavior);
+            case 5: return new Narcissist(thisBehavior);
             default: return null;
         }
     }
@@ -152,6 +153,97 @@ public class Enemy1 : EnemyClass
     }
 
 }
+public class Narcissist : EnemyClass
+{//example of an actual enemy
+    public Narcissist(battleBehavior battle = null) : base(battle)
+    {
+        sentiment = new List<EnemyActionCase>{
+            new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Call_Him_Bald)};
+        name = "The Narcissist";
+        hp = 20;
+        maxHP = 20;
+        id = 5;
+        //spritepath
+        attackPrefabNames = new string[] {
+            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy2",
+            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
+            "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2",
+            "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
+        talkActions = new TalkEnum[2] { TalkEnum.Chat, TalkEnum.Call_Him_Bald };
+        
+        displayPrefabPath = "Prefabs/EnemySpritePrefabs/NarcissistDisplay";
+        
+        sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Hourglass);
+
+        sentimentalSuccess = new string[]{
+            "You held out the hourglass...\nIt felt... right.",
+            "\"Wait... hmm...\"\n\"...yes.\"",
+            "\"Yes, I-I remember now.\"\n\"Time.\"",
+            "\"Time is all we have, and here I am wasting mine.\"",
+            "\"Look at you dragging out the philosophy!\"\n\"I might have been wrong about you!\"",
+            "\"...\"",
+            "\"All I think about is myself...\"",
+            "\"If you can change...\"\n\"...can the likes of me can change, too?\"",
+            "..."
+        };
+        sentimentalFaliure = new string[]{
+            "The ghost hesitates and looks at the hourglass...",
+            "Does this hourglass mean something to it?",
+            "\"I feel...\"\n\"...A sudden surge of pretention?\"",
+            "\"No! Only I can be so full of myself!\"\n\"This crooked-nosed knave couldn't rival my superiority!\"",
+            "It snaps out of it's trance, was there something you needed to do first?"
+        };
+
+        responses = new EnemyResponse[]{
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Theremin,"DamageEnemy",
+                SingleMethod((object)3),
+                new string[]{
+                    "You attacked with the theremin...",
+                    "\"Ah, yes!\"\n\"This reminds me of the soothing sounds of Lydia Kavina!\"\n\"Of course you don't know who that is.\"",
+                    "\"Have I told you I am very knowledgeable on a wide range of topics?\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,"DamageEnemy",
+                SingleMethod((object)2),
+                new string[]{
+                    "You attacked with the FirePoker...",
+                    "\"I am reminded of a quote from the Bard himself...though I won’t waste such an intelligent line on deaf ears.\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,"DamageEnemy",
+                SingleMethod((object)2),
+                new string[]{
+                    "You attacked with the flashlight...",
+                    "\"Ah! You fool!\"\n\"This only highlights my strong chin and high cheekbones!\"",
+                    "(nevermind the lack of hair on my head.)\n(I swear to god, if you so much as mention it...)",
+                    "\"I rather enjoy the spotlight, you know.\""
+                    
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,"DamageEnemy",
+                SingleMethod((object)4),
+                new string[]{
+                    "You attacked with the Garlic...",
+                    "The ghost hates it!",
+                    "\"Who taught you how to behave?\""
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,"DamageEnemy",
+                SingleMethod((object)1),
+                new string[]{
+                    "You started talking with the ghost...",
+                    "\"You there, young boy.\"\n\"Are there any other orphans about?\"",
+                    "\"I want someone whom I can mold in my own image, but berate significantly enough that I shall feel confident they will never surpass me.\"",
+                    "\"Oh, and not you.\""
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Call_Him_Bald,"DamageEnemy",
+                SingleMethod((object)1),
+                new string[]{
+                    "You call the ghost bald, even going so far as to attempt to spit-shine his head.",
+                    "\"WHAA???\"\n\"You think you can just walk up and do that to the likes of me, you hedge-borne little man!?\"",
+                    "\"How crude!\"\n\"How prudent!\"\n\"How...\"",
+                    "\"...familiar?\""
+            }),
+            
+        };
+    }
+}
 public class PoorDog : EnemyClass
 {//example of an actual enemy
     public PoorDog(battleBehavior battle = null) : base(battle)
@@ -175,7 +267,8 @@ public class PoorDog : EnemyClass
         sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Ball);
 
         sentimentalSuccess = new string[]{
-            "It felt... right.",
+            
+            "You held out the ball...\nIt felt... right.",
             "\"BALL!?!?!???!?\"",
             "\"!?!?!?!???!??!!?!??!??!?!??!?!?!??!?\"",
             "\"!?!?!?!???!??!!?!!?!?!?!??!?!?!?!?!????!??!?!??!?!?!??!?\"",
@@ -273,7 +366,8 @@ public class Tutorial : EnemyClass
         sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Manual);
 
         sentimentalSuccess = new string[]{
-            "Oh, I see... You have the manual!",
+            "You hold out the manual.",
+            "\"Oh, I see... You have the manual!\"",
             "\"I suppose I've taught you everything you need to know about battle sequences...\"",
             "\"I guess I’m just not useful anymore…\"",
             "\"That’s okay with me! Sayonara!\"",
