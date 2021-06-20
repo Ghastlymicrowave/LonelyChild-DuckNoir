@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6843191285701972372}
   - component: {fileID: 6843191285701972373}
   - component: {fileID: 2465582612580141742}
+  - component: {fileID: 1188639589219497953}
   m_Layer: 0
   m_Name: EnemyOverworld
   m_TagString: Untagged
@@ -138,6 +139,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3.94
+--- !u!95 &1188639589219497953
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6843191285701972379}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2fc691c614d2514418ab3584bac6dfe2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6843191286409290866
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +169,7 @@ GameObject:
   - component: {fileID: 6843191286409290867}
   - component: {fileID: 6843191286409290865}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,13 +182,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6843191286409290866}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.16812691, y: 0.16812691, z: 0.16812691}
   m_Children: []
   m_Father: {fileID: 6843191285701972377}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 270, y: 0, z: 0}
 --- !u!212 &6843191286409290865
 SpriteRenderer:
   m_ObjectHideFlags: 0

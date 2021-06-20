@@ -141,7 +141,6 @@ public class EnemyBehavior : MonoBehaviour
         //1 back
         //2 right side
         
-        Debug.Log("ghost:"+thisEnemy.name+"\nv:"+upDown.ToString()+"\nh:"+rightLeft.ToString());
         if (Mathf.Abs(upDown)>Mathf.Abs(rightLeft)){//updown priority
             if (upDown>0f){//front
                 drawSprite.sprite = spriteList[0,0];
