@@ -28,11 +28,11 @@ public class OverworldInventory : MonoBehaviour
         }
         menuOpen = !menuOpen;
         if (menuOpen){
-            buttonTxt.text="Close";
+            buttonTxt.text="Close Inventory";
             animator.Play("Open",0);
             GenerateItems();
         }else{
-            buttonTxt.text="Open";
+            buttonTxt.text="Open Inventory";
             animator.Play("Close",0);
         }
         player.InventoryOpen = menuOpen;
@@ -40,7 +40,7 @@ public class OverworldInventory : MonoBehaviour
 
     public void CloseMenu(){
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("InventoyIsClosed")&&!animator.GetCurrentAnimatorStateInfo(0).IsName("Close")){
-            buttonTxt.text="Open";
+            buttonTxt.text="Open Inventory";
             animator.Play("Close",0);
             menuOpen = false;
         }
