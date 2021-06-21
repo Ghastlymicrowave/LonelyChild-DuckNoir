@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 7466410144657596558}
   m_Layer: 8
   m_Name: InteractableHitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,7 +283,7 @@ MonoBehaviour:
   textScroller: {fileID: 0}
   canMove: 1
   InventoryOpen: 0
-  MovePlayerOnStart: 1
+  MovePlayerOnStart: 0
   cam: {fileID: 0}
 --- !u!58 &7466410144921916771
 CircleCollider2D:

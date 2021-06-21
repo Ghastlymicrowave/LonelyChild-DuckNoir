@@ -23,20 +23,29 @@ public class CameraTrigger : MonoBehaviour
         INOUTSIN,
     }
     public static float followSpeed = 0.2f;
-    public float transitionTime;
+    public float transitionTime = 1f;
     public TransitionCurve curve;
     [HideInInspector] public GameObject cam;
     
     public static CameraControl camControl;
     public static GameObject player;
-
+    CameraPan thisPan;
     Vector3 transStartPos;
-    Vector3 transEndPos;
+    Vector3 initalPos;
+    Vector3 transEndPos{
+        get{
+            if (thisPan==null){
+                return initalPos;
+            }else{
+                return thisPan.GetTargetPos();
+            }
+        }
+    }
     float transTime;
     Quaternion originalAngle;
     void Awake(){
         cam = transform.GetChild(0).gameObject;
-        transEndPos = cam.transform.position;
+        initalPos = cam.transform.position;
         originalAngle = cam.transform.rotation;
         cam.SetActive(false);
     }
@@ -44,16 +53,27 @@ public class CameraTrigger : MonoBehaviour
     {
         boxCol = GetComponent<BoxCollider2D>();
         
-        if (camControl==null){camControl = GameObject.Find("CameraControl").GetComponent<CameraControl>();}
+        if (camControl==null){
+            camControl = GameObject.Find("CameraControl").GetComponent<CameraControl>();
+        }
+        
         if (player==null){player = GameObject.Find("Player");}
         transTime = transitionTime;
+
+        thisPan = transform.GetChild(0).gameObject.GetComponent<CameraPan>();
         
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player"){
-            Triggered();
+        if (other.tag == "Player" && !camControl.cameras.Contains(this)){
+            camControl.cameras.Add(this);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other){
+        if (other.tag == "Player" && camControl.cameras.Contains(this)){
+            camControl.cameras.Remove(this);
         }
     }
 
@@ -111,8 +131,26 @@ public class CameraTrigger : MonoBehaviour
             }
         }else{
             if (camControl.activeCam == cam){
-                cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation,Quaternion.LookRotation(player.transform.position - cam.transform.position, new Vector3(0f,0f,-1f)),followSpeed);
+                if (thisPan!=null){
+                    cam.transform.position = Vector3.Lerp(cam.transform.position,thisPan.GetTargetPos(),thisPan.speed);
+                }else{
+                    //make camera back up from player if player gets too close, doesn't work with the way scenes are set up as of now
+                    
+                    /*Vector3 camAngle = (new Vector3(player.transform.position.x,player.transform.position.y,initalPos.z) - initalPos ).normalized;
+                    float range = 2f;
+                    float maxDistToOffset = 2f;
+                    float dist = Vector3.Distance(new Vector3(player.transform.position.x,player.transform.position.y,initalPos.z), initalPos );
+                    dist = Mathf.Clamp((-dist/range+1f)*maxDistToOffset,0f,maxDistToOffset);
+                    Debug.Log(dist);
+                    cam.transform.position = Vector3.Lerp(cam.transform.position,initalPos - camAngle*dist,followSpeed);*/
+
+                    cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation,Quaternion.LookRotation(player.transform.position - cam.transform.position, new Vector3(0f,0f,-1f)),followSpeed);
+                }
+                
             }
         }
+
+        //player -> transform
+        //cam transform -= player angle to transform
     }
 }

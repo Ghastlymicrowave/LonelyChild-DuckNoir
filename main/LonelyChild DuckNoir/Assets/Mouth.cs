@@ -6,6 +6,7 @@ public class Mouth : Activatable
 {
     Animator anim;
     [SerializeField] GameObject downwardInteractable;
+    [SerializeField] GameObject lookInteractable;
     public List<EvilEye> eyesRequired;
     public bool open = false;
     void Start(){
@@ -16,6 +17,7 @@ public class Mouth : Activatable
         if (eyesRequired.Count==0){
             open = true;
             downwardInteractable.SetActive(true);
+            lookInteractable.SetActive(false);
         }
         //play animation
     }

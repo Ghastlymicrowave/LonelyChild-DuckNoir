@@ -8,25 +8,21 @@ public class CameraPan : MonoBehaviour
     //public Transform pointHigher;
     //public Transform pointLower;
     public Transform player;
-    public CameraPanMovement cpm;
-    public float speed = 1f;
+    [SerializeField] CameraPanMovement cpm;
+    public float speed = 0.2f;
     void Start()
     {
         player = GameObject.Find("Player").transform;
     }
 
-    void Update()
-    {
-
+    public Vector3 GetTargetPos(){
         switch (cpm)
         {
             case CameraPanMovement.Yaxis:
-                this.transform.position = new Vector3(this.transform.position.x, player.position.y, this.transform.position.z);
-                break;
+                return new Vector3(this.transform.position.x, player.position.y, this.transform.position.z);
             default:
 
-                this.transform.position = new Vector3(player.position.x, this.transform.position.y, this.transform.position.z);
-                break;
+                return new Vector3(player.position.x, this.transform.position.y, this.transform.position.z);
         }
     }
 //what used to be in the update function.

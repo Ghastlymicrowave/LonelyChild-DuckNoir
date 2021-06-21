@@ -111,7 +111,7 @@ public class Interactable : MonoBehaviour
         }
         if (oneTimeUse){
             playerRef.InteractableLeft(this);
-            this.enabled = false;
+            this.gameObject.SetActive(false);
         }
     }
     private void OnTriggerEnter2D(Collider2D other){

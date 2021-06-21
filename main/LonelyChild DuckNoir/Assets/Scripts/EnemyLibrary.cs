@@ -26,6 +26,7 @@ public static class EnemyLibrary
             case 2: return new RepressedGhost();
             case 3: return new BoredGhost();
             case 4: return new Tutorial();
+            case 5: return new Narcissist();
             default: return null;
         }
     }
