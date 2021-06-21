@@ -168,7 +168,9 @@ public class Narcissist : EnemyClass
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy2",
             "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
-            "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2",
+            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
+            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy1",
+            "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_2",
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
         talkActions = new TalkEnum[2] { TalkEnum.Chat, TalkEnum.Call_Him_Bald };
         
