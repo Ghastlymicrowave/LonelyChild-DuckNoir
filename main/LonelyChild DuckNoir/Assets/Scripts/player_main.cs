@@ -34,9 +34,21 @@ public class player_main : MonoBehaviour
     private GameSceneManager gameSceneManager;
     private float dontUseTime = .1f;
 
-    //playerposonstart
-    public bool MovePlayerOnStart = true;
       [HideInInspector] public CameraTrigger cam;
+    
+    [SerializeField] AudioSource footstep;
+    [SerializeField] AudioSource general;
+    [SerializeField] AudioClip InteractSound;
+    [SerializeField] AudioClip ItemUse;
+
+    public void ItemUseSoundTrigger(){
+        general.clip = InteractSound;
+        general.Play();
+    }
+    public void InteractSoundTrigger(){
+        general.clip = ItemUse;
+        general.Play();
+    }
 
     void Start()
     {
@@ -51,16 +63,6 @@ public class player_main : MonoBehaviour
         interactableTarget = null;
         interactHitbox = transform.GetChild(0).gameObject;
         camControl = GameObject.Find("CameraControl").GetComponent<CameraControl>();
-
-
-        //player pos on start
-        Vector3 tempForComparison = new Vector3(999999f, 999999f, 999999f);
-        if (inventoryManager.playerPosOnStart != tempForComparison && MovePlayerOnStart)
-        {
-            this.gameObject.transform.position = inventoryManager.playerPosOnStart;
-           // FindClosestCamera();
-        }
-
 
         if (textScroller == null)
         {
