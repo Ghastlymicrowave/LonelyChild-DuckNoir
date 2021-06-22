@@ -120,6 +120,12 @@ public class TextManager : MonoBehaviour
             case 37: return new string[]{"This is some kind of massive gaping hole... or is it a mouth?",
             "You think you can see the floor below it, but there's huge teeth in the way."};
             default: Debug.Log("got bad text id");return null;
+            case 38:
+                return stringsToArray("You know, I’ve read every book in that library...The living have no comprehension of ghosts. ",
+                "It’s all ‘ghosts are evil, they haunt old mansions and flee at the sound of theremins...’", 
+                "Actually, most ghosts I know are very nice if you give ‘em the chance...", 
+                "I happen to like theremins, and I only hang out in this old dump because, well…");
+
         }
     }
 
