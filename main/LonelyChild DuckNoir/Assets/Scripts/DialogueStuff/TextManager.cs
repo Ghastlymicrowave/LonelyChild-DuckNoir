@@ -126,7 +126,22 @@ public class TextManager : MonoBehaviour
                 "It’s all ‘ghosts are evil, they haunt old mansions and flee at the sound of theremins...’", 
                 "Actually, most ghosts I know are very nice if you give ‘em the chance...", 
                 "I happen to like theremins, and I only hang out in this old dump because, well…");
-
+            //More items
+            case 39: return stringsToArray("You picked up a teddy bear.",
+            "It's painfully familiar.");
+            case 40: return stringsToArray("You picked up a russian doll.",
+            "Or, at least you think it's russian?\nYou're an orphan, not a history professor.");
+            case 41: return stringsToArray("You picked up an eraser.",
+            "Put it down, if you know what's good for you.",
+            "I know you can hear me.",
+            "Lets make this easier for both of us.");
+            case 42: return stringsToArray("You picked up a spinning toy.",
+            "If every other orphan wasn't mysteriously missing, you wouldn't want to be seen with this thing.");
+            //Inspects
+            case 43: return stringsToArray("The bedroom. Locked.",
+            "Press 'Use with' to get the party started...");
+            case 44: return stringsToArray("The urinal.\nBelieve it or not, locked every night.",
+            "Press 'Use with' to get the party started...");
         }
     }
 
