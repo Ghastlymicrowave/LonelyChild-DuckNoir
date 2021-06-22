@@ -13,7 +13,7 @@ public class GameSceneManager : MonoBehaviour
 
     void Awake(){
         inventoryManager = GetComponent<InventoryManager>();
-        enemyManager = GameObject.Find("Enemy Handler").GetComponent<EnemyManager>();
+        
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     void PackEverything(){
@@ -53,6 +53,7 @@ public class GameSceneManager : MonoBehaviour
         if (loadCheckpoint){
             PackEverything();
             loadCheckpoint = false;
+            enemyManager = GameObject.Find("Enemy Handler").GetComponent<EnemyManager>();
         }
     }
     public void EnterCombat(){
