@@ -7,9 +7,20 @@ public class GameSceneManager : MonoBehaviour
     GameObject overworld;
     InventoryManager inventoryManager;
     EnemyManager enemyManager;
+    [SerializeField] AudioClip[] combatAudio;
+    [SerializeField] AudioClip[] overworldAudio;
     public string combatSceneName = "CombatScene";
     public string pauseSceneName = "PauseScene";
     public bool loadCheckpoint = false;
+
+    public int currentLevel = 0;
+
+    public AudioClip GetCombatAudio(){//0, 1, 2 
+        return combatAudio[currentLevel];
+    }
+    public AudioClip GetOverworldAudio(){//0, 1, 2 
+        return overworldAudio[currentLevel];
+    }
 
     void Awake(){
         inventoryManager = GetComponent<InventoryManager>();
@@ -55,6 +66,13 @@ public class GameSceneManager : MonoBehaviour
             PackEverything();
             loadCheckpoint = false;
             enemyManager = GameObject.Find("Enemy Handler").GetComponent<EnemyManager>();
+        }
+
+        switch(scene.name){
+            case "FirstFloor": currentLevel = 0; break;
+            case "SecondFloor": currentLevel = 1; break;
+            case "Basement": currentLevel = 2; break;
+            default: break;
         }
     }
     public void EnterCombat(){
