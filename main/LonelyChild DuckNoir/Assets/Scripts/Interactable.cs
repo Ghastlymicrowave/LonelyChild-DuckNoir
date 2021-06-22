@@ -19,6 +19,7 @@ public class Interactable : MonoBehaviour
     public bool isReady = false;
     public bool isBusy = false;
     [SerializeField] bool oneTimeUse = false;
+    [SerializeField] bool DisableOnUse = true;
 
     public GameObject indicator;
 
@@ -111,8 +112,13 @@ public class Interactable : MonoBehaviour
         }
         if (oneTimeUse){
             playerRef.InteractableLeft(this);
-            this.gameObject.SetActive(false);
+            this.enabled = false;
+            indicator.SetActive(false);
+            if (DisableOnUse){
+                this.gameObject.SetActive(false);
+            }
         }
+        
     }
     private void OnTriggerEnter2D(Collider2D other){
         if (other.tag=="Player"){

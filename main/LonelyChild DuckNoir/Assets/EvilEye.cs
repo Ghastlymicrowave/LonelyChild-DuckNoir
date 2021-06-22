@@ -17,6 +17,6 @@ public class EvilEye : Activatable
             mouth.eyesRequired.Remove(this);
         }
         mouth.Activate();
-        //anim.Play("EyePoked",0);
+        anim.Play("EyeDie",0);
     }
 }
