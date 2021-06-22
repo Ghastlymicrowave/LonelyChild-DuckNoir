@@ -222,6 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5208415636200420828}
   - component: {fileID: 568745713944169697}
+  - component: {fileID: 4935648816884786744}
   m_Layer: 5
   m_Name: VContainer
   m_TagString: Untagged
@@ -278,6 +279,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &4935648816884786744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6032700998418326772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b3f61797f1e5b42bf776517785877c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restartLevelButton: {fileID: 4249999938472840957}
 --- !u!1 &7098458283312813321
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.27188742, b: 0.24313724, a: 1}
+  m_Color: {r: 1, g: 0.24313724, b: 0.26470572, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -489,7 +503,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: THE LONELY CHILD
+  m_Text: BAD ENDING
 --- !u!1 &7098458283458896166
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,7 +649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostIDs: 00000000
-  ToLoad: PlayroomWB
+  ToLoad: FirstFloor
   player_Main: {fileID: 0}
   textScroller: {fileID: 0}
   textID: 1
