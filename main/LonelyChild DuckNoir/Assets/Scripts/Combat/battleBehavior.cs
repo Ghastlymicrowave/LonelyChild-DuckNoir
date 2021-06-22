@@ -421,6 +421,13 @@ public class battleBehavior : MonoBehaviour
                             "The ghost doesn't seem to care..."
                         });
                     break;
+                    case (int)TalkEnum.Call_Him_Bald:
+                        DamageEnemy(1);
+                        toScroll.AddRange(new string[]{
+                            "You called the ghost bald...",
+                            "The ghost seems confused...?"
+                        });
+                    break;
                     default: Missing(actionType,actionID);break;
                 }
             break;
@@ -474,6 +481,26 @@ public class battleBehavior : MonoBehaviour
                         toScroll.AddRange(new string[] {
                         "You held the Photo out to the being...",
                         "But it seems it cannot see it..."});
+                    break;
+                    case (int)ItemsEnum.Teddy_Bear:
+                        toScroll.AddRange(new string[] {
+                        "You held the Teddy Bear out to the being...",
+                        "But it ignores it..."});
+                    break;
+                    case (int)ItemsEnum.Russian_Doll:
+                        toScroll.AddRange(new string[] {
+                        "You held the Russian Doll out to the being...",
+                        "But it doesn't get a reaction..."});
+                    break;
+                    case (int)ItemsEnum.Eraser:
+                        toScroll.AddRange(new string[] {
+                        "You held the Eraser out to the being...",
+                        "But it seems disinterested..."});
+                    break;
+                    case (int)ItemsEnum.Spinning_Toy:
+                        toScroll.AddRange(new string[] {
+                        "You held the Spinning Toy out to the being...",
+                        "But it doesn't seem to care..."});
                     break;
                     default: Missing(actionType,actionID);break;
                 }
