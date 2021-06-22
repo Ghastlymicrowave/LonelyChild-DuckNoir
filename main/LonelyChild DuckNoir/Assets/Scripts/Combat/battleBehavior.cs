@@ -41,11 +41,11 @@ public class battleBehavior : MonoBehaviour
     public AudioSource click;
     public AudioSource Damage;
     //audio for textscroller
+    public AudioSource Music;
     public ScannerLogic scannerLogic;
     public GameObject scanner;
     InventoryManager inventoryManager;
     Image healthbarFilled;
-
     GameSceneManager gameSceneManager;
     GameObject enemyParent;
     Animator healthbarAnim;
@@ -82,6 +82,7 @@ public class battleBehavior : MonoBehaviour
         enemyImage = enemyImageObj.GetComponent<DisplayEnemy>();
         healthbarAnim = healthbarFilled.transform.parent.GetComponent<Animator>();
         toScroll = new List<string>();
+        Music.clip = gameSceneManager.GetCombatAudio();
     }
 
     // Update is called once per frame

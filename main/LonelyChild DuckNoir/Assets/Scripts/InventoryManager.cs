@@ -167,6 +167,42 @@ public class InventoryManager : MonoBehaviour
                     new string[]{""},
                     (int)ItemsEnum.Manual,
                     "2D Assets/Items/Old_Book");
+            case ItemsEnum.Teddy_Bear:
+                return new ivItem(
+                    "Teddy Bear",
+                    "A familiar looking plush.",
+                    new string[]{"Looking closer, it seems strangely clean."},
+                    "",
+                    new string[]{""}, 
+                    (int)ItemsEnum.Teddy_Bear,
+                    "2D Assets/Items/Teddy_Sans_Blood"); 
+            case ItemsEnum.Russian_Doll:
+                return new ivItem(
+                    "Russian Doll",
+                    "Smells like coal.",
+                    new string[]{"This thing looks old."},
+                    "",
+                    new string[]{""}, 
+                    (int)ItemsEnum.Russian_Doll,
+                    "2D Assets/Items/Doll"); 
+            case ItemsEnum.Eraser:
+                return new ivItem(
+                    "Chalk Eraser",
+                    "A worn and dusty chalk eraser.",
+                    new string[]{"Resisting the urge to smack this this thing and release the chalk powder is exhausting."},
+                    "",
+                    new string[]{""}, 
+                    (int)ItemsEnum.Eraser,
+                    "2D Assets/Items/Old_Letter"); 
+            case ItemsEnum.Spinning_Toy:
+                return new ivItem(
+                    "Spinning Toy",
+                    "Opens the place where parents to be meet us for the first time.",
+                    new string[]{"You never really liked these things,\nbut some people just can't leave their hands to themselves."},
+                    "",
+                    new string[]{""}, 
+                    (int)ItemsEnum.Spinning_Toy,
+                    "2D Assets/Items/Fidget_Spinner"); 
             default: return null;
         }
     }

@@ -144,7 +144,11 @@ public float duration;
         Hourglass,
 
         Fire_Poker,
-        Manual
+        Manual,
+        Teddy_Bear,
+        Russian_Doll,
+        Eraser,
+        Spinning_Toy
     }
 
     public enum Enemies{
