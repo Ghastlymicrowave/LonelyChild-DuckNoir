@@ -197,7 +197,7 @@ public class InventoryManager : MonoBehaviour
             case ItemsEnum.Spinning_Toy:
                 return new ivItem(
                     "Spinning Toy",
-                    "Opens the place where parents to be meet us for the first time.",
+                    "An idle plaything.",
                     new string[]{"You never really liked these things,\nbut some people just can't leave their hands to themselves."},
                     "",
                     new string[]{""}, 
