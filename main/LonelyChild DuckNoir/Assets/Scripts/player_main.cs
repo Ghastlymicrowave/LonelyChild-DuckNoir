@@ -46,7 +46,7 @@ public class player_main : MonoBehaviour
         gameSceneManager = tm.gameObject.GetComponent<GameSceneManager>();
         overworldAudio = GetComponent<AudioSource>();
         overworldAudio.clip = gameSceneManager.GetOverworldAudio();
-
+        overworldAudio.Play();
         spriteObj = transform.GetChild(1).gameObject;
         thisAnimator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
