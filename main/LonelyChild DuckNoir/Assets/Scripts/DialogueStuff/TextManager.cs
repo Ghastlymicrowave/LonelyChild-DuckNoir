@@ -119,6 +119,7 @@ public class TextManager : MonoBehaviour
             
             case 37: return new string[]{"This is some kind of massive gaping hole... or is it a mouth?",
             "You think you can see the floor below it, but there's huge teeth in the way."};
+           
             default: Debug.Log("got bad text id");return null;
         }
     }
