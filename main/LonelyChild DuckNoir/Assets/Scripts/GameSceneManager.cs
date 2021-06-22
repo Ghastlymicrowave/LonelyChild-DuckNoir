@@ -6,12 +6,14 @@ public class GameSceneManager : MonoBehaviour
 {
     GameObject overworld;
     InventoryManager inventoryManager;
+    EnemyManager enemyManager;
     public string combatSceneName = "CombatScene";
     public string pauseSceneName = "PauseScene";
     public bool loadCheckpoint = false;
 
     void Awake(){
         inventoryManager = GetComponent<InventoryManager>();
+        enemyManager = GameObject.Find("Enemy Handler").GetComponent<EnemyManager>();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     void PackEverything(){
@@ -60,6 +62,7 @@ public class GameSceneManager : MonoBehaviour
     public void ExitCombat(){
         SceneManager.UnloadSceneAsync("CombatScene");
         overworld.SetActive(true);
+        enemyManager.ReLoaded();
     }
 
     public void Pause(){
