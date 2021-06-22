@@ -63,6 +63,7 @@ MonoBehaviour:
   ghostsRoaming: 
   ghostsAscended: 
   ghostsCrucified: 
+  checkpointScene: 
 --- !u!114 &-6587634965331317486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,4 +76,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 584cc631ca706c347a5ddbadb177a4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combatAudio:
+  - {fileID: 8300000, guid: 011f1637a741de3498004d74f4807795, type: 3}
+  - {fileID: 8300000, guid: 011f1637a741de3498004d74f4807795, type: 3}
+  - {fileID: 8300000, guid: 011f1637a741de3498004d74f4807795, type: 3}
+  overworldAudio:
+  - {fileID: 8300000, guid: b9d86c7d6a7264d4296d10c39304057d, type: 3}
+  - {fileID: 8300000, guid: b9d86c7d6a7264d4296d10c39304057d, type: 3}
+  - {fileID: 8300000, guid: b9d86c7d6a7264d4296d10c39304057d, type: 3}
   combatSceneName: CombatScene
+  pauseSceneName: PauseScene
+  loadCheckpoint: 0
+  currentLevel: 0
