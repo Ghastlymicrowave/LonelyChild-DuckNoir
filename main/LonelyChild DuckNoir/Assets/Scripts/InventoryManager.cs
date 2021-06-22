@@ -139,7 +139,7 @@ public class InventoryManager : MonoBehaviour
                     "",
                     new string[]{""},
                     (int)ItemsEnum.Fire_Poker,
-                    "2D Assets/Items/Fireplace_Poker");
+                    "2D Assets/Weapons/Fireplace_Poker");
             case ItemsEnum.Hourglass:
                 return new ivItem(
                     "Hourglass",
