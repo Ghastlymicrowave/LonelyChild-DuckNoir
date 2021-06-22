@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8764972575211503101}
   - component: {fileID: 5027352441184350111}
   - component: {fileID: 2539419062248800225}
+  - component: {fileID: 5744239815841554527}
   m_Layer: 0
   m_Name: LevelTransTrigger
   m_TagString: Untagged
@@ -42,7 +43,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -71,3 +72,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: 
+--- !u!114 &5744239815841554527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045273734437254570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68cf39aac036fc4d9019131262c5117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bCol: {fileID: 5027352441184350111}
+  boxColor: {r: 0.990566, g: 0, b: 0, a: 1}
+  arbitraryHeight: 0.5
+  iconType: 2
+  showCube: 1
