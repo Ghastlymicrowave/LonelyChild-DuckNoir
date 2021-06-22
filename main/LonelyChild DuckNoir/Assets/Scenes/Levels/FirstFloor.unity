@@ -8844,7 +8844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6843191285701972375, guid: 67ef65f1cf607894db9e02823ab3fab7, type: 3}
       propertyPath: enemyID
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6843191285701972375, guid: 67ef65f1cf607894db9e02823ab3fab7, type: 3}
       propertyPath: positionContainer
@@ -17377,7 +17377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3e09ea09f51607b479c717df0ac850ca, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.49
+      value: 4.697
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3e09ea09f51607b479c717df0ac850ca, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17410,6 +17410,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3e09ea09f51607b479c717df0ac850ca, type: 3}
       propertyPath: m_Name
       value: Hole
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506159455568820242, guid: 3e09ea09f51607b479c717df0ac850ca, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.23568872
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506159455568820242, guid: 3e09ea09f51607b479c717df0ac850ca, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0006
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506159455568820242, guid: 3e09ea09f51607b479c717df0ac850ca, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e09ea09f51607b479c717df0ac850ca, type: 3}
