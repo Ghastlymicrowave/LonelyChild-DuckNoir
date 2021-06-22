@@ -83,6 +83,7 @@ public class battleBehavior : MonoBehaviour
         healthbarAnim = healthbarFilled.transform.parent.GetComponent<Animator>();
         toScroll = new List<string>();
         Music.clip = gameSceneManager.GetCombatAudio();
+        Music.Play();
     }
 
     // Update is called once per frame
