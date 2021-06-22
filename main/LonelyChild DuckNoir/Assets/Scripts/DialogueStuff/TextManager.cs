@@ -142,6 +142,7 @@ public class TextManager : MonoBehaviour
             "Press 'Use with' to get the party started...");
             case 44: return stringsToArray("The urinal.\nBelieve it or not, locked every night.",
             "Press 'Use with' to get the party started...");
+            case 45: return stringsToArray("\"Zzzz....\"\n\"...what are you lookin' at?....\"");
         }
     }
 
