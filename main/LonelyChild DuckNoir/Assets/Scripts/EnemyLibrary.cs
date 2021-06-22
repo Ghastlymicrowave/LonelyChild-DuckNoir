@@ -175,8 +175,6 @@ public class Narcissist : EnemyClass
         id = 5;
         //spritepath
         attackPrefabNames = new string[] {
-            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy2",
-            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy1",
             "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_2",
