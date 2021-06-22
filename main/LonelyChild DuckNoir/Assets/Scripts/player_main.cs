@@ -33,6 +33,7 @@ public class player_main : MonoBehaviour
     private GameObject spriteObj;
     private GameSceneManager gameSceneManager;
     private float dontUseTime = .1f;
+    private AudioSource overworldAudio;
 
     //playerposonstart
     public bool MovePlayerOnStart = true;
@@ -43,7 +44,8 @@ public class player_main : MonoBehaviour
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
         gameSceneManager = tm.gameObject.GetComponent<GameSceneManager>();
-        
+        overworldAudio = GetComponent<AudioSource>();
+        overworldAudio.clip = gameSceneManager.GetOverworldAudio();
 
         spriteObj = transform.GetChild(1).gameObject;
         thisAnimator = GetComponent<Animator>();
