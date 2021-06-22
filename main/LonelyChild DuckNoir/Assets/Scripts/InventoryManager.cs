@@ -193,11 +193,11 @@ public class InventoryManager : MonoBehaviour
                     "",
                     new string[]{""}, 
                     (int)ItemsEnum.Eraser,
-                    "2D Assets/Items/Old_Letter"); 
+                    "2D Assets/Items/Eraser"); 
             case ItemsEnum.Spinning_Toy:
                 return new ivItem(
                     "Spinning Toy",
-                    "Opens the place where parents to be meet us for the first time.",
+                    "An idle plaything.",
                     new string[]{"You never really liked these things,\nbut some people just can't leave their hands to themselves."},
                     "",
                     new string[]{""}, 
