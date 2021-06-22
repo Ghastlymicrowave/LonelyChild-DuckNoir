@@ -20765,6 +20765,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8919594614811566448, guid: ccf86fd74a607824e92000ca6a871bc0, type: 3}
+      propertyPath: item
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919594614811566448, guid: ccf86fd74a607824e92000ca6a871bc0, type: 3}
       propertyPath: oneTimeUse
       value: 1
       objectReference: {fileID: 0}
@@ -21001,7 +21005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 619042250434018316, guid: 9b0082740161f39469a3b3a0cc1ae58d, type: 3}
       propertyPath: dialogueID
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 619042250434018316, guid: 9b0082740161f39469a3b3a0cc1ae58d, type: 3}
       propertyPath: oneTimeUse
