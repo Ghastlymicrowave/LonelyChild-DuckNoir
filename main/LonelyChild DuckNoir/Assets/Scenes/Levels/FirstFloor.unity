@@ -675,6 +675,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EvilEye (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8316102926875763499, guid: 11f00c607f379964eb1f8330833364af, type: 3}
+      propertyPath: interactable
+      value: 
+      objectReference: {fileID: 1506908505}
     - target: {fileID: 8316102926875763502, guid: 11f00c607f379964eb1f8330833364af, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.29319
@@ -12678,6 +12682,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 682037705322643021, guid: 245e41efc88cb7943bc79c5d0b310f0f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 066416256c797c84193eb297f2d80444, type: 2}
+    - target: {fileID: 2369014925085084270, guid: 245e41efc88cb7943bc79c5d0b310f0f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 066416256c797c84193eb297f2d80444, type: 2}
+    - target: {fileID: 3153234125489846397, guid: 245e41efc88cb7943bc79c5d0b310f0f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 996306e1794d8614c90ffa30c126d095, type: 2}
     - target: {fileID: 5704510688089019653, guid: 245e41efc88cb7943bc79c5d0b310f0f, type: 3}
       propertyPath: m_Name
       value: Mouth
@@ -16074,6 +16090,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbd6b2f19801bb54e967e2456ad53181, type: 3}
+--- !u!114 &1506908505 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2397576409657532518, guid: 11f00c607f379964eb1f8330833364af, type: 3}
+  m_PrefabInstance: {fileID: 49100987}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f53bc541e7977bc41888b808d91e9a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1508591860
 PrefabInstance:
   m_ObjectHideFlags: 0
