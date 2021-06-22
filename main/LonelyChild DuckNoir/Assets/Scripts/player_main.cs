@@ -38,14 +38,9 @@ public class player_main : MonoBehaviour
     //playerposonstart
     public bool MovePlayerOnStart = true;
       [HideInInspector] public CameraTrigger cam;
-    
-    Vector2 lastDirection;
-    Vector2 lastFacing;
 
     void Start()
     {
-        lastDirection = Vector2.zero;
-        lastFacing = Vector2.zero;
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
         gameSceneManager = tm.gameObject.GetComponent<GameSceneManager>();
@@ -124,22 +119,15 @@ public class player_main : MonoBehaviour
         vinput = Input.GetAxis("VMove");
         isMoving = (hinput != 0f || vinput != 0f);
         thisAnimator.SetBool("Moving",isMoving);
-
-        bool newDirection = false;
-
         if (isMoving)
         {
-            
-            if (currentSpd < initalSpd || Vector2.Angle(new Vector2(hinput,vinput).normalized,lastDirection)>10f)
+            if (currentSpd < initalSpd)
             {//moving from standstill
                 currentSpd = initalSpd;
                 facing = new Vector2(hinput, vinput).normalized;
-                newDirection=true;
-                lastDirection = facing;
             }
             else
             {
-                newDirection=false;
                 currentSpd = Mathf.Min(spdAccel + currentSpd, maxSpd);
                 if (Vector2.Angle(new Vector2(hinput, vinput), facing) > 160f)
                 {
@@ -149,6 +137,7 @@ public class player_main : MonoBehaviour
                 {
                     facing = Vector2.Lerp(facing, new Vector2(hinput, vinput).normalized, rotatationSpd).normalized;//rotate angle with lerp
                 }
+
             }
         }
         else
@@ -164,27 +153,14 @@ public class player_main : MonoBehaviour
 
         if (currentSpd != 0)
         {
-            Vector2 standardFacing;
-            float angleOffset;
-            if (newDirection){
-                standardFacing = new Vector2(facing.x, facing.y) * currentSpd;
+            Vector2 standardFacing = new Vector2(facing.x, facing.y) * currentSpd;
 
-                Vector2 vectorOffset = transform.position - camControl.activeCam.transform.position;
-                vectorOffset = vectorOffset.normalized;
-                angleOffset = Mathf.Atan2( vectorOffset.x,vectorOffset.y )  * Mathf.Rad2Deg; 
-                standardFacing = rotate(standardFacing,-angleOffset);
-                
-                Vector3 thisDirection = new Vector2(hinput, vinput).normalized;
-                lastFacing = standardFacing;
-            }else{
-                standardFacing = lastFacing;
-                Vector2 vectorOffset = transform.position - camControl.activeCam.transform.position;
-                vectorOffset = vectorOffset.normalized;
-                angleOffset = Mathf.Atan2( vectorOffset.x,vectorOffset.y )  * Mathf.Rad2Deg; 
-            }
-            
+            Vector2 vectorOffset = transform.position - camControl.activeCam.transform.position;
+            vectorOffset = vectorOffset.normalized;
+            float angleOffset = Mathf.Atan2( vectorOffset.x,vectorOffset.y )  * Mathf.Rad2Deg; 
+            standardFacing = rotate(standardFacing,-angleOffset);
 
-            //Debug.DrawLine(camControl.activeCam.transform.position,camControl.activeCam.transform.position+(Vector3)angleToVec2(-angleOffset+90)*20f);
+            Debug.DrawLine(camControl.activeCam.transform.position,camControl.activeCam.transform.position+(Vector3)angleToVec2(-angleOffset+90)*20f);
             //Debug.DrawLine(transform.position,transform.position+(Vector3)angleToVec2(-angleOffset-90)*20f);
 
             rb.MovePosition((Vector2)transform.position + standardFacing);
