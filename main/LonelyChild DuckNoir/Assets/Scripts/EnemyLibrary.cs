@@ -130,8 +130,8 @@ public class EnemyReaction{
 
 public class HeroClass
 {
-    public int hp = 10;
-    public int maxHP = 10;
+    public int hp = 20;
+    public int maxHP = 20;
 }
 
 public class EnemyActionCase
