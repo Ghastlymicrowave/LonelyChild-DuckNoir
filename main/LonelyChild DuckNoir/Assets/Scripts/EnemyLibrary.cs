@@ -15,6 +15,9 @@ public static class EnemyLibrary
             case 4: return new Tutorial(thisBehavior);
             case 5: return new Narcissist(thisBehavior);
             case 6: return new TroubledChild(thisBehavior);
+            case 7: return new NiceDemonGuy(thisBehavior);
+            case 8: return new DevilsHands(thisBehavior);
+            case 9: return new GremlinOfDeceit(thisBehavior);
             default: return null;
         }
     }
@@ -29,6 +32,9 @@ public static class EnemyLibrary
             case 4: return new Tutorial();
             case 5: return new Narcissist();
             case 6: return new TroubledChild();
+            case 7: return new NiceDemonGuy();
+            case 8: return new DevilsHands();
+            case 9: return new GremlinOfDeceit();
             default: return null;
         }
     }
@@ -325,6 +331,261 @@ public class TroubledChild : EnemyClass
                     "\"Are you...good?\"\n\"You're not here to hurt me?\"",
                     "\"Do you want to stop them?\"",
                     "\"He stays below... in the basement!\""
+            }),
+            
+            
+        };
+    }
+}
+public class NiceDemonGuy : EnemyClass
+{//example of an actual enemy
+    public NiceDemonGuy(battleBehavior battle = null) : base(battle)
+    {
+        sentiment = new List<EnemyActionCase>{
+            new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
+        name = "NiceDemonGuy";
+        hp = 15;
+        maxHP = 15;
+        id = 7;
+        //spritepath
+        attackPrefabNames = new string[] {
+            "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_3",
+            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
+            "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy",
+            "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
+            "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2"};
+        talkActions = new TalkEnum[1] { TalkEnum.Chat};
+        
+        displayPrefabPath = "Prefabs/EnemySpritePrefabs/NiceDemonGuyDisplay";
+        
+        sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Russian_Doll);
+
+        sentimentalSuccess = new string[]{
+            "You held out the Russian Doll...\nIt felt... right.",
+            "\"Woah, hey, where the heck did ya find this?\"",
+            "\"This was my favorite toy back when I was just a wee demon-in-training!\"",
+            "\"Brings back so many warm memories...\"",
+            "\"And I don't exaggerate when I say WARM, heh, because, you know...\"",
+            "\"...I'm a demon.\"\n(I told you I was a demon, didn't I?)",
+            "\"Oh, I'm rambling again.\"\n\"Dang...\"",
+            "\"...Before I go, I need you to know something.\"",
+            "\"Steer clear of the hole in the living room.\"",
+            "\"You don't want anything to do with what's down here, I'm telling ya.\""
+        };
+        sentimentalFaliure = new string[]{
+            "The ghost hesitates and looks at the Russian Doll...",
+            "Does this Russian Doll mean something to it?",
+            "\"Hey, little buddy, what was that you had in your hand just then?\""
+            
+        };
+
+        responses = new EnemyResponse[]{
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Theremin,"DamageEnemy",
+                SingleMethod((object)2),
+                new string[]{
+                    "You attacked with the theremin...",
+                    "\"Say, you're good with that thing!\"\n\"Down there...\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,"DamageEnemy",
+                SingleMethod((object)6),
+                new string[]{
+                    "You attacked with the FirePoker...",
+                    "\"Listen, kid... I'm a demon for cryin' out loud.\"", "\"A fire poker just ain't gonna do the trick, sorry to say.\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,"DamageEnemy",
+                SingleMethod((object)4),
+                new string[]{
+                    "You attacked with the flashlight...",
+                    "\"What're you shining that in my face for?\"",
+                    "\"I'm like a demon guy or whatever.\"\n\"You couldn't possibly expect me to have a meaningful reaction to a flashlight, could ya?\""
+                    
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,"DamageEnemy",
+                SingleMethod((object)4),
+                new string[]{
+                    "You attacked with the Garlic...",
+                    "\"I'm a demon, not a vampire...\"\n\"...but I'm flattered.\"",
+                    "\"Guess I could take some extra damage for the unintended compliment.\""
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,"DamageEnemy",
+                SingleMethod((object)1),
+                new string[]{
+                    "You started talking with the ghost...",
+                    "\"Oh, man, no one's talked to me like that in eons!\"\n(Maybe the whole floating demon head thing puts people off???)",
+                    "\"Even other demons stay clear!\"\n\"I don't even know why, because...\"",
+                    "\"ah, look, I'm rambling...\""
+            }),
+            
+            
+        };
+    }
+}
+public class GremlinOfDeceit : EnemyClass
+{//example of an actual enemy
+    public GremlinOfDeceit(battleBehavior battle = null) : base(battle)
+    {
+        sentiment = new List<EnemyActionCase>{
+            new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
+        name = "The Gremlin Of Deceit";
+        hp = 42;
+        maxHP = 42;
+        id = 9;
+        //spritepath
+        attackPrefabNames = new string[] {
+            "Prefabs/combatEnemyTurn/attacks/Sine_Harder_Reverse",
+            "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
+            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
+            "Prefabs/combatEnemyTurn/attacks/Mix_Easy",
+            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy2",
+            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
+            
+            "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy"};
+        talkActions = new TalkEnum[1] { TalkEnum.Chat};
+        
+        displayPrefabPath = "Prefabs/EnemySpritePrefabs/GremlinOfDeceitDisplay";
+        
+        sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Eraser);
+
+        sentimentalSuccess = new string[]{
+            "You held out the Eraser...\nIt felt... right.",
+            "\"Oh my gods!\"\n\"My power is eviscerated with one fell blow?\"",
+            "\"No!\"\n\"No! No! No!\"",
+            "\"...\"",
+            "\"I didn't bring these ghouls here, if you must know...\"",
+            "\"There really is someone down below.\"\n\"Oh!\"",
+            "\"You better find your way out while you still can.\""
+        };
+        sentimentalFaliure = new string[]{
+            "The ghost hesitates and looks at the Eraser...",
+            "Does this Eraser mean something to it?",
+            "\"You dare!?\"\n\"Haven't you learned not to challenge my authority\""
+            
+        };
+
+        responses = new EnemyResponse[]{
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Theremin,"DamageEnemy",
+                SingleMethod((object)5),
+                new string[]{
+                    "You attacked with the theremin...",
+                    "\"BAH!\"\n\"The ungainly sounds of that mid century hogwash!\"",
+                    "*ahem*\n\"That is, I mean...\"",
+                    "\"I think you sound lovely, dear...\"\n\"Come closer, I can teach you a thing or two about music...\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,"DamageEnemy",
+                SingleMethod((object)2),
+                new string[]{
+                    "You attacked with the FirePoker...",
+                    "\"Oooo, that burns so sweet...\"\n\"But I know just the right spots!\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,"DamageEnemy",
+                SingleMethod((object)4),
+                new string[]{
+                    "You attacked with the flashlight...",
+                    "\"Ah, you little runt!\"\n\"I OUGHTA-\"",
+                    "*ahem*",
+                    "\"Why don't ya just give that little flashlight here, my sweet?\"\n\"Gremlin'll show you how to really use it.\""
+                    
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,"DamageEnemy",
+                SingleMethod((object)1),
+                new string[]{
+                    "You attacked with the Garlic...",
+                    "\"What exactly did you think that would do?\"",
+                    "\"Do you really think your superstitious tricks will help you?\"\n\"Look around you. Look where that brought your friends.\"",
+                    "\"Besides...\"\n\"You know what happens when you sneak food...\""
+                    
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,"DamageEnemy",
+                SingleMethod((object)1),
+                new string[]{
+                    "You started talking with the ghost...",
+                    "\"Do you remember me?\"\n\"From nightmares long ago?\"",
+                    "\"Children draw from my form, you know!\"\n(Oh, my rhyming schemes!)",
+                    "\"Am I responsible for reality splitting at the seams?\"\n\"Perhaps...\""
+            }),
+            
+            
+        };
+    }
+}
+public class DevilsHands : EnemyClass
+{//example of an actual enemy
+    public DevilsHands(battleBehavior battle = null) : base(battle)
+    {
+        sentiment = new List<EnemyActionCase>{
+            new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
+        name = "Devil's Hands";
+        hp = 12;
+        maxHP = 12;
+        id = 8;
+        //spritepath
+        attackPrefabNames = new string[] {
+            "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_3",
+            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
+            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy1",
+            "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
+            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
+            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy1",
+            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
+            "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy",
+            "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
+            "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2"
+            };
+        talkActions = new TalkEnum[1] { TalkEnum.Chat};
+        
+        displayPrefabPath = "Prefabs/EnemySpritePrefabs/DevilsHandsDisplay";
+        
+        sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Spinning_Toy);
+
+        sentimentalSuccess = new string[]{
+            "You held out the Spinning Toy...\nIt felt... right.",
+            "\"Why, Lookie here!\"\n\"I remember this...\"",
+            "\"So much free time spent, so many hands occupied...\"\n\"So much time not spent...\"",
+            "\"...in the basement.\"",
+            "\"Thank you.\""
+        };
+        sentimentalFaliure = new string[]{
+            "The ghost hesitates and looks at the Spinning Toy...",
+            "For a he's moment, he's able to stand still.\nIt isn't long, though.",
+            "Does this Spinning Toy mean something to it?"
+            
+        };
+
+        responses = new EnemyResponse[]{
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Theremin,"DamageEnemy",
+                SingleMethod((object)3),
+                new string[]{
+                    "You attacked with the theremin...",
+                    "\"I've always thought of taking up music.\"",
+                    "\"They would never let me.\"\n\"Too much noise\"",
+                    "\"The devil plays music.\"\n\"Young ones like me should practice more... wholesome passtimes.\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,"DamageEnemy",
+                SingleMethod((object)8),
+                new string[]{
+                    "You attacked with the FirePoker...",
+                    "\"Oh, that familiar sting!\"\n\"What's wrong with you?\""
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,"DamageEnemy",
+                SingleMethod((object)1),
+                new string[]{
+                    "You attacked with the flashlight...",
+                    "\"Are you trying to shine a light on the subject?\""
+                    
+            }),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,"DamageEnemy",
+                SingleMethod((object)0),
+                new string[]{
+                    "You attacked with the Garlic...",
+                    "\"Where'd you get that?\"\n\"Do you have any idea what they'll do if they catch you sneaking food?\""
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,"DamageEnemy",
+                SingleMethod((object)1),
+                new string[]{
+                    "You started talking with the ghost...",
+                    "\"When I was a young thing, I could never keep my hands still.\"\n\"Always fidgeting... fidget and fidget.\"",
+                    "\"I had to be punished.\"",
+                    "\"No good boy fidgets like that...\"\n\"...no good deeds can come from that...\""
             }),
             
             
