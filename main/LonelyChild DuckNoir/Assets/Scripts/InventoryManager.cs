@@ -157,7 +157,7 @@ public class InventoryManager : MonoBehaviour
                     "A ghost hunting manual. Some pages are missing, others have bite marks.",
                     new string[]{"You crack open the manual and have a read. The manual reads thusly:", "\"If you are unfortunate enough to face a ghost, here's what you do.\"",
                     "\"1: Talk to the ghost. Say the right thing, and the next steps will go smoother.\"",
-                    "\"2: Attack the ghost's senses until the ghost emmits energy.\"", "\"If you set up your bulbs like in chapter one, they should be lit up\"",
+                    "\"2: Attack the ghost's senses until the ghost emmits energy.\"", "\"You have 5 bulbs. One will light up whenever you damage the ghost by 20%.\"\n\"All five bulbs should be lit up for the next step.\"",
                     "\"Now, you've got some options.\"",
                     "\"3A: Use your crucifix and destroy the ghost. Or....\"",
                     "\"Make sure you've said the right thing first and then...\"",
