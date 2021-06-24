@@ -11,13 +11,13 @@ public class OverworldInventory : MonoBehaviour
     Text buttonTxt;
     [SerializeField] GameObject itemPrefab;
     GameObject content;
-    player_main player;
+    ThirdPersonPlayer player;
     InventoryManager inventoryManager;
     void Start()
     {
         buttonTxt = toggleButton.transform.GetChild(0).GetComponent<Text>();
         content = transform.GetChild(0).GetChild(0).gameObject;
-        player = GameObject.Find("Player").GetComponent<player_main>();
+        player = GameObject.Find("Player").GetComponent<ThirdPersonPlayer>();
         inventoryManager = GameObject.Find("PersistentManager").GetComponent<InventoryManager>();
     }
 

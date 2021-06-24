@@ -35,60 +35,55 @@ public class ThirdPersonPlayer : MonoBehaviour
     Vector3 currentCameraBounceback;
     Vector3 currentCameraBouncebackTarget;
     InventoryManager inventoryManager;
+    GameSceneManager gameSceneManager;
+    TextManager tm;
     [SerializeField] LayerMask cameraCollisionMask;
+    public TextScroller textScroller;
+    Interactable interactableTarget;
+    [SerializeField] GameObject interactHitbox;
+    [HideInInspector] public bool canMove = true;
+    [HideInInspector] public bool InventoryOpen = false;
+    float dontUseTime = .1f;
+    Animator thisAnimator;
+    
     void Start()
     {
+        thisAnimator = GetComponent<Animator>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         GameObject persistentManager;
         persistentManager = GameObject.Find("PersistentManager");
         if (persistentManager!=null){
             inventoryManager = persistentManager.GetComponent<InventoryManager>();
+            gameSceneManager = persistentManager.GetComponent<GameSceneManager>();
+            tm = persistentManager.GetComponent<TextManager>();
             UpdateOptions(inventoryManager.gameObject.GetComponent<SettingsManager>().GetOptions());
         }else{
-            Debug.Log("the player can't access the persistent manager! If you know this, ignore this message");
+            Debug.LogWarning("the player can't access the persistent manager! If you know this, ignore this message");
         }
         currentCameraBounceback = Vector3.zero;
         currentCameraLocalPos = Vector3.zero;
+        if (textScroller == null)
+        {
+            textScroller = FindObjectOfType<TextScroller>();
+        }
     }
 
     public void UpdateOptions(float[] inputArray){
-        HmouseSmoothing = inputArray[0];
-        VmouseSmoothing = inputArray[1];
+        HmouseSmoothing = 1f-inputArray[0];
+        VmouseSmoothing = 1f-inputArray[1];
         HmouseSensitivity = inputArray[2];
         VmouseSensitivity = inputArray[3];
     }
-    
-    //thisAnimator.SetBool("Moving",isMoving);
-    /*if (isMoving)
-    {
-        if (currentSpd < initalSpd)
-        {//moving from standstill
-            currentSpd = initalSpd;
-            //facing = new Vector2(hinput, vinput).normalized;
-        }
-        else
-        {
-            currentSpd = Mathf.Min(spdAccel + currentSpd, maxSpd);
-            if (Vector2.Angle(new Vector2(hinput, vinput), facing) > 160f)
-            {
-                facing = Vector2.Lerp(facing, new Vector2(hinput, vinput).normalized, 0.51f).normalized;
-            }
-            else
-            {
-                facing = Vector2.Lerp(facing, new Vector2(hinput, vinput).normalized, rotatationSpd).normalized;//rotate angle with lerp
-            }
 
+    public bool ValidRequiresItem(){
+        if (interactableTarget!=null){
+            return interactableTarget.HasItemUse();
+        }else{
+            return false;
         }
+        
     }
-    else
-    {//not actively moving, apply friction
-        currentSpd = Mathf.Max(0f, currentSpd - currentSpd * Kfriction);
-        if (currentSpd < Sfriction)
-        {
-            currentSpd = 0;
-        }
-    }*/
 
     public static Vector2 Rotate(Vector2 v, float delta) {
         delta *= Mathf.Deg2Rad;
@@ -118,19 +113,16 @@ public class ThirdPersonPlayer : MonoBehaviour
 
         RaycastHit castInfo;
 
-//go from player postion to camera position
+        //go from player postion to camera position
 
         float camDistToPlayer = Mathf.Abs(cameraTransform.GetChild(0).localPosition.y) +.2f;
 
-        //Collider[] overlap = Physics.OverlapSphere(cameraTransform.parent.TransformPoint(cameraPositionLerpTarget + cameraTransform.GetChild(0).localPosition),castRadius,cameraCollisionMask);
         Vector3 origin = cameraTransform.parent.TransformPoint(cameraPositionLerpTarget) + cameraTransform.GetChild(0).forward*0.75f ;
         Vector3 direction = -cameraTransform.GetChild(0).forward;
         Physics.SphereCast(origin,castRadius,direction,out castInfo,camDistToPlayer,cameraCollisionMask);
         Debug.DrawRay(origin,direction * camDistToPlayer,Color.green,0.1f);
         if (castInfo.collider!=null){
-            Debug.Log(castInfo.collider.gameObject.name);
-            currentCameraBouncebackTarget = -direction * (camDistToPlayer - castInfo.distance);//(Mathf.Clamp(-castInfo.distance,-2f,2f))
-            //Debug.DrawLine(cameraTransform.parent.TransformPoint(cameraPositionLerpTarget + cameraTransform.GetChild(0).localPosition),castInfo.point,Color.cyan,2f);
+            currentCameraBouncebackTarget = -direction * (camDistToPlayer - castInfo.distance);
         }else{
             currentCameraBouncebackTarget = Vector3.zero;
         }
@@ -139,7 +131,6 @@ public class ThirdPersonPlayer : MonoBehaviour
         
         cameraTransform.localPosition = currentCameraLocalPos;
         cameraTransform.position += currentCameraBounceback;
-        //cameraTransform.position += currentCameraBounceback;
         
         
         Vector3 targetDirection = Rotate(Vector2.up,currentRotation.x);
@@ -148,7 +139,6 @@ public class ThirdPersonPlayer : MonoBehaviour
         Vector3 angle = Quaternion.AngleAxis(currentRotation.y,Vector3.up).eulerAngles;
         angle.z = 0f;
         cameraTransform.localRotation = Quaternion.Euler(new Vector3(currentRotation.y,0f,0f));
-        //Debug.Log(currentRotation.x.ToString()+":"+currentRotation.y.ToString());
     }
 
     void Move(){
@@ -171,30 +161,111 @@ public class ThirdPersonPlayer : MonoBehaviour
         rb.velocity = Rotate(direction.normalized,currentRotation.x) * currentSpeed;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-        if (mouseLocked)
-        {
-            Look();
-            Move();
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            mouseLocked = !mouseLocked;
+    public void SetMouseMode(bool locked){
             if (mouseLocked)
-            {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-            else
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
+            else
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (canMove)
+        {
+            Look();
+            Move();
+        }
+        else
+        {
+            if (interactableTarget!=null){
+                interactableTarget.isBusy = true;
+            }
+            thisAnimator.SetBool("Moving",false);
+            return;
         }
 
+        if (InventoryOpen){
+            thisAnimator.SetBool("Moving",false);
+            return;
+        }
+
+        if (interactableTarget != null)
+        {
+            interactableTarget.isBusy = false;
+        }
         
+        if (interactableTarget != null && canMove)
+        {
+            if (interactableTarget.isReady||Input.GetButtonDown("Interact") && dontUseTime ==0)//if triggered from mouse click or interact button
+            {
+                interactableTarget.Trigger();
+                dontUseTime = .2f;
+            }
+        }
+        
+
+        if (Input.GetButtonDown("Pause")){
+            SetMouseMode(false);
+            gameSceneManager.Pause();
+        }
+
+        if (dontUseTime > 0 ){
+            dontUseTime = Mathf.Max(dontUseTime - Time.deltaTime,0f);
+        }
+
+    }
+
+    public void InteractableEntered(Interactable thisInteractable)
+    {
+        //the change 8:49 pm
+        if(interactableTarget != null)
+        {
+            InteractableLeft(interactableTarget);
+        }
+        if (interactableTarget != thisInteractable)
+        {
+            interactableTarget = thisInteractable;
+            interactableTarget.indicator.SetActive(true);
+        }
+    }
+    public void InteractableLeft(Interactable thisInteractable)
+    {
+        if (interactableTarget == thisInteractable)
+        {
+            interactableTarget.indicator.SetActive(false);
+            interactableTarget = null;
+        }
+    }
+
+    public void UseItemOnInteractable(InventoryManager.ivItem item){
+        if(interactableTarget!=null){
+            interactableTarget.CheckItemUse(item);
+        }else{
+            UseItem(item);
+        }
+    }
+    public void UseItem(InventoryManager.ivItem item){//if can't use on interactable, use normally
+        if (item.methodName!=""){
+            Invoke(item.methodName,0f);
+        }
+    }
+
+    public void TriggerDialogue(int textID){
+        Debug.Log("triggering dialogue: "+textID.ToString());
+        string[] toScroll = TextManager.GetTextByID(textID);
+        textScroller.ScrollText(toScroll, this);
+    }
+    public void TriggerDialogue(string[] text){
+        string[] toScroll = text;
+        textScroller.ScrollText(toScroll, this);
     }
 }

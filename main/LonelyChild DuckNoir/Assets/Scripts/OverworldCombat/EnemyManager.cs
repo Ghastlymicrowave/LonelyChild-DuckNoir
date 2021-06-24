@@ -6,29 +6,36 @@ public class EnemyManager : MonoBehaviour
 {
     TextManager tm;
     InventoryManager inventoryManager;
-    public int IDBase = 0;
     [SerializeField] GameObject[] ghosts;
     EnemyBehavior[] ghostBehaviors;
     void Start()
     {
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
-        
-
-        ghostBehaviors = new EnemyBehavior[ghosts.Length];
-        for(int i = 0; i < ghosts.Length; i++){
-            ghostBehaviors[i] = ghosts[i].GetComponent<EnemyBehavior>();
+        try{
+            ghostBehaviors = new EnemyBehavior[ghosts.Length];
+            for(int i = 0; i < ghosts.Length; i++){
+                ghostBehaviors[i] = ghosts[i].GetComponent<EnemyBehavior>();
+            }
+        }catch{
+            Debug.LogWarning("No enemies are listed in the ghosts array in EnemyManager in PersistentManager!");
         }
-        
     }
 
     public void ReLoaded(){
-        foreach (EnemyBehavior ghost in ghostBehaviors)
-        {
-            if (!inventoryManager.ghostsRoaming.Contains(ghost.enemyID))
-            {
-                ghost.stillInScene = false;
+        try{
+            if (ghosts.Length>0){
+                foreach (EnemyBehavior ghost in ghostBehaviors)
+                {
+                    if (!inventoryManager.ghostsRoaming.Contains(ghost.enemyID))
+                    {
+                        ghost.stillInScene = false;
+                    }
+                }
             }
+        }catch{
+            Debug.LogWarning("No enemies are listed in the ghosts array in EnemyManager in PersistentManager!");
         }
+        
     }
 }

@@ -17,7 +17,7 @@ public class EnemyBehavior : MonoBehaviour
     public int enemyID = 1;
     TextManager tm;
     public string ToLoad = "combatScene";
-     player_main pm = null;
+    ThirdPersonPlayer pm = null;
     int currentPatrol = 0;
     int patrolChunk = 0;
     bool patrolBackwards = false; 
@@ -43,7 +43,7 @@ public class EnemyBehavior : MonoBehaviour
         if (pm == null)
         {
             player = GameObject.Find("Player");
-            pm = player.GetComponent<player_main>();
+            pm = player.GetComponent<ThirdPersonPlayer>();
         }
         spawnedZ = transform.position.z;
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();

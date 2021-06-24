@@ -277,11 +277,11 @@ public class player_main : MonoBehaviour
     public void TriggerDialogue(int textID){
         Debug.Log("triggering dialogue: "+textID.ToString());
         string[] toScroll = TextManager.GetTextByID(textID);
-        textScroller.ScrollText(toScroll, this);
+        //textScroller.ScrollText(toScroll, this);
     }
     public void TriggerDialogue(string[] text){
         string[] toScroll = text;
-        textScroller.ScrollText(toScroll, this);
+        //textScroller.ScrollText(toScroll, this);
     }
 
 

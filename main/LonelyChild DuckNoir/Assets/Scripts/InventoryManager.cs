@@ -315,6 +315,7 @@ public class InventoryManager : MonoBehaviour
         save.items = new int[1]{(int)ItemsEnum.Apple};
         //change back to PlayroomWB if needed
         save.checkpointScene = "SecondFloor";
+        
         File.WriteAllText(file,JsonUtility.ToJson(save));
     }
     public void SaveJSON(){
@@ -331,11 +332,41 @@ public class InventoryManager : MonoBehaviour
         
         File.WriteAllText(file,JsonUtility.ToJson(save));
     }
+    public bool JSONExists(){
+        return (File.Exists(jsonFile()));
+    }
+
+    public bool IsFreshSave(){
+        string file = jsonFile();
+        if (File.Exists(file)){
+            string contents = File.ReadAllText(file);
+            SaveData save = new SaveData();
+            try {
+                save = JsonUtility.FromJson<SaveData>(contents);
+                if (save.checkpointScene != "MainMenu"||save.checkpointScene != "SecondFloor"){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch{
+                return true;
+            }
+        }else{
+            return true;
+        }
+    }
+
     public void LoadJSON(){
         string file = jsonFile();
         if (File.Exists(file)){
             string contents = File.ReadAllText(file);
-            SaveData save = JsonUtility.FromJson<SaveData>(contents);
+            SaveData save = new SaveData();
+            try {
+                save = JsonUtility.FromJson<SaveData>(contents);
+            }catch{
+                ResetSave();
+                LoadJSON();
+            }
             items = new List<ivItem>();
             for (int i = 0; i < save.items.Length;i++){
                 items.Add(GetItemFromId((Combat.ItemsEnum)save.items[i]));

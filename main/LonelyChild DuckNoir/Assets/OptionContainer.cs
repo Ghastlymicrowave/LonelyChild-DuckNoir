@@ -14,8 +14,9 @@ public class OptionContainer : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void ChangeValueExternal(float value){
-        thisInputField.text = thisSlider.value.ToString();
+    public void ChangeValueExternal(float newValue){
+        value = newValue;
+        thisInputField.text = Mathf.RoundToInt(value*100).ToString();
         thisSlider.value = value;
     }
 

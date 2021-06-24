@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OptionsMenu : MonoBehaviour
 {
-    SettingsManager settings;
+    public SettingsManager settings;
     [SerializeField] OptionContainer HMouseSmoothingContainer;
     [SerializeField] OptionContainer VMouseSmoothingContainer;
     [SerializeField] OptionContainer HSensitivityContainer;
@@ -25,13 +25,9 @@ public class OptionsMenu : MonoBehaviour
         settings.ChangeOptions(options.ToArray());
         this.gameObject.SetActive(false);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        settings = GameObject.Find("PersistentManager").GetComponent<SettingsManager>();
-    }
 
     public void InitMenu(){
+        settings = GameObject.Find("PersistentManager").GetComponent<SettingsManager>();
         float[] options = settings.GetOptions();
         HMouseSmoothingContainer.ChangeValueExternal(options[0]);
         VMouseSmoothingContainer.ChangeValueExternal(options[1]);

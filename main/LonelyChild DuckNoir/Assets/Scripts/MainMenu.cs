@@ -5,9 +5,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public int[] ghostIDs;
-    public string ToLoad = "PlayroomWB";
-    public player_main player_Main;
-
+    public ThirdPersonPlayer player_Main;
     public TextScroller textScroller;
     public int textID;
 
@@ -15,6 +13,7 @@ public class MainMenu : MonoBehaviour
     InventoryManager inventoryManager;
     GameSceneManager gameSceneManager;
     [SerializeField] OptionsMenu optionsPanel;
+    [SerializeField] GameObject ContinueButton;
 
     void Start()
     {
@@ -26,6 +25,16 @@ public class MainMenu : MonoBehaviour
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
         gameSceneManager = tm.gameObject.GetComponent<GameSceneManager>();
+
+        if (!inventoryManager.IsFreshSave()){
+            ContinueButton.SetActive(true);
+        }else{
+            inventoryManager.ResetSave();
+            inventoryManager.LoadJSON();
+        }
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None; //just in case it got reset from pause menu
     }
 
     public void PlayButton()
@@ -34,9 +43,9 @@ public class MainMenu : MonoBehaviour
         {
             inventoryManager.ghostsRoaming.Add(ghost);
         }
-        //inventoryManager.playerPosOnStart = new Vector3(999999f, 999999f, 999999f);
         inventoryManager.ResetSave();
-        gameSceneManager.LoadInitalScene(inventoryManager.checkpointScene);//to start new game, otherwise, load current data and use that scene
+        Debug.Log("checkpoint scene:"+ inventoryManager.checkpointScene);
+        gameSceneManager.TransitionScene(inventoryManager.checkpointScene);//to start new game, otherwise, load current data and use that scene
         
     }
 
@@ -48,6 +57,9 @@ public class MainMenu : MonoBehaviour
     public void QuitButton()
     {
         Application.Quit();
+    }
+    public void Continue(){
+        gameSceneManager.TransitionScene(inventoryManager.checkpointScene);
     }
     public void HowToPlayButton()
     {
