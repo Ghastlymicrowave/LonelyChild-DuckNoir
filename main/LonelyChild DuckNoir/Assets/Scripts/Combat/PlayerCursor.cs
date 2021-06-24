@@ -16,24 +16,40 @@ public class PlayerCursor : MonoBehaviour
     public float xNegBound = -1f;
     public float yNegBound = -1f;
 
+    //new//
+
+    public float invincibilityDuration = 1f;
+    float invincibilityTimer = 0f;
+    bool isFlashing = false;
+    bool isNormColor = true;
+    public SpriteRenderer cursor;
+    public Color cursorNorm;
+    public Color cursorFlash;
+
+    //new//
+
     public float lerpMult = .1f;
 
     void Start()
     {
         //camera.main is amateur, but there's no reason for cameras to change in battle, so it's probably fine.
         cam = Camera.main;
-        attackLogic=transform.parent.GetComponent<AttackLogic>();
+        attackLogic = transform.parent.GetComponent<AttackLogic>();
         audioSource = attackLogic.bb.Damage;
         rb = gameObject.GetComponent<Rigidbody2D>();
+        if (cursor == null)
+        {
+            cursor = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         mousePos = Input.mousePosition;
-            {
-             //   Debug.Log("X " + mousePos.x + " Y " + mousePos.y);
-           // Debug.Log("ERER" + cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane)));
+        {
+            //   Debug.Log("X " + mousePos.x + " Y " + mousePos.y);
+            // Debug.Log("ERER" + cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane)));
             realPos = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 1f));
             if (realPos.y > yBound)
             {
@@ -57,22 +73,56 @@ public class PlayerCursor : MonoBehaviour
 
         ///// gameObject.transform.position = lerpPos;
         rb.MovePosition(lerpPos);
+
+
+
+
+        //flashing logic
+        if (isFlashing)
+        {
+            invincibilityTimer += Time.deltaTime;
+            isNormColor = !isNormColor;
+            switch (isNormColor)
+            {
+                case true:
+                    cursor.color = cursorNorm;
+                    break;
+                default:
+                    cursor.color = cursorFlash;
+                    break;
+            }
+            if(invincibilityTimer > invincibilityDuration)
+            {
+                isFlashing = false;
+                cursor.color = cursorNorm;
+                invincibilityTimer = 0f;
+            }
+        }
+
     }
     public void Damage(int damage)
     {
-        attackLogic.Damage(damage);
-        audioSource.Play();
-    }
-        void OnTriggerEnter2D(Collider2D col)
-    {
-        
-        if(col.gameObject.tag == "Projectile")
+        if (isFlashing == false)
         {
-           // print("THIS WAS CALLED");
-           // PlayerCursor playerCursor = col.GetComponent<PlayerCursor>();
-            Damage(col.gameObject.GetComponent<ProjectileOne>().projectile.damage);
-            Destroy(col.gameObject);
+            attackLogic.Damage(damage);
+            audioSource.Play();
+            isFlashing = true;
         }
-        
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+
+        if (col.gameObject.tag == "Projectile")
+        {
+            // print("THIS WAS CALLED");
+            // PlayerCursor playerCursor = col.GetComponent<PlayerCursor>();
+            if (isFlashing == false)
+            {
+                Destroy(col.gameObject);
+            }
+            Damage(col.gameObject.GetComponent<ProjectileOne>().projectile.damage);
+            
+        }
+
     }
 }
