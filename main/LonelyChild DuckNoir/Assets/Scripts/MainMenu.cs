@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     TextManager tm;
     InventoryManager inventoryManager;
     GameSceneManager gameSceneManager;
+    [SerializeField] OptionsMenu optionsPanel;
 
     void Start()
     {
@@ -27,11 +28,6 @@ public class MainMenu : MonoBehaviour
         gameSceneManager = tm.gameObject.GetComponent<GameSceneManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void PlayButton()
     {
         foreach (int ghost in ghostIDs)
@@ -43,12 +39,21 @@ public class MainMenu : MonoBehaviour
         gameSceneManager.LoadInitalScene(inventoryManager.checkpointScene);//to start new game, otherwise, load current data and use that scene
         
     }
+
+    public void OpenOptions(){
+        optionsPanel.gameObject.SetActive(true);
+        optionsPanel.InitMenu();
+    }
+
     public void QuitButton()
     {
         Application.Quit();
     }
     public void HowToPlayButton()
     {
+        if (optionsPanel!=null&&optionsPanel.gameObject.activeSelf){
+            optionsPanel.CloseOptions();
+        }
         if (textScroller.theCanvas.activeSelf == false)
         {
             string[] toScroll = TextManager.GetTextByID(textID);
