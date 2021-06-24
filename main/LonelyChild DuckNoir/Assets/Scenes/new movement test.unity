@@ -789,7 +789,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7372691694479176606, guid: 0ed7f10be7789994aa9da570a3d947a1, type: 3}
       propertyPath: maxSpd
-      value: 0.5
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372691694479176606, guid: 0ed7f10be7789994aa9da570a3d947a1, type: 3}
+      propertyPath: xRange
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372691694479176606, guid: 0ed7f10be7789994aa9da570a3d947a1, type: 3}
+      propertyPath: yRange
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372691694479176606, guid: 0ed7f10be7789994aa9da570a3d947a1, type: 3}
+      propertyPath: zRange
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372691694479176606, guid: 0ed7f10be7789994aa9da570a3d947a1, type: 3}
+      propertyPath: xInital
+      value: 0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372691694479176606, guid: 0ed7f10be7789994aa9da570a3d947a1, type: 3}
+      propertyPath: yInital
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372691694479176606, guid: 0ed7f10be7789994aa9da570a3d947a1, type: 3}
+      propertyPath: zInital
+      value: -0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372691694479176606, guid: 0ed7f10be7789994aa9da570a3d947a1, type: 3}
+      propertyPath: initalSpd
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372691694479176606, guid: 0ed7f10be7789994aa9da570a3d947a1, type: 3}
+      propertyPath: HmouseSensitivity
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372691694479176606, guid: 0ed7f10be7789994aa9da570a3d947a1, type: 3}
+      propertyPath: VmouseSensitivity
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7372691694479176606, guid: 0ed7f10be7789994aa9da570a3d947a1, type: 3}
       propertyPath: cameraCollisionMask.m_Bits

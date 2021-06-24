@@ -234,8 +234,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c11c869bf007f42a78e72f205f3bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpd: 0.5
-  initalSpd: 0.1
+  maxSpd: 3.2
+  initalSpd: 0.3
   spdAccel: 0.2
   Kfriction: 0.2
   Sfriction: 0.5
@@ -243,16 +243,16 @@ MonoBehaviour:
   bodyTransform: {fileID: 7372691693721035139}
   maxYRotation: 40
   minYRotation: -20
-  xInital: 0.21
-  xRange: 0.14
-  yInital: -0.8
-  yRange: 1.09
-  zInital: -0.42
-  zRange: 0.55
+  xInital: 0.41
+  xRange: 0.075
+  yInital: -0.1
+  yRange: 0.05
+  zInital: -0.21
+  zRange: 0
   HmouseSmoothing: 0.24
   VmouseSmoothing: 0.079
-  HmouseSensitivity: 0.3
-  VmouseSensitivity: 0.3
+  HmouseSensitivity: 0.75
+  VmouseSensitivity: 0.75
   rb: {fileID: 7372691694479176603}
   cameraCollisionMask:
     serializedVersion: 2
