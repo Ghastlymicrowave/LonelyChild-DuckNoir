@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class battleBehavior : MonoBehaviour
 {
+    public Animator cameraShake;
     TextManager tm;
     public EnemyClass enemy;
     //Our enemy.
@@ -294,6 +295,10 @@ public class battleBehavior : MonoBehaviour
 
     public void DamagePlayer(int damage){//can be negative to increase health
         hero.hp -= damage;
+        if(damage > 0)
+        {
+            cameraShake.Play("CombatCam_Shake");
+        }
         if (hero.hp <= 0)
         {hero.hp = 0; EndCombat(endCon.DEFEAT); }
         else if (hero.hp > hero.maxHP)
