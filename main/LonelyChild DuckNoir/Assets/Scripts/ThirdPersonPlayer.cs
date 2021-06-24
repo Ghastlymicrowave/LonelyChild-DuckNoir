@@ -131,6 +131,8 @@ public class ThirdPersonPlayer : MonoBehaviour
             Debug.Log(castInfo.collider.gameObject.name);
             currentCameraBouncebackTarget = -direction * (camDistToPlayer - castInfo.distance);//(Mathf.Clamp(-castInfo.distance,-2f,2f))
             //Debug.DrawLine(cameraTransform.parent.TransformPoint(cameraPositionLerpTarget + cameraTransform.GetChild(0).localPosition),castInfo.point,Color.cyan,2f);
+        }else{
+            currentCameraBouncebackTarget = Vector3.zero;
         }
 
         currentCameraBounceback = Vector3.Lerp(currentCameraBounceback,currentCameraBouncebackTarget,0.1f);//TODO: camera bounceback smooth
