@@ -123,16 +123,26 @@ public class ThirdPersonPlayer : MonoBehaviour
 
         //go from player postion to camera position
 
-        float camDistToPlayer = Mathf.Abs(cameraTransform.GetChild(0).localPosition.y) +.2f;
+        float camDistToPlayer = Mathf.Abs(cameraTransform.GetChild(0).localPosition.y) +1f;
 
-        Vector3 origin = cameraTransform.parent.TransformPoint(cameraPositionLerpTarget) + cameraTransform.GetChild(0).forward*0.75f ;
+        Vector3 origin = cameraTransform.parent.TransformPoint(cameraPositionLerpTarget) + cameraTransform.GetChild(0).forward*1f ;
         Vector3 direction = -cameraTransform.GetChild(0).forward;
         Physics.SphereCast(origin,castRadius,direction,out castInfo,camDistToPlayer,cameraCollisionMask);
         Debug.DrawRay(origin,direction * camDistToPlayer,Color.green,0.1f);
         if (castInfo.collider!=null){
             currentCameraBouncebackTarget = -direction * (camDistToPlayer - castInfo.distance);
         }else{
-            currentCameraBouncebackTarget = Vector3.zero;
+            Vector3 pos = cameraTransform.parent.TransformPoint(cameraPositionLerpTarget) + cameraTransform.GetChild(0).transform.position;
+            Collider[] col = Physics.OverlapSphere(pos,castRadius,cameraCollisionMask);
+            if (col.Length>0){
+                Collider firstCol = col[0];
+                Vector3 norm = firstCol.ClosestPoint(pos) - pos;
+                currentCameraBouncebackTarget = norm * (castRadius - Vector3.Distance(pos,firstCol.ClosestPoint(pos)));
+            }else{
+                currentCameraBouncebackTarget = Vector3.zero;
+            }
+            
+            
         }
 
         currentCameraBounceback = Vector3.Lerp(currentCameraBounceback,currentCameraBouncebackTarget,0.1f);//TODO: camera bounceback smooth
