@@ -55,15 +55,6 @@ public class player_main : MonoBehaviour
         camControl = GameObject.Find("CameraControl").GetComponent<CameraControl>();
 
 
-        //player pos on start
-        Vector3 tempForComparison = new Vector3(999999f, 999999f, 999999f);
-        if (inventoryManager.playerPosOnStart != tempForComparison && MovePlayerOnStart)
-        {
-            this.gameObject.transform.position = inventoryManager.playerPosOnStart;
-           // FindClosestCamera();
-        }
-
-
         if (textScroller == null)
         {
             textScroller = FindObjectOfType<TextScroller>();
@@ -286,11 +277,11 @@ public class player_main : MonoBehaviour
     public void TriggerDialogue(int textID){
         Debug.Log("triggering dialogue: "+textID.ToString());
         string[] toScroll = TextManager.GetTextByID(textID);
-        textScroller.ScrollText(toScroll, this);
+        //textScroller.ScrollText(toScroll, this);
     }
     public void TriggerDialogue(string[] text){
         string[] toScroll = text;
-        textScroller.ScrollText(toScroll, this);
+        //textScroller.ScrollText(toScroll, this);
     }
 
 

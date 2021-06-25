@@ -12,7 +12,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] Combat.ItemsEnum item;
     [SerializeField] Activatable activatable;
     [SerializeField] AttackActions attack;
-    static player_main playerRef;
+    static ThirdPersonPlayer playerRef;
     [Tooltip("keep less than 0 for no text")]
     [SerializeField] int dialogueID = -1;//KEEP -1 IF YOU WANT TO USE RANDOM
     [SerializeField] int[] randomdialogueIDs;
@@ -33,7 +33,7 @@ public class Interactable : MonoBehaviour
         inventoryManager = GameObject.Find("PersistentManager").GetComponent<InventoryManager>();
         gameSceneManager = inventoryManager.gameObject.GetComponent<GameSceneManager>();
         textManager = GameObject.Find("PersistentManager").GetComponent<TextManager>();
-        if (playerRef==null){playerRef = GameObject.Find("Player").GetComponent<player_main>();}
+        if (playerRef==null){playerRef = GameObject.Find("Player").GetComponent<ThirdPersonPlayer>();}
         if (randomdialogueIDs ==null){randomdialogueIDs = new int[0];}
     }
 
@@ -120,14 +120,16 @@ public class Interactable : MonoBehaviour
         }
         
     }
-    private void OnTriggerEnter2D(Collider2D other){
-        if (other.tag=="Player"){
+
+    void OnTriggerEnter(Collider other){
+        if (other.tag=="PlayerInteract"){
             playerRef.InteractableEntered(this);
         }
+        Debug.Log(other.tag);   
     }
 
-    private void OnTriggerExit2D(Collider2D other){
-        if (other.tag=="Player"){
+    void OnTriggerExit(Collider other){
+        if (other.tag=="PlayerInteract"){
             playerRef.InteractableLeft(this);
         }
     }

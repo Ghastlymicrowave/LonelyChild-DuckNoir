@@ -7,7 +7,6 @@ public class InventoryManager : MonoBehaviour
 {
     string json = "LonelyChild";
     public int enemyID;//current enemy you're fighting, if -1, you're not fighting an enemy and encounters won't happen
-    public Vector3 playerPosOnStart;
     public List<ivItem> items;
     public List<AttackActions> attacks; //stored as attack id's
     public List<int> ghostsRoaming; //not yet defeated, used to spawn one in overworld when scene is loaded, removed when defeated
@@ -157,7 +156,7 @@ public class InventoryManager : MonoBehaviour
                     "A ghost hunting manual. Some pages are missing, others have bite marks.",
                     new string[]{"You crack open the manual and have a read. The manual reads thusly:", "\"If you are unfortunate enough to face a ghost, here's what you do.\"",
                     "\"1: Talk to the ghost. Say the right thing, and the next steps will go smoother.\"",
-                    "\"2: Attack the ghost's senses until the ghost emmits energy.\"", "\"If you set up your bulbs like in chapter one, they should be lit up\"",
+                    "\"2: Attack the ghost's senses until the ghost emmits energy.\"", "\"You have 5 bulbs. One will light up whenever you damage the ghost by 20%.\"\n\"All five bulbs should be lit up for the next step.\"",
                     "\"Now, you've got some options.\"",
                     "\"3A: Use your crucifix and destroy the ghost. Or....\"",
                     "\"Make sure you've said the right thing first and then...\"",
@@ -316,6 +315,7 @@ public class InventoryManager : MonoBehaviour
         save.items = new int[1]{(int)ItemsEnum.Apple};
         //change back to PlayroomWB if needed
         save.checkpointScene = "SecondFloor";
+        
         File.WriteAllText(file,JsonUtility.ToJson(save));
     }
     public void SaveJSON(){
@@ -332,11 +332,41 @@ public class InventoryManager : MonoBehaviour
         
         File.WriteAllText(file,JsonUtility.ToJson(save));
     }
+    public bool JSONExists(){
+        return (File.Exists(jsonFile()));
+    }
+
+    public bool IsFreshSave(){
+        string file = jsonFile();
+        if (File.Exists(file)){
+            string contents = File.ReadAllText(file);
+            SaveData save = new SaveData();
+            try {
+                save = JsonUtility.FromJson<SaveData>(contents);
+                if (save.checkpointScene != "MainMenu"||save.checkpointScene != "SecondFloor"){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch{
+                return true;
+            }
+        }else{
+            return true;
+        }
+    }
+
     public void LoadJSON(){
         string file = jsonFile();
         if (File.Exists(file)){
             string contents = File.ReadAllText(file);
-            SaveData save = JsonUtility.FromJson<SaveData>(contents);
+            SaveData save = new SaveData();
+            try {
+                save = JsonUtility.FromJson<SaveData>(contents);
+            }catch{
+                ResetSave();
+                LoadJSON();
+            }
             items = new List<ivItem>();
             for (int i = 0; i < save.items.Length;i++){
                 items.Add(GetItemFromId((Combat.ItemsEnum)save.items[i]));

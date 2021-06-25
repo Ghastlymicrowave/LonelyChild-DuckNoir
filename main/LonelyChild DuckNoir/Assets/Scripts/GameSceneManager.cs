@@ -27,6 +27,11 @@ public class GameSceneManager : MonoBehaviour
         
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
+    void Start(){
+        if (SceneManager.GetActiveScene().name!="MainMenu"){
+            PackEverything();
+        }
+    }
     void PackEverything(){
         if (GameObject.Find("overworld")==null){
             overworld = Instantiate(new GameObject(), Vector3.zero,Quaternion.identity);
@@ -44,11 +49,6 @@ public class GameSceneManager : MonoBehaviour
         inventoryManager.SaveJSON();
         SceneManager.LoadScene(sceneName);
     }
-    public void LoadInitalScene(string sceneName){
-        loadCheckpoint =true;
-        inventoryManager.LoadJSON();
-        SceneManager.LoadScene(inventoryManager.checkpointScene);
-    }
     public void LoadScene(string sceneName){
         SceneManager.LoadScene(sceneName);
     }
@@ -62,7 +62,8 @@ public class GameSceneManager : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (loadCheckpoint){
+        Debug.Log("loading scene: "+ scene.name);
+        if (loadCheckpoint && scene.name != "MainMenu"){
             PackEverything();
             loadCheckpoint = false;
             enemyManager = GameObject.Find("Enemy Handler").GetComponent<EnemyManager>();
@@ -92,6 +93,8 @@ public class GameSceneManager : MonoBehaviour
     public void Unpause(){
         SceneManager.UnloadSceneAsync("PauseScene");
         overworld.SetActive(true);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void GameOver(){

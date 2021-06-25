@@ -8,7 +8,7 @@ public class TextScroller : MonoBehaviour
     //This is the script for overworld dialogue. A string array is given to this script, and it scrolls through each line.
     TextManager tm;
     string[] toScroll;
-    player_main pm;
+    ThirdPersonPlayer pm;
 
     bool isUpdating = false;
     public Text theText;
@@ -32,7 +32,7 @@ public class TextScroller : MonoBehaviour
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
     }
 
-    public void ScrollText(string[] newString, player_main pmReference)
+    public void ScrollText(string[] newString, ThirdPersonPlayer pmReference)
     {
         print("aw yeah");
         if (theClose != null)

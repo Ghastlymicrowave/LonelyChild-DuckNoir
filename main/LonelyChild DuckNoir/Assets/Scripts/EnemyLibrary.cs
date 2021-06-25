@@ -173,6 +173,7 @@ public class Narcissist : EnemyClass
         hp = 20;
         maxHP = 20;
         id = 5;
+        canRun = false;
         //spritepath
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
@@ -264,6 +265,7 @@ public class TroubledChild : EnemyClass
         hp = 30;
         maxHP = 30;
         id = 6;
+        canRun = false;
         //spritepath
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_3",
@@ -428,6 +430,8 @@ public class GremlinOfDeceit : EnemyClass
         hp = 42;
         maxHP = 42;
         id = 9;
+
+        canRun = false;
         //spritepath
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Sine_Harder_Reverse",
@@ -700,7 +704,7 @@ public class Tutorial : EnemyClass
         hp = 6;
         maxHP = 6;
         id = 4;
-        canRun = true;
+        canRun = false;
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2",

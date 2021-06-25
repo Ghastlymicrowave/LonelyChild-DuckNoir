@@ -66,7 +66,7 @@ public class TextManager : MonoBehaviour
                 return stringsToArray("A locked door...", "You'll need to unlock it before you can use it.", 
                 "Press 'Use with' to get the party started...");
             case 14:
-                return stringsToArray("You unlocked the door!", "Click on it again to open it!");
+                return stringsToArray("You unlocked the door!", "Click on the exclamation point to open it!");
             case 15:
                 return stringsToArray("The door opened!");
             case 16://friendly ghost text

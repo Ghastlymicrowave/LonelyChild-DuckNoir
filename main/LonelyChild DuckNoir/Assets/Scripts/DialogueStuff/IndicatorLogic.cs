@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class IndicatorLogic : MonoBehaviour
 {
-    static CameraControl camControl;
-    public Interactable interactable;
-    private void Start(){
-        if (camControl==null){
-            camControl=GameObject.Find("CameraControl").GetComponent<CameraControl>();
-        }
-    }
+    [SerializeField] Interactable interactable;
     void OnMouseDown()
     {
         if (!interactable.isBusy)
@@ -20,6 +14,6 @@ public class IndicatorLogic : MonoBehaviour
     }
     
     private void Update(){
-        transform.parent.transform.LookAt(camControl.activeCam.transform.position,Vector3.back);
+        transform.parent.transform.LookAt(Camera.main.transform.position,Vector3.back);
     }
 }
