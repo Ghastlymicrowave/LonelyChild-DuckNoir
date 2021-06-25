@@ -117,35 +117,37 @@ public class ThirdPersonPlayer : MonoBehaviour
         cameraPositionLerpTarget.x = xInital + ((currentRotation.y-minYRotation)/(maxYRotation-minYRotation) * xRange);
         currentCameraLocalPos = Vector3.Lerp(currentCameraLocalPos,cameraPositionLerpTarget,1f);//TODO: camera positon smooth
 
-        float castRadius = .5f;
-
-        RaycastHit castInfo;
+        float castRadius = .2f;
 
         //go from player postion to camera position
 
-        float camDistToPlayer = Mathf.Abs(cameraTransform.GetChild(0).localPosition.y) +1f;
+        float camDistToPlayer = Mathf.Abs(cameraTransform.GetChild(0).localPosition.magnitude) + 0.2f;
+        Vector3 origin = cameraTransform.parent.TransformPoint(Vector3.zero) ;
+        Vector3 offset = cameraTransform.GetChild(0).transform.position - cameraTransform.position ;
+        Vector3 direction = cameraTransform.parent.TransformPoint(cameraPositionLerpTarget) + offset - origin;
+        
+        RaycastHit hit;
 
-        Vector3 origin = cameraTransform.parent.TransformPoint(cameraPositionLerpTarget) + cameraTransform.GetChild(0).forward*1f ;
-        Vector3 direction = -cameraTransform.GetChild(0).forward;
-        Physics.SphereCast(origin,castRadius,direction,out castInfo,camDistToPlayer,cameraCollisionMask);
-        Debug.DrawRay(origin,direction * camDistToPlayer,Color.green,0.1f);
-        if (castInfo.collider!=null){
-            currentCameraBouncebackTarget = -direction * (camDistToPlayer - castInfo.distance);
-        }else{
-            Vector3 pos = cameraTransform.parent.TransformPoint(cameraPositionLerpTarget) + cameraTransform.GetChild(0).transform.position;
-            Collider[] col = Physics.OverlapSphere(pos,castRadius,cameraCollisionMask);
-            if (col.Length>0){
-                Collider firstCol = col[0];
-                Vector3 norm = firstCol.ClosestPoint(pos) - pos;
-                currentCameraBouncebackTarget = norm * (castRadius - Vector3.Distance(pos,firstCol.ClosestPoint(pos)));
-            }else{
-                currentCameraBouncebackTarget = Vector3.zero;
+        Physics.SphereCast(origin, castRadius, direction,out hit, camDistToPlayer, cameraCollisionMask);
+        if (hit.collider!=null){
+            Vector3 point =hit.point + castRadius * hit.normal;
+            Vector3 norm = cameraTransform.parent.TransformPoint(cameraPositionLerpTarget) - point;
+            Vector3 vec = point - (cameraTransform.parent.TransformPoint(cameraPositionLerpTarget) + offset);
+            //find vector between actual cam and point
+
+            currentCameraBouncebackTarget = vec -direction.normalized*.2f;
+            Debug.DrawLine(origin,hit.point,Color.black,1f);
+
+            if (currentCameraBounceback.magnitude > currentCameraBouncebackTarget.magnitude){
+                currentCameraBounceback = Vector3.Lerp(currentCameraBounceback,currentCameraBouncebackTarget,0.5f);
             }
-            
-            
+            currentCameraBounceback = Vector3.Lerp(currentCameraBounceback,currentCameraBouncebackTarget,0.5f);
+        }else{
+            currentCameraBouncebackTarget = Vector3.zero;
+            currentCameraBounceback = Vector3.Lerp(currentCameraBounceback,currentCameraBouncebackTarget,0.01f);
         }
 
-        currentCameraBounceback = Vector3.Lerp(currentCameraBounceback,currentCameraBouncebackTarget,0.1f);//TODO: camera bounceback smooth
+        //TODO: camera bounceback smooth
         
         cameraTransform.localPosition = currentCameraLocalPos;
         cameraTransform.position += currentCameraBounceback;
