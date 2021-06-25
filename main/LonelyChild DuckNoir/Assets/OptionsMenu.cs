@@ -9,6 +9,8 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] OptionContainer VMouseSmoothingContainer;
     [SerializeField] OptionContainer HSensitivityContainer;
     [SerializeField] OptionContainer VSensitivityContainer;
+    [SerializeField] OptionContainer MusicVolContainer;
+    [SerializeField] OptionContainer SfxVolContainer;
 
     public void Cancel(){
         this.gameObject.SetActive(false);
@@ -22,6 +24,8 @@ public class OptionsMenu : MonoBehaviour
         options.Add(VMouseSmoothingContainer.value);
         options.Add(HSensitivityContainer.value);
         options.Add(VSensitivityContainer.value);
+        options.Add(MusicVolContainer.value);
+        options.Add(SfxVolContainer.value);
         settings.ChangeOptions(options.ToArray());
         this.gameObject.SetActive(false);
     }
@@ -33,5 +37,7 @@ public class OptionsMenu : MonoBehaviour
         VMouseSmoothingContainer.ChangeValueExternal(options[1]);
         HSensitivityContainer.ChangeValueExternal(options[2]);
         VSensitivityContainer.ChangeValueExternal(options[3]);
+        MusicVolContainer.ChangeValueExternal(options[4]);
+        SfxVolContainer.ChangeValueExternal(options[5]);
     }
 }
