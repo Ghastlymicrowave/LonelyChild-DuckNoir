@@ -481,7 +481,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1007449163}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9844113
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1577,7 +1577,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -655.0675, y: 0}
+  m_AnchoredPosition: {x: -655.06683, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &727044050
@@ -3765,7 +3765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1786334542}
-  hover: {fileID: 8300000, guid: 174e33995299d7944ae6b498da9ea67f, type: 3}
+  hover: {fileID: 8300000, guid: 9d9b76a161275be40910006eff7c0fdd, type: 3}
   click: {fileID: 8300000, guid: 252035a37f2a37c4e9cbc49f563fe590, type: 3}
   otherOne: {fileID: 0}
   otherTwo: {fileID: 0}
