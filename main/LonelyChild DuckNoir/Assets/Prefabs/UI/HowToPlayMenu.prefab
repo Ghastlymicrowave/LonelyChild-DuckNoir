@@ -27,15 +27,15 @@ RectTransform:
   m_GameObject: {fileID: 980614711738689938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 980614712608624622}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 374.45386, y: -320.38}
-  m_SizeDelta: {x: 697.7733, y: 500}
+  m_AnchoredPosition: {x: 213.7, y: -115.59}
+  m_SizeDelta: {x: 697.7733, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &980614711738689943
 CanvasRenderer:
@@ -66,39 +66,27 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 7df88deb8320b304f80608243d7ad51d, type: 3}
+    m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 48
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'In The Lonely Child, you will explore an orphanage, picking up items,
-    hunting ghosts, and solving puzzles along the way.
-
-
-    To pick up an item,
-    you must get close to it, look in its general direction, and press E. An exclamation
-    point will pop up at this time.
-
-
-    To open the inventory and see the item
-    you just picked up, press I. This will make the inventory panel pop up, freeing
-    the mouse for you to inspect your items.
-
-
-    There will be puzzles that, upon
-    pressing E on, will inform you that you will need to use an item on it.
-
-
-    To
-    use an inventory item on a puzzle, open the inventory while near the puzzle,
-    and click ''Interact''.'
+  m_Text: "In The Lonely Child, you will explore an orphanage, \npicking up items,
+    hunting ghosts, and solving puzzles along the way.\n\nTo pick up an item, you
+    must get close to it, look \nin its general direction, and press E. \nAn exclamation
+    point will pop up at this time.\n\nTo open the inventory and see the item you
+    just\n picked up, press I. \nThis will make the inventory panel pop\n up, freeing
+    the mouse for you to inspect your items.\n\nThere will be puzzles that, upon
+    pressing E on, will inform\n you that you will need to use an item on it.\n\nTo
+    use an inventory item on a puzzle, open the inventory\n while near the puzzle,
+    and click 'Interact'."
 --- !u!1 &980614711922467712
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +125,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 391.5, y: 0}
-  m_SizeDelta: {x: 748.3002, y: 751.1241}
+  m_SizeDelta: {x: 748.3002, y: 949.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &980614711922467716
 CanvasRenderer:
@@ -228,8 +216,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 326.12, y: -405.77362}
-  m_SizeDelta: {x: 156.8124, y: 43.5472}
+  m_AnchoredPosition: {x: 326.12, y: -390}
+  m_SizeDelta: {x: 156.8124, y: 72.1183}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &980614712071999400
 CanvasRenderer:
@@ -259,7 +247,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 1a4c452894f845842b5d6bc9994702fc, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -397,14 +385,14 @@ RectTransform:
   m_GameObject: {fileID: 980614712114945617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 980614711922467715}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 374.45386, y: -450}
+  m_AnchoredPosition: {x: 213.7, y: -315}
   m_SizeDelta: {x: 697.7733, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &980614712114945618
@@ -436,28 +424,28 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 7df88deb8320b304f80608243d7ad51d, type: 3}
+    m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 48
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "In combat, you will be fighting the ghosts that lurk the orphanage.\n\nDuring
-    your turn, you will be able to choose from multiple attacks, multiple talks,
-    items from your inventory, running away, and crucifixion\n\nDuring the ghost's
-    turn, you will have to dodge the enemy's attacks on your scanner using the mouse.\n\nYou
-    have two methods of dealing with these enemies. The method you use will determine
-    the ending you get.\n\nMethod 1: \n* Attack the enemy until all bulbs are lit.\n*
-    Crucify the ghost to destroy it.\n\nMethod 2:\n* Attack the enemy until all bulbs
-    are lit.\n* Choose the right 'Talk' functionality to gain the ghost's trust.\n*
-    Choose the right sentimental item from your inventory from your inventory to
-    save their soul.\n\nThe choice is yours."
+  m_Text: "In combat, you will be fighting the ghosts that lurk the\n orphanage.\n\nDuring
+    your turn, you will be able to choose from multiple\n attacks, \nmultiple talks,
+    items from your inventory, running\n away, and crucifixion\n\nDuring the ghost's
+    turn, you will have to dodge the enemy's\n attacks on your scanner using the
+    mouse.\n\nYou have two methods of dealing with these enemies. The\n method you
+    use will determine the ending you get.\n\nMethod 1: \n* Attack the enemy until
+    all bulbs are lit.\n* Crucify the ghost to destroy it.\n\nMethod 2:\n* Attack
+    the enemy until all bulbs are lit.\n* Choose the right 'Talk' functionality to
+    gain the ghost's trust.\n* Choose the right sentimental item from your inventory
+    from\n your inventory to save their soul.\n\nThe choice is yours."
 --- !u!1 &980614712150159425
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,14 +473,14 @@ RectTransform:
   m_GameObject: {fileID: 980614712150159425}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 980614712990365617}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 375.84155, y: -165.31717}
+  m_AnchoredPosition: {x: 213.7, y: -121}
   m_SizeDelta: {x: 671.2372, y: 167.4428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &980614712150159426
@@ -524,17 +512,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 7df88deb8320b304f80608243d7ad51d, type: 3}
+    m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 48
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'WASD - Movement
 
@@ -685,7 +673,7 @@ RectTransform:
   m_GameObject: {fileID: 980614712366608719}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 980614713551085742}
   m_RootOrder: 0
@@ -725,11 +713,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 48
+    m_FontSize: 96
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 58
+    m_MaxSize: 96
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -779,14 +767,14 @@ RectTransform:
   m_GameObject: {fileID: 980614712511761803}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children: []
   m_Father: {fileID: 980614712990365617}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 372.27942, y: -50.53473}
+  m_AnchoredPosition: {x: 287.6, y: -50.53473}
   m_SizeDelta: {x: 664.1127, y: 41.3167}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &980614712511761804
@@ -818,17 +806,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 7df88deb8320b304f80608243d7ad51d, type: 3}
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 6
+    m_MinSize: 0
+    m_MaxSize: 166
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Controls
 --- !u!1 &980614712608624623
@@ -869,7 +857,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 391.5, y: 0}
-  m_SizeDelta: {x: 748.3002, y: 535}
+  m_SizeDelta: {x: 748.3002, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &980614712608624611
 CanvasRenderer:
@@ -1044,7 +1032,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 980614713340788496}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.33457518
+  m_Size: 0.23235545
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1076,14 +1064,14 @@ RectTransform:
   m_GameObject: {fileID: 980614712674150044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children: []
   m_Father: {fileID: 980614711922467715}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 370.75082, y: -36.463684}
+  m_AnchoredPosition: {x: 287.6, y: -80}
   m_SizeDelta: {x: 690.3672, y: 48.2472}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &980614712674150033
@@ -1115,17 +1103,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 7df88deb8320b304f80608243d7ad51d, type: 3}
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 6
+    m_MinSize: 0
+    m_MaxSize: 166
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Ghost Hunting
 --- !u!1 &980614712735589190
@@ -1347,12 +1335,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 7df88deb8320b304f80608243d7ad51d, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 34
+    m_MinSize: 2
+    m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1827,14 +1815,14 @@ RectTransform:
   m_GameObject: {fileID: 980614713322092676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children: []
   m_Father: {fileID: 980614712608624622}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 370.75082, y: -36.4637}
+  m_AnchoredPosition: {x: 287.6, y: -54.36}
   m_SizeDelta: {x: 690.3672, y: 48.2472}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &980614713322092729
@@ -1866,17 +1854,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 7df88deb8320b304f80608243d7ad51d, type: 3}
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 6
+    m_MinSize: 0
+    m_MaxSize: 166
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Overworld
 --- !u!1 &980614713340788497
@@ -2252,6 +2240,8 @@ MonoBehaviour:
   VMouseSmoothingContainer: {fileID: 0}
   HSensitivityContainer: {fileID: 0}
   VSensitivityContainer: {fileID: 0}
+  MusicVolContainer: {fileID: 0}
+  SfxVolContainer: {fileID: 0}
 --- !u!1 &980614713658238244
 GameObject:
   m_ObjectHideFlags: 0

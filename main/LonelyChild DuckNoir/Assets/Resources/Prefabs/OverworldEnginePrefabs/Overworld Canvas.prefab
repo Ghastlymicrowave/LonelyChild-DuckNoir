@@ -214,7 +214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6383363686078159956, guid: 89d96360746b871488bc9cd25bdf339b, type: 3}
       propertyPath: m_Size
-      value: 0.99999976
+      value: 0.9999998
       objectReference: {fileID: 0}
     - target: {fileID: 6383363686078159956, guid: 89d96360746b871488bc9cd25bdf339b, type: 3}
       propertyPath: m_Value
@@ -224,6 +224,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: Open Inventory
       objectReference: {fileID: 0}
+    - target: {fileID: 6383363686404466869, guid: 89d96360746b871488bc9cd25bdf339b, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 7df88deb8320b304f80608243d7ad51d, type: 3}
     - target: {fileID: 6383363686404466869, guid: 89d96360746b871488bc9cd25bdf339b, type: 3}
       propertyPath: m_FontData.m_BestFit
       value: 1
