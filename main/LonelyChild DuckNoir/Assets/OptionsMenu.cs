@@ -18,6 +18,10 @@ public class OptionsMenu : MonoBehaviour
     public void Close(){
         CloseOptions();
     }
+    public void Default(){
+        settings.Defaults();
+        VisuallyUpdateSettings();
+    }
     public void CloseOptions(){
         List<float> options = new List<float>();
         options.Add(HMouseSmoothingContainer.value);
@@ -30,8 +34,7 @@ public class OptionsMenu : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    public void InitMenu(){
-        settings = GameObject.Find("PersistentManager").GetComponent<SettingsManager>();
+    public void VisuallyUpdateSettings(){
         float[] options = settings.GetOptions();
         HMouseSmoothingContainer.ChangeValueExternal(options[0]);
         VMouseSmoothingContainer.ChangeValueExternal(options[1]);
@@ -39,5 +42,11 @@ public class OptionsMenu : MonoBehaviour
         VSensitivityContainer.ChangeValueExternal(options[3]);
         MusicVolContainer.ChangeValueExternal(options[4]);
         SfxVolContainer.ChangeValueExternal(options[5]);
+    }
+
+    public void InitMenu(){
+        settings = GameObject.Find("PersistentManager").GetComponent<SettingsManager>();
+        settings.Load();
+        VisuallyUpdateSettings();
     }
 }
