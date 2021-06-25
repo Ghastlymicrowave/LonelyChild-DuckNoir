@@ -45,6 +45,8 @@ public class ThirdPersonPlayer : MonoBehaviour
     [HideInInspector] public bool InventoryOpen = false;
     float dontUseTime = .1f;
     Animator thisAnimator;
+
+    Vector2 lockedRotation = Vector2.zero;
     
     void Start()
     {
@@ -92,13 +94,20 @@ public class ThirdPersonPlayer : MonoBehaviour
             v.x * Mathf.Sin(delta) + v.y * Mathf.Cos(delta)
         );
     }
-    void Look(){
+    void Look(bool locked = false){
         Vector2 rotation = Vector2.zero;
         rotation.x -= Input.GetAxis("Mouse X") * (HmouseSensitivity *1.5f);
         rotation.y += -Input.GetAxis("Mouse Y") * (VmouseSensitivity *1.5f);
-        currentRotationLerpTarget += rotation;
-        currentRotationLerpTarget.y = Mathf.Clamp(currentRotationLerpTarget.y,minYRotation,maxYRotation);
-
+        
+        if (!locked){
+            currentRotationLerpTarget += rotation;
+            currentRotationLerpTarget.y = Mathf.Clamp(currentRotationLerpTarget.y,minYRotation,maxYRotation);
+        }else{
+            currentRotationLerpTarget += rotation * .5f;
+            currentRotationLerpTarget.y = Mathf.Clamp(currentRotationLerpTarget.y,minYRotation,maxYRotation);
+            currentRotationLerpTarget.x = Mathf.Lerp(currentRotationLerpTarget.x,lockedRotation.x,0.01f);
+        }
+        
         currentRotation.x = Mathf.Lerp(currentRotation.x,currentRotationLerpTarget.x,HmouseSmoothing);
         currentRotation.y = Mathf.Lerp(currentRotation.y,currentRotationLerpTarget.y,VmouseSmoothing);
         //total range is max - min
@@ -109,7 +118,6 @@ public class ThirdPersonPlayer : MonoBehaviour
         currentCameraLocalPos = Vector3.Lerp(currentCameraLocalPos,cameraPositionLerpTarget,1f);//TODO: camera positon smooth
 
         float castRadius = .5f;
-        //this isn't exactly camPos transform point because the camera is a child of the camera container which is the thing that moves
 
         RaycastHit castInfo;
 
@@ -144,7 +152,10 @@ public class ThirdPersonPlayer : MonoBehaviour
     void Move(){
         hinput = Input.GetAxis("HMove");
         vinput = Input.GetAxis("VMove");
+        thisAnimator.SetFloat("DirectionX",hinput);
+        thisAnimator.SetFloat("DirectionY",vinput);
         bool isMoving = (hinput != 0f || vinput != 0f);
+        thisAnimator.SetBool("Moving",isMoving);
         Vector2 direction = new Vector2(hinput,vinput);
         if (isMoving){
             if (currentSpeed<initalSpd){//moving from standstill
@@ -183,9 +194,13 @@ public class ThirdPersonPlayer : MonoBehaviour
         {
             Look();
             Move();
+            
         }
         else
         {
+
+            Look(true);
+
             if (interactableTarget!=null){
                 interactableTarget.isBusy = true;
             }
@@ -208,6 +223,8 @@ public class ThirdPersonPlayer : MonoBehaviour
             if (interactableTarget.isReady||Input.GetButtonDown("Interact") && dontUseTime ==0)//if triggered from mouse click or interact button
             {
                 interactableTarget.Trigger();
+                lockedRotation = currentRotationLerpTarget;
+                
                 dontUseTime = .2f;
             }
         }

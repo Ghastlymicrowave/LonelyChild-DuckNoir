@@ -7,28 +7,31 @@ using System.Collections.Generic;
 public class GizmoScript : MonoBehaviour
 {
     //This puts a wirecube and an icon on your gameobjects!
-    public BoxCollider2D bCol;
-    public Color boxColor = Color.white;
-    public float arbitraryHeight = .5f;
+    [SerializeField] Collider bCol;
+    [SerializeField] Color color = Color.white;
+    [SerializeField] float arbitraryHeight = .5f;
     //public
-    public enum IconType { Camera, Ghost, Polygon, None };
-    public IconType iconType;
-    public bool showCube = false;
+    [SerializeField] enum IconType { Camera, Ghost, Polygon, None };
+    [SerializeField] IconType iconType;
+    [SerializeField] bool show = false;
     private void OnDrawGizmos()
     {
-        if (bCol == null && showCube)
-        {
-            bCol = GetComponent<BoxCollider2D>();
-        }
-        Gizmos.color = boxColor;
+        
+        Gizmos.color = color;
         if (iconType != IconType.None)
         {
             string iconLocation = "..\\Editor\\Iconography\\" + iconType.ToString() + ".png";
             Gizmos.DrawIcon(transform.position, iconLocation, true);
         }
-        if (showCube)
+        if (show)
         {
-            Gizmos.DrawWireCube(transform.position, new Vector3(bCol.size.x, bCol.size.y, arbitraryHeight));
+            if (bCol.GetType() == typeof(BoxCollider)){
+                BoxCollider box = (BoxCollider)bCol;
+                Gizmos.DrawCube(box.center,box.size);
+            }else if (bCol.GetType() == typeof(SphereCollider)){
+                SphereCollider sphere = (SphereCollider)bCol;
+                Gizmos.DrawSphere(sphere.center,sphere.radius);
+            }
         }
     }
 

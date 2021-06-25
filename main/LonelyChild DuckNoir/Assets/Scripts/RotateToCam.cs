@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class RotateToCam : MonoBehaviour
 {
-    CameraControl cameraControl;
-    void Start()
-    {
-        cameraControl = GameObject.Find("CameraControl").GetComponent<CameraControl>();
-    }
-
-    // Update is called once per frame
+    [SerializeField] bool verticallyRotate = false;
     void Update()
     {
-        transform.LookAt(cameraControl.activeCam.transform.position, Vector3.back);
+        if (verticallyRotate){
+            transform.LookAt(Camera.main.transform.position, Vector3.back);
+        }else{
+            Vector3 pos = Camera.main.transform.position;
+            pos.z = transform.position.z;
+            transform.LookAt(pos, Vector3.back);
+        }
+        
     }
 }

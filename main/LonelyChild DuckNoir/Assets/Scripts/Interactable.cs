@@ -120,14 +120,16 @@ public class Interactable : MonoBehaviour
         }
         
     }
-    private void OnTriggerEnter2D(Collider2D other){
-        if (other.tag=="Player"){
+
+    void OnTriggerEnter(Collider other){
+        if (other.tag=="PlayerInteract"){
             playerRef.InteractableEntered(this);
         }
+        Debug.Log(other.tag);   
     }
 
-    private void OnTriggerExit2D(Collider2D other){
-        if (other.tag=="Player"){
+    void OnTriggerExit(Collider other){
+        if (other.tag=="PlayerInteract"){
             playerRef.InteractableLeft(this);
         }
     }

@@ -10,16 +10,21 @@ public class SettingsManager : MonoBehaviour
     }
 
     void Start(){
+        
+        //0 hsmoothing
+        //1 vsmoothing
+        //2 hsensitivity
+        //3 vsensitivity
+        Defaults();
+    }
+
+    void Defaults(){
         options = new float[4];
         //TODO: add default values
         options[0] = PlayerPrefs.GetFloat("hsmooth",0.3f);
         options[1] = PlayerPrefs.GetFloat("vsmooth",0.4f);
         options[2] = PlayerPrefs.GetFloat("hsensitivity",0.3f);
         options[3] = PlayerPrefs.GetFloat("vsensitivity",0.3f);
-        //0 hsmoothing
-        //1 vsmoothing
-        //2 hsensitivity
-        //3 vsensitivity
     }
     public void ChangeOptions(float[] inputOptions){
         options = inputOptions;
@@ -39,6 +44,9 @@ public class SettingsManager : MonoBehaviour
     }
 
     public float[] GetOptions(){
+        if (options==null){
+            Defaults();
+        }
         Debug.Log(options);
         return options;
     }
