@@ -6,16 +6,14 @@ using UnityEngine.EventSystems;
 public class SubmenuSoundStuff : EventTrigger
 {
     public GameObject soundHolderGO;
-    public SoundHolder soundHolder;
+    public MenuSounds soundHolder;
     public EventTrigger trigger;
-
     void Start()
     {
-        if (soundHolderGO == null)
-        {
-            soundHolderGO = GameObject.Find("SoundHolder");
+        soundHolder = FindObjectOfType<MenuSounds>();
+        if (soundHolder==null){
+            Debug.LogWarning("submenu sounds is missing a MenuSounds component in the scene! Prepare for null refs!");
         }
-        soundHolder = soundHolderGO.GetComponent<SoundHolder>();
     }
     public override void OnPointerClick(PointerEventData data)
     {

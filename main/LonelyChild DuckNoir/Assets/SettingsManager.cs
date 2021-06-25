@@ -6,7 +6,7 @@ public class SettingsManager : MonoBehaviour
 {
     float[] options;
     void Awake(){
-        
+        Load();
     }
 
     public void Defaults(){
@@ -39,6 +39,16 @@ public class SettingsManager : MonoBehaviour
         }else{
             Debug.Log("no player found to update options");
         }
+
+        SoundHolder[] sounds = GameObject.FindObjectsOfType<SoundHolder>();
+        for (int i = 0; i < sounds.Length; i++){
+            if (sounds[i].IsMusic()){
+                sounds[i].SetVol(options[4]);
+            }else{
+                sounds[i].SetVol(options[5]);
+            }
+        }
+
         PlayerPrefs.SetFloat("hsmooth",options[0]);
         PlayerPrefs.SetFloat("vsmooth",options[1]);
         PlayerPrefs.SetFloat("hsensitivity",options[2]);
