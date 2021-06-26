@@ -150,6 +150,9 @@ public class TextManager : MonoBehaviour
             "\"First, approach the thing you want to read and press 'E' on your keyboard.\"\n\"(The wierd looks you will get for doing this are irrelevant, ignore them.)\"",
             "\"Second, press E again until you're done reading!\"",
             "\"Happy hunting!\"");
+            case 47:
+                return stringsToArray("The library door, locked.\nYou'll need to unlock it before you can use it.", "If you find a key, pick it up with E.", 
+                "Then, go back to the door, and press 'I' or 'Tab' to open the inventory.","Finally, you simply navigate to the key and press 'use with' to unlock the door.");
         }
     }
 
