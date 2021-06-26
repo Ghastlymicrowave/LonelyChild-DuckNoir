@@ -141,6 +141,7 @@ public float duration;
         StaircaseKey,
         MasterBedroomKey,
         ShowingRoomKey,
+        LibraryKey,
         Hourglass,
         Fire_Poker,
         Manual,
