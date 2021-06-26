@@ -10,13 +10,13 @@ public class OverworldInventory : MonoBehaviour
     [SerializeField] Animator animator;
     Text buttonTxt;
     [SerializeField] GameObject itemPrefab;
-    GameObject content;
+    [SerializeField] GameObject WeaponsContent;
+    [SerializeField] GameObject ItemsContent;
     ThirdPersonPlayer player;
     InventoryManager inventoryManager;
     void Start()
     {
         buttonTxt = toggleButton.transform.GetChild(0).GetComponent<Text>();
-        content = transform.GetChild(0).GetChild(0).gameObject;
         player = GameObject.Find("Player").GetComponent<ThirdPersonPlayer>();
         inventoryManager = GameObject.Find("PersistentManager").GetComponent<InventoryManager>();
     }
@@ -47,9 +47,9 @@ public class OverworldInventory : MonoBehaviour
         player.InventoryOpen = menuOpen;
     }
 
-    void GenerateItems(){
-        for(int i = content.transform.childCount-1; i > -1; i -= 1){
-            Destroy(content.transform.GetChild(i).gameObject);
+    void GenerateItems(){//TODO: add generate weapons
+        for(int i = ItemsContent.transform.childCount-1; i > -1; i -= 1){
+            Destroy(ItemsContent.transform.GetChild(i).gameObject);
         }
         foreach( InventoryManager.ivItem i in inventoryManager.items){
             AddItem(i);
