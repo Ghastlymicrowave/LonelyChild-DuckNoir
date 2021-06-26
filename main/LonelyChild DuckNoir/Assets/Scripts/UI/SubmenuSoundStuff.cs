@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class SubmenuSoundStuff : EventTrigger
 {
-    public GameObject soundHolderGO;
     public MenuSounds soundHolder;
     //public EventTrigger trigger;
     void Start()

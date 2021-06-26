@@ -11,11 +11,9 @@ public class ProjectileOne : MonoBehaviour
     //These six are only needed for turrets.
     [SerializeField] GameObject toShoot;
     GameObject cursor;
-    GameObject toShootAt;
     [SerializeField] float shootingTrackDuration = .75f;
     [SerializeField] float shootingCooldownDuration = .25f;
     [SerializeField] float shootingTrackSpeed = 1f;
-    private float trackPercent = 0f;
     Rigidbody2D rb;
     private GameObject hypothetical;
     //Not every projectile needs a projectile sound,
@@ -27,6 +25,7 @@ public class ProjectileOne : MonoBehaviour
     float globalX;
     float globalY;
     GameObject temp = null;
+    Vector3 currentDirection = Vector3.zero;
 
     void Start()
     {
@@ -34,7 +33,6 @@ public class ProjectileOne : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (projectileType == ProjectileType.TurretOne)
         {
-            toShootAt = new GameObject("toShootAt");
             cursor = GameObject.Find("Player Cursor");
 
 
@@ -42,11 +40,12 @@ public class ProjectileOne : MonoBehaviour
             hypothetical.transform.position = theTrans.position;
             hypothetical.transform.rotation = theTrans.rotation;
             hypothetical.name = "Hypothetical";
-            // hypothetical.transform.SetParent(theTrans);
+            currentDirection = (cursor.transform.position - transform.position).normalized;
 
         }
         globalX = theTrans.position.x;
         globalY = theTrans.position.y;
+        
     }
 
     // Update is called once per frame
@@ -54,7 +53,6 @@ public class ProjectileOne : MonoBehaviour
     {
         float x = 0f;
         float y = 0f;
-        float z = 0f;
         switch (projectileType)
         {
             case ProjectileType.Regular:
@@ -79,65 +77,21 @@ public class ProjectileOne : MonoBehaviour
                 rb.AddRelativeForce(Vector2.left * Time.deltaTime * (projectile.speed * 750f));
                 break;
             case ProjectileType.TurretOne:
-                /*
-                    timer += Time.deltaTime;
-                    toShootAt.transform.position = cursor.transform.position;
-                    switch (isTracking)
-                    {
-                        case true:
-                            hypothetical.transform.LookAt(toShootAt.transform);
-                            trackPercent = shootingTrackDuration / timer;
-                            this.transform.rotation = Quaternion.Lerp(this.transform.rotation, hypothetical.transform.rotation, Mathf.Pow(-shootingTrackSpeed, Time.deltaTime));
-                            if (timer > shootingTrackDuration)
-                            {
-
-                                timer = 0f;
-                                // isTracking = false;
-                                if (hypothetical.transform.rotation.y > 0f)
-                                {
-                                    temp = Instantiate(toShoot, hypothetical.transform.position, new Quaternion(0f, 0f, (hypothetical.transform.rotation.x * 4f), hypothetical.transform.rotation.w));
-
-                                }
-                                else
-                                {
-                                    temp = Instantiate(toShoot, hypothetical.transform.position, new Quaternion(0f, 0f, hypothetical.transform.rotation.x, hypothetical.transform.rotation.w));
-                                }
-                                print(hypothetical.transform.rotation.x);
-
-
-
-
-
-
-
-
-                                //GameObject temp = Instantiate(toShoot, hypothetical.transform.position, new Quaternion(0f, 0f, hypothetical.transform.rotation.x, hypothetical.transform.rotation.w));
-                                //temp.transform.LookAt(toShootAt.transform);
-                            }
-                            break;
-                        default:
-
-                            break;
-                    }
-    */
                 timer += Time.deltaTime;
-                toShootAt.transform.position = cursor.transform.position;
                 switch (isTracking)
                 {
                     case true:
-                        hypothetical.transform.LookAt(toShootAt.transform, Vector3.left);
-                        trackPercent = shootingTrackDuration / timer;
-                      
-                      float  zz = Mathf.Lerp(this.transform.rotation.z, hypothetical.transform.rotation.x, shootingTrackSpeed * Time.deltaTime);
-                        print(zz);
-                        this.transform.rotation = new Quaternion(this.transform.rotation.x, this.transform.rotation.y, zz, this.transform.rotation.w);
+                        Vector2 targetDirection = (cursor.transform.position - transform.position).normalized;
+                        currentDirection = Vector3.Lerp(currentDirection,targetDirection,shootingTrackSpeed * Time.deltaTime).normalized;
+                        Debug.Log(currentDirection);
+                        transform.rotation = Quaternion.LookRotation(currentDirection,Vector3.forward);
                         if (timer > shootingTrackDuration)
                         {
                             timer = 0f;
-                            temp = Instantiate(toShoot, hypothetical.transform.position, new Quaternion(0f, 0f, this.transform.rotation.z, 
-                            hypothetical.transform.rotation.w));
+                            Vector3 dir = Quaternion.Euler(new Vector3(0f,0f,90f)) * currentDirection;
+                            temp = Instantiate(toShoot, hypothetical.transform.position, Quaternion.LookRotation(dir,Vector3.forward));//the bullet
+                            
 
-                           // print(hypothetical.transform.rotation.x);
                             isTracking = false;
                         }
                         break;
