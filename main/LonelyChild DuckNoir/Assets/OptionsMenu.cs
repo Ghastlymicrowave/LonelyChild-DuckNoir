@@ -11,6 +11,7 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] OptionContainer VSensitivityContainer;
     [SerializeField] OptionContainer MusicVolContainer;
     [SerializeField] OptionContainer SfxVolContainer;
+    [SerializeField] OptionContainer CamSmoothContainer;
 
     public void Cancel(){
         this.gameObject.SetActive(false);
@@ -30,6 +31,7 @@ public class OptionsMenu : MonoBehaviour
         options.Add(VSensitivityContainer.value);
         options.Add(MusicVolContainer.value);
         options.Add(SfxVolContainer.value);
+        options.Add(CamSmoothContainer.value);
         settings.ChangeOptions(options.ToArray());
         this.gameObject.SetActive(false);
     }
@@ -42,6 +44,7 @@ public class OptionsMenu : MonoBehaviour
         VSensitivityContainer.ChangeValueExternal(options[3]);
         MusicVolContainer.ChangeValueExternal(options[4]);
         SfxVolContainer.ChangeValueExternal(options[5]);
+        CamSmoothContainer.ChangeValueExternal(options[6]);
     }
 
     public void InitMenu(){

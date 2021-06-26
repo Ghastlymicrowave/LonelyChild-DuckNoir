@@ -2601,6 +2601,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a6525167ced6747bffa8dff03604f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1501384593 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2766016216077842892, guid: 42ce85a164e59854393e09932275a56b, type: 3}
+  m_PrefabInstance: {fileID: 8748501217159699157}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 173d745084c080345baa208c1df5a49c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1601265247
 GameObject:
   m_ObjectHideFlags: 0
@@ -3683,6 +3694,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2136519016602204798, guid: 42ce85a164e59854393e09932275a56b, type: 3}
+      propertyPath: CamSmoothContainer
+      value: 
+      objectReference: {fileID: 1501384593}
     - target: {fileID: 6539985713415307269, guid: 42ce85a164e59854393e09932275a56b, type: 3}
       propertyPath: m_Color.b
       value: 1

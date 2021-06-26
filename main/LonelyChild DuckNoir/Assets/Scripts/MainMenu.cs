@@ -94,7 +94,7 @@ public class MainMenu : MonoBehaviour
     {
         if (optionsPanel != null && optionsPanel.gameObject.activeSelf)
         {
-            optionsPanel.CloseOptions();
+            optionsPanel.Cancel();
         }
         credits.SetActive(false);
         howToPlay.SetActive(false);
