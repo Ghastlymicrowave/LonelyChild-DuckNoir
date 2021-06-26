@@ -130,6 +130,16 @@ public class InventoryManager : MonoBehaviour
                     new string[]{""}, 
                     (int)ItemsEnum.ShowingRoomKey,
                     "2D Assets/Items/Key"); 
+            case ItemsEnum.LibraryKey:
+                return new ivItem(
+                    "Library Key",
+                    "The best place in the whole orphanage.",
+                    new string[]{"To open doors with keys, approach the door and press 'Tab' or 'I' to open up the menu.",
+                    "From there, scroll down to the proper key and "},
+                    "",
+                    new string[]{""}, 
+                    (int)ItemsEnum.ShowingRoomKey,
+                    "2D Assets/Items/Key"); 
             case ItemsEnum.Fire_Poker:
                 return new ivItem(
                     "Fire Poker",
@@ -153,7 +163,7 @@ public class InventoryManager : MonoBehaviour
             case ItemsEnum.Manual:
                 return new ivItem(
                     "Ghost Hunting Manual",
-                    "A ghost hunting manual. Some pages are missing, others have bite marks.",
+                    "A ghost hunting manual. Some pages are missing, seemingly ripped out.",
                     new string[]{"You crack open the manual and have a read. The manual reads thusly:", "\"If you are unfortunate enough to face a ghost, here's what you do.\"",
                     "\"1: Talk to the ghost. Say the right thing, and the next steps will go smoother.\"",
                     "\"2: Attack the ghost's senses until the ghost emmits energy.\"", "\"You have 5 bulbs. One will light up whenever you damage the ghost by 20%.\"\n\"All five bulbs should be lit up for the next step.\"",
