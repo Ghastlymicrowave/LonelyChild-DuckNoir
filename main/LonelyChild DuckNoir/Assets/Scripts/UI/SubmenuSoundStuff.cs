@@ -7,7 +7,7 @@ public class SubmenuSoundStuff : EventTrigger
 {
     public GameObject soundHolderGO;
     public MenuSounds soundHolder;
-    public EventTrigger trigger;
+    //public EventTrigger trigger;
     void Start()
     {
         soundHolder = FindObjectOfType<MenuSounds>();

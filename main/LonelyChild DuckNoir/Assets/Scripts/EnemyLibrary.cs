@@ -606,10 +606,10 @@ public class PoorDog : EnemyClass
         id = 1;
         //spritepath
         attackPrefabNames = new string[] {
-            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy2",
-            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
-            "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2",
-            "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
+            "Prefabs/combatEnemyTurn/attacks/Turret1"};
+        //"Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
+        //"Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2",
+        // "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
         talkActions = new TalkEnum[3] { TalkEnum.Pet, TalkEnum.Chat, TalkEnum.Fake_Throw };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/PoorDogDisplay";
