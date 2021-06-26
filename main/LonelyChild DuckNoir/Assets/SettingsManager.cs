@@ -31,11 +31,11 @@ public class SettingsManager : MonoBehaviour
         options[6] = PlayerPrefs.GetFloat("camSmooth",0.5f);
     }
     public void UpdatePlayer(){
-        GameObject playerObj = GameObject.Find("Player");
+        ThirdPersonPlayer playerObj = GameObject.FindObjectOfType<ThirdPersonPlayer>();
         if (playerObj != null){
             Debug.Log(playerObj.ToString());
             Debug.Log("Player found, updating player options");
-            playerObj.GetComponent<ThirdPersonPlayer>().UpdateOptions(options);
+            playerObj.UpdateOptions(options);
         }else{
             Debug.Log("no player found to update options");
         }

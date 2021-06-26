@@ -30,8 +30,8 @@ public class ThirdPersonPlayer : MonoBehaviour
     float currentSpeed;
     bool mouseLocked = true;
     [SerializeField] Rigidbody2D rb;
-    Vector2 currentRotation;
-    Vector2 currentRotationLerpTarget;
+    [SerializeField] Vector2 currentRotation;
+    [SerializeField] Vector2 currentRotationLerpTarget;
     Vector3 cameraPositionLerpTarget;
     Vector3 currentCameraLocalPos;
     Vector3 currentCameraBounceback;
@@ -212,7 +212,7 @@ public class ThirdPersonPlayer : MonoBehaviour
     void Update()
     {
 
-        if (canMove)
+        if (canMove&&!InventoryOpen)
         {
             Look();
             Move();
@@ -220,8 +220,10 @@ public class ThirdPersonPlayer : MonoBehaviour
         }
         else
         {
-
-            Look(true);
+            if (!InventoryOpen){
+                Look(true);
+            }
+            
 
             if (interactableTarget!=null){
                 interactableTarget.isBusy = true;

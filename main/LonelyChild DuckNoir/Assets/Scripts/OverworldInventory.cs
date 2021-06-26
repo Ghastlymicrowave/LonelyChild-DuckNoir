@@ -6,7 +6,6 @@ using Combat;
 public class OverworldInventory : MonoBehaviour
 {
     bool menuOpen = false;
-    [SerializeField] Button toggleButton;
     [SerializeField] Animator animator;
     Text buttonTxt;
     [SerializeField] GameObject itemPrefab;
@@ -16,9 +15,14 @@ public class OverworldInventory : MonoBehaviour
     InventoryManager inventoryManager;
     void Start()
     {
-        buttonTxt = toggleButton.transform.GetChild(0).GetComponent<Text>();
         player = GameObject.Find("Player").GetComponent<ThirdPersonPlayer>();
         inventoryManager = GameObject.Find("PersistentManager").GetComponent<InventoryManager>();
+    }
+
+    void Update(){
+        if (Input.GetButtonDown("Inventory")){
+            ToggleMenu();
+        }
     }
 
     public void ToggleMenu(){
@@ -28,14 +32,15 @@ public class OverworldInventory : MonoBehaviour
         }
         menuOpen = !menuOpen;
         if (menuOpen){
-            buttonTxt.text="Close Inventory";
+            player.SetMouseMode(false);
             animator.Play("Open",0);
             GenerateItems();
         }else{
-            buttonTxt.text="Open Inventory";
+            player.SetMouseMode(true);
             animator.Play("Close",0);
         }
         player.InventoryOpen = menuOpen;
+        
     }
 
     public void CloseMenu(){
@@ -75,23 +80,25 @@ public class OverworldInventory : MonoBehaviour
         newItemObj.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = item.name;//name
         newItemObj.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = item.description;//description
 
-        GameObject useButton = newItemObj.transform.GetChild(0).GetChild(4).gameObject;
         GameObject inspectButton = newItemObj.transform.GetChild(0).GetChild(3).gameObject;
+        GameObject useButton = newItemObj.transform.GetChild(0).GetChild(4).gameObject;
         if (item.inspect != new string[]{""}){//inspect button
-            inspectButton.GetComponent<Button>().onClick.AddListener(delegate {InspectItem(item);});
+            //inspectButton.GetComponent<Button>().onClick.AddListener(delegate {Debug.Log("AFFDFSF");});//InspectItem(item)
         }else{
             inspectButton.SetActive(false);
         }
         
         if (item.methodName !="" || player.ValidRequiresItem()){//use button
-            useButton.GetComponent<Button>().onClick.AddListener(delegate {UseItem(item);});
+            //useButton.GetComponent<Button>().onClick.AddListener(delegate {Debug.Log("FSFA");});//UseItem(item)
             if (player.ValidRequiresItem()){
                 useButton.transform.GetChild(0).GetComponent<Text>().text = "use with";
             }
         }else{
             useButton.SetActive(false);
         }
-        
+        useButton.transform.GetChild(0).GetComponent<Text>().text = "help";
+        inspectButton.transform.GetChild(0).GetComponent<Text>().text = "asdfsadf";
+
     }
     
 }

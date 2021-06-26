@@ -373,7 +373,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6158271712899590988}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99994975
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -920,7 +920,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7147588289553180840}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999509
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -957,7 +957,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -0.0000045739757}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0.0000050364333}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &3298025788453091538
@@ -1287,7 +1287,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0.000056466768}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0.00006608649}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &6271843594975991149
@@ -1481,6 +1481,8 @@ MonoBehaviour:
   toggleButton: {fileID: 0}
   animator: {fileID: 6383363687234044172}
   itemPrefab: {fileID: 8996615422938838407, guid: 4d76b42a67e91444b9ec89b2ee7427be, type: 3}
+  WeaponsContent: {fileID: 5093938911528621880}
+  ItemsContent: {fileID: 3257315151385641176}
 --- !u!1818360610 &495163301
 ScaleConstraint:
   m_ObjectHideFlags: 0
