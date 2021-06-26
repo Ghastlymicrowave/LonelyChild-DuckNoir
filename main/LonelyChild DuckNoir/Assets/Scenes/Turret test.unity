@@ -138,6 +138,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1554646062898304301, guid: e79556d13fb110641b3a1d7c56479a82, type: 3}
+      propertyPath: shootingTrackSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1554646062898304301, guid: e79556d13fb110641b3a1d7c56479a82, type: 3}
+      propertyPath: shootingCooldownDuration
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 1554646062898304302, guid: e79556d13fb110641b3a1d7c56479a82, type: 3}
       propertyPath: m_RootOrder
       value: 3

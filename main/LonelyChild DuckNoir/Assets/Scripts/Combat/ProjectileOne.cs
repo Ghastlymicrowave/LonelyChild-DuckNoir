@@ -134,7 +134,8 @@ public class ProjectileOne : MonoBehaviour
                         if (timer > shootingTrackDuration)
                         {
                             timer = 0f;
-                            temp = Instantiate(toShoot, hypothetical.transform.position, new Quaternion(0f, 0f, this.transform.rotation.z, hypothetical.transform.rotation.w));
+                            temp = Instantiate(toShoot, hypothetical.transform.position, new Quaternion(0f, 0f, this.transform.rotation.z, 
+                            hypothetical.transform.rotation.w));
 
                            // print(hypothetical.transform.rotation.x);
                             isTracking = false;

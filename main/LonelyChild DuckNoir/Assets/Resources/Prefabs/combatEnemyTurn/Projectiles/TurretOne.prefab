@@ -123,8 +123,8 @@ MonoBehaviour:
   projectileType: 4
   toShoot: {fileID: 1554646062898304290, guid: 51f26f420dedc5e458d63a917ddfb28c, type: 3}
   shootingTrackDuration: 0.75
-  shootingCooldownDuration: 0.25
-  shootingTrackSpeed: 1
+  shootingCooldownDuration: 0.75
+  shootingTrackSpeed: 3
   projectile:
     baseAttack:
       projectiles: []
@@ -190,13 +190,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6965109895030216802}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.2959346, w: 0.95520824}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.017, y: 0.017, z: 0.017}
+  m_LocalScale: {x: 0.017, y: 0.00818482, z: 0.017}
   m_Children: []
   m_Father: {fileID: 1554646062898304302}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 34.427}
 --- !u!212 &6965109895030216815
 SpriteRenderer:
   m_ObjectHideFlags: 0
