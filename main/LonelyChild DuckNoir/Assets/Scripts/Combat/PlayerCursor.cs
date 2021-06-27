@@ -118,9 +118,13 @@ public class PlayerCursor : MonoBehaviour
             // PlayerCursor playerCursor = col.GetComponent<PlayerCursor>();
             if (isFlashing == false)
             {
-                Destroy(col.gameObject);
+                if (col.GetComponent<ProjectileOne>().destroyOnCollision)
+                {
+                    Destroy(col.gameObject);
+                }
+                Damage(col.gameObject.GetComponent<ProjectileOne>().projectile.damage);
             }
-            Damage(col.gameObject.GetComponent<ProjectileOne>().projectile.damage);
+            
             
         }
 

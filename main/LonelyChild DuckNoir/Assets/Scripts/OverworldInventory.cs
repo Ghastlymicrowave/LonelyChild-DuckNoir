@@ -6,19 +6,23 @@ using Combat;
 public class OverworldInventory : MonoBehaviour
 {
     bool menuOpen = false;
-    [SerializeField] Button toggleButton;
     [SerializeField] Animator animator;
     Text buttonTxt;
     [SerializeField] GameObject itemPrefab;
-    GameObject content;
+    [SerializeField] GameObject WeaponsContent;
+    [SerializeField] GameObject ItemsContent;
     ThirdPersonPlayer player;
     InventoryManager inventoryManager;
     void Start()
     {
-        buttonTxt = toggleButton.transform.GetChild(0).GetComponent<Text>();
-        content = transform.GetChild(0).GetChild(0).gameObject;
         player = GameObject.Find("Player").GetComponent<ThirdPersonPlayer>();
         inventoryManager = GameObject.Find("PersistentManager").GetComponent<InventoryManager>();
+    }
+
+    void Update(){
+        if (Input.GetButtonDown("Inventory")){
+            ToggleMenu();
+        }
     }
 
     public void ToggleMenu(){
@@ -28,28 +32,29 @@ public class OverworldInventory : MonoBehaviour
         }
         menuOpen = !menuOpen;
         if (menuOpen){
-            buttonTxt.text="Close Inventory";
+            player.SetMouseMode(false);
             animator.Play("Open",0);
             GenerateItems();
         }else{
-            buttonTxt.text="Open Inventory";
+            player.SetMouseMode(true);
             animator.Play("Close",0);
         }
         player.InventoryOpen = menuOpen;
+        
     }
 
     public void CloseMenu(){
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("InventoyIsClosed")&&!animator.GetCurrentAnimatorStateInfo(0).IsName("Close")){
-            buttonTxt.text="Open Inventory";
             animator.Play("Close",0);
             menuOpen = false;
         }
+        player.SetMouseMode(true);
         player.InventoryOpen = menuOpen;
     }
 
-    void GenerateItems(){
-        for(int i = content.transform.childCount-1; i > -1; i -= 1){
-            Destroy(content.transform.GetChild(i).gameObject);
+    void GenerateItems(){//TODO: add generate weapons
+        for(int i = ItemsContent.transform.childCount-1; i > -1; i -= 1){
+            Destroy(ItemsContent.transform.GetChild(i).gameObject);
         }
         foreach( InventoryManager.ivItem i in inventoryManager.items){
             AddItem(i);
@@ -70,28 +75,28 @@ public class OverworldInventory : MonoBehaviour
 
     void AddItem(InventoryManager.ivItem item){
         GameObject newItemObj = Instantiate(itemPrefab,Vector3.zero,Quaternion.identity);
-        newItemObj.transform.SetParent(content.transform,false);
+        newItemObj.transform.SetParent(ItemsContent.transform,false);
         newItemObj.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = InventoryManager.LoadItemSprite(item.id);//image
         newItemObj.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = item.name;//name
         newItemObj.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = item.description;//description
 
-        GameObject useButton = newItemObj.transform.GetChild(0).GetChild(4).gameObject;
         GameObject inspectButton = newItemObj.transform.GetChild(0).GetChild(3).gameObject;
+        GameObject useButton = newItemObj.transform.GetChild(0).GetChild(4).gameObject;
         if (item.inspect != new string[]{""}){//inspect button
-            inspectButton.GetComponent<Button>().onClick.AddListener(delegate {InspectItem(item);});
+            inspectButton.GetComponent<Button>().onClick.AddListener(delegate {InspectItem(item);});//
         }else{
             inspectButton.SetActive(false);
         }
         
         if (item.methodName !="" || player.ValidRequiresItem()){//use button
-            useButton.GetComponent<Button>().onClick.AddListener(delegate {UseItem(item);});
+            useButton.GetComponent<Button>().onClick.AddListener(delegate {UseItem(item);});//UseItem(item)
             if (player.ValidRequiresItem()){
                 useButton.transform.GetChild(0).GetComponent<Text>().text = "use with";
             }
         }else{
             useButton.SetActive(false);
         }
-        
+
     }
     
 }

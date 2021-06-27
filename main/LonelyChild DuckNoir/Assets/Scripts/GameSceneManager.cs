@@ -6,6 +6,7 @@ public class GameSceneManager : MonoBehaviour
 {
     GameObject overworld;
     InventoryManager inventoryManager;
+    SettingsManager settings;
     EnemyManager enemyManager;
     [SerializeField] AudioClip[] combatAudio;
     [SerializeField] AudioClip[] overworldAudio;
@@ -24,7 +25,7 @@ public class GameSceneManager : MonoBehaviour
 
     void Awake(){
         inventoryManager = GetComponent<InventoryManager>();
-        
+        settings = GetComponent<SettingsManager>();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     void Start(){
@@ -95,6 +96,7 @@ public class GameSceneManager : MonoBehaviour
         overworld.SetActive(true);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        settings.UpdatePlayer();
     }
 
     public void GameOver(){

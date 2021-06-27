@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ThirdPersonPlayer : MonoBehaviour
 {
+    bool lookSide = true;
     [Range(1f, 5f)] [SerializeField] float maxSpd = 2f;
     [Range(0.001f, 0.5f)] [SerializeField] float initalSpd = .1f;
     [SerializeField] float spdAccel = 0.2f;
@@ -23,13 +24,14 @@ public class ThirdPersonPlayer : MonoBehaviour
     [Range(0.01f,1f)]public float VmouseSmoothing = 0.3f;
     [Range(0.01f,1f)]public float HmouseSensitivity = 0.3f;
     [Range(0.01f,1f)]public float VmouseSensitivity = 0.3f;
+    [Range(0.01f,1f)]public float CameraSmooth = 0.3f;
     float hinput;
     float vinput;
     float currentSpeed;
     bool mouseLocked = true;
     [SerializeField] Rigidbody2D rb;
-    Vector2 currentRotation;
-    Vector2 currentRotationLerpTarget;
+    [SerializeField] Vector2 currentRotation;
+    [SerializeField] Vector2 currentRotationLerpTarget;
     Vector3 cameraPositionLerpTarget;
     Vector3 currentCameraLocalPos;
     Vector3 currentCameraBounceback;
@@ -72,10 +74,13 @@ public class ThirdPersonPlayer : MonoBehaviour
     }
 
     public void UpdateOptions(float[] inputArray){
-        HmouseSmoothing = 1f-inputArray[0];
-        VmouseSmoothing = 1f-inputArray[1];
+        HmouseSmoothing = Mathf.Clamp(1-Mathf.Pow(inputArray[0],2),0.001f,1f);
+        VmouseSmoothing = Mathf.Clamp(1-Mathf.Pow(inputArray[1],2),0.001f,1f);
         HmouseSensitivity = inputArray[2];
         VmouseSensitivity = inputArray[3];
+        CameraSmooth = Mathf.Clamp(1-Mathf.Pow(inputArray[6],2),0.001f,1f);
+        //.75 - 1*.74
+        //.75 - 0
     }
 
     public bool ValidRequiresItem(){
@@ -98,7 +103,9 @@ public class ThirdPersonPlayer : MonoBehaviour
         Vector2 rotation = Vector2.zero;
         rotation.x -= Input.GetAxis("Mouse X") * (HmouseSensitivity *1.5f);
         rotation.y += -Input.GetAxis("Mouse Y") * (VmouseSensitivity *1.5f);
-        
+        if (Input.GetButtonDown("changeLookSide")){
+            lookSide = !lookSide;
+        }
         if (!locked){
             currentRotationLerpTarget += rotation;
             currentRotationLerpTarget.y = Mathf.Clamp(currentRotationLerpTarget.y,minYRotation,maxYRotation);
@@ -115,7 +122,10 @@ public class ThirdPersonPlayer : MonoBehaviour
         cameraPositionLerpTarget.y = yInital + ((currentRotation.y-minYRotation)/(maxYRotation-minYRotation) * yRange);
         cameraPositionLerpTarget.z = zInital + ((currentRotation.y-minYRotation)/(maxYRotation-minYRotation) * zRange);
         cameraPositionLerpTarget.x = xInital + ((currentRotation.y-minYRotation)/(maxYRotation-minYRotation) * xRange);
-        currentCameraLocalPos = Vector3.Lerp(currentCameraLocalPos,cameraPositionLerpTarget,1f);//TODO: camera positon smooth
+        if (!lookSide){
+            cameraPositionLerpTarget.x = -cameraPositionLerpTarget.x;
+        }
+        currentCameraLocalPos = Vector3.Lerp(currentCameraLocalPos,cameraPositionLerpTarget,CameraSmooth);//TODO: camera positon smooth
 
         float castRadius = .2f;
 
@@ -186,7 +196,7 @@ public class ThirdPersonPlayer : MonoBehaviour
 
 
     public void SetMouseMode(bool locked){
-            if (mouseLocked)
+            if (!locked)
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
@@ -202,7 +212,7 @@ public class ThirdPersonPlayer : MonoBehaviour
     void Update()
     {
 
-        if (canMove)
+        if (canMove&&!InventoryOpen)
         {
             Look();
             Move();
@@ -210,8 +220,10 @@ public class ThirdPersonPlayer : MonoBehaviour
         }
         else
         {
-
-            Look(true);
+            if (!InventoryOpen){
+                Look(true);
+            }
+            
 
             if (interactableTarget!=null){
                 interactableTarget.isBusy = true;

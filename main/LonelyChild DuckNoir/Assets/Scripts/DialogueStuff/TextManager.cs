@@ -143,6 +143,16 @@ public class TextManager : MonoBehaviour
             case 44: return stringsToArray("The urinal.\nBelieve it or not, locked every night.",
             "Press 'Use with' to get the party started...");
             case 45: return stringsToArray("\"Zzzz....\"\n\"...what are you lookin' at?....\"");
+            //overworld Tutorial Text
+            case 46: return stringsToArray("You picked up a page from the ghost hunting manual.\nPress E or LMB to continue.",
+            "\"Out there, when you're hunting for ghosts inside of haunted areas, you might just need to read something.\"",
+            "\"Not everyone knows this, but reading in a haunted house is actually much different from normal reading.\"\n\"Here's how you read in a haunted house:\"",
+            "\"First, approach the thing you want to read and press 'E' on your keyboard.\"\n\"(The wierd looks you will get for doing this are irrelevant, ignore them.)\"",
+            "\"Second, press E again until you're done reading!\"",
+            "\"Happy hunting!\"");
+            case 47:
+                return stringsToArray("The library door, locked.\nYou'll need to unlock it before you can use it.", "If you find a key, pick it up with E.", 
+                "Then, go back to the door, and press 'I' or 'Tab' to open the inventory.","Finally, you simply navigate to the key and press 'use with' to unlock the door.");
         }
     }
 

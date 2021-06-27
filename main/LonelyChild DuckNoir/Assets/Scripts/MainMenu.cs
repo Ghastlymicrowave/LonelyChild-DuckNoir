@@ -15,9 +15,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField] OptionsMenu optionsPanel;
     [SerializeField] GameObject ContinueButton;
 
+    public GameObject howToPlay;
+    public GameObject credits;
+
     void Start()
     {
-        
+
         if (textScroller == null)
         {
             textScroller = FindObjectOfType<TextScroller>();
@@ -26,9 +29,12 @@ public class MainMenu : MonoBehaviour
         inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
         gameSceneManager = tm.gameObject.GetComponent<GameSceneManager>();
 
-        if (!inventoryManager.IsFreshSave()){
+        if (!inventoryManager.IsFreshSave())
+        {
             ContinueButton.SetActive(true);
-        }else{
+        }
+        else
+        {
             inventoryManager.ResetSave();
             inventoryManager.LoadJSON();
         }
@@ -39,17 +45,20 @@ public class MainMenu : MonoBehaviour
 
     public void PlayButton()
     {
+        CloseStuff();
         foreach (int ghost in ghostIDs)
         {
             inventoryManager.ghostsRoaming.Add(ghost);
         }
         inventoryManager.ResetSave();
-        Debug.Log("checkpoint scene:"+ inventoryManager.checkpointScene);
+        Debug.Log("checkpoint scene:" + inventoryManager.checkpointScene);
         gameSceneManager.TransitionScene(inventoryManager.checkpointScene);//to start new game, otherwise, load current data and use that scene
-        
+
     }
 
-    public void OpenOptions(){
+    public void OpenOptions()
+    {
+        CloseStuff();
         optionsPanel.gameObject.SetActive(true);
         optionsPanel.InitMenu();
     }
@@ -58,18 +67,43 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
-    public void Continue(){
+    public void Continue()
+    {
         gameSceneManager.TransitionScene(inventoryManager.checkpointScene);
     }
     public void HowToPlayButton()
     {
-        if (optionsPanel!=null&&optionsPanel.gameObject.activeSelf){
-            optionsPanel.CloseOptions();
-        }
+        CloseStuff();
+        howToPlay.SetActive(true);
+        /*
+        //Legacy How to play code
         if (textScroller.theCanvas.activeSelf == false)
         {
             string[] toScroll = TextManager.GetTextByID(textID);
             textScroller.ScrollText(toScroll, player_Main);
         }
+        */
     }
+    public void CreditsButton()
+    {
+        CloseStuff();
+        credits.SetActive(true);
+    }
+    
+    void CloseStuff()
+    {
+        if (optionsPanel != null && optionsPanel.gameObject.activeSelf)
+        {
+            optionsPanel.Cancel();
+        }
+        credits.SetActive(false);
+        howToPlay.SetActive(false);
+
+    }
+
+
+
+
+
+
 }

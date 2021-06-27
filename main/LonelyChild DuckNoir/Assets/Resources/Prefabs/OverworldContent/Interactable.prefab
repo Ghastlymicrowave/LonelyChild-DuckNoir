@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 619042250434018316}
   - component: {fileID: 900663479}
   - component: {fileID: 1086494704}
-  - component: {fileID: 1086494700}
+  - component: {fileID: 2270089220848803687}
   m_Layer: 0
   m_Name: Interactable
   m_TagString: Untagged
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d68cf39aac036fc4d9019131262c5117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bCol: {fileID: 1086494700}
+  bCol: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
   arbitraryHeight: 0.5
   iconType: 2
@@ -129,7 +129,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!65 &1086494700
+--- !u!65 &2270089220848803687
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +140,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 3, z: 3}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2534492990289033106
 PrefabInstance:
@@ -167,7 +167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7553730966821925361, guid: 6f7c07e1ca2d95642b3547e700de6bf1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 7553730966821925361, guid: 6f7c07e1ca2d95642b3547e700de6bf1, type: 3}
       propertyPath: m_LocalRotation.w

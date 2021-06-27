@@ -6,15 +6,24 @@ public class ActivatableDoor : Activatable
 {
     // Start is called before the first frame update
     Animator anim;
-    BoxCollider2D thisCol;
+   [SerializeField] BoxCollider2D thisCol;
+    [SerializeField] string toPlay = "DoorOpen";
+   // [SerializeField] AudioSource aS;
     void Start()
     {
         anim = GetComponent<Animator>();
-        thisCol = GetComponent<BoxCollider2D>();
+        if (thisCol == null)
+        {
+            thisCol = GetComponent<BoxCollider2D>();
+        }
     }
 
     public override void Activate(){
-        anim.Play("DoorOpen",0);
+        anim.Play(toPlay,0);
+        //if(aS != null)
+       // {
+       //     aS.Play();
+       // }
         thisCol.enabled = false;
     }
     public void Disable(){
