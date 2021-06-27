@@ -30,9 +30,7 @@ public class OverworldInventory : MonoBehaviour
             Debug.Log("refusing to open inventory because of player.canMove");
             return;
         }
-        Debug.Log(menuOpen.ToString()+"PRE");
         menuOpen = !menuOpen;
-        Debug.Log(menuOpen.ToString()+"POST");
         if (menuOpen){
             player.SetMouseMode(false);
             animator.Play("Open",0);
@@ -98,8 +96,6 @@ public class OverworldInventory : MonoBehaviour
         }else{
             useButton.SetActive(false);
         }
-        useButton.transform.GetChild(0).GetComponent<Text>().text = "help";
-        inspectButton.transform.GetChild(0).GetComponent<Text>().text = "asdfsadf";
 
     }
     
