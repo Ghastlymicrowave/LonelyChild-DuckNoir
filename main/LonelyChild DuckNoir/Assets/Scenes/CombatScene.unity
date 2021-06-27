@@ -270,9 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
-  soundHolderGO: {fileID: 0}
   soundHolder: {fileID: 0}
-  trigger: {fileID: 0}
 --- !u!1 &89328492
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,9 +927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
-  soundHolderGO: {fileID: 0}
   soundHolder: {fileID: 0}
-  trigger: {fileID: 0}
 --- !u!1 &571408068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,9 +1287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
-  soundHolderGO: {fileID: 0}
   soundHolder: {fileID: 0}
-  trigger: {fileID: 0}
 --- !u!1 &648100459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1908,7 +1902,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1708874184}
   m_HandleRect: {fileID: 1708874183}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2174,9 +2168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
-  soundHolderGO: {fileID: 0}
   soundHolder: {fileID: 0}
-  trigger: {fileID: 0}
 --- !u!1 &981890839
 GameObject:
   m_ObjectHideFlags: 0
@@ -4004,9 +3996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
-  soundHolderGO: {fileID: 0}
   soundHolder: {fileID: 0}
-  trigger: {fileID: 0}
 --- !u!1 &1912693670
 GameObject:
   m_ObjectHideFlags: 0
@@ -4246,6 +4236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b293cae5f9b058e4ca540f5eb8e3dfbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageNumPrefab: {fileID: 3500752813507337411, guid: df45fd2a41411f64a8a8429591f0a118, type: 3}
   cameraShake: {fileID: 1625207813}
   subMenu: {fileID: 1481484756}
   gamePosition: 0

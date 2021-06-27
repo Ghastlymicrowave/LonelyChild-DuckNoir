@@ -25,7 +25,6 @@ public class TextScroller : MonoBehaviour
     //when to end the textscroll.
     public AudioSource tickSound;
     public AudioSource clickSound;
-    private IEnumerator theClose;
 
     void Start()
     {
@@ -34,13 +33,7 @@ public class TextScroller : MonoBehaviour
 
     public void ScrollText(string[] newString, ThirdPersonPlayer pmReference)
     {
-        print("aw yeah");
-        if (theClose != null)
-        {
-            StopCoroutine(theClose);
-            anim.Play("NewPopUp");
-        }
-
+        anim.Play("Open");
 
         pm = pmReference;
         if (pm != null)
@@ -94,12 +87,10 @@ public class TextScroller : MonoBehaviour
         }
         isUpdating = false;
         toScroll = null;
-        StartCoroutine(theClose = CloseIt());
+        anim.Play("Close");
     }
-    private IEnumerator CloseIt()
+    public void CloseIt()
     {
-        anim.Play("NewPopDown");
-        yield return new WaitForSeconds(.5f);
         theCanvas.SetActive(false);
     }
 

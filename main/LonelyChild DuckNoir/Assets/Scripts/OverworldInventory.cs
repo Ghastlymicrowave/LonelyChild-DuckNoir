@@ -45,7 +45,6 @@ public class OverworldInventory : MonoBehaviour
 
     public void CloseMenu(){
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("InventoyIsClosed")&&!animator.GetCurrentAnimatorStateInfo(0).IsName("Close")){
-            buttonTxt.text="Open Inventory";
             animator.Play("Close",0);
             menuOpen = false;
         }
@@ -83,13 +82,13 @@ public class OverworldInventory : MonoBehaviour
         GameObject inspectButton = newItemObj.transform.GetChild(0).GetChild(3).gameObject;
         GameObject useButton = newItemObj.transform.GetChild(0).GetChild(4).gameObject;
         if (item.inspect != new string[]{""}){//inspect button
-            //inspectButton.GetComponent<Button>().onClick.AddListener(delegate {Debug.Log("AFFDFSF");});//InspectItem(item)
+            inspectButton.GetComponent<Button>().onClick.AddListener(delegate {InspectItem(item);});//
         }else{
             inspectButton.SetActive(false);
         }
         
         if (item.methodName !="" || player.ValidRequiresItem()){//use button
-            //useButton.GetComponent<Button>().onClick.AddListener(delegate {Debug.Log("FSFA");});//UseItem(item)
+            useButton.GetComponent<Button>().onClick.AddListener(delegate {UseItem(item);});//UseItem(item)
             if (player.ValidRequiresItem()){
                 useButton.transform.GetChild(0).GetComponent<Text>().text = "use with";
             }
