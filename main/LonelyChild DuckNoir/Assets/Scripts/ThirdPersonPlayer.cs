@@ -196,15 +196,18 @@ public class ThirdPersonPlayer : MonoBehaviour
 
 
     public void SetMouseMode(bool locked){
-            if (mouseLocked)
+            if (!mouseLocked)
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
+                Debug.Log("unlocked");
             }
             else
             {
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
+                Debug.Log("locked");
+
             }
     }
 

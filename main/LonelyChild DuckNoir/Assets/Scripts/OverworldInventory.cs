@@ -48,6 +48,7 @@ public class OverworldInventory : MonoBehaviour
             animator.Play("Close",0);
             menuOpen = false;
         }
+        player.SetMouseMode(true);
         player.InventoryOpen = menuOpen;
     }
 
