@@ -104,11 +104,9 @@ public class TextManager : MonoBehaviour
                 return stringsToArray("The master bedroom, locked as usual...", "You'll need to unlock it before you can use it.", 
                 "Press 'Use with' to get the party started...");
             case 32:
-                return stringsToArray("The staircase, believe it or not, has a lock on it...", "You'll need to unlock it before you can use it.", 
-                "Press 'Use with' to get the party started...");
+                return stringsToArray("The staircase, believe it or not, sits behind a locked door...", "You'll need to unlock it before you can use it.");
             case 33:
-                return stringsToArray("The showing room, where lucky children get a chance at a home...\nAnd it's locked.", "You'll need to unlock it before you can use it.", 
-                "Press 'Use with' to get the party started...");
+                return stringsToArray("The showing room, where lucky children get a chance at a home...\n...and the door's locked.", "You'll need to unlock it before you can use it.");
             case 34:
                 return stringsToArray("His bed.", "You feel shivers down your spine.");
             case 35:
@@ -144,7 +142,7 @@ public class TextManager : MonoBehaviour
             "Press 'Use with' to get the party started...");
             case 45: return stringsToArray("\"Zzzz....\"\n\"...what are you lookin' at?....\"");
             //overworld Tutorial Text
-            case 46: return stringsToArray("You picked up a page from the ghost hunting manual.\nPress E or LMB to continue.",
+            case 46: return stringsToArray("You found a page from the ghost hunting manual.\nPress E or LMB to continue.",
             "\"Out there, when you're hunting for ghosts inside of haunted areas, you might just need to read something.\"",
             "\"Not everyone knows this, but reading in a haunted house is actually much different from normal reading.\"\n\"Here's how you read in a haunted house:\"",
             "\"First, approach the thing you want to read and press 'E' on your keyboard.\"\n\"(The wierd looks you will get for doing this are irrelevant, ignore them.)\"",
@@ -153,6 +151,12 @@ public class TextManager : MonoBehaviour
             case 47:
                 return stringsToArray("The library door, locked.\nYou'll need to unlock it before you can use it.", "If you find a key, pick it up with E.", 
                 "Then, go back to the door, and press 'I' or 'Tab' to open the inventory.","Finally, you simply navigate to the key and press 'use with' to unlock the door.");
+            case 48:
+                return stringsToArray("It's a locked door leading to the other part of the hallway, but...\n...the lock doesn't have a key hole.",
+                "it seems that you'll need to use\nSOMETHING OTHER THAN A KEY on\nSOMETHING OTHER THAN A LOCK.");
+            case 49:
+                return stringsToArray("You picked up the library key!","To open doors with keys, or use any item on anything, approach the door and press 'Tab' or 'I' to open up the menu.",
+                    "From there, scroll down to the proper key and press 'use with'.");
         }
     }
 

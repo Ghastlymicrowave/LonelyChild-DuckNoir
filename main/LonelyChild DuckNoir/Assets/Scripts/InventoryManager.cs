@@ -135,7 +135,7 @@ public class InventoryManager : MonoBehaviour
                     "Library Key",
                     "The best place in the whole orphanage.",
                     new string[]{"To open doors with keys, approach the door and press 'Tab' or 'I' to open up the menu.",
-                    "From there, scroll down to the proper key and "},
+                    "From there, scroll down to the proper key and press 'use with'."},
                     "",
                     new string[]{""}, 
                     (int)ItemsEnum.ShowingRoomKey,
