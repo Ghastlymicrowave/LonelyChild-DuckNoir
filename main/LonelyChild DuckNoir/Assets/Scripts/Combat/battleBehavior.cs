@@ -72,6 +72,7 @@ public class battleBehavior : MonoBehaviour
     List<string> toScroll;
     DisplayEnemy enemyImage;
     List<SpecialText> specialText;
+    public int specialValue = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -259,6 +260,11 @@ public class battleBehavior : MonoBehaviour
         DamageNum damageNumber = Instantiate(damageNumPrefab,enemyImage.gameObject.transform.position + Vector3.back*2,Quaternion.identity,null);
         damageNumber.Text(damage.ToString());
     }
+
+    /*public void RepressedDamageEnemy(int damage, int newState){
+        DamageEnemy(damage);
+        specialValue = newState;
+    }*/
 
     void CheckEnemyAlive(){
         if (enemy.hp < 0)
