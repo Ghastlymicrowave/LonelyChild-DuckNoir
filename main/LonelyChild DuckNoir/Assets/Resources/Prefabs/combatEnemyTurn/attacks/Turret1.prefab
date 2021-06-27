@@ -50,7 +50,7 @@ PrefabInstance:
     - target: {fileID: 67973537289529056, guid: 103d8a021d4a52346bfd0184ef81e220, type: 3}
       propertyPath: attack.projectiles.Array.data[0]
       value: 
-      objectReference: {fileID: 9115646282658731267, guid: dcfb233f418e08a43bee2e2591b2d477, type: 3}
+      objectReference: {fileID: 9158372154142968405}
     - target: {fileID: 67973537289529056, guid: 103d8a021d4a52346bfd0184ef81e220, type: 3}
       propertyPath: attack.projectiles.Array.data[1]
       value: 
@@ -141,6 +141,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 103d8a021d4a52346bfd0184ef81e220, type: 3}
+--- !u!1 &9158372154142968405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 67973537289529063, guid: 103d8a021d4a52346bfd0184ef81e220, type: 3}
+  m_PrefabInstance: {fileID: 9216739099963141298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9158372153142930292 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 67973536281020358, guid: 103d8a021d4a52346bfd0184ef81e220, type: 3}

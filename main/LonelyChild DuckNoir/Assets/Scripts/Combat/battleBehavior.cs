@@ -5,19 +5,9 @@ using UnityEngine.SceneManagement;
 using Combat;
 using UnityEngine.UI;
 
-public class SpecialText{
-    public string trigger;
-    public string[] text;
-    public int triggerOnce;//1 for only once, 0 for never, -1 for infinite
-    public SpecialText(string triggerTag, string[] responseText, int triggerVal){
-        trigger = triggerTag;
-        text = responseText;
-        triggerOnce = triggerVal;
-    }
-}
+
 public class battleBehavior : MonoBehaviour
 {
-    [SerializeField] DamageNum damageNumPrefab;
     public Animator cameraShake;
     TextManager tm;
     public EnemyClass enemy;
@@ -71,7 +61,6 @@ public class battleBehavior : MonoBehaviour
     GameObject minigame;
     List<string> toScroll;
     DisplayEnemy enemyImage;
-    List<SpecialText> specialText;
     // Start is called before the first frame update
     void Start()
     {
@@ -98,18 +87,6 @@ public class battleBehavior : MonoBehaviour
         Music.Play();
     }
 
-    void SendSignal(string signalName){
-        if (enemy.specialTexts != null){
-            for (int i = 0; i < enemy.specialTexts.Length;i++){
-                if (enemy.specialTexts[i].trigger == signalName && enemy.specialTexts[i].triggerOnce!=0){
-                    toScroll.AddRange(enemy.specialTexts[i].text);
-                    if (enemy.specialTexts[i].triggerOnce==1){
-                        enemy.specialTexts[i].triggerOnce = 0;
-                    }
-                }
-            }
-        }
-    }
     // Update is called once per frame
     void Update()
     {
@@ -254,10 +231,6 @@ public class battleBehavior : MonoBehaviour
         enemy.hp -= damage;
         CheckEnemyAlive();
         Debug.Log("Dealt Damage: "+damage.ToString()+ "current HP: "+enemy.hp.ToString());
-        SendSignal("GHOST_HP_"+enemy.hp);
-        SendSignal("ENEMY_DAMAGED");
-        DamageNum damageNumber = Instantiate(damageNumPrefab,enemyImage.gameObject.transform.position + Vector3.back*2,Quaternion.identity,null);
-        damageNumber.Text(damage.ToString());
     }
 
     void CheckEnemyAlive(){
@@ -325,7 +298,6 @@ public class battleBehavior : MonoBehaviour
         if(damage > 0)
         {
             cameraShake.Play("CombatCam_Shake");
-            SendSignal("PLAYER_DAMAGED");
         }
         if (hero.hp <= 0)
         {hero.hp = 0; EndCombat(endCon.DEFEAT); }
