@@ -78,9 +78,9 @@ public abstract class EnemyClass
         }
         return toReturn;
     }
-    public EnemyReaction GetReaction(ButtonEnum type, int actionID){//returns reactions array or null
+    public EnemyReaction GetReaction(ButtonEnum type, int actionID, int specialVal = 0){//returns reactions array or null
         for (int i = 0; i < responses.Length;i++){
-            if (responses[i].trigger.actionType==(int)type && responses[i].trigger.actionID==actionID){
+            if (responses[i].trigger.actionType==(int)type && responses[i].trigger.actionID==actionID && responses[i].specialVal == specialVal){
                 return responses[i].RandReact();
             }
         }
@@ -100,10 +100,8 @@ public abstract class EnemyClass
         return ob;
     }
 
-    protected EnemyResponse GenResponse(ButtonEnum attack, int actionID, EnemyReaction[] reactions){
-        return new EnemyResponse(new EnemyActionCase((int)attack,actionID), 
-        reactions
-        );
+    protected EnemyResponse GenResponse(ButtonEnum attack, int actionID, EnemyReaction[] reactions, int specialVal = 0){
+        return new EnemyResponse(new EnemyActionCase((int)attack,actionID), reactions, specialVal);
     }
 
     protected EnemyReaction NewReaction(string methodName, string[] text, object[] parameters){
@@ -118,12 +116,14 @@ public abstract class EnemyClass
 public class EnemyResponse{//a response containing a trigger and a reaction
     public EnemyActionCase trigger;
     public EnemyReaction[] reactions;//to be invoked
+    public int specialVal = 0;
     public EnemyReaction RandReact(){
         return reactions[Random.Range(0,reactions.Length)];
     }
-    public EnemyResponse(EnemyActionCase triggerAction, EnemyReaction[] triggerReactions){
+    public EnemyResponse(EnemyActionCase triggerAction, EnemyReaction[] triggerReactions, int val){
         trigger = triggerAction;
         reactions = triggerReactions;
+        specialVal = val;
     }
 }
 
@@ -875,6 +875,13 @@ public class Tutorial : EnemyClass
 }
 public class RepressedGhost : EnemyClass
 {//example of an actual enemy
+
+public enum moods{
+    happy,
+    happyTears,
+    sad,
+    mad
+}
     public RepressedGhost(battleBehavior battle = null) : base(battle)
     {
         sentiment = new List<EnemyActionCase>{
