@@ -59,6 +59,12 @@ public class OverworldInventory : MonoBehaviour
         foreach( InventoryManager.ivItem i in inventoryManager.items){
             AddItem(i);
         }
+        for(int i = WeaponsContent.transform.childCount-1; i > -1; i -= 1){
+            Destroy(WeaponsContent.transform.GetChild(i).gameObject);
+        }
+        foreach( AttackActions i in inventoryManager.attacks){
+            AddWeapon(i);
+        }
     }
 
     public void UseItem(InventoryManager.ivItem item){
@@ -71,6 +77,20 @@ public class OverworldInventory : MonoBehaviour
         Debug.Log("inspecting");
         CloseMenu();
         player.TriggerDialogue(item.inspect);
+    }
+
+    void AddWeapon(AttackActions weapon){
+        GameObject newItemObj = Instantiate(itemPrefab,Vector3.zero,Quaternion.identity);
+        newItemObj.transform.SetParent(WeaponsContent.transform,false);
+        newItemObj.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = InventoryManager.LoadAttackSprite(weapon);//image
+        InventoryManager.ivAttack atk = InventoryManager.GetAttackFromId(weapon);
+        newItemObj.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = atk.name;//name
+        newItemObj.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = atk.desc;//description
+
+        GameObject inspectButton = newItemObj.transform.GetChild(0).GetChild(3).gameObject;
+        GameObject useButton = newItemObj.transform.GetChild(0).GetChild(4).gameObject;
+        inspectButton.SetActive(false);
+        useButton.SetActive(false);
     }
 
     void AddItem(InventoryManager.ivItem item){
@@ -96,7 +116,6 @@ public class OverworldInventory : MonoBehaviour
         }else{
             useButton.SetActive(false);
         }
-
     }
     
 }

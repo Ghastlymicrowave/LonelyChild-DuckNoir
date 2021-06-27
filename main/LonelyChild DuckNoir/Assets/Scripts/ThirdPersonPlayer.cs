@@ -49,6 +49,10 @@ public class ThirdPersonPlayer : MonoBehaviour
     Animator thisAnimator;
 
     Vector2 lockedRotation = Vector2.zero;
+
+    Quaternion spotlightCurrent;
+    Quaternion spotlightLerp;
+    [SerializeField] Transform spotlight;
     
     void Start()
     {
@@ -71,6 +75,8 @@ public class ThirdPersonPlayer : MonoBehaviour
         {
             textScroller = FindObjectOfType<TextScroller>();
         }
+        spotlightCurrent = Quaternion.identity;
+        spotlightLerp = Quaternion.identity;
     }
 
     public void UpdateOptions(float[] inputArray){
@@ -114,7 +120,6 @@ public class ThirdPersonPlayer : MonoBehaviour
             currentRotationLerpTarget.y = Mathf.Clamp(currentRotationLerpTarget.y,minYRotation,maxYRotation);
             currentRotationLerpTarget.x = Mathf.Lerp(currentRotationLerpTarget.x,lockedRotation.x,0.01f);
         }
-        
         currentRotation.x = Mathf.Lerp(currentRotation.x,currentRotationLerpTarget.x,HmouseSmoothing);
         currentRotation.y = Mathf.Lerp(currentRotation.y,currentRotationLerpTarget.y,VmouseSmoothing);
         //total range is max - min
@@ -174,8 +179,6 @@ public class ThirdPersonPlayer : MonoBehaviour
     void Move(){
         hinput = Input.GetAxis("HMove");
         vinput = Input.GetAxis("VMove");
-        thisAnimator.SetFloat("DirectionX",hinput);
-        thisAnimator.SetFloat("DirectionY",vinput);
         bool isMoving = (hinput != 0f || vinput != 0f);
         thisAnimator.SetBool("Moving",isMoving);
         Vector2 direction = new Vector2(hinput,vinput);
@@ -185,6 +188,9 @@ public class ThirdPersonPlayer : MonoBehaviour
             }else{
                 currentSpeed = Mathf.Min(spdAccel + currentSpeed, maxSpd);
             }
+            thisAnimator.SetFloat("DirectionX",hinput);
+            thisAnimator.SetFloat("DirectionY",vinput);
+            spotlightLerp = Quaternion.LookRotation(new Vector3(direction.x,direction.y,0f),Vector3.back);
         }else{
             currentSpeed = Mathf.Max(0f,currentSpeed - currentSpeed * Kfriction);
             if (currentSpeed < Sfriction){
@@ -211,7 +217,8 @@ public class ThirdPersonPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        spotlightCurrent = Quaternion.Lerp(spotlightCurrent,spotlightLerp,0.2f);
+        spotlight.localRotation = spotlightCurrent;
         if (canMove&&!InventoryOpen)
         {
             Look();
