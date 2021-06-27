@@ -157,6 +157,8 @@ public class TextManager : MonoBehaviour
             case 49:
                 return stringsToArray("You picked up the library key!","To open doors with keys, or use any item on anything, approach the door and press 'Tab' or 'I' to open up the menu.",
                     "From there, scroll down to the proper key and press 'use with'.");
+            case 50:
+                return stringsToArray("You picked up the master bedroom key!");
         }
     }
 
