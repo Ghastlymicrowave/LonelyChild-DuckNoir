@@ -218,6 +218,8 @@ public class InventoryManager : MonoBehaviour
 
     public class ivAttack{//soon to replace the big switch
         public string spritePath;
+        public string name;
+        public string desc;
     }
     public static ivAttack GetAttackFromId(AttackActions action){
         switch(action){
@@ -238,29 +240,39 @@ public class InventoryManager : MonoBehaviour
     class Ruler : ivAttack{
         public Ruler(){
             spritePath = "2D Assets/Weapons/Flashlight";//TODO: change this sprite
+            name = "Ruler";
+            desc = "A wooden ruler, used for measuring things. Or a weapon for bad people.";
         }
     }
     class Flashlight : ivAttack{
         public Flashlight(){
             spritePath = "2D Assets/Weapons/Flashlight";
+            name = "Flashlight";
+            desc = "A flashlight, or a 'torch' if you're a brit. This thing's pretty bright! That would totally hurt a ghost.";
         }
     }
 
     class Theremin : ivAttack{
         public Theremin(){
             spritePath = "2D Assets/Weapons/Theremin";
+            name = "Theremin";
+            desc = "It makes some weird spooky noises. You remember reading somewhere that it hurts ghosts.";
         }
     }
 
     class Fire_Poker : ivAttack{
         public Fire_Poker(){
             spritePath = "2D Assets/Weapons/Fireplace_Poker";
+            name = "Fireplace Poker";
+            desc = "The firepoker has some weight to it. You shudder to think of what this could have been used for.";
         }
     }
 
     class Garlic : ivAttack{
         public Garlic(){
             spritePath = "2D Assets/Items/Garlic";
+            name = "Garlic";
+            desc = "Smells disgusting! Surely ghosts will hate it too?";
         }
     }
 
