@@ -138,7 +138,7 @@ public class InventoryManager : MonoBehaviour
                     "From there, scroll down to the proper key and press 'use with'."},
                     "",
                     new string[]{""}, 
-                    (int)ItemsEnum.ShowingRoomKey,
+                    (int)ItemsEnum.LibraryKey,
                     "2D Assets/Items/Key"); 
             case ItemsEnum.Fire_Poker:
                 return new ivItem(

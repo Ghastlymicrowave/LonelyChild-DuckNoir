@@ -150,10 +150,12 @@ public class Interactable : MonoBehaviour
 
     public void CheckItemUse(InventoryManager.ivItem item){
         if (needsItemUse==false){
+            Debug.Log("no need to use item");
             playerRef.UseItem(item);
             return;
         }
         if ((int)requiredItem == item.id){
+            Debug.Log("used right item");
             needsItemUse = false;
             playerRef.TriggerDialogue(usedRequiredItemTextId);
             if (deleteRequiredItem){
@@ -163,6 +165,7 @@ public class Interactable : MonoBehaviour
             if (dialogueID>-1){
                 Debug.Log("Item didn't work");
                 playerRef.TriggerDialogue(0);
+                Debug.Log("Used Item: "+item.id.ToString()+" needs item: "+((int)requiredItem).ToString());
             }
         }
     }

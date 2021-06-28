@@ -150,7 +150,7 @@ public class ThirdPersonPlayer : MonoBehaviour
         Vector3 origin = cameraTransform.parent.TransformPoint(Vector3.zero) ;
         Vector3 offset = cameraTransform.GetChild(0).transform.position - cameraTransform.position ;
         Vector3 direction = cameraTransform.parent.TransformPoint(cameraPositionLerpTarget) + offset - origin;
-        
+        Debug.Log("Camera Stuff:\norigin: "+origin.ToString()+"\noffset: "+offset.ToString()+"\ndirection: "+direction.ToString()+"\ncamDist: "+camDistToPlayer.ToString());
         RaycastHit hit;
 
         Physics.SphereCast(origin, castRadius, direction,out hit, camDistToPlayer, cameraCollisionMask);
@@ -158,14 +158,15 @@ public class ThirdPersonPlayer : MonoBehaviour
             Vector3 point =hit.point + castRadius * hit.normal;
             Vector3 norm = cameraTransform.parent.TransformPoint(cameraPositionLerpTarget) - point;
             Vector3 vec = point - (cameraTransform.parent.TransformPoint(cameraPositionLerpTarget) + offset);
+            Debug.Log("Camera Stuff:\npoint: "+point.ToString()+"\nnorm: "+norm.ToString()+"\nvec: "+vec.ToString());
             //find vector between actual cam and point
 
-            currentCameraBouncebackTarget = vec -direction.normalized*.2f;
+            currentCameraBouncebackTarget = vec;// -direction.normalized*.2f;
             Debug.DrawLine(origin,hit.point,Color.black,1f);
 
-            if (currentCameraBounceback.magnitude > currentCameraBouncebackTarget.magnitude){
-                currentCameraBounceback = Vector3.Lerp(currentCameraBounceback,currentCameraBouncebackTarget,0.5f);
-            }
+            //if (currentCameraBounceback.magnitude > currentCameraBouncebackTarget.magnitude){
+                //currentCameraBounceback = Vector3.Lerp(currentCameraBounceback,currentCameraBouncebackTarget,0.5f);
+            //}
             currentCameraBounceback = Vector3.Lerp(currentCameraBounceback,currentCameraBouncebackTarget,0.5f);
         }else{
             currentCameraBouncebackTarget = Vector3.zero;
