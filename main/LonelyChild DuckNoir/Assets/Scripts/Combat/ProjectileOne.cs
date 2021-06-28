@@ -27,7 +27,8 @@ public class ProjectileOne : MonoBehaviour
     GameObject temp = null;
     Vector3 currentDirection = Vector3.zero;
     float startTime;
-
+    AttackLogic logic;
+    float logicDuration;
     void Start()
     {
         //projectile.speed *= 0.0001f;
@@ -37,11 +38,6 @@ public class ProjectileOne : MonoBehaviour
         {
             cursor = GameObject.Find("Player Cursor");
 
-
-            hypothetical = new GameObject();
-            hypothetical.transform.position = theTrans.position;
-            hypothetical.transform.rotation = theTrans.rotation;
-            hypothetical.name = "Hypothetical";
             currentDirection = (cursor.transform.position - transform.position).normalized;
 
         }
@@ -54,11 +50,17 @@ public class ProjectileOne : MonoBehaviour
         globalX = theTrans.position.x;
         globalY = theTrans.position.y;
         startTime = Time.time;
+        logic = GameObject.FindObjectOfType<AttackLogic>();
+        logicDuration = logic.attack.duration - logic.timer;
     }
 
     // Update is called once per frame
     void Update()
     {
+        logicDuration -= Time.deltaTime;
+        if (logicDuration<=0){
+            Destroy(gameObject);
+        }
         float x = 0f;
         float y = 0f;
         switch (projectileType)
@@ -101,7 +103,7 @@ public class ProjectileOne : MonoBehaviour
                         {
                             timer = 0f;
                             Vector3 dir = Quaternion.Euler(new Vector3(0f,0f,90f)) * currentDirection;
-                            temp = Instantiate(toShoot, hypothetical.transform.position, Quaternion.LookRotation(dir,Vector3.forward));//the bullet
+                            temp = Instantiate(toShoot,transform.position, Quaternion.LookRotation(dir,Vector3.forward));//the bullet
                             
 
                             isTracking = false;

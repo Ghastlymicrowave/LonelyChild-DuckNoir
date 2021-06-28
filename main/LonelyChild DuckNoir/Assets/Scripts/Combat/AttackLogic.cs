@@ -8,7 +8,7 @@ public class AttackLogic : MonoBehaviour
     public battleBehavior bb;
     public PlayerCursor playerCursor;
     public Attack attack;
-    float timer = 0f;
+    public float timer = 0f;
 
     // Update is called once per frame
     void Update()

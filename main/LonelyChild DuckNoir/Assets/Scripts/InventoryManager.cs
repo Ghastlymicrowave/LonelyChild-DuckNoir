@@ -222,8 +222,18 @@ public class InventoryManager : MonoBehaviour
                     "",
                     new string[]{""},
                     (int)ItemsEnum.KeyRing,
-                    "2D Assets/Items/Fidget_Spinner");
-
+                    "2D Assets/Items/Key");
+            case ItemsEnum.Scissors:
+                return new ivItem(
+                    "Scissors",
+                    "Big ol' scissors to cut big ol' things.",
+                    new string[]{"This conveniently placed pair of scissors are big enough to cut some tough rope.",
+                    "If you used this item, it could get you out of a tight spot!"
+                    },
+                    "",
+                    new string[]{""},
+                    (int)ItemsEnum.Scissors,
+                    "2D Assets/Items/Key");
             default: return null;
         }
     }

@@ -149,7 +149,8 @@ public float duration;
         Russian_Doll,
         Eraser,
         Spinning_Toy,
-        KeyRing
+        KeyRing,
+        Scissors
     }
 
     public enum Enemies{
