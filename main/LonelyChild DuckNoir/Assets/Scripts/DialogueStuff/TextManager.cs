@@ -152,8 +152,8 @@ public class TextManager : MonoBehaviour
                 return stringsToArray("The library door, locked.\nYou'll need to unlock it before you can use it.", "If you find a key, pick it up with E.", 
                 "Then, go back to the door, and press 'I' or 'Tab' to open the inventory.","Finally, you simply navigate to the key and press 'use with' to unlock the door.");
             case 48:
-                return stringsToArray("It's a locked door leading to the other part of the hallway, but...\n...the lock doesn't have a key hole.",
-                "it seems that you'll need to use\nSOMETHING OTHER THAN A KEY on\nSOMETHING OTHER THAN A LOCK.");
+                return stringsToArray("It's a locked door leading to the other part of the hallway, but...\n...the lock doesn't have a key hole.", "Instead, a reaaaaally small rope is holding the doorknob in place.\nIt's practically invisible to the human eye.",
+                "it seems that you'll need to use something other than a key on this door.");
             case 49:
                 return stringsToArray("You picked up the library key!","To open doors with keys, or use any item on anything, approach the door and press 'Tab' or 'I' to open up the menu.",
                     "From there, scroll down to the proper key and press 'use with'.");
@@ -161,6 +161,15 @@ public class TextManager : MonoBehaviour
                 return stringsToArray("You picked up the master bedroom key!");
             case 51:
                 return stringsToArray("You picked up the staircase key!");
+            case 52:
+                return new string[]{"You picked up these scissors, man these feel heavy... and very worn."};
+            case 53:
+                return new string[]{"The door won't open! It looks like someone's tied a rope to the handle?",
+                "You'll need something sharp to cut it off."};
+            case 54:
+                return new string[]{"It takes a lot of effort, but you manage to cut the rope, freeing the door to be opened.",
+                "...But not without breaking the scissors in the process. Maybe it was just too worn down?",
+                "Interact with the door again to open it."};
         }
     }
 

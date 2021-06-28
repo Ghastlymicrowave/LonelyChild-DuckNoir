@@ -24,6 +24,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Options(){
         options.gameObject.SetActive(true);
+        options.InitMenu();
     }
 
     void CloseIfOpen(){

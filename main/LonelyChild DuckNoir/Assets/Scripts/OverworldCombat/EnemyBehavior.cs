@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class EnemyBehavior : MonoBehaviour
 {
     GameSceneManager gameSceneManager;
-    static CameraControl camControl;
     public Transform sprite;
     public bool isMoving = true;
     public bool chasePlayer = true;
@@ -36,10 +35,6 @@ public class EnemyBehavior : MonoBehaviour
     private void Start()
     {
         drawSprite = sprite.gameObject.GetComponent<SpriteRenderer>();
-        if (camControl == null)
-        {
-            camControl = GameObject.Find("CameraControl").GetComponent<CameraControl>();
-        }
         if (pm == null)
         {
             player = GameObject.Find("Player");
@@ -70,7 +65,7 @@ public class EnemyBehavior : MonoBehaviour
                 TryRespawn();
             }
         }
-        sprite.LookAt(camControl.activeCam.transform.position, Vector3.back);
+        sprite.LookAt(Camera.main.transform.position, Vector3.back);
         SetSpriteFacing();
         if (pm != null)
         {
@@ -129,12 +124,12 @@ public class EnemyBehavior : MonoBehaviour
         facing.z = 0f;
         facing-= new Vector3(transform.position.x,transform.position.y,0f);
         facing.Normalize();
-        Vector3 camFacing = camControl.activeCam.transform.forward;
+        Vector3 camFacing = Camera.main.transform.forward;
         camFacing.z = 0f;
         camFacing.Normalize();
         //Debug.Log("facing:"+facing.ToString()+"camFacing: "+camFacing.ToString());
         float upDown = Vector3.Dot(facing,camFacing)*-.5f*2f;//down -1 back 1
-        camFacing = camControl.activeCam.transform.right;
+        camFacing = Camera.main.transform.right;
         camFacing.z = 0f;
         float rightLeft = Vector3.Dot(facing,camFacing)*-.5f*2f;//right 1 left -1
         //0 front

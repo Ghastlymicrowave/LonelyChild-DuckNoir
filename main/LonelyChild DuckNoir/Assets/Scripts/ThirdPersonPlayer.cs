@@ -53,6 +53,8 @@ public class ThirdPersonPlayer : MonoBehaviour
     Quaternion spotlightCurrent;
     Quaternion spotlightLerp;
     [SerializeField] Transform spotlight;
+    [SerializeField] Transform camLight;
+    bool UseCamLight = false;
     
     void Start()
     {
@@ -77,6 +79,9 @@ public class ThirdPersonPlayer : MonoBehaviour
         }
         spotlightCurrent = Quaternion.identity;
         spotlightLerp = Quaternion.identity;
+        //spotlightCurrent = Quaternion.LookRotation(new Vector3(0,1f,0f),Vector3.back);
+        //spotlightLerp = Quaternion.LookRotation(new Vector3(0,1f,0f),Vector3.back);
+        CheckCams();
     }
 
     public void UpdateOptions(float[] inputArray){
@@ -85,8 +90,13 @@ public class ThirdPersonPlayer : MonoBehaviour
         HmouseSensitivity = inputArray[2];
         VmouseSensitivity = inputArray[3];
         CameraSmooth = Mathf.Clamp(1-Mathf.Pow(inputArray[6],2),0.001f,1f);
-        //.75 - 1*.74
-        //.75 - 0
+        UseCamLight = (Mathf.RoundToInt(inputArray[7])==1);
+        CheckCams();
+    }
+
+    public void CheckCams(){
+        camLight.gameObject.SetActive(UseCamLight);
+        spotlight.gameObject.SetActive(!UseCamLight);
     }
 
     public bool ValidRequiresItem(){
@@ -188,8 +198,15 @@ public class ThirdPersonPlayer : MonoBehaviour
             }else{
                 currentSpeed = Mathf.Min(spdAccel + currentSpeed, maxSpd);
             }
-            thisAnimator.SetFloat("DirectionX",hinput);
-            thisAnimator.SetFloat("DirectionY",vinput);
+
+            if (UseCamLight){
+                thisAnimator.SetFloat("DirectionX",0f);
+                thisAnimator.SetFloat("DirectionY",1f);
+            }else{
+                thisAnimator.SetFloat("DirectionX",hinput);
+                thisAnimator.SetFloat("DirectionY",vinput);
+            }
+            
             spotlightLerp = Quaternion.LookRotation(new Vector3(direction.x,direction.y,0f),Vector3.back);
         }else{
             currentSpeed = Mathf.Max(0f,currentSpeed - currentSpeed * Kfriction);
@@ -217,16 +234,18 @@ public class ThirdPersonPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spotlightCurrent = Quaternion.Lerp(spotlightCurrent,spotlightLerp,0.2f);
-        spotlight.localRotation = spotlightCurrent;
+        if (!UseCamLight){
+            spotlightCurrent = Quaternion.Lerp(spotlightCurrent,spotlightLerp,0.2f);
+            spotlight.localRotation = spotlightCurrent;
+        }
         if (canMove&&!InventoryOpen)
         {
             Look();
             Move();
-            
         }
         else
         {
+            rb.velocity = Vector2.zero;
             if (!InventoryOpen){
                 Look(true);
             }
