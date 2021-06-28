@@ -485,7 +485,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1007449163}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999905
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -539,13 +539,14 @@ GameObject:
   - component: {fileID: 247325322}
   - component: {fileID: 247325324}
   - component: {fileID: 247325323}
+  - component: {fileID: 247325325}
   m_Layer: 5
   m_Name: PlayerHurt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &247325322
 RectTransform:
   m_ObjectHideFlags: 0
@@ -598,7 +599,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You're supposed to doge those, not run into them!
+  m_Text: You're supposed to dodge those, not run into them!
 --- !u!222 &247325324
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -607,6 +608,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247325321}
   m_CullTransparentMesh: 1
+--- !u!114 &247325325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247325321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &417154027
 GameObject:
   m_ObjectHideFlags: 0
@@ -3844,7 +3860,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1786334542}
   sounds: []
-  volume: 0.5
   isMusic: 0
 --- !u!4 &1786334544
 Transform:
@@ -4344,7 +4359,7 @@ MonoBehaviour:
   Music: {fileID: 2126877263}
   scannerLogic: {fileID: 734580553}
   scanner: {fileID: 734580550}
-  specialValue: 0
+  spVals: 00000000
 --- !u!82 &2126877260
 AudioSource:
   m_ObjectHideFlags: 0
