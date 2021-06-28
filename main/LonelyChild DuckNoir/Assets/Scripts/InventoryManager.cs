@@ -222,7 +222,7 @@ public class InventoryManager : MonoBehaviour
                     "",
                     new string[]{""},
                     (int)ItemsEnum.KeyRing,
-                    "2D Assets/Items/Key");
+                    "2D Assets/Items/Keychain.png");
             case ItemsEnum.Scissors:
                 return new ivItem(
                     "Scissors",
@@ -233,7 +233,7 @@ public class InventoryManager : MonoBehaviour
                     "",
                     new string[]{""},
                     (int)ItemsEnum.Scissors,
-                    "2D Assets/Items/Key");
+                    "2D Assets/Items/Scissors.png");
             default: return null;
         }
     }

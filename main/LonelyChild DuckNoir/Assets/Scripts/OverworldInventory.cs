@@ -79,6 +79,11 @@ public class OverworldInventory : MonoBehaviour
         player.TriggerDialogue(item.inspect);
     }
 
+    public void InspectWeapon(InventoryManager.ivAttack item){
+        CloseMenu();
+        //player.TriggerDialogue(item.inspect);
+    }
+
     void AddWeapon(AttackActions weapon){
         GameObject newItemObj = Instantiate(itemPrefab,Vector3.zero,Quaternion.identity);
         newItemObj.transform.SetParent(WeaponsContent.transform,false);
@@ -88,6 +93,7 @@ public class OverworldInventory : MonoBehaviour
         newItemObj.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = atk.desc;//description
 
         GameObject inspectButton = newItemObj.transform.GetChild(0).GetChild(3).gameObject;
+        //inspectButton.GetComponent<Button>().onClick.AddListener(delegate {InspectItem(item);});
         GameObject useButton = newItemObj.transform.GetChild(0).GetChild(4).gameObject;
         inspectButton.SetActive(false);
         useButton.SetActive(false);
