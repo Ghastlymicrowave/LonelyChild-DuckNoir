@@ -148,7 +148,8 @@ public float duration;
         Teddy_Bear,
         Russian_Doll,
         Eraser,
-        Spinning_Toy
+        Spinning_Toy,
+        KeyRing
     }
 
     public enum Enemies{

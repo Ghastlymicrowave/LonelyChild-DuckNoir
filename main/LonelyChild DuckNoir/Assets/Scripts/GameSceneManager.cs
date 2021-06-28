@@ -12,8 +12,6 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField] AudioClip[] overworldAudio;
     public string combatSceneName = "CombatScene";
     public string pauseSceneName = "PauseScene";
-    public bool loadCheckpoint = false;
-
     public int currentLevel = 0;
 
     public AudioClip GetCombatAudio(){//0, 1, 2 
@@ -26,11 +24,11 @@ public class GameSceneManager : MonoBehaviour
     void Awake(){
         inventoryManager = GetComponent<InventoryManager>();
         settings = GetComponent<SettingsManager>();
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     void Start(){
+        SceneManager.sceneLoaded += OnSceneLoaded;
         if (SceneManager.GetActiveScene().name!="MainMenu"){
-            PackEverything();
+            PackEverything();   
         }
     }
     void PackEverything(){
@@ -46,7 +44,6 @@ public class GameSceneManager : MonoBehaviour
     }
 
     public void TransitionScene(string sceneName){
-        loadCheckpoint = true;
         inventoryManager.SaveJSON();
         SceneManager.LoadScene(sceneName);
     }
@@ -57,16 +54,15 @@ public class GameSceneManager : MonoBehaviour
         return SceneManager.GetActiveScene().name;
     }
     public void LoadCheckpoint(){
-        loadCheckpoint =true;
         inventoryManager.LoadJSON();
         SceneManager.LoadScene(inventoryManager.checkpointScene);
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("loading scene: "+ scene.name);
-        if (loadCheckpoint && scene.name != "MainMenu"){
+        if (scene.name == "FirstFloor" || scene.name == "SecondFloor" || scene.name == "Basement"){
+            Debug.Log("packing scene");
             PackEverything();
-            loadCheckpoint = false;
             enemyManager = GameObject.Find("Enemy Handler").GetComponent<EnemyManager>();
         }
 

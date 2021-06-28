@@ -119,7 +119,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8aa68537d7ec34bad513517f2d297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyOnCollision: 1
   projectileType: 3
+  toShoot: {fileID: 0}
+  shootingTrackDuration: 0.75
+  shootingCooldownDuration: 0.25
+  shootingTrackSpeed: 1
   projectile:
     baseAttack:
       projectiles: []

@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687c6b7413ca13b4facc90eb91599375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxRand: 3
+  minSpd: 0.8
+  maxSpd: 1.2
 --- !u!95 &5697586598743517808
 Animator:
   serializedVersion: 3

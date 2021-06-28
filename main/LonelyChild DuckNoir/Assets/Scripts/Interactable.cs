@@ -29,6 +29,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] int notCompleteItemUseTextID;//id of text to trigger when interacting while item hasn't been used, like to inspect
     [SerializeField] int usedRequiredItemTextId;
     [SerializeField] string sceneName;
+    [SerializeField] bool useKeyRing = false;
     void Start(){
         inventoryManager = GameObject.Find("PersistentManager").GetComponent<InventoryManager>();
         gameSceneManager = inventoryManager.gameObject.GetComponent<GameSceneManager>();
@@ -49,10 +50,23 @@ public class Interactable : MonoBehaviour
     public bool HasItemUse(){
         return needsItemUse;
     }
+    bool HasKeyRing(){
+        for(int i = 0 ; i < inventoryManager.items.Count; i ++){
+            if (inventoryManager.items[i].id == (int)ItemsEnum.KeyRing){
+                return true;
+            }
+        }
+        return false;
+    }
     public void Trigger(){
         bool rand = (randomdialogueIDs.Length>0);
         isReady=false;
         if (needsItemUse){
+            if (useKeyRing && HasKeyRing()){
+                needsItemUse = false;
+                Trigger();
+                return;
+            }
             if (dialogueID>-1||rand){
                     playerRef.TriggerDialogue(notCompleteItemUseTextID);
                 }

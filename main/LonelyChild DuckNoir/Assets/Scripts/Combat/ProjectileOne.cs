@@ -5,7 +5,7 @@ using Combat;
 
 public class ProjectileOne : MonoBehaviour
 {
-    public enum ProjectileType { Regular, SineX, SineY, ReverseSineX, TurretOne, LocalRegular };
+    public enum ProjectileType { Regular, SineX, SineY, ReverseSineX, TurretOne, LocalRegular, Homing };
     public bool destroyOnCollision = true;
     public ProjectileType projectileType;
     //These six are only needed for turrets.
@@ -26,9 +26,11 @@ public class ProjectileOne : MonoBehaviour
     float globalY;
     GameObject temp = null;
     Vector3 currentDirection = Vector3.zero;
+    float startTime;
 
     void Start()
     {
+        //projectile.speed *= 0.0001f;
         theTrans = this.gameObject.transform;
         rb = GetComponent<Rigidbody2D>();
         if (projectileType == ProjectileType.TurretOne)
@@ -43,9 +45,15 @@ public class ProjectileOne : MonoBehaviour
             currentDirection = (cursor.transform.position - transform.position).normalized;
 
         }
+        if (projectileType == ProjectileType.Homing){
+            cursor = GameObject.Find("Player Cursor");
+        }
+        if (projectileType == ProjectileType.LocalRegular){
+
+        }
         globalX = theTrans.position.x;
         globalY = theTrans.position.y;
-        
+        startTime = Time.time;
     }
 
     // Update is called once per frame
@@ -66,15 +74,19 @@ public class ProjectileOne : MonoBehaviour
                 break;
             case ProjectileType.ReverseSineX:
                 y = theTrans.position.y - (projectile.speed * Time.deltaTime);
-                x = globalX - Mathf.Sin(Time.time * projectile.secondarySpeed) * projectile.secondaryValue;
+                x = globalX - Mathf.Sin(Time.time - startTime) * projectile.secondaryValue;
                 theTrans.position = new Vector3(x, y, theTrans.position.z);
                 break;
             case ProjectileType.SineY:
-                y = globalY + Mathf.Sin(Time.time * projectile.speed) * projectile.secondaryValue;
+                y = globalY + Mathf.Sin(Time.time - startTime) * projectile.secondaryValue;
                 theTrans.position = new Vector3(theTrans.position.x, y, theTrans.position.z);
                 break;
+            case ProjectileType.Homing:
+                Vector2 targ = (cursor.transform.position - transform.position).normalized;
+                rb.velocity = Vector2.Lerp(rb.velocity.normalized,targ,shootingTrackSpeed * Time.deltaTime).normalized * projectile.speed;
+                break;
             case ProjectileType.LocalRegular:
-                rb.AddRelativeForce(Vector2.left * Time.deltaTime * (projectile.speed * 750f));
+                rb.velocity = -transform.right * projectile.speed;
                 break;
             case ProjectileType.TurretOne:
                 timer += Time.deltaTime;

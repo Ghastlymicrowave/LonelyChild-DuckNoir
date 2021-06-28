@@ -212,6 +212,18 @@ public class InventoryManager : MonoBehaviour
                     new string[]{""}, 
                     (int)ItemsEnum.Spinning_Toy,
                     "2D Assets/Items/Fidget_Spinner"); 
+            case ItemsEnum.KeyRing:
+                return new ivItem(
+                    "Key Ring",
+                    "A ring used for storing keys",
+                    new string[]{"With this handy key ring you'll be able to open door without needing to open your inventory!",
+                    "Just interact with a door and if you have the key, you'll automatically unlock and open it!",
+                    "You're not quite sure what an \"Inventory\" is. Is this a page torn out of some game manual?"},
+                    "",
+                    new string[]{""},
+                    (int)ItemsEnum.KeyRing,
+                    "2D Assets/Items/Fidget_Spinner");
+
             default: return null;
         }
     }
@@ -390,6 +402,7 @@ public class InventoryManager : MonoBehaviour
                 LoadJSON();
             }
             items = new List<ivItem>();
+            attacks = new List<AttackActions>();
             for (int i = 0; i < save.items.Length;i++){
                 items.Add(GetItemFromId((Combat.ItemsEnum)save.items[i]));
             }
