@@ -41,6 +41,7 @@ public static class EnemyLibrary
 }
 public abstract class EnemyClass
 {
+    public bool playerHurt = true;
     battleBehavior thisBehavior;
     public bool canRun = true;
     public int id;
@@ -761,6 +762,7 @@ public class Tutorial : EnemyClass
 {//example of an actual enemy
     public Tutorial(battleBehavior battle = null) : base(battle)
     {
+        playerHurt = true;
         sentiment = new List<EnemyActionCase>{
             new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
         name = "Ghost Hunting Nerd";

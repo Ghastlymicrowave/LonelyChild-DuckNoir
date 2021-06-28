@@ -17,6 +17,7 @@ public class SpecialText{
 }
 public class battleBehavior : MonoBehaviour
 {
+    [SerializeField] GameObject playerHurt;
     [SerializeField] DamageNum damageNumPrefab;
     [SerializeField] List<GameObject> toDisableOnEnd;
     public Animator cameraShake;
@@ -113,7 +114,6 @@ public class battleBehavior : MonoBehaviour
                     if (enemy.specialTexts[i].triggerOnce==1){
                         enemy.specialTexts[i].triggerOnce = 0;
                     }
-                    textBox.SetActive(true);
                 }
             }
         }
@@ -359,6 +359,11 @@ public class battleBehavior : MonoBehaviour
         else if (hero.hp > hero.maxHP)
         { hero.hp = hero.maxHP; }
         UpdatePlayerHp();
+        if (enemy.playerHurt){
+            enemy.playerHurt = false;
+            playerHurt.SetActive(true);
+        }
+        
     }
 
     void NotSetUp(){
@@ -377,6 +382,9 @@ public class battleBehavior : MonoBehaviour
         logic.transform.parent = this.transform.parent;
         logic.bb=this;
         //create minigame stuff based on params
+        if (playerHurt.activeSelf){
+            playerHurt.SetActive(false);
+        }
     }
     public void EnemyAttackEnd(){
         //remove minigame stuff
