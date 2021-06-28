@@ -72,6 +72,7 @@ public class battleBehavior : MonoBehaviour
     float baseRunChance = 0.4f;
     GameObject minigame;
     List<string> toScroll;
+    List<string> toInject;
     DisplayEnemy enemyImage;
     List<SpecialText> specialText;
     public int specialValue = 0;
@@ -79,6 +80,7 @@ public class battleBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        toInject = new List<string>();
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
         gameSceneManager = tm.gameObject.GetComponent<GameSceneManager>();
@@ -107,10 +109,11 @@ public class battleBehavior : MonoBehaviour
         if (enemy.specialTexts != null){
             for (int i = 0; i < enemy.specialTexts.Length;i++){
                 if (enemy.specialTexts[i].trigger == signalName && enemy.specialTexts[i].triggerOnce!=0){
-                    toScroll.AddRange(enemy.specialTexts[i].text);
+                    toInject.InsertRange(0,enemy.specialTexts[i].text);
                     if (enemy.specialTexts[i].triggerOnce==1){
                         enemy.specialTexts[i].triggerOnce = 0;
                     }
+                    textBox.SetActive(true);
                 }
             }
         }
@@ -187,6 +190,8 @@ public class battleBehavior : MonoBehaviour
         healthbarAnim.SetBool("IsMinigame",false);
         scanner.SetActive(true);
         toScroll.Clear();
+        toScroll = toInject;
+        toInject.Clear();
         toScroll.Add(enemy.splashTexts[Random.Range(0,enemy.splashTexts.Length)]);
         currentLine = 0;
         StopCoroutine(theScroll);
