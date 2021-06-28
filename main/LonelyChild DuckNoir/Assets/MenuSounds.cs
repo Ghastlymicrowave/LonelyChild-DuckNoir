@@ -8,10 +8,10 @@ public class MenuSounds : SoundHolder
 //1 click
     public void Hover()
     {
-        audioSource.PlayOneShot(sounds[0],volume);
+        audioSource.PlayOneShot(sounds[0]);
     }
     public void Click()
     {
-        audioSource.PlayOneShot(sounds[1],volume);
+        audioSource.PlayOneShot(sounds[1]);
     }
 }

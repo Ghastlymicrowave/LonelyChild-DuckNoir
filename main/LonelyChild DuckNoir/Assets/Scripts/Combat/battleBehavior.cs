@@ -76,7 +76,7 @@ public class battleBehavior : MonoBehaviour
     List<string> toInject;
     DisplayEnemy enemyImage;
     List<SpecialText> specialText;
-    public int specialValue = 0;
+    public int[] spVals = {0};
     float animSpdScale = 1f;
     // Start is called before the first frame update
     void Start()
@@ -274,6 +274,29 @@ public class battleBehavior : MonoBehaviour
         float c = (float)enemy.hp;
         float m = (float)enemy.maxHP;
         enemyImage.SetIdleSpd( animSpdScale * (-c+m)/m+1f);
+    }
+
+    public void DamageAndChangeSpecialAbsolute(int damage, params int[] special){
+        DamageEnemy(damage);
+        ChangeSpecialAbs(special);
+    }
+    public void DamageAndChangeSpecialRel(int damage, params int[] special){
+        DamageEnemy(damage);
+        ChangeSpecialRel(special);
+    }
+    public void ChangeSpecialRel(params int[] special){
+        for (int i = 0; i < special.Length; i++){
+            if (special[i]!=-1){
+                spVals[i]+= special[i];
+            }
+        }
+    }
+    public void ChangeSpecialAbs(params int[] special){
+        for (int i = 0; i < special.Length; i++){
+            if (special[i]!=-1){
+                spVals[i]= special[i];
+            }
+        }
     }
 
     /*public void RepressedDamageEnemy(int damage, int newState){
