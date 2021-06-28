@@ -57,10 +57,11 @@ public class battleBehavior : MonoBehaviour
     public GameObject scanner;
     InventoryManager inventoryManager;
     Image healthbarFilled;
+    Vector2 healthbarSizeDelta;
     GameSceneManager gameSceneManager;
     GameObject enemyParent;
     Animator healthbarAnim;
-    enum endCon{
+    public enum endCon{
         SENTIMENT,
         DEFEAT,
         RUN,
@@ -73,6 +74,7 @@ public class battleBehavior : MonoBehaviour
     DisplayEnemy enemyImage;
     List<SpecialText> specialText;
     public int specialValue = 0;
+    float animSpdScale = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -86,6 +88,7 @@ public class battleBehavior : MonoBehaviour
         subMenu.gameObject.SetActive(false);
         scannerLogic.DecideLights(enemy.hp, enemy.maxHP);
         healthbarFilled = GameObject.Find("HealthbarFilled").GetComponent<Image>();
+        healthbarSizeDelta = healthbarFilled.rectTransform.sizeDelta;
         hero = new HeroClass();
         enemyParent = GameObject.Find("EnemyParent");
         GameObject toInstantiate = (GameObject)Resources.Load(enemy.displayPrefabPath) as GameObject;
@@ -125,9 +128,10 @@ public class battleBehavior : MonoBehaviour
                      if (currentLine > toScroll.Count-1)
                     {
                         if (battleEnded >-1){
-                            EndCombat((endCon)battleEnded);
+                            enemyImage.EndAnim((endCon)battleEnded);
+                        }else{
+                            EnemyTurn();
                         }
-                        EnemyTurn();
                     }
                     else
                     {
@@ -143,7 +147,7 @@ public class battleBehavior : MonoBehaviour
         }
     }
     public void UpdatePlayerHp(){
-        healthbarFilled.fillAmount = (float)hero.hp/(float)hero.maxHP;
+        healthbarFilled.rectTransform.sizeDelta = new Vector2((float)hero.hp/(float)hero.maxHP * healthbarSizeDelta.x,healthbarSizeDelta.y) ;
         Debug.Log(healthbarFilled.fillAmount.ToString());
     }
     public void ButtonPress(ButtonEnum buttonNum)
@@ -259,6 +263,10 @@ public class battleBehavior : MonoBehaviour
         SendSignal("ENEMY_DAMAGED");
         DamageNum damageNumber = Instantiate(damageNumPrefab,enemyImage.gameObject.transform.position + Vector3.back*2,Quaternion.identity,null);
         damageNumber.Text(damage.ToString());
+
+        float c = (float)enemy.hp;
+        float m = (float)enemy.maxHP;
+        enemyImage.SetIdleSpd( animSpdScale * (-c+m)/m+1f);
     }
 
     /*public void RepressedDamageEnemy(int damage, int newState){
@@ -305,8 +313,8 @@ public class battleBehavior : MonoBehaviour
         }
     }
 
-    void EndCombat(endCon condition){
-        switch(condition){
+    public void EndCombat(){
+        switch((endCon)battleEnded){
             case endCon.DEFEAT:
                 gameSceneManager.GameOver();
             break;
@@ -334,7 +342,7 @@ public class battleBehavior : MonoBehaviour
             SendSignal("PLAYER_DAMAGED");
         }
         if (hero.hp <= 0)
-        {hero.hp = 0; EndCombat(endCon.DEFEAT); }
+        {hero.hp = 0; battleEnded = (int)endCon.DEFEAT;EndCombat(); }
         else if (hero.hp > hero.maxHP)
         { hero.hp = hero.maxHP; }
         UpdatePlayerHp();
@@ -361,6 +369,7 @@ public class battleBehavior : MonoBehaviour
         //remove minigame stuff
         Destroy(minigame);
         beginTurn();
+        enemyImage.Attack();
     }
 
     public void TriggerEnemyReaction(EnemyClass enemy, ButtonEnum actionType, int actionID){
