@@ -56,7 +56,7 @@ public class TextManager : MonoBehaviour
                 return stringsToArray("You've always wanted to learn how to play the piano.",
                 "Too bad all you have is this big freakin' capsule.");
             case 11:
-                return new string[] {"Looks like that worked"};
+                return new string[] {"Looks like that worked.", "Press E on the door again."};
             //Another Item
             case 12:
                 return stringsToArray("You picked up a key!", "Go to a door you need to open and press the button on the left side of your screen...",
@@ -175,6 +175,8 @@ public class TextManager : MonoBehaviour
                 "With this, you won't need to use a key on a door from your inventroy, simply interact with a door, and if you have a key for it, it'll open!"};
             case 56:
                 return stringsToArray("You picked up the showing room key!");
+            case 57:
+                return new string[] {"Looks like that worked."};
         }
     }
 
