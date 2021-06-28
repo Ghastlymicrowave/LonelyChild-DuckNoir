@@ -9,7 +9,7 @@ public class EvilEye : Activatable
     Animator anim;
     void Start(){
         anim = GetComponent<Animator>();
-        mouth =  GameObject.Find("Mouth").GetComponent<Mouth>();
+        mouth =  GameObject.FindObjectOfType<Mouth>();
         mouth.eyesRequired.Add(this);
     }
     public override void Activate(){
@@ -18,5 +18,6 @@ public class EvilEye : Activatable
         }
         mouth.Activate();
         anim.Play("EyeDie",0);
+        Debug.Log("Eye Interacted");
     }
 }
