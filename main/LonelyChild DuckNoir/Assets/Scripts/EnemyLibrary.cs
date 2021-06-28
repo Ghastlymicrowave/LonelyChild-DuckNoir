@@ -80,6 +80,13 @@ public abstract class EnemyClass
         }
         return toReturn;
     }
+    public int[] GetIgnoreVals(){
+        int[] toReturn = new int[specialVals.Length];
+        for(int i = 0; i < specialVals.Length; i++){
+            toReturn[i] = -1;
+        }
+        return toReturn;
+    }
     public EnemyReaction GetReaction(ButtonEnum type, int actionID, params int[] spVals){//returns reactions array or null
         if (spVals == null){
             spVals = new int[] {0};
@@ -135,10 +142,16 @@ public abstract class EnemyClass
     }
 
     protected EnemyResponse GenResponse(ButtonEnum attack, int actionID, EnemyReaction[] reactions, params int[] specialVals){
+        if (specialVals== null){
+            specialVals = GetIgnoreVals();
+        }
         return new EnemyResponse(new EnemyActionCase((int)attack,actionID), reactions, specialVals);
     }
 
     protected EnemyResponse GenAny(EnemyReaction[] reactions, params int[] specialVals){
+        if (specialVals== null){
+            specialVals = GetIgnoreVals();
+        }
         return new EnemyResponse(new EnemyActionCase((int)ButtonEnum.Any,0),reactions,specialVals);
     }
 
