@@ -58,7 +58,6 @@ public class ThirdPersonPlayer : MonoBehaviour
     
     void Start()
     {
-        if (UseCamLight)
         thisAnimator = GetComponent<Animator>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -78,8 +77,9 @@ public class ThirdPersonPlayer : MonoBehaviour
         {
             textScroller = FindObjectOfType<TextScroller>();
         }
-        spotlightCurrent = Quaternion.identity;
-        spotlightLerp = Quaternion.identity;
+        spotlightCurrent = Quaternion.LookRotation(new Vector3(0,1f,0f),Vector3.back);
+        spotlightLerp = Quaternion.LookRotation(new Vector3(0,1f,0f),Vector3.back);
+        CheckCams();
     }
 
     public void UpdateOptions(float[] inputArray){
@@ -90,7 +90,11 @@ public class ThirdPersonPlayer : MonoBehaviour
         CameraSmooth = Mathf.Clamp(1-Mathf.Pow(inputArray[6],2),0.001f,1f);
         //.75 - 1*.74
         //.75 - 0
+        CheckCams();
+        
+    }
 
+    public void CheckCams(){
         camLight.gameObject.SetActive(UseCamLight);
         spotlight.gameObject.SetActive(!UseCamLight);
     }
