@@ -112,7 +112,7 @@ public class TextManager : MonoBehaviour
             case 35:
                 return stringsToArray("Crayon drawings are strewn about.\nYou almost feel nostalgic.", "You remember your peers who drew this. Are they okay?");
             case 36:
-                return stringsToArray("He ate here.\nnever let you anywhere near.", "Look at you now, breaking the rules!\nYou little anti-establishmentarian, you!");
+                return stringsToArray("He ate here.\nNever let you anywhere near.", "Look at you now, breaking the rules!\nYou little anti-establishmentarian, you!");
 
             
             case 37: return new string[]{"This is some kind of massive gaping hole... or is it a mouth?",
@@ -170,6 +170,8 @@ public class TextManager : MonoBehaviour
                 return new string[]{"It takes a lot of effort, but you manage to cut the rope, freeing the door to be opened.",
                 "...But not without breaking the scissors in the process. Maybe it was just too worn down?",
                 "Interact with the door again to open it."};
+            case 55:
+                return stringsToArray("You picked up the showing room key!");
         }
     }
 
