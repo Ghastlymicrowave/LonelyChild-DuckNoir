@@ -59,11 +59,11 @@ public class TextManager : MonoBehaviour
                 return new string[] {"Looks like that worked"};
             //Another Item
             case 12:
-                return stringsToArray("You picked up a key!", "Go to a door you need to open and press the button on the left side of your screen...", 
+                return stringsToArray("You picked up a key!", "Go to a door you need to open and press the button on the left side of your screen...",
                 "Press 'Use with' to get the party started...");
                 // door stuff
             case 13:
-                return stringsToArray("A locked door...", "You'll need to unlock it before you can use it.", 
+                return stringsToArray("A locked door...", "You'll need to unlock it before you can use it.",
                 "Press 'Use with' to get the party started...");
             case 14:
                 return stringsToArray("You unlocked the door!", "Click on the exclamation point to open it!");
@@ -97,11 +97,11 @@ public class TextManager : MonoBehaviour
             "The tendrils underneath it seem to recoil, you're dealt this thing a great blow."};
             case 29: return new string[]{"As the eye makes a loud poping sound, splashing some dark oily liquid over you before becoming still.",
             "You can tell that hurt."};
-            
+
             case 30: return stringsToArray("You picked up an hourglass.");
             //specific doors
             case 31:
-                return stringsToArray("The master bedroom, locked as usual...", "You'll need to unlock it before you can use it.", 
+                return stringsToArray("The master bedroom, locked as usual...", "You'll need to unlock it before you can use it.",
                 "Press 'Use with' to get the party started...");
             case 32:
                 return stringsToArray("The staircase, believe it or not, sits behind a locked door...", "You'll need to unlock it before you can use it.");
@@ -112,17 +112,17 @@ public class TextManager : MonoBehaviour
             case 35:
                 return stringsToArray("Crayon drawings are strewn about.\nYou almost feel nostalgic.", "You remember your peers who drew this. Are they okay?");
             case 36:
-                return stringsToArray("He ate here.\nnever let you anywhere near.", "Look at you now, breaking the rules!\nYou little anti-establishmentarian, you!");
+                return stringsToArray("He ate here.\nNever let you anywhere near.", "Look at you now, breaking the rules!\nYou little anti-establishmentarian, you!");
 
-            
+
             case 37: return new string[]{"This is some kind of massive gaping hole... or is it a mouth?",
             "You think you can see the floor below it, but there's huge teeth in the way."};
-           
+
             default: Debug.Log("got bad text id");return null;
             case 38:
                 return stringsToArray("You know, I’ve read every book in that library...The living have no comprehension of ghosts. ",
-                "It’s all ‘ghosts are evil, they haunt old mansions and flee at the sound of theremins...’", 
-                "Actually, most ghosts I know are very nice if you give ‘em the chance...", 
+                "It’s all ‘ghosts are evil, they haunt old mansions and flee at the sound of theremins...’",
+                "Actually, most ghosts I know are very nice if you give ‘em the chance...",
                 "I happen to like theremins, and I only hang out in this old dump because, well…");
             //More items
             case 39: return stringsToArray("You picked up a teddy bear.",
@@ -149,7 +149,7 @@ public class TextManager : MonoBehaviour
             "\"Second, press E again until you're done reading!\"",
             "\"Happy hunting!\"");
             case 47:
-                return stringsToArray("The library door, locked.\nYou'll need to unlock it before you can use it.", "If you find a key, pick it up with E.", 
+                return stringsToArray("The library door, locked.\nYou'll need to unlock it before you can use it.", "If you find a key, pick it up with E.",
                 "Then, go back to the door, and press 'I' or 'Tab' to open the inventory.","Finally, you simply navigate to the key and press 'use with' to unlock the door.");
             case 48:
                 return stringsToArray("It's a locked door leading to the other part of the hallway, but...\n...the lock doesn't have a key hole.", "Instead, a reaaaaally small rope is holding the doorknob in place.\nIt's practically invisible to the human eye.",
@@ -173,6 +173,8 @@ public class TextManager : MonoBehaviour
             case 55:
                 return new string[]{"You picked up the keyring! It makes you feel like a janitor.",
                 "With this, you won't need to use a key on a door from your inventroy, simply interact with a door, and if you have a key for it, it'll open!"};
+            case 56:
+                return stringsToArray("You picked up the showing room key!");
         }
     }
 
