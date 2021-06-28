@@ -290,7 +290,7 @@ public class battleBehavior : MonoBehaviour
     }
     public void Sentimental(){
         Debug.Log("using sentimental");
-        if (enemy.sentiment.Count<=0){
+        if (enemy.sentiment.Count<=0 && enemy.hp==0){
             //do something to end the battle
             battleEnded = (int)endCon.SENTIMENT;
             toScroll.AddRange(enemy.sentimentalSuccess);//combat ended

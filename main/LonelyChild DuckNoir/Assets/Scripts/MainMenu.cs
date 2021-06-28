@@ -51,8 +51,7 @@ public class MainMenu : MonoBehaviour
             inventoryManager.ghostsRoaming.Add(ghost);
         }
         inventoryManager.ResetSave();
-        Debug.Log("checkpoint scene:" + inventoryManager.checkpointScene);
-        gameSceneManager.TransitionScene(inventoryManager.checkpointScene);//to start new game, otherwise, load current data and use that scene
+        gameSceneManager.TransitionScene("SecondFloor");//to start new game, otherwise, load current data and use that scene
 
     }
 

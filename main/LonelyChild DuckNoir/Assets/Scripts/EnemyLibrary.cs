@@ -241,7 +241,7 @@ public class Narcissist : EnemyClass
                     "\"Ah! You fool!\"\n\"This only highlights my strong chin and high cheekbones!\"",
                     "(nevermind the lack of hair on my head.)\n(I swear to god, if you so much as mention it...)",
                     "\"I rather enjoy the spotlight, you know.\""
-                },SingleMethod((object)2))
+                },SingleMethod((object)1))
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,
             new EnemyReaction[] {
@@ -260,7 +260,7 @@ public class Narcissist : EnemyClass
                     "\"You there, young boy.\"\n\"Are there any other orphans about?\"",
                     "\"I want someone whom I can mold in my own image, but berate significantly enough that I shall feel confident they will never surpass me.\"",
                     "\"Oh, and not you.\""
-                },SingleMethod((object)2))
+                },SingleMethod((object)1))
             }),
             GenResponse(ButtonEnum.Attack,(int)TalkEnum.Call_Him_Bald,
             new EnemyReaction[] {
@@ -282,8 +282,8 @@ public class TroubledChild : EnemyClass
         sentiment = new List<EnemyActionCase>{
             new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
         name = "A Troubled Child";
-        hp = 30;
-        maxHP = 30;
+        hp = 15;
+        maxHP = 15;
         id = 6;
         canRun = false;
         //spritepath
@@ -332,7 +332,7 @@ public class TroubledChild : EnemyClass
                 new string[]{
                     "You attacked with the FirePoker...",
                     "\"Please no!\"", "\"Not like...\" \n\"...they did.\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)4))
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,
             new EnemyReaction[] {
@@ -341,7 +341,7 @@ public class TroubledChild : EnemyClass
                     "You attacked with the flashlight...",
                     "\"It burns...\"\n\"It burns...\"",
                     "\"It burns like when they...\"\n\"No!\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)4))
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,
             new EnemyReaction[] {
@@ -349,7 +349,7 @@ public class TroubledChild : EnemyClass
                 new string[]{
                     "You attacked with the Garlic...",
                     "\"Why'd they only feed you?\"\n\"What did I do?\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)1))
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
             new EnemyReaction[] {
@@ -413,7 +413,7 @@ public class NiceDemonGuy : EnemyClass
                 new string[]{
                     "You attacked with the theremin...",
                     "\"Say, you're good with that thing!\"\n\"Down there...\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)1))
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,
             new EnemyReaction[] {
@@ -421,7 +421,7 @@ public class NiceDemonGuy : EnemyClass
                 new string[]{
                     "You attacked with the FirePoker...",
                     "\"Listen, kid... I'm a demon for cryin' out loud.\"", "\"A fire poker just ain't gonna do the trick, sorry to say.\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)1))
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,
             new EnemyReaction[] {
@@ -430,7 +430,7 @@ public class NiceDemonGuy : EnemyClass
                     "You attacked with the flashlight...",
                     "\"What're you shining that in my face for?\"",
                     "\"I'm like a demon guy or whatever.\"\n\"You couldn't possibly expect me to have a meaningful reaction to a flashlight, could ya?\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)1))
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,
             new EnemyReaction[] {
@@ -439,7 +439,7 @@ public class NiceDemonGuy : EnemyClass
                     "You attacked with the Garlic...",
                     "\"I'm a demon, not a vampire...\"\n\"...but I'm flattered.\"",
                     "\"Guess I could take some extra damage for the unintended compliment.\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)2))
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
             new EnemyReaction[] {
@@ -449,7 +449,7 @@ public class NiceDemonGuy : EnemyClass
                     "\"Oh, man, no one's talked to me like that in eons!\"\n(Maybe the whole floating demon head thing puts people off???)",
                     "\"Even other demons stay clear!\"\n\"I don't even know why, because...\"",
                     "\"ah, look, I'm rambling...\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)5))
             }),
         };  
     }
@@ -461,8 +461,8 @@ public class GremlinOfDeceit : EnemyClass
         sentiment = new List<EnemyActionCase>{
             new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
         name = "The Gremlin Of Deceit";
-        hp = 42;
-        maxHP = 42;
+        hp = 15;
+        maxHP = 15;
         id = 9;
 
         canRun = false;
@@ -507,7 +507,7 @@ public class GremlinOfDeceit : EnemyClass
                     "\"BAH!\"\n\"The ungainly sounds of that mid century hogwash!\"",
                     "*ahem*\n\"That is, I mean...\"",
                     "\"I think you sound lovely, dear...\"\n\"Come closer, I can teach you a thing or two about music...\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)1))
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,
             new EnemyReaction[] {
@@ -525,7 +525,7 @@ public class GremlinOfDeceit : EnemyClass
                     "\"Ah, you little runt!\"\n\"I OUGHTA-\"",
                     "*ahem*",
                     "\"Why don't ya just give that little flashlight here, my sweet?\"\n\"Gremlin'll show you how to really use it.\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)2))
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,
             new EnemyReaction[] {
@@ -535,7 +535,7 @@ public class GremlinOfDeceit : EnemyClass
                     "\"What exactly did you think that would do?\"",
                     "\"Do you really think your superstitious tricks will help you?\"\n\"Look around you. Look where that brought your friends.\"",
                     "\"Besides...\"\n\"You know what happens when you sneak food...\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)2))
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
             new EnemyReaction[] {
@@ -545,7 +545,7 @@ public class GremlinOfDeceit : EnemyClass
                     "\"Do you remember me?\"\n\"From nightmares long ago?\"",
                     "\"Children draw from my form, you know!\"\n(Oh, my rhyming schemes!)",
                     "\"Am I responsible for reality splitting at the seams?\"\n\"Perhaps...\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)4))
             }),
         };  
     }
@@ -618,7 +618,7 @@ public class DevilsHands : EnemyClass
                 new string[]{
                     "You attacked with the flashlight...",
                     "\"Are you trying to shine a light on the subject?\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)1))
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,
             new EnemyReaction[] {
@@ -626,7 +626,7 @@ public class DevilsHands : EnemyClass
                 new string[]{
                     "You attacked with the Garlic...",
                     "\"Where'd you get that?\"\n\"Do you have any idea what they'll do if they catch you sneaking food?\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)1))
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
             new EnemyReaction[] {
@@ -636,7 +636,7 @@ public class DevilsHands : EnemyClass
                     "\"When I was a young thing, I could never keep my hands still.\"\n\"Always fidgeting... fidget and fidget.\"",
                     "\"I had to be punished.\"",
                     "\"No good boy fidgets like that...\"\n\"...no good deeds can come from that...\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)2))
             }),
         };  
     }
@@ -648,13 +648,15 @@ public class PoorDog : EnemyClass
         sentiment = new List<EnemyActionCase>{
             new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Pet)};
         name = "Poor Dog";
-        hp = 10;
-        maxHP = 10;
+        hp = 14;
+        maxHP = 14;
         id = 1;
         //spritepath
         attackPrefabNames = new string[] {
-            "Prefabs/combatEnemyTurn/attacks/Turret1"};
-        //"Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
+            "Prefabs/combatEnemyTurn/attacks/Turret1",
+            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
+            "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
+        //"",
         //"Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2",
         // "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
         talkActions = new TalkEnum[3] { TalkEnum.Pet, TalkEnum.Chat, TalkEnum.Fake_Throw };
@@ -698,7 +700,7 @@ public class PoorDog : EnemyClass
                     "The ghost isn't loving it... but isn't hating it, either.",
                     "\"Too heavy to be stick...\nTo long to be ball...\"",
                     "\":(\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)1))
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,
             new EnemyReaction[] {
@@ -719,7 +721,7 @@ public class PoorDog : EnemyClass
                     "You attacked with the Garlic...",
                     "The ghost hates it!",
                     "\"Smelly ball bad for me!!! Give better ball >:(\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)4))
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
             new EnemyReaction[] {
@@ -730,7 +732,7 @@ public class PoorDog : EnemyClass
                     "\"Ball!?!?!?!?!?\"",
                     "\"...\"",
                     "\"Ohh... False Ball-arm...\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)4))
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Fake_Throw,
             new EnemyReaction[] {
@@ -739,7 +741,7 @@ public class PoorDog : EnemyClass
                     "You made a throwing motion with your arm...",
                     "But there was nothing in your hand?",
                     "\"How could you!!!???? >:( >:( >:(\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)4))
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Pet,
             new EnemyReaction[] {
@@ -817,7 +819,7 @@ public class Tutorial : EnemyClass
                     "The ghost is relatively unfazed!",
                     "\"Ooh, buddy, I got a resistance to this attack.\"",
                     "\"You've gotta try the other attack!\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)1))
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,
             new EnemyReaction[] {
@@ -826,7 +828,7 @@ public class Tutorial : EnemyClass
                     "You attacked with the FirePoker...",
                     "The ghost isn't loving it... but isn't hating it, either.",
                     "\"Buddy...\"\n\"You're not supposed to have that yet...\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)1))
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,
             new EnemyReaction[] {
@@ -887,8 +889,8 @@ public enum moods{
         sentiment = new List<EnemyActionCase>{
             new EnemyActionCase((int)ButtonEnum.Talk,(int)TalkEnum.Chat)};
         name = "The Ghost Of Repressed Emotions";
-        hp = 30;
-        maxHP = 30;
+        hp = 15;
+        maxHP = 15;
         id = 2;
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Sine_Harder_Reverse",
@@ -918,7 +920,7 @@ public enum moods{
                     "You attacked with the theramin...",
                     "The ghost looks indifferent",
                     "\"Are you picking on me?\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)1))
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,
             new EnemyReaction[] {
@@ -928,7 +930,7 @@ public enum moods{
                     "The ghost is unphased",
                     "\"I couldn't feel that... I haven't been able to feel for a while...\"",
                     "\"Ouch that hurts...? is that want you want me to say?\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)1))
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,
             new EnemyReaction[] {
@@ -937,7 +939,7 @@ public enum moods{
                     "You attacked with the flashlight...",
                     "The ghost has a painful expression on his face.",
                     "\"Please don't do that...\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)4))
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,
             new EnemyReaction[] {
@@ -946,7 +948,7 @@ public enum moods{
                     "You attacked with the Garlic...",
                     "The ghost didn't like that too much.",
                     "\"Eww...\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)4))
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
             new EnemyReaction[] {
@@ -954,7 +956,7 @@ public enum moods{
                 new string[]{
                     "You started talking with the ghost...",
                     "\"I just wish things had been different, you know?\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)6))
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.ChatTwo,
             new EnemyReaction[] {
@@ -963,27 +965,7 @@ public enum moods{
                     "You started talking with the ghost about their life...",
                     "\"Well, it's just...\"",
                     "\"They wanted different things from what I wanted...\""
-                },SingleMethod((object)3))
-            }),
-            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Fake_Throw,
-            new EnemyReaction[] {
-                NewReaction("DamageEnemy",
-                new string[]{
-                    "You made a throwing motion with your arm...",
-                    "But there was nothing in your hand?",
-                    "\"How could you!!!???? >:( >:( >:(\""
-                },SingleMethod((object)3))
-            }),
-            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Pet,
-            new EnemyReaction[] {
-                NewReaction("DamageEnemy",
-                new string[]{
-                    "You tried to pet the ghost...",
-                    "But your arm phased right through 'em, so...",
-                    "You just kinda made a petting motion with your arm.",
-                    "Between you and me, I don't think he knows the difference.",
-                    "\"Woof!~ :)\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)5))
             }),
         };  
     }
@@ -1028,7 +1010,7 @@ public class BoredGhost : EnemyClass{
                     "\"That's nice...\"",
                     "\"Not really my genre though.\"",
                     "\"I'm more of a 'Boos' kind of guy.\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)2))
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,
             new EnemyReaction[] {
@@ -1037,7 +1019,7 @@ public class BoredGhost : EnemyClass{
                     "You attacked with the flashlight...",
                     "It was especially effective!",
                     "\"Ow, who turned on the lights?\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)7))
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
             new EnemyReaction[] {
@@ -1045,7 +1027,7 @@ public class BoredGhost : EnemyClass{
                 new string[]{
                     "You started talking with the ghost...",
                     "\"Sigh... Alright...\""
-                },SingleMethod((object)3))
+                },SingleMethod((object)4))
             }),
         };  
     }

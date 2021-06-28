@@ -170,6 +170,9 @@ public class TextManager : MonoBehaviour
                 return new string[]{"It takes a lot of effort, but you manage to cut the rope, freeing the door to be opened.",
                 "...But not without breaking the scissors in the process. Maybe it was just too worn down?",
                 "Interact with the door again to open it."};
+            case 55:
+                return new string[]{"You picked up the keyring! It makes you feel like a janitor.",
+                "With this, you won't need to use a key on a door from your inventroy, simply interact with a door, and if you have a key for it, it'll open!"};
         }
     }
 
