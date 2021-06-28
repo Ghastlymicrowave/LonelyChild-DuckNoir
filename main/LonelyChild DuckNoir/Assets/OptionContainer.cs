@@ -14,7 +14,7 @@ public class OptionContainer : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void ChangeValueExternal(float newValue){
+    public virtual void ChangeValueExternal(float newValue){
         value = newValue;
         thisInputField.text = Mathf.RoundToInt(value*100).ToString();
         thisSlider.value = value;
@@ -29,7 +29,7 @@ public class OptionContainer : MonoBehaviour
         thisSlider.value = value;
     }
 
-    public void ValueChanged(bool slider){
+    public virtual void ValueChanged(bool slider){
 
         if (slider){//slider changed
             value = thisSlider.value;

@@ -77,8 +77,10 @@ public class ThirdPersonPlayer : MonoBehaviour
         {
             textScroller = FindObjectOfType<TextScroller>();
         }
-        spotlightCurrent = Quaternion.LookRotation(new Vector3(0,1f,0f),Vector3.back);
-        spotlightLerp = Quaternion.LookRotation(new Vector3(0,1f,0f),Vector3.back);
+        spotlightCurrent = Quaternion.identity;
+        spotlightLerp = Quaternion.identity;
+        //spotlightCurrent = Quaternion.LookRotation(new Vector3(0,1f,0f),Vector3.back);
+        //spotlightLerp = Quaternion.LookRotation(new Vector3(0,1f,0f),Vector3.back);
         CheckCams();
     }
 
@@ -88,10 +90,8 @@ public class ThirdPersonPlayer : MonoBehaviour
         HmouseSensitivity = inputArray[2];
         VmouseSensitivity = inputArray[3];
         CameraSmooth = Mathf.Clamp(1-Mathf.Pow(inputArray[6],2),0.001f,1f);
-        //.75 - 1*.74
-        //.75 - 0
+        UseCamLight = (Mathf.RoundToInt(inputArray[7])==1);
         CheckCams();
-        
     }
 
     public void CheckCams(){
@@ -242,10 +242,10 @@ public class ThirdPersonPlayer : MonoBehaviour
         {
             Look();
             Move();
-            
         }
         else
         {
+            rb.velocity = Vector2.zero;
             if (!InventoryOpen){
                 Look(true);
             }

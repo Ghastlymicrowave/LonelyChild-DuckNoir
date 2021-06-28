@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 337090863367214479}
   - component: {fileID: 337090863367214478}
   - component: {fileID: 1342134355988563886}
-  - component: {fileID: 8614758596267358056}
+  - component: {fileID: 4737585596166763452}
   m_Layer: 5
   m_Name: OptionContainerBool
   m_TagString: Untagged
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 0
---- !u!114 &8614758596267358056
+--- !u!114 &4737585596166763452
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,12 +103,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 337090863367214476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 173d745084c080345baa208c1df5a49c, type: 3}
+  m_Script: {fileID: 11500000, guid: 78b4251fae79e274ab2307100c033cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   thisInputField: {fileID: 0}
   thisSlider: {fileID: 0}
   value: 0
+  thisToggle: {fileID: 7376250033102468292}
 --- !u!1 &337090864547540270
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,5 +582,17 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4737585596166763452}
+        m_TargetAssemblyTypeName: OptionContainerBool, Assembly-CSharp
+        m_MethodName: ValueChanged
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
