@@ -161,6 +161,15 @@ public class TextManager : MonoBehaviour
                 return stringsToArray("You picked up the master bedroom key!");
             case 51:
                 return stringsToArray("You picked up the staircase key!");
+            case 52:
+                return new string[]{"You picked up these scissors, man these feel heavy... and very worn."};
+            case 53:
+                return new string[]{"The door won't open! It looks like someone's tied a rope to the handle?",
+                "You'll need something sharp to cut it off."};
+            case 54:
+                return new string[]{"It takes a lot of effort, but you manage to cut the rope, freeing the door to be opened.",
+                "...But not without breaking the scissors in the process. Maybe it was just too worn down?",
+                "Interact with the door again to open it."};
         }
     }
 
