@@ -158,6 +158,9 @@ public class Interactable : MonoBehaviour
             Debug.Log("used right item");
             needsItemUse = false;
             playerRef.TriggerDialogue(usedRequiredItemTextId);
+            if(useKeyRing){
+                Trigger();
+            }
             if (deleteRequiredItem){
                 inventoryManager.items.Remove(item);
             }
