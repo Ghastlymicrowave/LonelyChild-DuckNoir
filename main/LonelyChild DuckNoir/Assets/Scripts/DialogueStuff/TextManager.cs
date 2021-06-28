@@ -159,6 +159,8 @@ public class TextManager : MonoBehaviour
                     "From there, scroll down to the proper key and press 'use with'.");
             case 50:
                 return stringsToArray("You picked up the master bedroom key!");
+            case 51:
+                return stringsToArray("You picked up the staircase key!");
         }
     }
 
