@@ -18,6 +18,7 @@ public class SpecialText{
 public class battleBehavior : MonoBehaviour
 {
     [SerializeField] DamageNum damageNumPrefab;
+    [SerializeField] List<GameObject> toDisableOnEnd;
     public Animator cameraShake;
     TextManager tm;
     public EnemyClass enemy;
@@ -129,6 +130,7 @@ public class battleBehavior : MonoBehaviour
                     {
                         if (battleEnded >-1){
                             enemyImage.EndAnim((endCon)battleEnded);
+
                         }else{
                             EnemyTurn();
                         }
@@ -281,12 +283,18 @@ public class battleBehavior : MonoBehaviour
         { enemy.hp = enemy.maxHP; }
     }
 
+    public void DisableOnEnd(){
+        foreach (GameObject i in toDisableOnEnd){
+            i.SetActive(false);
+        }
+    }
     public void Sentimental(){
         Debug.Log("using sentimental");
         if (enemy.sentiment.Count<=0){
             //do something to end the battle
             battleEnded = (int)endCon.SENTIMENT;
             toScroll.AddRange(enemy.sentimentalSuccess);//combat ended
+            DisableOnEnd();
         }else{
             toScroll.AddRange(enemy.sentimentalFaliure);
         }
@@ -383,7 +391,9 @@ public class battleBehavior : MonoBehaviour
     }
 
     void Missing(ButtonEnum actionType, int actionID){
-        Debug.Log("Missing default response for action "+actionType.ToString()+" : "+actionID.ToString());
+       toScroll.AddRange(new string[]{
+                            "That did absolutely nothing."
+                        });
     }
 
     public void ActionDefault(ButtonEnum actionType, int actionID){
@@ -550,6 +560,11 @@ public class battleBehavior : MonoBehaviour
                         "You held the Spinning Toy out to the being...",
                         "But it doesn't seem to care..."});
                     break;
+                    case (int)ItemsEnum.Scissors:
+                        toScroll.AddRange(new string[] {
+                        "You held the Scissors...",
+                        "Nothing happens."});
+                    break;
                     default: Missing(actionType,actionID);break;
                 }
             break;
@@ -558,10 +573,11 @@ public class battleBehavior : MonoBehaviour
                 if (enemy.hp ==0){
                     //enemy banished
                     battleEnded = (int)endCon.CRUCIFIX;
+                    DisableOnEnd();
                     //add text about crucifix 
                     toScroll.AddRange(new string[]{"The ghost withers away in a a blinding flash!"});
                 }else{
-                    toScroll.AddRange(new string[]{"The ghost was still too powerfull"});
+                    toScroll.AddRange(new string[]{"The ghost is still too powerfull!","Weaken it more before using the crucifix!"});
                 }
             break;
             case ButtonEnum.Run:
@@ -572,10 +588,11 @@ public class battleBehavior : MonoBehaviour
                     if (chance < baseRunChance + (1f-baseRunChance)*(1f-(float)enemy.hp/(float)enemy.maxHP)){
                         //add text about escaping 
                         battleEnded = (int)endCon.RUN;
-                        toScroll.AddRange( new string[]{"you got away safely"});
+                        DisableOnEnd();
+                        toScroll.AddRange( new string[]{"You got away safely..."});
                     }else{
                         //add text about not being able to run
-                        toScroll.AddRange( new string[]{"couldn't get away"});
+                        toScroll.AddRange( new string[]{"You couldn't get away!"});
                     }
                 }else{
                     toScroll.AddRange( new string[]{"You can't get away from this enemy!","If you want to leave, you'll have to deal with it first!"});
