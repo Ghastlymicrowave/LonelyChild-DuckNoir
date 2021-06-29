@@ -274,11 +274,16 @@ public class battleBehavior : MonoBehaviour
         //DamagePlayer
         //SentimentalItem
         //ChangeSpecialAbs
-        //changetalks
+        //ChangeTalks
         public void ChangeTalks(int index){
             talkIndex = index;
         }
         public void DamageEnemy(int damage){
+            int mod = 1;
+            if (Random.Range(0f,1f)>0.5f){
+                mod = -1;
+            }
+            damage = Mathf.Max(damage+mod,1);
             enemy.hp -= damage;
             CheckEnemyAlive();
             Debug.Log("Dealt Damage: "+damage.ToString()+ "current HP: "+enemy.hp.ToString());
@@ -321,6 +326,10 @@ public class battleBehavior : MonoBehaviour
         public void ChangeSpecialAbs(params int[] special){
             for (int i = 0; i < special.Length; i++){
                 if (special[i]!=-1){
+                    if (i >= spVals.Length){
+                        Debug.LogError("ChangeSpecialAbs returned an array longer than the enemy's special value array!");
+                        break;
+                    }
                     spVals[i]= special[i];
                 }
             }
@@ -445,7 +454,7 @@ public class battleBehavior : MonoBehaviour
             case ButtonEnum.Attack:
                 switch(actionID){
                     case (int)AttackActions.Fire_Poker: 
-                        DamageEnemy(2);
+                        DamageEnemy(4);
                         toScroll.AddRange(new string[]{
                             "You Attacked with the Fire Poker...",
                             "It worked fine!",
@@ -453,14 +462,14 @@ public class battleBehavior : MonoBehaviour
                         });
                     break;
                     case (int)AttackActions.Ruler:
-                        DamageEnemy(3);
+                        DamageEnemy(5);
                         toScroll.AddRange(new string[]{
                             "You attacked with the ruler...",
                             "Ouch, looks like that hurt quite a bit!"
                         });
                         break;
                     case (int)AttackActions.Flashlight:
-                        DamageEnemy(1);
+                        DamageEnemy(2);
                         toScroll.AddRange(new string[]{
                             "You attacked with the flashlight...",
                             "The ghost tries to evade the beam.",
@@ -468,7 +477,7 @@ public class battleBehavior : MonoBehaviour
                         });
                     break;
                     case (int)AttackActions.Garlic:
-                        DamageEnemy(1);
+                        DamageEnemy(3);
                         toScroll.AddRange(new string[]{
                             "You Attacked with the Garlic...",
                                 "It worked fine!",
@@ -476,7 +485,7 @@ public class battleBehavior : MonoBehaviour
                         });
                     break;
                     case (int)AttackActions.Theremin:
-                        DamageEnemy(1);
+                        DamageEnemy(3);
                         toScroll.AddRange(new string[]{
                             "You attacked with the theremin...",
                             "The ghost recoils at the pitch!",
@@ -489,45 +498,39 @@ public class battleBehavior : MonoBehaviour
             case ButtonEnum.Talk:
                 switch(actionID){
                     case (int)TalkEnum.Chat:
-                        DamageEnemy(1);
                         toScroll.AddRange(new string[]{
-                            "You had a chat with the ghost...",
-                            "The ghost seemed bored..."
+                            "You tried to talk to the ghost...",
+                            "The ghost wouldn't respond..."
                         });
                     break;
                     case (int)TalkEnum.ChatTwo:
-                        DamageEnemy(1);
                         toScroll.AddRange(new string[]{
-                            "You had a chat with the ghost...",
-                            "The ghost seemed bored..."
+                            "You tried to have a discussion with the ghost...",
+                            "The ghost didn't seem to care..."
                         });
                     break;
                     case (int)TalkEnum.Fake_Throw:
-                        DamageEnemy(1);
                         toScroll.AddRange(new string[]{
                             "You threw something that didn't exist...",
                             "The ghost seemed bored..."
                         });
                     break;
                     case (int)TalkEnum.Flirt:
-                        DamageEnemy(1);
                         toScroll.AddRange(new string[]{
                             "You tried to flirt with the ghost...",
-                            "The ghost seems to not care..."
+                            "The ghost doesn't react..."
                         });
                     break;
                     case (int)TalkEnum.Pet:
-                        DamageEnemy(1);
                         toScroll.AddRange(new string[]{
                             "You tried to pet the ghost...",
-                            "The ghost doesn't seem to care..."
+                            "The ghost recoils..."
                         });
                     break;
                     case (int)TalkEnum.Call_Him_Bald:
-                        DamageEnemy(1);
                         toScroll.AddRange(new string[]{
                             "You called the ghost bald...",
-                            "The ghost seems confused...?"
+                            "The ghost seems confused..."
                         });
                     break;
                     default: Missing(actionType,actionID);break;
@@ -576,8 +579,7 @@ public class battleBehavior : MonoBehaviour
                         toScroll.AddRange(new string[] {
                         "You tried to use the key on the ghost...",
                         "That's a ghost, not a lock!",
-                        "What's wrong with you?",
-                        "\"...\""});
+                        "What's wrong with you?"});
                     break;
                     case (int)ItemsEnum.Photo:
                         toScroll.AddRange(new string[] {
@@ -606,7 +608,7 @@ public class battleBehavior : MonoBehaviour
                     break;
                     case (int)ItemsEnum.Scissors:
                         toScroll.AddRange(new string[] {
-                        "You held the Scissors...",
+                        "You held out the Scissors...",
                         "Nothing happens."});
                     break;
                     default: Missing(actionType,actionID);break;
@@ -619,9 +621,27 @@ public class battleBehavior : MonoBehaviour
                     battleEnded = (int)endCon.CRUCIFIX;
                     DisableOnEnd();
                     //add text about crucifix 
-                    toScroll.AddRange(new string[]{"The ghost withers away in a a blinding flash!"});
+                    switch(Random.Range(0,4)){
+                        case 0: toScroll.AddRange(new string[]{"The ghost withers away in a blinding flash!"});
+                        break;
+                        case 1: toScroll.AddRange(new string[]{"The ghost's face contorts and melts away into nothingness!"});
+                        break;
+                        case 2: toScroll.AddRange(new string[]{"The ghost wails as it disintegrates!"});
+                        break;
+                        case 3: toScroll.AddRange(new string[]{"The ghost lets out a scream as its torn apart!"});
+                        break;
+                    }
+                   
                 }else{
-                    toScroll.AddRange(new string[]{"The ghost is still too powerfull!","Weaken it more before using the crucifix!"});
+                    switch(Random.Range(0,3)){
+                        case 0: toScroll.AddRange(new string[]{"The ghost seems terrified by your crucifix.","You can't banish the ghost yet, it's still too strong!"});
+                        break;
+                        case 1: toScroll.AddRange(new string[]{"The ghost cowers at the sight of your crucifix.","You'll need to weaken the ghost more before using it!"});
+                        break;
+                        case 2: toScroll.AddRange(new string[]{" The ghost's form wavers, but the it's desperately trying to hold on!","You have to weaken it more before using the crucifix!"});
+                        break;
+                    }
+                    
                 }
             break;
             case ButtonEnum.Run:

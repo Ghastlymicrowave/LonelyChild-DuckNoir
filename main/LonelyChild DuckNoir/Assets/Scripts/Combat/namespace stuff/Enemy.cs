@@ -113,12 +113,19 @@ namespace Combat
     }
 
     public enum TalkEnum{
+        Talk,
+        Requrest_Health,
+        Requrest_Proceed,
         Flirt,
         Chat,
         ChatTwo,
         Pet,
         Fake_Throw,
-        Call_Him_Bald
+        Call_Him_Bald,
+        Gloat,
+        Compliment,
+        Insult,
+        Lecture
     }
 
 }

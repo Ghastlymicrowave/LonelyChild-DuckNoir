@@ -238,7 +238,6 @@ public class Narcissist : EnemyClass
 {//example of an actual enemy
     public Narcissist(battleBehavior battle = null) : base(battle)
     {
-        sentiment = new List<string>{"bald"};
         name = "The Narcissist";
         hp = 20;
         maxHP = 20;
@@ -251,90 +250,101 @@ public class Narcissist : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_2",
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
         talkActions = new TalkEnum[][]{ 
-            new TalkEnum[]{TalkEnum.Chat, TalkEnum.Call_Him_Bald} 
+            new TalkEnum[]{TalkEnum.Chat, TalkEnum.Call_Him_Bald} ,
+            new TalkEnum[]{TalkEnum.Gloat, TalkEnum.Compliment, TalkEnum.Insult} ,
+            new TalkEnum[]{TalkEnum.Lecture},
+            new TalkEnum[]{} 
+
         };
+        sentiment = new List<string>{"call_him_bald","gloat","lecture"};
+        specialVals = new int[]{0,0};
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/NarcissistDisplay";
         
         sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Hourglass);
 
         sentimentalSuccess = new string[]{
-            "You held out the hourglass...\nIt felt... right.",
-            "\"Wait... hmm...\"\n\"...yes.\"",
-            "\"Yes, I-I remember now.\"\n\"Time.\"",
-            "\"Time is all we have, and here I am wasting mine.\"",
-            "\"Look at you dragging out the philosophy!\"\n\"I might have been wrong about you!\"",
-            "\"...\"",
-            "\"All I think about is myself...\"",
-            "\"If you can change...\"\n\"...can the likes of me can change, too?\"",
-            "..."
+            "You present the hourglass.",
+            "\"My goodness, that’s it!.\", \"My lucky hourglass!\"",
+            "\"Without it, I felt like the slightest inconvenience took a lifetime.\"\n\"But, now, I feel… complete?\"",
+            "\"Time is all we have, but I’ve been wasting so much...\"\n\"My search for self-centeredness, ironically, was self-centered of me...\"",
+            "\"Thank you.\""
         };
         sentimentalFaliure = new string[]{
-            "The ghost hesitates and looks at the hourglass...",
-            "Does this hourglass mean something to it?",
-            "\"I feel...\"\n\"...A sudden surge of pretention?\"",
-            "\"No! Only I can be so full of myself!\"\n\"This crooked-nosed knave couldn't rival my superiority!\"",
-            "It snaps out of it's trance, was there something you needed to do first?"
+            "You present the Hourglass.\nThe ghost isn’t quite ready for it yet.",
+            "\"I smell a faint pretention in the air...\"\n\"...could it be?\"",
+            "\"No… It couldn’t be.\""
         };
 
         responses = new EnemyResponse[]{
             
-            GenResponse(ButtonEnum.Attack,(int)AttackActions.Theremin,
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
             new EnemyReaction[] {
-                NewReaction(new string[] {"DamageEnemy"},
+                NewReaction(new string[] {"DamagePlayer"},
                 new string[]{
-                    "You attacked with the theremin...",
-                    "\"Ah, yes!\"\n\"This reminds me of the soothing sounds of Lydia Kavina!\"\n\"Of course you don't know who that is.\"",
-                    "\"Have I told you I am very knowledgeable on a wide range of topics?\""
-                },new object[][]{SingleMethod((object)3)})
-            }),
-            GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,
+                    "You chat up the enemy ghost.\nHe slaps you across the face!",
+                    "\"You seriously think I have the TIME for idle chatter?\"",
+                    "\"How about I adopt some other orphan boy?\"\n\"Preferably someone I can berate into my OWN image.\""
+
+                },new object[][]{SingleMethod(3)})
+            },new int[]{0}),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Call_Him_Bald,
             new EnemyReaction[] {
-                NewReaction(new string[] {"DamageEnemy"},
+                NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks","SentimentalItem"},
                 new string[]{
-                    "You attacked with the FirePoker...",
-                    "\"I am reminded of a quote from the Bard himself...though I won’t waste such an intelligent line on deaf ears.\""
-                },new object[][]{SingleMethod((object)2)})
-            }),
-            GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,
+                    "You insult the ghost’s hairless scalp, going so far as to use it as a mirror for admire your own form.",
+                    "\"WHAT???\"\n\"You dare insult the likes of me!?\"",
+                    "\"How CRUDE!\"\n \"How PRUDENT!\"\n \"How...\"",
+                    "\"...exactly like me?\""
+
+                },new object[][]{SingleMethod(new int[]{1}),SingleMethod(1),SingleMethod("call_him_bald",new string[]{},new string[]{})})
+            },new int[]{0}),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Compliment,
             new EnemyReaction[] {
-                NewReaction(new string[] {"DamageEnemy"},
+                NewReaction(new string[] {"DamagePlayer"},
                 new string[]{
-                    "You attacked with the flashlight...",
-                    "\"Ah! You fool!\"\n\"This only highlights my strong chin and high cheekbones!\"",
-                    "(nevermind the lack of hair on my head.)\n(I swear to god, if you so much as mention it...)",
-                    "\"I rather enjoy the spotlight, you know.\""
-                },new object[][]{SingleMethod((object)1)})
-            }),
-            GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,
+                    "You admire the ghost’s figure.\nHe slaps you across the face!",
+                    "\"You think I don’t know how GLORIOUS and UNFLAPPABLE I am!?\"",
+                    "\"I’d like to adopt someone who respects my intellect a little bit more.\"\n\"I don’t have TIME to hear what I already know...\""
+
+                },new object[][]{SingleMethod(3)})
+            },new int[]{0}),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Gloat,
             new EnemyReaction[] {
-                NewReaction(new string[] {"DamageEnemy"},
+                NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks","SentimentalItem"},
                 new string[]{
-                    "You attacked with the Garlic...",
-                    "The ghost hates it!",
-                    "\"Who taught you how to behave?\""
-                },new object[][]{SingleMethod((object)4)})
-            }),
-            GenResponse(ButtonEnum.Attack,(int)TalkEnum.Chat,
+                    "You gloat, going on about your appearance and your accomplishments.",
+                    "If you actually even one of the things you said you did, you’d surely earn a nobel prize...",
+                    "\"YES, Finally!\" Another piece of the puzzle!\"",
+                    "\"I’ve rubbed off on you already!\"\n\"The attitude AND the ego!\"",
+                    "\"But… I think something’s missing yet...\""
+
+                },new object[][]{SingleMethod(new int[]{2}),SingleMethod(2),SingleMethod("gloat",new string[]{},new string[]{})})
+            },new int[]{1}),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Insult,
             new EnemyReaction[] {
-                NewReaction(new string[] {"DamageEnemy"},
+                NewReaction(new string[] {},
                 new string[]{
-                     "You started talking with the ghost...",
-                    "\"You there, young boy.\"\n\"Are there any other orphans about?\"",
-                    "\"I want someone whom I can mold in my own image, but berate significantly enough that I shall feel confident they will never surpass me.\"",
-                    "\"Oh, and not you.\""
-                },new object[][]{SingleMethod((object)1)})
-            }),
-            GenResponse(ButtonEnum.Attack,(int)TalkEnum.Call_Him_Bald,
+                    "You insult the narcissist once more.\nThis time, going after his flabby body.",
+                    "\"Hey, I appreciate the moxxy, kid, but are insults really the only thing you’ve got?\"",
+                    "\"I don’t have TIME for a one-note kid.\"\n\"You’re gonna have to try harder to impress me.\""
+
+                },new object[][]{})
+            },new int[]{1}),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Gloat,
             new EnemyReaction[] {
-                NewReaction(new string[] {"DamageEnemy"},
+                NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks","SentimentalItem"},
                 new string[]{
-                    "You call the ghost bald, even going so far as to attempt to spit-shine his head.",
-                    "\"WHAA???\"\n\"You think you can just walk up and do that to the likes of me, you hedge-borne little man!?\"",
-                    "\"How crude!\"\n\"How prudent!\"\n\"How...\"",
-                    "\"...familiar?\""
-                },new object[][]{SingleMethod((object)4)})
-            })
+                    "You go on for as long as you can muster, lecturing the ghost on every minute thing you can think of.",
+                    "His shirt is SO last century…\nHis shoes? Look! They’re untied!",
+                    "Your inflated ego is so massive, it could break the very floor you’re standing on.",
+                    "\"How… perfect!",
+                    "\"I’ve rubbed off on you... \"\n\"In only a matter of minutes!\"",
+                    "\"I…\"\n\"...I simply MUST adopt you!\"",
+                    "\"But… we can’t go home, not yet!\"\n\"I’m missing something important to me...\"",
+                    "\"What was it...\"\n\"Do you happen to have it?\""
+                },new object[][]{SingleMethod(new int[]{3}),SingleMethod(3),SingleMethod("lecture",new string[]{},new string[]{})})
+            },new int[]{2}),
         };
     }
 }
@@ -712,7 +722,6 @@ public class PoorDog : EnemyClass
 {//example of an actual enemy
     public PoorDog(battleBehavior battle = null) : base(battle)
     {
-        sentiment = new List<string>{"pet"};
         name = "Poor Dog";
         hp = 14;
         maxHP = 14;
@@ -722,25 +731,23 @@ public class PoorDog : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/Turret1",
             "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
-        //"",
-        //"Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2",
-        // "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
         talkActions = new TalkEnum[][]{ 
-            new TalkEnum[]{TalkEnum.Pet,TalkEnum.Chat,TalkEnum.Fake_Throw} 
+            new TalkEnum[]{TalkEnum.Pet,TalkEnum.Chat,TalkEnum.Fake_Throw}, 
+            new TalkEnum[]{} 
         };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/PoorDogDisplay";
         
         sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Ball);
 
+        sentiment = new List<string>{"pet"};
+        specialVals = new int[]{0,0};
         sentimentalSuccess = new string[]{
             
             "You held out the ball...\nIt felt... right.",
             "\"BALL!?!?!???!?\"",
-            "\"!?!?!?!???!??!!?!??!??!?!??!?!?!??!?\"",
-            "\"!?!?!?!???!??!!?!!?!?!?!??!?!?!?!?!????!??!?!??!?!?!??!?\"",
-            "\"!?!?!?!?!?!?!?!????!??!?!??!?!???!??!!?!!?!?!?!??!?!?!?!?!????!??!?!??!?!?!??!?\"",
-            "..."
+            "\"!?!BORK?!?!???!?WOOF?!!?!??!?WOOF?!?!??!?BARK!?!??!?\"",
+            "... Goodbye!"
         };
         sentimentalFaliure = new string[]{
             "The ghost hesitates and looks at the ball...",
@@ -755,72 +762,58 @@ public class PoorDog : EnemyClass
             new EnemyReaction[] {
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
-                    "You attacked with the theremin...",
-                    "The ghost recoils at the pitch!",
-                    "\"Whine.... Turn it off...\""
-                },new object[][]{SingleMethod((object)3)})
-            }),
-            GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,
-            new EnemyReaction[] {
+                    "You attacked with the theremin\nThe ghost recoils at the pitch!",
+                    "\"Whine… Turn it off!..\""
+                },new object[][]{SingleMethod(3)}),
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
-                    "You attacked with the FirePoker...",
-                    "The ghost isn't loving it... but isn't hating it, either.",
-                    "\"Too heavy to be stick...\nTo long to be ball...\"",
-                    "\":(\""
-                },new object[][]{SingleMethod((object)1)})
+                    "You attacked with the theremin\nThe ghost seems to be in a lot of pain...",
+                    "\"BARK BARK BARK BARK BARK! >:(\""
+                },new object[][]{SingleMethod(4)})
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,
             new EnemyReaction[] {
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
-                    "You attacked with the flashlight...",
-                    "The ghost starts darting after the light, thinking it's a ball!",
-                    "You go on for a few minutes, making the ghost run in circles.",
-                    "This isn't exactly effective...",
-                    "\"Where did flat ball go?????\"",
-                    "\"Do you have better ball!?!?!?!?!?\""
-                },new object[][]{SingleMethod((object)3)})
-            }),
-            GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,
-            new EnemyReaction[] {
+                    "You attacked with the flashlight..\nThe ghost starts darting after the light, thinking it’s a ball!.",
+"You go on for a minute, making the ghost run in circles.\nThis isn’t very effective.",
+"\"WHERE DID FLAT BALL GO?????\""
+
+                },new object[][]{SingleMethod(1)}),
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
-                    "You attacked with the Garlic...",
-                    "The ghost hates it!",
-                    "\"Smelly ball bad for me!!! Give better ball >:(\""
-                },new object[][]{SingleMethod((object)4)})
+                    "You attacked with the flashlight..\nThe ghost stares intently at the flashlight’s bulb!",
+"\"Bright ball...\"\n\"Give me your wisdom...\"",
+"This isn’t very effective."
+
+                },new object[][]{SingleMethod(1)})
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
             new EnemyReaction[] {
-                NewReaction(new string[] {"DamageEnemy"},
+                NewReaction(new string[] {},
                 new string[]{
-                    "You started talking with the ghost...",
-                    "You might've briefly mentioned something that sounds vaguely like the word 'ball'.",
-                    "\"Ball!?!?!?!?!?\"",
-                    "\"...\"",
-                    "\"Ohh... False Ball-arm...\""
-                },new object[][]{SingleMethod((object)4)})
-            }),
-            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Fake_Throw,
-            new EnemyReaction[] {
-                NewReaction(new string[] {"DamageEnemy"},
-                new string[]{
-                    "You made a throwing motion with your arm...",
-                    "But there was nothing in your hand?",
-                    "\"How could you!!!???? >:( >:( >:(\""
-                },new object[][]{SingleMethod((object)4)})
-            }),
+                    "You started chatting up the ghost…\nYou may have said something that sounds vaguely like the word ball.",
+"\"BALL!??!??!!?!!?\"\n\"...\"",
+"\"Oh… False ball-arm...\""
+
+                },new object[][]{})
+            },new int[]{0}),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Pet,
             new EnemyReaction[] {
-                NewReaction(new string[] {"DamageEnemy"},
+                NewReaction(new string[] {"SentimentalItem","ChangeSpecialAbs","ChangeTalks"},
                 new string[]{
-                    "You tried to pet the ghost...",
-                    "But your arm phased right through 'em, so...",
-                    "You just kinda made a petting motion with your arm.",
-                    "Between you and me, I don't think he knows the difference.",
-                    "\"Woof!~ :)\""
-                },new object[][]{SingleMethod((object)3)})
+                    "You tried to pet the ghost…\nBut your arm just phased right through the dog, so...",
+"You just… kinda… made a petting motion with your arm.\nBetween you and me, I don’t think he knows the difference.",
+"\"Woof!~ :)\""
+                },new object[][]{SingleMethod("pet",new string[]{}, new string[]{}),SingleMethod(new int[]{1}),SingleMethod(1)})
+            },new int[]{0}),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Fake_Throw,
+            new EnemyReaction[] {
+                NewReaction(new string[] {"DamagePlayer"},
+                new string[]{
+                    "You made a throwing motion with your arm…\n...but there was nothing in your hand?",
+"\"You monster!!!\"\n\"How could you!?!!?? >:( >:( >:(\""
+                },new object[][]{SingleMethod(1)})
             }),
         };  
     }
@@ -841,8 +834,11 @@ public class Tutorial : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2",
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
         talkActions = new TalkEnum[][]{ 
-            new TalkEnum[]{TalkEnum.Chat} 
+            new TalkEnum[]{TalkEnum.Talk} ,
+            new TalkEnum[]{TalkEnum.Chat,TalkEnum.Requrest_Health,TalkEnum.Requrest_Proceed} ,
+            new TalkEnum[]{} 
         };
+        specialVals = new int[]{0,0};
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/TutorialDisplay";
         
@@ -857,12 +853,9 @@ public class Tutorial : EnemyClass
             
         };
         sentimentalFaliure = new string[]{
-            "The ghost hesitates and looks at the manual...",
-            "Does this manual mean something to it?",
-            "\"Ooh, this is my favorite part! Let me help you out!\"",
-            "\"You're supposed to show me the thing AFTER you beat me up and talk to me!\"",
-            "\"It's the cool way to end battles!\"",
-            "It snaps out of it's trance, was there something you needed to do first?"
+            "You present the manual.",
+            "\"Ah, that’s my sentimental item...\"\n\"You might want to use that after you’ve lit all your bulbs...\"",
+            "\"Talk to me for more information.\""
         };
 
         specialTexts = new SpecialText[]{
@@ -883,68 +876,85 @@ public class Tutorial : EnemyClass
         responses = new EnemyResponse[]{
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Theremin,
             new EnemyReaction[] {
-                NewReaction(new string[] {"DamageEnemy","DamagePlayer"},
-                new string[]{
-                    "You attacked with the theremin...",
-                    "The ghost is relatively unfazed!",
-                    "\"Ooh, buddy, I got a resistance to this attack.\"",
-                    "\"You've gotta try the other attack!\""
-                },new object[][]{SingleMethod(1),SingleMethod(1)}),
-            }),
-            GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,
-            new EnemyReaction[] {
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
-                    "You attacked with the FirePoker...",
-                    "The ghost isn't loving it... but isn't hating it, either.",
-                    "\"Buddy...\"\n\"You're not supposed to have that yet...\""
-                },new object[][]{SingleMethod(1)})
+                    "You attack with the Theremin.\nIt’s not so effective",
+                    "\"You know, I’m resistant to this attack.\"\n\"You might wanna try the other attack.\""
+                },new object[][]{SingleMethod(1)}),
+                NewReaction(new string[] {"DamageEnemy"},
+                new string[]{
+                    "You attack with the Theremin.\nIt’s not so effective.",
+                    "\"I’m resistant to this attack.\"\n\"That means that this attack does less damage to me than your flashlight.\""
+                },new object[][]{SingleMethod(1)}),
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,
             new EnemyReaction[] {
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
-                    "You attacked with the flashlight...",
-                    "\"Oh god! My eyes! It burns!\"",
-                    "\"Ha. Just kidding.\" \"I don't have eyes.\""
-                },new object[][]{SingleMethod(1)})
-            }),
-            GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,
+                    "You attack with the Flashlight.\nIt’s pretty effective!",
+                    "\"Ouch, I’m weak to this attack!\"\n\"If you keep this up, my HP will be at zero.\"", "\"When my HP falls to zero, you can use the crucifix to end the battle!\"\n\"But there’s another much less painful way too, please talk to me to learn about that. Crucifixion really hurts...\""
+
+                },new object[][]{SingleMethod(2)}),
+            },new int[]{-1,0}),
+            GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,
             new EnemyReaction[] {
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
-                    "You attacked with the Garlic...",
-                    "The ghost hates it!",
-                    "\"How'd you even get that?\""
-                },new object[][]{SingleMethod((object)3)})
-            }),
-            GenResponse(ButtonEnum.Attack,(int)AttackActions.Ruler,
-            new EnemyReaction[] {
+                    "You attack with the Flashlight.\nIt’s pretty effective!",
+                    "\"Attacking an enemy ghost is a good way to win battles!\", \"But there’s another way too...\"", "\"You can use talk to beat ghosts by interacting with them!\"\n\"I personally recommend it!\""
+                },new object[][]{SingleMethod(2)}),
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
-                    "You attacked with the Ruler...",
-                    "\"...\"",
-                    "\"What's wrong with you?'\""
-                },new object[][]{SingleMethod((object)3)})
+                    "You attack with the Flashlight.\nIt’s pretty effective!",
+                    "\"Please lighten up! This really hurts...\"\n\"You’re not going to actually crucify me when my HP hits 0, are you…?\"",
+
+                },new object[][]{SingleMethod(2)}),
             }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Talk,
+            new EnemyReaction[]{
+                NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalk","SentimentalItem"},
+                new string[]{
+                    "You talk with the enemy ghost.",
+                    "\"Oh, hey, you’re talkin’ to me!\"\n\"More of a lover than a fighter, I presume?\"",
+                    "\"The talk system works differently than the attack system.\n\"Let me explain it to you.\"\"",
+                    "\"Your goal for a talk victory is to get every bulb lit on your scanner.\"\n\"Every unlit bulb represent a talk that you have to perform.\"",
+                    "\"But, here’s the catch:\"\n\"not every talk choice makes a bulb light up, and your talk choices change with every talk you get right.\"","\"Observe the way that your talk choices change after this next attack of mine.\""
+
+                }, new object[][]{SingleMethod(new int[]{1}),SingleMethod(1),SingleMethod(new string[]{},new string[]{})})
+            },new int[]{0}),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
             new EnemyReaction[] {
-                NewReaction(new string[] {"SentimentalItem"},
+                NewReaction(new string[] {},
                 new string[]{
-                    "You tried talking with the ghost..."
-                },new object[][]{SingleMethod((object)"chat",new string[]{
-                    "\"Hey! You're talking to me!\"",
-                    "\"Have you been reading the manual?\"",
-                    "\"You can talk to ghosts around here to figure out what their issue is!\"",
-                    "\"I don't have any issues, I'm just a tutorial, but some of these guys are absolute class acts...\"",
-                    "\"...They won't stop fighting unless you really level with them.\"",
-                    "\"After doing so, you can use a certain item with sentimental value to save them, or a crucifix to destroy them.\"",
-                    "\"My item was right in front of me, it was a manual.\" \n\"Go ahead and use it on me!\""
-                },
+                    "You chatted up the enemy ghost",
+                    "\"Nothing much, man how about you?\"",
+                    "\"As you can see, this is a classic example of a talk that doesn’t make a bulb light up.\"\n\"Doesn’t proceed combat, but a great opportunity to get to know your enemy nonetheless.\""
+                },new object[][]{})
+            },new int[]{1}),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Requrest_Health,
+            new EnemyReaction[] {
+                NewReaction(new string[] {"DamagePlayer"},
                 new string[]{
-                    "\"What are you waiting for? Use the book already!\""
-                })})
-            })
+                    "You requested some health from the enemy ghost.",
+                    "\"Oh, here you go.\"\n\"I can spare some health for a newbie.\"",
+                    "\"As you can see, some talks can do special things like heal you.\"\n\"Later on, some may damage you, too, so be careful.\""
+                },new object[][]{SingleMethod(-4)})
+            },new int[]{1}),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Requrest_Proceed,
+            new EnemyReaction[] {
+                NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks","SentimentalItem"},
+                new string[]{
+                    "You ask the enemy ghost if he can just get on with it already.",
+                    "\"Ah, the impatient type.\"\n\"I see how it is.\"",
+                    "\"Don’t worry. You’re almost done.\"",
+                    "\"You will have the option to end combat when the enemy’s bulbs are all lit up, or when their health is at zero.\"\n\"You can end combat in a few different ways.\"",
+                    "\"You can use crucifix to straight-up destroy my soul, but you’ve talked sweet with me all this time, so I don’t think that’s what you’re going for.\"",
+                    "\"The other way is to use a sentimental item from your inventory.\",\"This is an item that is special to the ghost you’re fighting, using it will save their soul.\"",
+                    "\"My sentimental item is the MANUAL.\"\n\"It was by the entrance to the library, did you pick it up?\"",
+                    "\"To use it, go to items and select the MANUAL.\""
+
+                },new object[][]{SingleMethod(new int[]{2}),SingleMethod(2),SingleMethod(new string[]{},new string[]{})})
+            },new int[]{1})
         };
     }
 }
