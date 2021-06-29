@@ -87,7 +87,7 @@ public class TextManager : MonoBehaviour
             case 23: return new string[]{"???"};
             //Manual, hourglass
             case 24: return stringsToArray("You picked up a ghost hunting manual.",
-            "You might want to click the button on the left of your screen and inspect this thing.");
+            "In the inventory, you can press inspect to read this thing.");
 
             case 25: return new string[]{"It's an evil looking eye. You could probably get rid of it if you stabbed it with something."};//eye interact
             case 26: return new string[]{"You ready your fire poker and get ready to jam it in the eye."};//eye firepoker used
