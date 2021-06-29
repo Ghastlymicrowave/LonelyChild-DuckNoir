@@ -34,9 +34,9 @@ public class Submenu : MonoBehaviour
                 }
             break;
             case ButtonEnum.Talk:
-                for (int i = 0; i < battleBehavior.enemy.talkActions.Length;i++){
-                    Sprite spr = InventoryManager.LoadTalkSprite((int)battleBehavior.enemy.talkActions[i]);
-                    AddItem(spr,(int)actionType,(int)battleBehavior.enemy.talkActions[i]);
+                for (int i = 0; i < battleBehavior.enemy.talkActions[battleBehavior.talkIndex].Length;i++){
+                    Sprite spr = InventoryManager.LoadTalkSprite((int)battleBehavior.enemy.talkActions[battleBehavior.talkIndex][i]);
+                    AddItem(spr,(int)actionType,(int)battleBehavior.enemy.talkActions[battleBehavior.talkIndex][i]);
                 }
             break;
             case ButtonEnum.Items:

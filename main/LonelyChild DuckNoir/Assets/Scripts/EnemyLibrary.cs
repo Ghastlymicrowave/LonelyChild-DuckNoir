@@ -54,7 +54,7 @@ public abstract class EnemyClass
     public string folderPath = "2D Assets/OverworldGhost/Overworld_Ghost_";
     public string displayPrefabPath = "";
     public int animationFrames = 1;
-    public TalkEnum[] talkActions;
+    public TalkEnum[][] talkActions;
     public EnemyResponse[] responses;
     public string[] sentimentalSuccess;
     public string[] sentimentalFaliure;
@@ -95,9 +95,6 @@ public abstract class EnemyClass
 
             if (responses[i].trigger.actionType==(int)ButtonEnum.Any){//if type is any
                 bool cont = false;
-                if (responses[i].specialVal.Length != spVals.Length){
-                   continue;
-                }
                     for(int a = 0; a < responses[i].specialVal.Length; a++){//check for vals
                         if (responses[i].specialVal[a] == -1){//ignoring param
                             continue;
@@ -110,9 +107,6 @@ public abstract class EnemyClass
                 return responses[i].RandReact();
             }else if (responses[i].trigger.actionType==(int)type && responses[i].trigger.actionID==actionID){
                 bool cont = false;
-                if (responses[i].specialVal.Length != spVals.Length){
-                   continue;
-                }
                     for(int a = 0; a < responses[i].specialVal.Length; a++){//check for vals
                         if (responses[i].specialVal[a] == -1){//ignoring param
                             continue;
@@ -233,7 +227,9 @@ public class Enemy1 : EnemyClass
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
-        talkActions = new TalkEnum[1] { TalkEnum.Chat };
+        talkActions = new TalkEnum[][]{ 
+            new TalkEnum[]{TalkEnum.Chat} 
+        };
     }
 
 }
@@ -254,7 +250,9 @@ public class Narcissist : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy1",
             "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_2",
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
-        talkActions = new TalkEnum[2] { TalkEnum.Chat, TalkEnum.Call_Him_Bald };
+        talkActions = new TalkEnum[][]{ 
+            new TalkEnum[]{TalkEnum.Chat, TalkEnum.Call_Him_Bald} 
+        };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/NarcissistDisplay";
         
@@ -357,7 +355,9 @@ public class TroubledChild : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Harder_Reverse",
             "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
             "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy"};
-        talkActions = new TalkEnum[1] { TalkEnum.Chat};
+        talkActions = new TalkEnum[][]{ 
+            new TalkEnum[]{TalkEnum.Chat} 
+        };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/TroubledChildDisplay";
         
@@ -444,7 +444,9 @@ public class NiceDemonGuy : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy",
             "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2"};
-        talkActions = new TalkEnum[1] { TalkEnum.Chat};
+        talkActions = new TalkEnum[][]{ 
+            new TalkEnum[]{TalkEnum.Chat} 
+        };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/NiceDemonGuyDisplay";
         
@@ -538,7 +540,9 @@ public class GremlinOfDeceit : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
             
             "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy"};
-        talkActions = new TalkEnum[1] { TalkEnum.Chat};
+        talkActions = new TalkEnum[][]{ 
+            new TalkEnum[]{TalkEnum.Chat} 
+        };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/GremlinOfDeceitDisplay";
         
@@ -634,7 +638,9 @@ public class DevilsHands : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2"
             };
-        talkActions = new TalkEnum[1] { TalkEnum.Chat};
+        talkActions = new TalkEnum[][]{ 
+            new TalkEnum[]{TalkEnum.Chat} 
+        };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/DevilsHandsDisplay";
         
@@ -719,7 +725,9 @@ public class PoorDog : EnemyClass
         //"",
         //"Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2",
         // "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
-        talkActions = new TalkEnum[3] { TalkEnum.Pet, TalkEnum.Chat, TalkEnum.Fake_Throw };
+        talkActions = new TalkEnum[][]{ 
+            new TalkEnum[]{TalkEnum.Pet,TalkEnum.Chat,TalkEnum.Fake_Throw} 
+        };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/PoorDogDisplay";
         
@@ -822,7 +830,7 @@ public class Tutorial : EnemyClass
     public Tutorial(battleBehavior battle = null) : base(battle)
     {
         playerHurt = true;
-        sentiment = new List<string>{"chat"};
+        sentiment = new List<string>{"chat"};//define setniment tags
         name = "Ghost Hunting Nerd";
         hp = 6;
         maxHP = 6;
@@ -832,7 +840,9 @@ public class Tutorial : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2",
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
-        talkActions = new TalkEnum[1] {TalkEnum.Chat};
+        talkActions = new TalkEnum[][]{ 
+            new TalkEnum[]{TalkEnum.Chat} 
+        };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/TutorialDisplay";
         
@@ -873,13 +883,13 @@ public class Tutorial : EnemyClass
         responses = new EnemyResponse[]{
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Theremin,
             new EnemyReaction[] {
-                NewReaction(new string[] {"DamageEnemy"},
+                NewReaction(new string[] {"DamageEnemy","DamagePlayer"},
                 new string[]{
                     "You attacked with the theremin...",
                     "The ghost is relatively unfazed!",
                     "\"Ooh, buddy, I got a resistance to this attack.\"",
                     "\"You've gotta try the other attack!\""
-                },new object[][]{SingleMethod(1)})
+                },new object[][]{SingleMethod(1),SingleMethod(1)}),
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,
             new EnemyReaction[] {
@@ -959,7 +969,9 @@ public enum moods{
             "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
             "Prefabs/combatEnemyTurn/attacks/Mix_Easy"};
-        talkActions = new TalkEnum[2] { TalkEnum.Chat, TalkEnum.ChatTwo };
+        talkActions = new TalkEnum[][]{ 
+            new TalkEnum[]{TalkEnum.Chat, TalkEnum.ChatTwo} 
+        };
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/RepressedGhostDisplay";
 
         sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Photo);
@@ -1047,7 +1059,9 @@ public class BoredGhost : EnemyClass{
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy1",
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
         //attackPrefabNames
-        talkActions = new TalkEnum[1] { TalkEnum.Chat };
+        talkActions = new TalkEnum[][]{ 
+            new TalkEnum[]{TalkEnum.Chat} 
+        };
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/BoredGhostDisplay";
 
         sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Ball);

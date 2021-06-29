@@ -18,6 +18,7 @@ public class SpecialText{
 }
 public class battleBehavior : MonoBehaviour
 {
+    public int talkIndex = 0;
     [SerializeField] TextMeshPro hpText;
     [SerializeField] GameObject playerHurt;
     [SerializeField] DamageNum damageNumPrefab;
@@ -107,6 +108,7 @@ public class battleBehavior : MonoBehaviour
         Music.audioSource.clip = gameSceneManager.GetCombatAudio();
         Music.Play();
         SetEnemyHpDisplay();
+        spVals = enemy.specialVals;
     }
 
     void SendSignal(string signalName){
@@ -272,6 +274,10 @@ public class battleBehavior : MonoBehaviour
         //DamagePlayer
         //SentimentalItem
         //ChangeSpecialAbs
+        //changetalks
+        public void ChangeTalks(int index){
+            talkIndex = index;
+        }
         public void DamageEnemy(int damage){
             enemy.hp -= damage;
             CheckEnemyAlive();
@@ -417,9 +423,11 @@ public class battleBehavior : MonoBehaviour
     }
 
     public void TriggerEnemyReaction(EnemyClass enemy, ButtonEnum actionType, int actionID){
-        EnemyReaction reactions = enemy.GetReaction(actionType,actionID);
+        EnemyReaction reactions = enemy.GetReaction(actionType,actionID,spVals);
         if (reactions!=null){
-            toScroll.AddRange(reactions.toDisplay);
+            if (reactions.toDisplay.Length!=0){
+                toScroll.AddRange(reactions.toDisplay);
+            }
             reactions.React();
         }else{
             ActionDefault(actionType,actionID);
