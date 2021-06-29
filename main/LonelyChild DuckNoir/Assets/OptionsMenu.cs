@@ -41,6 +41,10 @@ public class OptionsMenu : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+    public void JustClose(){
+        this.gameObject.SetActive(false);
+    }
+
     public void VisuallyUpdateSettings(){
         float[] options = settings.GetOptions();
         HMouseSmoothingContainer.ChangeValueExternal(options[0]);

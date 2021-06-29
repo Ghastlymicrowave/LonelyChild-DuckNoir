@@ -270,7 +270,7 @@ public class InventoryManager : MonoBehaviour
         public Flashlight(){
             spritePath = "2D Assets/Weapons/Flashlight";
             name = "Flashlight";
-            desc = "A flashlight, or a 'torch' if you're a brit. This thing's pretty bright! That would totally hurt a ghost.";
+            desc = "A flashlight, or a 'torch' if you're a Brit. This thing's pretty bright! That would totally hurt a ghost.";
         }
     }
 
