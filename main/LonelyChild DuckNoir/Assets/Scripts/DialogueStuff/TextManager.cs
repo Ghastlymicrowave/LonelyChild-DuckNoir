@@ -45,7 +45,7 @@ public class TextManager : MonoBehaviour
             case 6: return stringsToArray("You picked up a ball.",
             "Looks like it'd be fun to play with.");
             case 7: return stringsToArray("You picked up an apple.",
-            "Who keeps leaving fruits and veggies everywhere?");
+            "How long has this been here?");
             case 8: return stringsToArray("You picked up a Photo.",
             "It looks rather mundane... but it might mean something more to someone.");
             //Descriptors
@@ -145,12 +145,10 @@ public class TextManager : MonoBehaviour
             case 46: return stringsToArray("You found a page from the ghost hunting manual.\nPress E or LMB to continue.",
             "\"Out there, when you're hunting for ghosts inside of haunted areas, you might just need to read something.\"",
             "\"Not everyone knows this, but reading in a haunted house is actually much different from normal reading.\"\n\"Here's how you read in a haunted house:\"",
-            "\"First, approach the thing you want to read and press 'E' on your keyboard.\"\n\"(The wierd looks you will get for doing this are irrelevant, ignore them.)\"",
-            "\"Second, press E again until you're done reading!\"",
-            "\"Happy hunting!\"");
+            "\"First, approach the thing you want to read and press 'E' on your keyboard.\"\n\"(The wierd looks you will get for walking around with a keyboard are irrelevant, ignore them.)\"",
+            "\"Second, press E again until you're done reading!\"\n\"Happy hunting!\"");
             case 47:
-                return stringsToArray("The library door, locked.\nYou'll need to unlock it before you can use it.", "If you find a key, pick it up with E.",
-                "Then, go back to the door, and press 'I' or 'Tab' to open the inventory.","Finally, you simply navigate to the key and press 'use with' to unlock the door.");
+                return stringsToArray("The library door, locked.\nYou'll need to unlock it before you can use it.", "If you find a key, pick it up with E.");
             case 48:
                 return stringsToArray("It's a locked door leading to the other part of the hallway, but...\n...the lock doesn't have a key hole.", "Instead, a reaaaaally small rope is holding the doorknob in place.\nIt's practically invisible to the human eye.",
                 "it seems that you'll need to use something other than a key on this door.");
