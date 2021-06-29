@@ -164,14 +164,14 @@ public class InventoryManager : MonoBehaviour
                 return new ivItem(
                     "Ghost Hunting Manual",
                     "A ghost hunting manual. Some pages are missing, seemingly ripped out.",
-                    new string[]{"You crack open the manual and have a read. The manual reads thusly:", "\"If you are unfortunate enough to face a ghost, here's what you do.\"",
-                    "\"1: Talk to the ghost. Say the right thing, and the next steps will go smoother.\"",
-                    "\"2: Attack the ghost's senses until the ghost emmits energy.\"", "\"You have 5 bulbs. One will light up whenever you damage the ghost by 20%.\"\n\"All five bulbs should be lit up for the next step.\"",
-                    "\"Now, you've got some options.\"",
-                    "\"3A: Use your crucifix and destroy the ghost. Or....\"",
-                    "\"Make sure you've said the right thing first and then...\"",
-                    "\"3B: Hold out an item that means something to the ghost.\"",
-                    "\"Congrats! you've just hunted your first ghost!\""},
+                    new string[]{"You crack open the manual and have a read. The manual reads thusly:", "\"If you are unfortunate enough to face a ghost, there are two ways to deal with them.\"",
+                    "\"Firstly, you can attack them until their hp is at zero, that's a dependable way to go about it.\"",
+                    "\"Secondly, you can fill up your scanners' bulbs.\"\n\"This requires talking to the enemy.\"",
+                    "\"Every bulb that's unlit represents a talk that you have to do.\"\n\"Not every talk will light a bulb, and lighting up a bulb will usually open up new talk options.\"",
+                   "\"Now that you have the enemy at 0 hp, or all bulbs lit, you have two choices for ending combat.\"",
+                   "\"Firstly, you can crucify the enemy.\"\n\"This destroy's the enemy's soul, so use it wisely.\"",
+                   "\"Secondly, you can use a sentimental item from your inventory to save the ghost's soul.\"\n\"This is an item from the ghost's life that is sacred to them.\"",
+                    "\"After navigating through these steps, you should have successfully hunted your first ghost!\"\n\"Happy hunting!\""},
                     "",
                     new string[]{""},
                     (int)ItemsEnum.Manual,
@@ -222,7 +222,7 @@ public class InventoryManager : MonoBehaviour
                     "",
                     new string[]{""},
                     (int)ItemsEnum.KeyRing,
-                    "2D Assets/Items/Keychain.png");
+                    "2D Assets/Items/Keychain");
             case ItemsEnum.Scissors:
                 return new ivItem(
                     "Scissors",
@@ -233,7 +233,7 @@ public class InventoryManager : MonoBehaviour
                     "",
                     new string[]{""},
                     (int)ItemsEnum.Scissors,
-                    "2D Assets/Items/Scissors.png");
+                    "2D Assets/Items/Scissors");
             default: return null;
         }
     }
