@@ -16,6 +16,7 @@ public class EnemyManager : MonoBehaviour
             ghostBehaviors = new EnemyBehavior[ghosts.Length];
             for(int i = 0; i < ghosts.Length; i++){
                 ghostBehaviors[i] = ghosts[i].GetComponent<EnemyBehavior>();
+                inventoryManager.ghostsRoaming.Add(ghostBehaviors[i].enemyID);
             }
         }catch{
             Debug.LogWarning("No enemies are listed in the ghosts array in EnemyManager in PersistentManager!");

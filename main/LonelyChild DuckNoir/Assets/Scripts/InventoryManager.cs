@@ -354,7 +354,7 @@ public class InventoryManager : MonoBehaviour
         SaveData save = new SaveData();
         save.ascended = new int[0];
         save.crucified = new int[0];
-        save.roaming = new int[3]{1,2,3};
+        //save.roaming = new int[3]{1,2,3};
         save.attacks = new int[1]{(int)AttackActions.Flashlight};
         save.items = new int[1]{(int)ItemsEnum.Apple};
         //change back to PlayroomWB if needed
@@ -371,7 +371,7 @@ public class InventoryManager : MonoBehaviour
             save.attacks[i] = (int)attacks[i];
         }
         save.crucified = ghostsCrucified.ToArray();
-        save.roaming = ghostsRoaming.ToArray();
+        //save.roaming = ghostsRoaming.ToArray();
         save.checkpointScene = gameSceneManager.SceneName();
         
         File.WriteAllText(file,JsonUtility.ToJson(save));
@@ -419,8 +419,8 @@ public class InventoryManager : MonoBehaviour
             for (int i = 0; i < save.attacks.Length;i++){
                 AddAttack((AttackActions)save.attacks[i]);
             }
-            ghostsRoaming.Clear();
-            ghostsRoaming.AddRange(save.roaming);
+            //ghostsRoaming.Clear();
+            //ghostsRoaming.AddRange(save.roaming);
             ghostsAscended.Clear();
             ghostsAscended.AddRange(save.ascended);
             ghostsCrucified.Clear();

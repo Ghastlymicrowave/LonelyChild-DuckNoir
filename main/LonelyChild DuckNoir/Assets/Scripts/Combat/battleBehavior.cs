@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Combat;
 using UnityEngine.UI;
+using TMPro;
 
 public class SpecialText{
     public string trigger;
@@ -17,6 +18,7 @@ public class SpecialText{
 }
 public class battleBehavior : MonoBehaviour
 {
+    [SerializeField] TextMeshPro hpText;
     [SerializeField] GameObject playerHurt;
     [SerializeField] DamageNum damageNumPrefab;
     [SerializeField] List<GameObject> toDisableOnEnd;
@@ -54,7 +56,7 @@ public class battleBehavior : MonoBehaviour
     public AudioSource click;
     public AudioSource Damage;
     //audio for textscroller
-    public AudioSource Music;
+    public SoundHolder Music;
     public ScannerLogic scannerLogic;
     public GameObject scanner;
     InventoryManager inventoryManager;
@@ -76,7 +78,7 @@ public class battleBehavior : MonoBehaviour
     List<string> toInject;
     DisplayEnemy enemyImage;
     List<SpecialText> specialText;
-    public int specialValue = 0;
+    public int[] spVals = {0};
     float animSpdScale = 1f;
     // Start is called before the first frame update
     void Start()
@@ -90,7 +92,7 @@ public class battleBehavior : MonoBehaviour
         MenuPanel = GameObject.Find("MenuPanel");
         subMenu = GameObject.Find("SubmenuPanel").GetComponent<Submenu>();
         subMenu.gameObject.SetActive(false);
-        scannerLogic.DecideLights(enemy.hp, enemy.maxHP);
+        scannerLogic.DecideLights(5-enemy.sentiment.Count);
         healthbarFilled = GameObject.Find("HealthbarFilled").GetComponent<Image>();
         healthbarSizeDelta = healthbarFilled.rectTransform.sizeDelta;
         hero = new HeroClass();
@@ -102,8 +104,9 @@ public class battleBehavior : MonoBehaviour
         enemyImage = enemyImageObj.GetComponent<DisplayEnemy>();
         healthbarAnim = healthbarFilled.transform.parent.GetComponent<Animator>();
         toScroll = new List<string>();
-        Music.clip = gameSceneManager.GetCombatAudio();
+        Music.audioSource.clip = gameSceneManager.GetCombatAudio();
         Music.Play();
+        SetEnemyHpDisplay();
     }
 
     void SendSignal(string signalName){
@@ -223,8 +226,6 @@ public class battleBehavior : MonoBehaviour
         }
         StopCoroutine(theScroll);
         StartCoroutine(theScroll = TextScroll(toScroll[currentLine]));
-        SentimentalItemUsed(new EnemyActionCase((int)actionType,actionID));
-        scannerLogic.DecideLights(enemy.hp, enemy.maxHP);
         ExitSubmenu();
     }
     private IEnumerator TextScroll(string lineOfText)
@@ -262,25 +263,63 @@ public class battleBehavior : MonoBehaviour
         EnemyAttackStart();
     }
 
-    public void DamageEnemy(int damage){
-        enemy.hp -= damage;
-        CheckEnemyAlive();
-        Debug.Log("Dealt Damage: "+damage.ToString()+ "current HP: "+enemy.hp.ToString());
-        SendSignal("GHOST_HP_"+enemy.hp);
-        SendSignal("ENEMY_DAMAGED");
-        DamageNum damageNumber = Instantiate(damageNumPrefab,enemyImage.gameObject.transform.position + Vector3.back*2,Quaternion.identity,null);
-        damageNumber.Text(damage.ToString());
-
-        float c = (float)enemy.hp;
-        float m = (float)enemy.maxHP;
-        enemyImage.SetIdleSpd( animSpdScale * (-c+m)/m+1f);
+    public void SetEnemyHpDisplay(){
+        hpText.text = "HP: "+enemy.hp.ToString()+"/"+enemy.maxHP.ToString();
     }
 
-    /*public void RepressedDamageEnemy(int damage, int newState){
-        DamageEnemy(damage);
-        specialValue = newState;
-    }*/
+    #region  often used enemy methods
+        //DamageEnemy
+        //DamagePlayer
+        //SentimentalItem
+        //ChangeSpecialAbs
+        public void DamageEnemy(int damage){
+            enemy.hp -= damage;
+            CheckEnemyAlive();
+            Debug.Log("Dealt Damage: "+damage.ToString()+ "current HP: "+enemy.hp.ToString());
+            SendSignal("GHOST_HP_"+enemy.hp);
+            SendSignal("ENEMY_DAMAGED");
+            DamageNum damageNumber = Instantiate(damageNumPrefab,enemyImage.gameObject.transform.position + Vector3.back*2,Quaternion.identity,null);
+            damageNumber.Text(damage.ToString());
 
+            float c = (float)enemy.hp;
+            float m = (float)enemy.maxHP;
+            enemyImage.SetIdleSpd( animSpdScale * (-c+m)/m+1f);
+            SetEnemyHpDisplay();
+        }
+        public void DamagePlayer(int damage){//can be negative to increase health
+            hero.hp -= damage;
+            if(damage > 0)
+            {
+                cameraShake.Play("CombatCam_Shake");
+                SendSignal("PLAYER_DAMAGED");
+            }
+            if (hero.hp <= 0)
+            {hero.hp = 0; battleEnded = (int)endCon.DEFEAT;EndCombat(); }
+            else if (hero.hp > hero.maxHP)
+            { hero.hp = hero.maxHP; }
+            UpdatePlayerHp();
+            if (enemy.playerHurt){
+                enemy.playerHurt = false;
+                playerHurt.SetActive(true);
+            }
+        }
+        public void SentimentalItem(string thisTag,string[] ifNew, string[] ifUsed){
+            if (enemy.sentiment.Contains(thisTag)){
+                enemy.sentiment.Remove(thisTag);
+                toScroll.AddRange(ifNew);
+                scannerLogic.DecideLights(5-enemy.sentiment.Count);
+            }else{
+                toScroll.AddRange(ifUsed);
+            }
+        }
+        public void ChangeSpecialAbs(params int[] special){
+            for (int i = 0; i < special.Length; i++){
+                if (special[i]!=-1){
+                    spVals[i]= special[i];
+                }
+            }
+        }
+    #endregion
     void CheckEnemyAlive(){
         if (enemy.hp < 0)
         { enemy.hp = 0;/* EnemyDead(); */ }
@@ -295,8 +334,7 @@ public class battleBehavior : MonoBehaviour
     }
     public void Sentimental(){
         Debug.Log("using sentimental");
-        if (enemy.sentiment.Count<=0 && enemy.hp==0){
-            //do something to end the battle
+        if (enemy.sentiment.Count<=0){
             battleEnded = (int)endCon.SENTIMENT;
             toScroll.AddRange(enemy.sentimentalSuccess);//combat ended
             DisableOnEnd();
@@ -305,7 +343,9 @@ public class battleBehavior : MonoBehaviour
         }
     }
 
-    void SentimentalItemUsed(EnemyActionCase action){
+    
+
+    /*void SentimentalItemUsed(EnemyActionCase action){
         Debug.Log("sentimental tried using");
         Debug.Log(enemy.sentiment);
         Debug.Log(action);
@@ -324,7 +364,7 @@ public class battleBehavior : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
     public void EndCombat(){
         switch((endCon)battleEnded){
@@ -347,24 +387,7 @@ public class battleBehavior : MonoBehaviour
         }
     }
 
-    public void DamagePlayer(int damage){//can be negative to increase health
-        hero.hp -= damage;
-        if(damage > 0)
-        {
-            cameraShake.Play("CombatCam_Shake");
-            SendSignal("PLAYER_DAMAGED");
-        }
-        if (hero.hp <= 0)
-        {hero.hp = 0; battleEnded = (int)endCon.DEFEAT;EndCombat(); }
-        else if (hero.hp > hero.maxHP)
-        { hero.hp = hero.maxHP; }
-        UpdatePlayerHp();
-        if (enemy.playerHurt){
-            enemy.playerHurt = false;
-            playerHurt.SetActive(true);
-        }
-        
-    }
+    
 
     void NotSetUp(){
         Debug.Log("action ID not set up in battleBehavior");

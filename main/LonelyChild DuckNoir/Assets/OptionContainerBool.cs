@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class OptionContainerBool : OptionContainer
 {
-    OptionsMenu menu;
     [SerializeField] Toggle thisToggle;
 
     public override void ChangeValueExternal(float newValue){
