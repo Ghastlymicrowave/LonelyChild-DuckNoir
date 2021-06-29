@@ -152,11 +152,11 @@ public abstract class EnemyClass
     protected EnemyReaction NewReaction(string[] methodNames, string[] text, object[][] parameters){
         System.Reflection.MethodInfo[] methods = new System.Reflection.MethodInfo[methodNames.Length];
         for(int i = 0; i < methodNames.Length; i++){
-            methods[i] = typeof(battleBehavior).GetMethod(methodNames[i]);
+            //methods[i] = typeof(battleBehavior).GetMethod(methodNames[i]);
         }
         
         return new EnemyReaction(
-            methods, 
+            methodNames, 
             parameters,
             text,
             thisBehavior);
@@ -181,19 +181,13 @@ public class EnemyResponse{//a response containing a trigger and a reaction
 
 public class EnemyReaction{
     public string[] toDisplay;
-    public System.Action React = () => { };
-    public EnemyReaction(System.Reflection.MethodInfo[] methodInfo, object[][] methodParameters, string[] displayText, battleBehavior battle = null){
+    public string[] methodNames;
+    public object[][] methodParams;
+    public EnemyReaction(string[] names, object[][] methodParameters, string[] displayText, battleBehavior battle = null){
         if(battle==null){return;}
         toDisplay = displayText;  
-        if (methodInfo!=null){
-            React = () => {
-                for(int i = 0; i < methodInfo.Length; i ++){
-                    methodInfo[i].Invoke(battle, methodParameters[i]);
-                }
-            };
-        }
-        
-        //React = () => {methodInfo.Invoke(battle, methodParameters);};
+        methodNames = names;
+        methodParams = methodParameters;
     }
 }
 
@@ -823,7 +817,7 @@ public class Tutorial : EnemyClass
     public Tutorial(battleBehavior battle = null) : base(battle)
     {
         playerHurt = true;
-        sentiment = new List<string>{"chat"};//define setniment tags
+        sentiment = new List<string>{"talk"};//define setniment tags
         name = "Ghost Hunting Nerd";
         hp = 6;
         maxHP = 6;
@@ -912,7 +906,7 @@ public class Tutorial : EnemyClass
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Talk,
             new EnemyReaction[]{
-                NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalk","SentimentalItem"},
+                NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks","SentimentalItem"},
                 new string[]{
                     "You talk with the enemy ghost.",
                     "\"Oh, hey, you’re talkin’ to me!\"\n\"More of a lover than a fighter, I presume?\"",
@@ -920,7 +914,7 @@ public class Tutorial : EnemyClass
                     "\"Your goal for a talk victory is to get every bulb lit on your scanner.\"\n\"Every unlit bulb represent a talk that you have to perform.\"",
                     "\"But, here’s the catch:\"\n\"not every talk choice makes a bulb light up, and your talk choices change with every talk you get right.\"","\"Observe the way that your talk choices change after this next attack of mine.\""
 
-                }, new object[][]{SingleMethod(new int[]{1}),SingleMethod(1),SingleMethod(new string[]{},new string[]{})})
+                }, new object[][]{SingleMethod(new int[]{1}),SingleMethod(1),SingleMethod("talk",new string[]{},new string[]{})})
             },new int[]{0}),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
             new EnemyReaction[] {

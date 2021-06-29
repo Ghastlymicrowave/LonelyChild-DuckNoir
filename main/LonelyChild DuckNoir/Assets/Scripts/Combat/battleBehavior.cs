@@ -437,7 +437,10 @@ public class battleBehavior : MonoBehaviour
             if (reactions.toDisplay.Length!=0){
                 toScroll.AddRange(reactions.toDisplay);
             }
-            reactions.React();
+            for(int i = 0; i < reactions.methodNames.Length; i++){
+                var thisMethod = this.GetType().GetMethod(reactions.methodNames[i]);
+                thisMethod.Invoke(this,reactions.methodParams[i]);
+            }
         }else{
             ActionDefault(actionType,actionID);
         }
