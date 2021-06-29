@@ -99,6 +99,7 @@ public class GameSceneManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         settings.UpdatePlayer();
+        settings.UpdateSounds();
     }
 
     public void GameOver(){
