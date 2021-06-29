@@ -189,14 +189,16 @@ public class EnemyReaction{
     public string[] toDisplay;
     public System.Action React = () => { };
     public EnemyReaction(System.Reflection.MethodInfo[] methodInfo, object[][] methodParameters, string[] displayText, battleBehavior battle = null){
-        if( battle==null){return;}
+        if(battle==null){return;}
         toDisplay = displayText;  
-        React = () => {
-
-            for(int i = 0; i < methodInfo.Length; i ++){
-                methodInfo[i].Invoke(battle, methodParameters[i]);
-            }
-        };
+        if (methodInfo!=null){
+            React = () => {
+                for(int i = 0; i < methodInfo.Length; i ++){
+                    methodInfo[i].Invoke(battle, methodParameters[i]);
+                }
+            };
+        }
+        
         //React = () => {methodInfo.Invoke(battle, methodParameters);};
     }
 }
@@ -877,7 +879,7 @@ public class Tutorial : EnemyClass
                     "The ghost is relatively unfazed!",
                     "\"Ooh, buddy, I got a resistance to this attack.\"",
                     "\"You've gotta try the other attack!\""
-                },new object[][]{SingleMethod((object)1)})
+                },new object[][]{SingleMethod(1)})
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,
             new EnemyReaction[] {
@@ -886,7 +888,7 @@ public class Tutorial : EnemyClass
                     "You attacked with the FirePoker...",
                     "The ghost isn't loving it... but isn't hating it, either.",
                     "\"Buddy...\"\n\"You're not supposed to have that yet...\""
-                },new object[][]{SingleMethod((object)1)})
+                },new object[][]{SingleMethod(1)})
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,
             new EnemyReaction[] {
@@ -894,9 +896,8 @@ public class Tutorial : EnemyClass
                 new string[]{
                     "You attacked with the flashlight...",
                     "\"Oh god! My eyes! It burns!\"",
-                    "\"Ha. Just kidding.\" \"I don't have eyes.\"",
-                    "\"You're gonna wanna keep the attacks coming until all the bulbs are lit on your scanner!\" \n\"When that happens, talk to me!\""
-                },new object[][]{SingleMethod((object)3)})
+                    "\"Ha. Just kidding.\" \"I don't have eyes.\""
+                },new object[][]{SingleMethod(1)})
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,
             new EnemyReaction[] {
@@ -918,9 +919,10 @@ public class Tutorial : EnemyClass
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
             new EnemyReaction[] {
-                NewReaction(new string[] {"DamageEnemy"},
+                NewReaction(new string[] {"SentimentalItem"},
                 new string[]{
-                    "You started talking with the ghost...",
+                    "You tried talking with the ghost..."
+                },new object[][]{SingleMethod((object)"chat",new string[]{
                     "\"Hey! You're talking to me!\"",
                     "\"Have you been reading the manual?\"",
                     "\"You can talk to ghosts around here to figure out what their issue is!\"",
@@ -928,7 +930,10 @@ public class Tutorial : EnemyClass
                     "\"...They won't stop fighting unless you really level with them.\"",
                     "\"After doing so, you can use a certain item with sentimental value to save them, or a crucifix to destroy them.\"",
                     "\"My item was right in front of me, it was a manual.\" \n\"Go ahead and use it on me!\""
-                },new object[][]{SingleMethod((object)3)})
+                },
+                new string[]{
+                    "\"What are you waiting for? Use the book already!\""
+                })})
             })
         };
     }
