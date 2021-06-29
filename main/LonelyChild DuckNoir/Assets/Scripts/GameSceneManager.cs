@@ -84,7 +84,7 @@ public class GameSceneManager : MonoBehaviour
         overworld.SetActive(true);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        enemyManager.ReLoaded();
+        GameObject.FindObjectOfType<EnemyManager>().ReLoaded();
     }
 
     public void Pause(){

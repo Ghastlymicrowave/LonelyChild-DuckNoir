@@ -852,6 +852,7 @@ public class Tutorial : EnemyClass
             "\"Talk to me for more information.\""
         };
 
+        /*
         specialTexts = new SpecialText[]{
             new SpecialText("PLAYER_DAMAGED",
             new string[]{
@@ -865,7 +866,7 @@ public class Tutorial : EnemyClass
             new string[]{
                 "oops you took damage!"
             },1)
-        };
+        };*/
 
         responses = new EnemyResponse[]{
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Theremin,

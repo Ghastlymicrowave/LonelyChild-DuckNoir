@@ -283,7 +283,10 @@ public class battleBehavior : MonoBehaviour
             if (Random.Range(0f,1f)>0.5f){
                 mod = -1;
             }
-            damage = Mathf.Max(damage+mod,1);
+            if (Random.Range(0f,1f)>0.7){
+                damage = Mathf.Max(damage+mod,1);
+            }
+            
             enemy.hp -= damage;
             CheckEnemyAlive();
             Debug.Log("Dealt Damage: "+damage.ToString()+ "current HP: "+enemy.hp.ToString());
