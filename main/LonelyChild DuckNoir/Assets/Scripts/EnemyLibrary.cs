@@ -325,7 +325,7 @@ public class Narcissist : EnemyClass
 
                 },new object[][]{})
             },new int[]{1}),
-            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Gloat,
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Lecture,
             new EnemyReaction[] {
                 NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks","SentimentalItem"},
                 new string[]{
