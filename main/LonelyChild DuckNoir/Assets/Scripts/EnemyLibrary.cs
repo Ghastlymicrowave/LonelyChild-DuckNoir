@@ -817,7 +817,7 @@ public class Tutorial : EnemyClass
     public Tutorial(battleBehavior battle = null) : base(battle)
     {
         playerHurt = true;
-        sentiment = new List<string>{"talk"};//define setniment tags
+        
         name = "Ghost Hunting Nerd";
         hp = 6;
         maxHP = 6;
@@ -833,7 +833,7 @@ public class Tutorial : EnemyClass
             new TalkEnum[]{} 
         };
         specialVals = new int[]{0,0};
-        
+        sentiment = new List<string>{"talk","request"};//define setniment tags
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/TutorialDisplay";
         
         sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Manual);
@@ -947,7 +947,7 @@ public class Tutorial : EnemyClass
                     "\"My sentimental item is the MANUAL.\"\n\"It was by the entrance to the library, did you pick it up?\"",
                     "\"To use it, go to items and select the MANUAL.\""
 
-                },new object[][]{SingleMethod(new int[]{2}),SingleMethod(2),SingleMethod(new string[]{},new string[]{})})
+                },new object[][]{SingleMethod(new int[]{2}),SingleMethod(2),SingleMethod("request",new string[]{},new string[]{})})
             },new int[]{1})
         };
     }

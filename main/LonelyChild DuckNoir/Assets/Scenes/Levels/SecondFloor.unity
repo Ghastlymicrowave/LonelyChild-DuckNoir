@@ -6505,6 +6505,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4283114979656021071, guid: 9230fc31aa28eeb48ade7983c5707c53, type: 3}
+      propertyPath: ghosts.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4283114979656021071, guid: 9230fc31aa28eeb48ade7983c5707c53, type: 3}
+      propertyPath: ghosts.Array.data[0]
+      value: 
+      objectReference: {fileID: 1180757393}
+    - target: {fileID: 4283114979656021071, guid: 9230fc31aa28eeb48ade7983c5707c53, type: 3}
+      propertyPath: ghosts.Array.data[1]
+      value: 
+      objectReference: {fileID: 1960254005}
+    - target: {fileID: 4283114979656021071, guid: 9230fc31aa28eeb48ade7983c5707c53, type: 3}
+      propertyPath: ghosts.Array.data[2]
+      value: 
+      objectReference: {fileID: 1564913672}
     - target: {fileID: 4283114979656021072, guid: 9230fc31aa28eeb48ade7983c5707c53, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -16505,6 +16521,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8124343729032137960, guid: a0eac7164761b2c4cadd31e9108ebfc5, type: 3}
   m_PrefabInstance: {fileID: 677837312}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1180757393 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6843191285701972379, guid: 67ef65f1cf607894db9e02823ab3fab7, type: 3}
+  m_PrefabInstance: {fileID: 920015992}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1184397738 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8124343729032137960, guid: a0eac7164761b2c4cadd31e9108ebfc5, type: 3}
@@ -21871,6 +21892,11 @@ Transform:
   m_Father: {fileID: 1469600574}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1564913672 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6843191285701972379, guid: 67ef65f1cf607894db9e02823ab3fab7, type: 3}
+  m_PrefabInstance: {fileID: 1024816849}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1566937577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26773,6 +26799,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2040171932440021076, guid: 086243dc628f4ae4ea68b275853cc1cc, type: 3}
   m_PrefabInstance: {fileID: 1950828689}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1960254005 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6843191285701972379, guid: 67ef65f1cf607894db9e02823ab3fab7, type: 3}
+  m_PrefabInstance: {fileID: 657936375}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1962191082
 PrefabInstance:
