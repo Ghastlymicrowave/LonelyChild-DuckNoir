@@ -6,7 +6,7 @@ public class SoundHolder : MonoBehaviour
 {
     //this script allows you to assign audioclips to different actions.
     //You can make these sounds play by placing an event trigger on UI buttons and other things.
-    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] public AudioSource audioSource;
     [SerializeField] protected AudioClip[] sounds;
     [SerializeField] protected bool isMusic = false;
     void Start(){
@@ -27,5 +27,8 @@ public class SoundHolder : MonoBehaviour
     }
     public bool IsMusic(){
         return isMusic;
+    }
+    public void Play(){
+        audioSource.Play();
     }
 }

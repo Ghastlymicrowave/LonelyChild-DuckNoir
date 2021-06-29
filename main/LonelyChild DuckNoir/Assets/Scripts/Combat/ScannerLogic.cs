@@ -9,23 +9,20 @@ public class ScannerLogic : MonoBehaviour
     public Animator animator;
 
 
-    public void DecideLights(int health, int maxHealth)
+    public void DecideLights(int lights)
     {
-        Debug.Log(health.ToString() +"/"+ maxHealth.ToString() + "length"+lights.Length.ToString());
+        //Debug.Log(health.ToString() +"/"+ maxHealth.ToString() + "length"+lights.Length.ToString());
 
-        if (health == 0)
+        if (lights==5)
         {
             animator.Play("ScannerMove");
-            changeLights(5);
+            changeLights(lights-1);
 
         }
         else
         {
-            animator.Play("ScannerIdle");
-            float h = lights.Length;
-            float hp = health;
-            float maxHP = maxHealth;
-            changeLights(Mathf.FloorToInt(h-1-(hp*((h-1)/maxHP))));
+            animator.Play("ScannerChange");
+            changeLights(lights-1);
         }
     }
     public void changeLights(int index)
