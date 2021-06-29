@@ -51,18 +51,24 @@ public class Interactable : MonoBehaviour
         return needsItemUse;
     }
     bool HasKeyRing(){
-        for(int i = 0 ; i < inventoryManager.items.Count; i ++){
+        bool hasRing = false;
+        bool hasItem = false;
+        for (int i = 0 ; i < inventoryManager.items.Count; i++){
             if (inventoryManager.items[i].id == (int)ItemsEnum.KeyRing){
-                return true;
+                hasRing = true;
+                break;
+            }else if (inventoryManager.items[i].id == (int)requiredItem){
+                hasItem = true;
+                break;
             }
         }
-        return false;
+        return (useKeyRing && needsItemUse && hasRing && hasItem);
     }
     public void Trigger(){
         bool rand = (randomdialogueIDs.Length>0);
         isReady=false;
         if (needsItemUse){
-            if (useKeyRing && HasKeyRing()){
+            if (HasKeyRing()){
                 needsItemUse = false;
                 Trigger();
                 return;
@@ -158,11 +164,11 @@ public class Interactable : MonoBehaviour
             Debug.Log("used right item");
             needsItemUse = false;
             playerRef.TriggerDialogue(usedRequiredItemTextId);
-            if(useKeyRing){
-                Trigger();
-            }
             if (deleteRequiredItem){
                 inventoryManager.items.Remove(item);
+            }
+            if(useKeyRing){
+                Trigger();
             }
         }else{
             if (dialogueID>-1){
