@@ -223,7 +223,7 @@ public class battleBehavior : MonoBehaviour
         }
         StopCoroutine(theScroll);
         StartCoroutine(theScroll = TextScroll(toScroll[currentLine]));
-        SentimentalItemUsed(new EnemyActionCase((int)actionType,actionID));
+        //SentimentalItemUsed(new EnemyActionCase((int)actionType,actionID));
         scannerLogic.DecideLights(enemy.hp, enemy.maxHP);
         ExitSubmenu();
     }
@@ -261,7 +261,6 @@ public class battleBehavior : MonoBehaviour
         textBox.SetActive(false);
         EnemyAttackStart();
     }
-
     public void DamageEnemy(int damage){
         enemy.hp -= damage;
         CheckEnemyAlive();
@@ -274,15 +273,6 @@ public class battleBehavior : MonoBehaviour
         float c = (float)enemy.hp;
         float m = (float)enemy.maxHP;
         enemyImage.SetIdleSpd( animSpdScale * (-c+m)/m+1f);
-    }
-
-    public void DamageAndChangeSpecialAbsolute(int damage, params int[] special){
-        DamageEnemy(damage);
-        ChangeSpecialAbs(special);
-    }
-    public void DamageAndChangeSpecialRel(int damage, params int[] special){
-        DamageEnemy(damage);
-        ChangeSpecialRel(special);
     }
     public void ChangeSpecialRel(params int[] special){
         for (int i = 0; i < special.Length; i++){
@@ -298,12 +288,6 @@ public class battleBehavior : MonoBehaviour
             }
         }
     }
-
-    /*public void RepressedDamageEnemy(int damage, int newState){
-        DamageEnemy(damage);
-        specialValue = newState;
-    }*/
-
     void CheckEnemyAlive(){
         if (enemy.hp < 0)
         { enemy.hp = 0;/* EnemyDead(); */ }
@@ -328,7 +312,16 @@ public class battleBehavior : MonoBehaviour
         }
     }
 
-    void SentimentalItemUsed(EnemyActionCase action){
+    public void SentimentalItem(string thisTag,string[] ifNew, string[] ifUsed){
+        if (enemy.sentiment.Contains(thisTag)){
+            enemy.sentiment.Remove(thisTag);
+            toScroll.AddRange(ifNew);
+        }else{
+            toScroll.AddRange(ifUsed);
+        }
+    }
+
+    /*void SentimentalItemUsed(EnemyActionCase action){
         Debug.Log("sentimental tried using");
         Debug.Log(enemy.sentiment);
         Debug.Log(action);
@@ -347,7 +340,7 @@ public class battleBehavior : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
     public void EndCombat(){
         switch((endCon)battleEnded){
