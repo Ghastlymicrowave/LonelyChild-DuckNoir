@@ -41,7 +41,7 @@ public static class EnemyLibrary
 }
 public abstract class EnemyClass
 {
-    public bool playerHurt = true;
+    public bool playerHurt = false;
     battleBehavior thisBehavior;
     public bool canRun = true;
     public int id;
