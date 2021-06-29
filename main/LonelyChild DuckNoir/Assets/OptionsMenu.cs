@@ -16,6 +16,7 @@ public class OptionsMenu : MonoBehaviour
     //[SerializeField] OptionContainerBool
 
     public void Cancel(){
+        settings.UpdateSounds();
         this.gameObject.SetActive(false);
     }
     public void Close(){
@@ -52,6 +53,13 @@ public class OptionsMenu : MonoBehaviour
         OverShoulderContainer.ChangeValueExternal(options[7]);
     }
 
+    public void RealtimeUpdateSingular(int option){
+        if (option == 4){
+            settings.ChangeOptionSingular(option, MusicVolContainer.value);
+        }else if (option == 5){
+            settings.ChangeOptionSingular(option, SfxVolContainer.value);
+        }
+    }
     public void InitMenu(){
         settings = GameObject.Find("PersistentManager").GetComponent<SettingsManager>();
         settings.Load();

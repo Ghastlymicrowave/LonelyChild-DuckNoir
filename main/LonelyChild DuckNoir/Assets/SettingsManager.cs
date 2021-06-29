@@ -37,16 +37,8 @@ public class SettingsManager : MonoBehaviour
     }
     public void ChangeOptions(float[] inputOptions){
         options = inputOptions; 
-        UpdatePlayer();
 
-        SoundHolder[] sounds = GameObject.FindObjectsOfType<SoundHolder>();
-        for (int i = 0; i < sounds.Length; i++){
-            if (sounds[i].IsMusic()){
-                sounds[i].SetVol(options[4]);
-            }else{
-                sounds[i].SetVol(options[5]);
-            }
-        }
+        UpdateSounds();
 
         PlayerPrefs.SetFloat("hsmooth",options[0]);
         PlayerPrefs.SetFloat("vsmooth",options[1]);
@@ -56,6 +48,23 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat("sfxVol",options[5]);
         PlayerPrefs.SetFloat("camSmooth",options[6]);
         PlayerPrefs.SetFloat("OverShoulder",options[7]);
+    }
+
+    public void ChangeOptionSingular(int option, float value){
+        if (option == 4 || option == 5){
+            options[option] = value;
+            UpdateSounds();
+        }
+    }
+    public void UpdateSounds(){
+        SoundHolder[] sounds = GameObject.FindObjectsOfType<SoundHolder>();
+        for (int i = 0; i < sounds.Length; i++){
+            if (sounds[i].IsMusic()){
+                sounds[i].SetVol(options[4]);
+            }else{
+                sounds[i].SetVol(options[5]);
+            }
+        }
     }
 
     public float[] GetOptions(){

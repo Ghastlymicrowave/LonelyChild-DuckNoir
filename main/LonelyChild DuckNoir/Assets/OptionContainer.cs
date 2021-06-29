@@ -4,14 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 public class OptionContainer : MonoBehaviour
 {
-    OptionsMenu menu;
+    public OptionsMenu menu;
     [SerializeField] InputField thisInputField;
     [SerializeField] Slider thisSlider;
+    [SerializeField] int sfxOrMuisc = 0;//0 for no, 1 for sfx, 2 for music
     public float value;//val from 0 to 1, expressed as int from 1 to 100 in text
-    void Start()
-    {
-        GameObject.Find("OptionsMenu").GetComponent<OptionsMenu>();
-    }
 
     // Update is called once per frame
     public virtual void ChangeValueExternal(float newValue){
@@ -30,7 +27,9 @@ public class OptionContainer : MonoBehaviour
     }
 
     public virtual void ValueChanged(bool slider){
-
+        Debug.Log("value changed: "+value.ToString());
+        Debug.Log("sfxOrMusic: "+sfxOrMuisc.ToString());
+        Debug.Log(menu.ToString());
         if (slider){//slider changed
             value = thisSlider.value;
             CheckVal();
@@ -41,5 +40,19 @@ public class OptionContainer : MonoBehaviour
             CheckVal();
             UpdateInputs();
         }
+        if(sfxOrMuisc==1){
+            menu.RealtimeUpdateSingular(5);
+            Debug.Log("sent");
+        }else if (sfxOrMuisc==2){
+            menu.RealtimeUpdateSingular(4);
+            Debug.Log("sent");
+        }
+    }
+
+    public void Hover(){
+        GameObject.FindObjectOfType<MenuSounds>().Hover();
+    }
+    public void Click(){
+        GameObject.FindObjectOfType<MenuSounds>().Click();
     }
 }

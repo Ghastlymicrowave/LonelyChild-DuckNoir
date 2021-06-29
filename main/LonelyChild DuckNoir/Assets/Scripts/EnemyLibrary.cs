@@ -61,6 +61,7 @@ public abstract class EnemyClass
     public EnemyActionCase sentimentalTrigger;
     public string[] splashTexts = new string[]{"The ghost hovers ominously..."};
     public SpecialText[] specialTexts;
+    public int[] specialVals = {0};
     public Sprite[,] GetSprites()
     {
         Debug.Log("Getting sprites");
@@ -79,9 +80,48 @@ public abstract class EnemyClass
         }
         return toReturn;
     }
-    public EnemyReaction GetReaction(ButtonEnum type, int actionID, int specialVal = 0){//returns reactions array or null
+    public int[] GetIgnoreVals(){
+        int[] toReturn = new int[specialVals.Length];
+        for(int i = 0; i < specialVals.Length; i++){
+            toReturn[i] = -1;
+        }
+        return toReturn;
+    }
+    public EnemyReaction GetReaction(ButtonEnum type, int actionID, params int[] spVals){//returns reactions array or null
+        if (spVals == null){
+            spVals = new int[] {0};
+        }
         for (int i = 0; i < responses.Length;i++){
-            if (responses[i].trigger.actionType==(int)type && responses[i].trigger.actionID==actionID && responses[i].specialVal == specialVal){
+
+            if (responses[i].trigger.actionType==(int)ButtonEnum.Any){//if type is any
+                bool cont = false;
+                if (responses[i].specialVal.Length != spVals.Length){
+                   continue;
+                }
+                    for(int a = 0; a < responses[i].specialVal.Length; a++){//check for vals
+                        if (responses[i].specialVal[a] == -1){//ignoring param
+                            continue;
+                        }
+                        if (responses[i].specialVal[a] != spVals[a]){
+                            cont = true;
+                        }
+                    }
+                if (cont){continue;}
+                return responses[i].RandReact();
+            }else if (responses[i].trigger.actionType==(int)type && responses[i].trigger.actionID==actionID){
+                bool cont = false;
+                if (responses[i].specialVal.Length != spVals.Length){
+                   continue;
+                }
+                    for(int a = 0; a < responses[i].specialVal.Length; a++){//check for vals
+                        if (responses[i].specialVal[a] == -1){//ignoring param
+                            continue;
+                        }
+                        if (responses[i].specialVal[a] != spVals[a]){
+                            cont = true;
+                        }
+                    }
+                if (cont){continue;}
                 return responses[i].RandReact();
             }
         }
@@ -101,8 +141,18 @@ public abstract class EnemyClass
         return ob;
     }
 
-    protected EnemyResponse GenResponse(ButtonEnum attack, int actionID, EnemyReaction[] reactions, int specialVal = 0){
-        return new EnemyResponse(new EnemyActionCase((int)attack,actionID), reactions, specialVal);
+    protected EnemyResponse GenResponse(ButtonEnum attack, int actionID, EnemyReaction[] reactions, params int[] specialVals){
+        if (specialVals== null){
+            specialVals = GetIgnoreVals();
+        }
+        return new EnemyResponse(new EnemyActionCase((int)attack,actionID), reactions, specialVals);
+    }
+
+    protected EnemyResponse GenAny(EnemyReaction[] reactions, params int[] specialVals){
+        if (specialVals== null){
+            specialVals = GetIgnoreVals();
+        }
+        return new EnemyResponse(new EnemyActionCase((int)ButtonEnum.Any,0),reactions,specialVals);
     }
 
     protected EnemyReaction NewReaction(string methodName, string[] text, object[] parameters){
@@ -117,14 +167,16 @@ public abstract class EnemyClass
 public class EnemyResponse{//a response containing a trigger and a reaction
     public EnemyActionCase trigger;
     public EnemyReaction[] reactions;//to be invoked
-    public int specialVal = 0;
+    public int[] specialVal = {0};
     public EnemyReaction RandReact(){
         return reactions[Random.Range(0,reactions.Length)];
     }
-    public EnemyResponse(EnemyActionCase triggerAction, EnemyReaction[] triggerReactions, int val){
+    public EnemyResponse(EnemyActionCase triggerAction, EnemyReaction[] triggerReactions, params int[] vals){
         trigger = triggerAction;
         reactions = triggerReactions;
-        specialVal = val;
+        if (vals!=null){
+            specialVal = vals;
+        }
     }
 }
 
