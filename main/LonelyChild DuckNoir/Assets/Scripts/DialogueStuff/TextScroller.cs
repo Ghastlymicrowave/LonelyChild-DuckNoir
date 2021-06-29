@@ -23,12 +23,11 @@ public class TextScroller : MonoBehaviour
     //the current line within the text scroll.
     public int endAtLine;
     //when to end the textscroll.
-    public AudioSource tickSound;
-    public AudioSource clickSound;
+    [SerializeField] TextboxSoundHolder soundHolder;
 
     void Start()
     {
-        tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
+        tm = GameObject.FindObjectOfType<TextManager>();
     }
 
     public void ScrollText(string[] newString, ThirdPersonPlayer pmReference)
@@ -58,7 +57,7 @@ public class TextScroller : MonoBehaviour
                 if (!isTyping)
                 {
                     currentLine += 1;
-                    clickSound.Play();
+                    soundHolder.TextApear();
                     if (currentLine > endAtLine)
                     {
                         CloseDialogue();
@@ -107,7 +106,7 @@ public class TextScroller : MonoBehaviour
             { }
             else
             {
-                tickSound.Play();
+                soundHolder.TextTick();
             }
             theText.text += lineOfText[letter];
             letter += 1;

@@ -10,6 +10,12 @@ public class PauseMenu : MonoBehaviour
     void Start(){
         sceneManager = GameObject.Find("PersistentManager").GetComponent<GameSceneManager>();
     }
+
+    void Update(){
+        if (Input.GetButtonDown("Pause")){
+            Unpause();
+        }
+    }
     public void Unpause(){
         CloseIfOpen();
         sceneManager.Unpause();
