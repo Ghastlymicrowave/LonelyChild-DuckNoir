@@ -1765,6 +1765,7 @@ Transform:
   - {fileID: 419694539}
   - {fileID: 1161706236}
   - {fileID: 415699207}
+  - {fileID: 1123845920}
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15612,6 +15613,98 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea8b72bb051dcfb488efa8d9684fbc52, type: 3}
+--- !u!1001 &1123845919
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 117353549}
+    m_Modifications:
+    - target: {fileID: 2252030068855827628, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2252030068855827628, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.256
+      objectReference: {fileID: 0}
+    - target: {fileID: 2252030068855827628, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245018518099207672, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_Text
+      value: 'Press ''E'' to go downstairs
+
+        and complete this floor!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245018518099207673, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245018518099207673, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245018518127386483, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 502184404}
+    - target: {fileID: 5245018518467073852, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245018518467073852, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245018518467073852, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -23.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245018518467073852, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245018518467073852, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.70710576
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245018518467073852, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245018518467073852, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245018518467073852, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071079
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245018518467073852, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245018518467073852, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245018518467073852, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245018518467073853, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+      propertyPath: m_Name
+      value: Tutorialization (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+--- !u!4 &1123845920 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5245018518467073852, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
+  m_PrefabInstance: {fileID: 1123845919}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1126636257
 GameObject:
   m_ObjectHideFlags: 0
