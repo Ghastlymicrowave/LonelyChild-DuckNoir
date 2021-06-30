@@ -40,7 +40,7 @@ public class InventoryManager : MonoBehaviour
         attacks.Clear();
         attacks.Add(AttackActions.Flashlight);
         items.Clear();
-        items.Add(GetItemFromId(ItemsEnum.Apple));
+        items.Add(GetItemFromId(ItemsEnum.Apple));  
     }
 
     void Start()
