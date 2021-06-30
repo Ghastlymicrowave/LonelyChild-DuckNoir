@@ -56,10 +56,8 @@ public class Interactable : MonoBehaviour
         for (int i = 0 ; i < inventoryManager.items.Count; i++){
             if (inventoryManager.items[i].id == (int)ItemsEnum.KeyRing){
                 hasRing = true;
-                break;
             }else if (inventoryManager.items[i].id == (int)requiredItem){
                 hasItem = true;
-                break;
             }
         }
         return (useKeyRing && needsItemUse && hasRing && hasItem);

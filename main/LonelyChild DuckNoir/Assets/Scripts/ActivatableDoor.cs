@@ -8,6 +8,7 @@ public class ActivatableDoor : Activatable
     Animator anim;
    [SerializeField] BoxCollider2D thisCol;
     [SerializeField] string toPlay = "DoorOpen";
+    bool activated = false;
    // [SerializeField] AudioSource aS;
     void Start()
     {
@@ -19,6 +20,7 @@ public class ActivatableDoor : Activatable
     }
 
     public override void Activate(){
+        activated = true;
         anim.Play(toPlay,0);
         //if(aS != null)
        // {
@@ -28,5 +30,10 @@ public class ActivatableDoor : Activatable
     }
     public void Disable(){
         gameObject.SetActive(false);
+    }
+    void OnEnable(){
+        if (activated){
+            anim.Play("NewDoorStayOpen");
+        }
     }
 }

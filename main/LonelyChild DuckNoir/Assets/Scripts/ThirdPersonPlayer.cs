@@ -292,6 +292,10 @@ public class ThirdPersonPlayer : MonoBehaviour
 
     }
 
+    public void LockRot(){
+        lockedRotation = currentRotationLerpTarget;
+    }
+
     public void InteractableEntered(Interactable thisInteractable)
     {
         //the change 8:49 pm

@@ -306,16 +306,17 @@ public class battleBehavior : MonoBehaviour
             {
                 cameraShake.Play("CombatCam_Shake");
                 SendSignal("PLAYER_DAMAGED");
+                if (enemy.playerHurt){
+                    enemy.playerHurt = false;
+                    playerHurt.SetActive(true);
+                }
             }
             if (hero.hp <= 0)
             {hero.hp = 0; battleEnded = (int)endCon.DEFEAT;EndCombat(); }
             else if (hero.hp > hero.maxHP)
             { hero.hp = hero.maxHP; }
             UpdatePlayerHp();
-            if (enemy.playerHurt){
-                enemy.playerHurt = false;
-                playerHurt.SetActive(true);
-            }
+            
         }
         public void SentimentalItem(string thisTag,string[] ifNew, string[] ifUsed){
             if (enemy.sentiment.Contains(thisTag)){

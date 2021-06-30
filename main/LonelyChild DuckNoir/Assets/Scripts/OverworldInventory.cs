@@ -71,16 +71,19 @@ public class OverworldInventory : MonoBehaviour
         Debug.Log("using");
         CloseMenu();
         player.UseItemOnInteractable(item);
+        player.LockRot();
     }
 
     public void InspectItem(InventoryManager.ivItem item){
         Debug.Log("inspecting");
         CloseMenu();
         player.TriggerDialogue(item.inspect);
+        player.LockRot();
     }
 
     public void InspectWeapon(InventoryManager.ivAttack item){
         CloseMenu();
+        player.LockRot();
         //player.TriggerDialogue(item.inspect);
     }
 
