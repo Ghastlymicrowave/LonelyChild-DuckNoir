@@ -308,7 +308,7 @@ public class Narcissist : EnemyClass
                 NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks","SentimentalItem"},
                 new string[]{
                     "You gloat, going on about your appearance and your accomplishments.",
-                    "If you actually even one of the things you said you did, you’d surely earn a nobel prize...",
+                    "If you actually even one of the things you said you did, you’d surely earn a Nobel prize...",
                     "\"YES, Finally!\" Another piece of the puzzle!\"",
                     "\"I’ve rubbed off on you already!\"\n\"The attitude AND the ego!\"",
                     "\"But… I think something’s missing yet...\""
@@ -372,11 +372,7 @@ public class TroubledChild : EnemyClass
             "\"Could it be?\"",
             "\"This was the only comfort I had.\"\n\"They took it away, and you found it!.\"",
             "\"...Thank you.\"",
-            "\"Look at you dragging out the philosophy!\"\n\"I might have been wrong about you!\"",
-            "\"...\"",
-            "\"All I think about is myself...\"",
-            "\"If you can change...\"\n\"...can the likes of me can change, too?\"",
-            "..."
+            "\"I, I feel...some sense of...of...hap...piness?"
         };
         sentimentalFaliure = new string[]{
             "The ghost hesitates and looks at the Teddy Bear...",
