@@ -13481,6 +13481,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5797179151403482582, guid: 9b0082740161f39469a3b3a0cc1ae58d, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b0082740161f39469a3b3a0cc1ae58d, type: 3}
 --- !u!4 &622084935 stripped
@@ -25732,6 +25736,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: af956328d295cea4da16fad52b9b849d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8b73f67230493e6459fe054d4316b9e6, type: 2}
     - target: {fileID: 919132149155446097, guid: af956328d295cea4da16fad52b9b849d, type: 3}
       propertyPath: m_Name
       value: doll
