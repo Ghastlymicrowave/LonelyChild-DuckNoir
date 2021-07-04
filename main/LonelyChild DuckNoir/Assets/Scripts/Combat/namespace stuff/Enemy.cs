@@ -105,13 +105,6 @@ namespace Combat
         Scissors
     }
 
-    public enum Enemies{
-        testGhost,
-        Poor_Dog,
-        Repressed_Ghost,
-        BoredGhost
-    }
-
     public enum TalkEnum{
         Talk,
         Requrest_Health,
@@ -125,7 +118,20 @@ namespace Combat
         Gloat,
         Compliment,
         Insult,
-        Lecture
+        Lecture,
+        Time,
+        Clocks,
+        Eternity,
+        Present,
+        Past,
+        Hope,
+        Future,
+        Doom,
+        Cycles,
+        Bid_Farewell,
+        Scold,
+        Console,
+        Encourage
     }
 
 }

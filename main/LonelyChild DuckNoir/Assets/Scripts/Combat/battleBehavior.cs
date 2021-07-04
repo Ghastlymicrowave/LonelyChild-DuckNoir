@@ -217,14 +217,21 @@ public class battleBehavior : MonoBehaviour
         MenuPanel.SetActive(false);
         healthbarAnim.SetBool("IsMinigame",true);
         toScroll.Clear();
-        
-        if (enemy.sentimentalTrigger.actionType == (int)actionType && enemy.sentimentalTrigger.actionID == (int)actionID){
-            Sentimental();
-        }else{
+        if (enemy.triggerIsReaction){
             TriggerEnemyReaction(enemy,actionType,actionID);
+            if (enemy.sentimentalTrigger.actionType == (int)actionType && enemy.sentimentalTrigger.actionID == (int)actionID){
+            Sentimental();
+            }
+        }else{
+            if (enemy.sentimentalTrigger.actionType == (int)actionType && enemy.sentimentalTrigger.actionID == (int)actionID){
+            Sentimental();
+            }else{
+            TriggerEnemyReaction(enemy,actionType,actionID);
+            }
         }
+        
         if (toScroll.Count<1){
-            toScroll.Add("you shouldn't be seeing this- there's something missing in the code?");
+            toScroll.Add("...?");//should not be reached ideally
         }
         StopCoroutine(theScroll);
         StartCoroutine(theScroll = TextScroll(toScroll[currentLine]));
@@ -274,6 +281,7 @@ public class battleBehavior : MonoBehaviour
         //DamagePlayer
         //SentimentalItem
         //ChangeSpecialAbs
+        //ChangeSpecialRel
         //ChangeTalks
         public void ChangeTalks(int index){
             talkIndex = index;
@@ -335,6 +343,17 @@ public class battleBehavior : MonoBehaviour
                         break;
                     }
                     spVals[i]= special[i];
+                }
+            }
+        }
+        public void ChangeSpecialRel(params int[] special){
+            for (int i = 0; i < special.Length; i++){
+                if (special[i]!=-1){
+                    if (i >= spVals.Length){
+                        Debug.LogError("ChangeSpecialRel returned an array longer than the enemy's special value array!");
+                        break;
+                    }
+                    spVals[i] += special[i];
                 }
             }
         }
