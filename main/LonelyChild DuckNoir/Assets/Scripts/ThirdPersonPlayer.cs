@@ -55,9 +55,10 @@ public class ThirdPersonPlayer : MonoBehaviour
     [SerializeField] Transform spotlight;
     [SerializeField] Transform camLight;
     bool UseCamLight = false;
-    
+    [SerializeField]Transform actualCamera;
     void Start()
     {
+        actualCamera.SetParent(null);
         thisAnimator = GetComponent<Animator>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -82,6 +83,7 @@ public class ThirdPersonPlayer : MonoBehaviour
         //spotlightCurrent = Quaternion.LookRotation(new Vector3(0,1f,0f),Vector3.back);
         //spotlightLerp = Quaternion.LookRotation(new Vector3(0,1f,0f),Vector3.back);
         CheckCams();
+        
     }
 
     public void UpdateOptions(float[] inputArray){
@@ -128,7 +130,9 @@ public class ThirdPersonPlayer : MonoBehaviour
         }else{
             currentRotationLerpTarget += rotation * .5f;
             currentRotationLerpTarget.y = Mathf.Clamp(currentRotationLerpTarget.y,minYRotation,maxYRotation);
-            currentRotationLerpTarget.x = Mathf.Lerp(currentRotationLerpTarget.x,lockedRotation.x,0.01f);
+            if (Mathf.Abs(currentRotationLerpTarget.x-lockedRotation.x)>15f){
+                currentRotationLerpTarget.x = Mathf.Lerp(currentRotationLerpTarget.x,lockedRotation.x,0.01f);
+            }
         }
         currentRotation.x = Mathf.Lerp(currentRotation.x,currentRotationLerpTarget.x,HmouseSmoothing);
         currentRotation.y = Mathf.Lerp(currentRotation.y,currentRotationLerpTarget.y,VmouseSmoothing);
@@ -187,6 +191,10 @@ public class ThirdPersonPlayer : MonoBehaviour
         cameraTransform.localRotation = Quaternion.Euler(new Vector3(currentRotation.y,0f,0f));
     }
 
+    void FixedUpdate(){
+        UpdateActualCam();
+    }
+
     void Move(){
         hinput = Input.GetAxis("HMove");
         vinput = Input.GetAxis("VMove");
@@ -218,6 +226,10 @@ public class ThirdPersonPlayer : MonoBehaviour
         rb.velocity = Rotate(direction.normalized,currentRotation.x) * currentSpeed;
     }
 
+    void UpdateActualCam(){
+        actualCamera.transform.position = Vector3.Lerp(actualCamera.transform.position,cameraTransform.GetChild(0).transform.position,0.1f);
+        actualCamera.transform.rotation = Quaternion.Lerp(actualCamera.transform.rotation,cameraTransform.GetChild(0).transform.rotation,0.1f);
+    }
 
     public void SetMouseMode(bool locked){
             if (!locked)
