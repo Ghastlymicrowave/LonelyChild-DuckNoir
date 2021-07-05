@@ -131,7 +131,9 @@ namespace Combat
         Bid_Farewell,
         Scold,
         Console,
-        Encourage
+        Encourage,
+        Ask,
+        Check_in
     }
 
 }

@@ -481,7 +481,7 @@ public class NiceDemonGuy : EnemyClass
 {//example of an actual enemy
     public NiceDemonGuy(battleBehavior battle = null) : base(battle)
     {
-        sentiment = new List<string>{"chat"};
+        sentiment = new List<string>{"talk","eternity","time","cycles","compliment"};
         name = "NiceDemonGuy";
         hp = 15;
         maxHP = 15;
@@ -494,7 +494,11 @@ public class NiceDemonGuy : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2"};
         talkActions = new TalkEnum[][]{ 
-            new TalkEnum[]{TalkEnum.Chat} 
+            new TalkEnum[]{TalkEnum.Talk},
+            new TalkEnum[]{TalkEnum.Chat,TalkEnum.Encourage,TalkEnum.Eternity}, 
+            new TalkEnum[]{TalkEnum.Hope,TalkEnum.Time,TalkEnum.Compliment},
+            new TalkEnum[]{TalkEnum.Cycles,TalkEnum.Ask},
+            new TalkEnum[]{TalkEnum.Check_in}
         };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/NiceDemonGuyDisplay";
@@ -502,22 +506,16 @@ public class NiceDemonGuy : EnemyClass
         sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Russian_Doll);
 
         sentimentalSuccess = new string[]{
-            "You held out the Russian Doll...\nIt felt... right.",
-            "\"Woah, hey, where the heck did ya find this?\"",
-            "\"This was my favorite toy back when I was just a wee demon-in-training!\"",
-            "\"Brings back so many warm memories...\"",
-            "\"And I don't exaggerate when I say WARM, heh, because, you know...\"",
-            "\"...I'm a demon.\"\n(I told you I was a demon, didn't I?)",
-            "\"Oh, I'm rambling again.\"\n\"Dang...\"",
-            "\"...Before I go, I need you to know something.\"",
-            "\"Steer clear of the hole in the living room.\"",
-            "\"You don't want anything to do with what's down here, I'm telling ya.\""
+            "\"Hey, woah kid…I…I remember this thing! Yeah, woah like eons ago, I mean like a looooooong time ago, when my consciousness was just beginning to grasp the very idea of what it meant to exist, I remember playing with this thing...\"",
+            "\"Yeah it was so fun and fascinating,  ha!\"  \"I even remember thinking this is how you strange human creatures work...  Boy, perspectives really do change huh?\"",
+            "A bright light begins to surround the surprisingly nice demon guy.",  
+            "\"Oh snap!  Looks like I’m moving to some sort of other plain of existence.  Certainly it’s not everlasting paradise; I’m a demon after all, but hey at least I won’t be working for that crackpot downstairs.",  
+            "\"Thanks kid.\""
         };
         sentimentalFaliure = new string[]{
             "The ghost hesitates and looks at the Russian Doll...",
             "Does this Russian Doll mean something to it?",
             "\"Hey, little buddy, what was that you had in your hand just then?\""
-            
         };
 
         responses = new EnemyResponse[]{
@@ -555,15 +553,91 @@ public class NiceDemonGuy : EnemyClass
                     "\"Guess I could take some extra damage for the unintended compliment.\""
                 },new object[][]{SingleMethod((object)2)})
             }),
+            ////////////////Talk Actions
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Talk,
+            new EnemyReaction[] {
+                NewReaction(new string[] {"SentimentalItem","ChangeTalks"},
+                new string[]{
+                    "\"Woah, hey kid.  No one’s talked to me in years.  It’s gotten a little lonely to say the least.  But look, I’ll level with ya, I’m a demon and I like to do demon kinda stuff.\"", 
+                    "\"You know, hauntings, possessions, the usual.  But I like you, so I’ll tell you what you wanna know, if you keep me engaged!\""
+                },new object[][]{SingleMethod("talk",new string[]{},new string[]{}),SingleMethod(1)})
+            }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
             new EnemyReaction[] {
-                NewReaction(new string[] {"DamageEnemy"},
+                NewReaction(new string[] {},
                 new string[]{
-                    "You started talking with the ghost...",
-                    "\"Oh, man, no one's talked to me like that in eons!\"\n(Maybe the whole floating demon head thing puts people off???)",
-                    "\"Even other demons stay clear!\"\n\"I don't even know why, because...\"",
-                    "\"ah, look, I'm rambling...\""
-                },new object[][]{SingleMethod((object)5)})
+                    "Oh, you know, I can’t complain.  For being an ageless demon guy or whatever, I feel pretty good!"
+                },new object[][]{})
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Encourage,
+            new EnemyReaction[] {
+                NewReaction(new string[] {},
+                new string[]{
+                    "\"Oh well, I mean, I try my best!  It’s hard to get proper recognition when you’re a demon guy.\"",
+                    "\"Seems like all the people that are prone to compliments are scared of me... and the guys in my corner, well... let’s just say they aren’t too keen on sharing their feelings!\""
+                },new object[][]{})
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Eternity,
+            new EnemyReaction[] {
+                NewReaction(new string[] {"SentimentalItem","ChangeTalks"},
+                new string[]{
+                    "You asked the nice demon guy what eternity feels like." , 
+                    
+                },new object[][]{SingleMethod("eternity",new string[]{
+                    "\"Dropping in some heady philosophy, eh kid?  Well, I dunno exactly... things feel, sort of stretched.  Like things happen all at once or not at all.  Am I making any sense here?\""
+                },new string[]{
+                    "\"Is what it is, were you going somewhere with this? Well get on with it.\""
+                }),SingleMethod(2)})
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Hope,
+            new EnemyReaction[] {
+                NewReaction(new string[] {"DamagePlayer"},
+                new string[]{
+                    "\"Hope?  Hope is something us demons do not have the luxury of even considering...sorry to bring the mood down, kid...\""
+                },new object[][]{SingleMethod(2)})
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Time,
+            new EnemyReaction[] {
+                NewReaction(new string[] {"SentimentalItem"},
+                new string[]{
+                    "You ask the nice demon guy what his experience of time is like.",
+                    "\"Wow kid, I didn’t peg ya for such a deep thinker.  Well, to be perfectly honest, being a demon guy, I don’t really understand the human concept of time, so I imagine the gulf between us on this matter is pretty immense!\"",  
+                    "Though, I do remember long ago, when I was much \"younger\" so to speak, playing with toys that could sort of, combine upon itself…? ah I’m rambling!\""
+                },new object[][]{SingleMethod("compliment",new string[]{},new string[]{})})
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Compliment,
+            new EnemyReaction[] {
+                NewReaction(new string[] {"SentimentalItem"},
+                new string[]{
+                    "You compliment the nice demon guy on his manners.", 
+                },new object[][]{SingleMethod("compliment",
+                new string[]{"\"Ah well, I appreciate that...you’re a nice kid...please don’t go down in that damn basement...\""},
+                new string[]{"\"Yeah that's sweet, but really do you really mean anything by that?\""})})
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Cycles,
+            new EnemyReaction[] {
+                NewReaction(new string[] {"SentimentalItem","ChangeTalks"},
+                new string[]{
+                    "\"Hope?  Hope is something us demons do not have the luxury of even considering...sorry to bring the mood down, kid...\""
+                },new object[][]{SingleMethod("cycles",
+                new string[]{},
+                new string[]{}),SingleMethod(4)})
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Ask,
+            new EnemyReaction[] {
+                NewReaction(new string[] {},
+                new string[]{
+                    "You ask the nice demon guy if he has been doing okay lately.",
+                    "\"I’m a demon who is sent out to do the bidding of a seriously evil dude, how do you think I am?\""
+                },new object[][]{})
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Check_in,
+            new EnemyReaction[] {
+                NewReaction(new string[] {},
+                new string[]{
+                    "The nice demon guy seems to be lost in thought.",
+                    "\"...okay, am I okay? Was I ok? Will I be ok?... circle circle circle ouroboros stacks... wherever did those dolls go?\""
+                },new object[][]{})
             }),
         };  
     }
@@ -669,7 +743,7 @@ public class DevilsHands : EnemyClass
 {//example of an actual enemy
     public DevilsHands(battleBehavior battle = null) : base(battle)
     {
-        sentiment = new List<string>{"chat"};
+        sentiment = new List<string>{"ball", "scissors", "chat"};
         name = "Devil's Hands";
         hp = 12;
         maxHP = 12;
@@ -688,8 +762,9 @@ public class DevilsHands : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2"
             };
         talkActions = new TalkEnum[][]{ 
-            new TalkEnum[]{TalkEnum.Chat} 
+            new TalkEnum[]{TalkEnum.Chat,TalkEnum.Ask,TalkEnum.Talk} 
         };
+        specialVals = new int[]{0};
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/DevilsHandsDisplay";
         
@@ -704,9 +779,8 @@ public class DevilsHands : EnemyClass
         };
         sentimentalFaliure = new string[]{
             "The ghost hesitates and looks at the Spinning Toy...",
-            "For a he's moment, he's able to stand still.\nIt isn't long, though.",
+            "For a moment, it's able to stand still.\nIt isn't long, though.",
             "Does this Spinning Toy mean something to it?"
-            
         };
 
         responses = new EnemyResponse[]{
@@ -744,15 +818,55 @@ public class DevilsHands : EnemyClass
                     "\"Where'd you get that?\"\n\"Do you have any idea what they'll do if they catch you sneaking food?\""
                 },new object[][]{SingleMethod((object)1)})
             }),
-            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
+            ///////// Talks
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Talk,
             new EnemyReaction[] {
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
                     "You started talking with the ghost...",
+                    "It ignores you and starts swinging it's hands wildly!",
                     "\"When I was a young thing, I could never keep my hands still.\"\n\"Always fidgeting... fidget and fidget.\"",
-                    "\"I had to be punished.\"",
+                    "\"They punished me a lot... and now I look like this! Serves me right!\"",
                     "\"No good boy fidgets like that...\"\n\"...no good deeds can come from that...\""
                 },new object[][]{SingleMethod((object)2)})
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
+            new EnemyReaction[] {
+                NewReaction(new string[] {"DamagePlayer","SentimentalItem"},
+                new string[]{
+                    "You have trouble trying to talk to the ghost... It seems very distracted.",
+                },new object[][]{SingleMethod(1),SingleMethod("chat",
+                new string[]{"\"I just need something to do with my hands, you know? I used to have a toy i'd use all the time... back when I had two legs and whatnot- you know.\""},
+                new string[]{"\"Hey, you got anything I can hold? anything that snips, bounces, rolls- that kind of thing? I just can't focus...\""})})
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Ask,
+            new EnemyReaction[] {
+                NewReaction(new string[] {},
+                new string[]{
+                    "You ask the ghost how it became what it is now.",
+                    "Well you know, I couldn't control my hands, they just sort of- acted on their own!... Or atleast they do now.",
+                    "So the folks that ran the place thought they'd put an end to it- punishment for being a disturbance I assume!",
+                    "The process was terrible- zero out of ten, won't go to the basement again."
+                },new object[][]{})
+            }),
+            GenResponse(ButtonEnum.Items,(int)ItemsEnum.Ball,
+            new EnemyReaction[] {
+                NewReaction(new string[] {"SentimentalItem"},
+                new string[]{
+                    "\"Boing Boing Boiong! Fun! How mundane and safe!\""
+                },new object[][]{SingleMethod("ball",
+                new string[]{"\"I just love this, what a fun toy to bounce around!\""},
+                new string[]{"\"Yes this is good, but do you have anything else?\""})})
+            }),
+            GenResponse(ButtonEnum.Talk,(int)ItemsEnum.Scissors,
+            new EnemyReaction[] {
+                NewReaction(new string[] {"DamagePlayer","SentimentalItem"},
+                new string[]{
+                    "You hand the hands a pair of scissors."
+                },new object[][]{SingleMethod(3),SingleMethod("scissors",
+                new string[]{"\"My hands have been ACHING to do something this fun!\"",
+                "\"Oops, sorry! Didn’t mean to snip at you\"!"},
+                new string[]{"\"Snip Snip Snap! Oops...\""})})
             }),
         };  
     }
