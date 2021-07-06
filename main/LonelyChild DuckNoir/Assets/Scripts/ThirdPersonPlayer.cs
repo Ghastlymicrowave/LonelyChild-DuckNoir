@@ -83,7 +83,8 @@ public class ThirdPersonPlayer : MonoBehaviour
         //spotlightCurrent = Quaternion.LookRotation(new Vector3(0,1f,0f),Vector3.back);
         //spotlightLerp = Quaternion.LookRotation(new Vector3(0,1f,0f),Vector3.back);
         CheckCams();
-        
+        actualCamera.transform.position = Vector3.Lerp(actualCamera.transform.position,cameraTransform.GetChild(0).transform.position,1f);
+        actualCamera.transform.rotation = Quaternion.Lerp(actualCamera.transform.rotation,cameraTransform.GetChild(0).transform.rotation,1f);
     }
 
     public void UpdateOptions(float[] inputArray){
@@ -227,8 +228,8 @@ public class ThirdPersonPlayer : MonoBehaviour
     }
 
     void UpdateActualCam(){
-        actualCamera.transform.position = Vector3.Lerp(actualCamera.transform.position,cameraTransform.GetChild(0).transform.position,0.1f);
-        actualCamera.transform.rotation = Quaternion.Lerp(actualCamera.transform.rotation,cameraTransform.GetChild(0).transform.rotation,0.1f);
+        actualCamera.transform.position = Vector3.Lerp(actualCamera.transform.position,cameraTransform.GetChild(0).transform.position,0.2f);
+        actualCamera.transform.rotation = Quaternion.Lerp(actualCamera.transform.rotation,cameraTransform.GetChild(0).transform.rotation,0.2f);
     }
 
     public void SetMouseMode(bool locked){
