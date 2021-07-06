@@ -360,7 +360,7 @@ public class InventoryManager : MonoBehaviour
         
         File.WriteAllText(file,JsonUtility.ToJson(save));
     }
-    public void SaveJSON(){
+    public void SaveJSON(string sceneName){
         string file = jsonFile();
         SaveData save = new SaveData();
         save.ascended=ghostsAscended.ToArray();
@@ -370,8 +370,9 @@ public class InventoryManager : MonoBehaviour
         }
         save.crucified = ghostsCrucified.ToArray();
         //save.roaming = ghostsRoaming.ToArray();
-        save.checkpointScene = gameSceneManager.SceneName();
-        
+        save.checkpointScene = sceneName;
+        Debug.LogWarning(save.checkpointScene.ToString());
+        Debug.LogWarning("saved at: "+file);
         File.WriteAllText(file,JsonUtility.ToJson(save));
     }
     public bool JSONExists(){
@@ -426,11 +427,13 @@ public class InventoryManager : MonoBehaviour
             if (save.checkpointScene != null){
                 checkpointScene = save.checkpointScene;
             }
-            
+            Debug.Log("file loaded, checkpoint: "+checkpointScene.ToString());
 
         }else{
             ResetSave();
             LoadJSON();
+            Debug.LogWarning("file loaded with error, checkpoint: "+checkpointScene.ToString());
+
         }
     }
 }

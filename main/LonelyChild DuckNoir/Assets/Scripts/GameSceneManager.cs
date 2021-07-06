@@ -46,7 +46,7 @@ public class GameSceneManager : MonoBehaviour
     }
 
     public void TransitionScene(string sceneName){
-        inventoryManager.SaveJSON();
+        inventoryManager.SaveJSON(sceneName);
         SceneManager.LoadScene(sceneName);
         newScene = true;
     }
