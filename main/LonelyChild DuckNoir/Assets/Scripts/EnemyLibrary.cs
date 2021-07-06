@@ -233,6 +233,12 @@ public class Narcissist : EnemyClass
 {//example of an actual enemy
     public Narcissist(battleBehavior battle = null) : base(battle)
     {
+        splashTexts = new string[]{
+            "The Narcissist looks down on you and mutters something about \"wanting to find someone who's just as arrogant as himself\"",
+            "The Narcissist hovers with what looks like chip crumbs in his beard.",
+            "The Narcissist mutters something about wasted time.",
+            "The Narcissist grumbles about his receding hair."
+        };
         name = "The Narcissist";
         hp = 20;
         maxHP = 20;
@@ -481,6 +487,11 @@ public class NiceDemonGuy : EnemyClass
 {//example of an actual enemy
     public NiceDemonGuy(battleBehavior battle = null) : base(battle)
     {
+        splashTexts = new string[]{
+            "The demon says \"Man, things have really changed around here, I remember when this place wasn't run down\".",
+            "The demon says \"Hey, i'm not like other demons, you can talk to me!\"",
+            "The demon says, \"Lovely weather we're having? Just kidding, I haven't seen the sun in decades\"."
+        };
         sentiment = new List<string>{"talk","eternity","time","cycles","compliment"};
         name = "NiceDemonGuy";
         hp = 15;
@@ -743,6 +754,10 @@ public class DevilsHands : EnemyClass
 {//example of an actual enemy
     public DevilsHands(battleBehavior battle = null) : base(battle)
     {
+        splashTexts = new string[]{
+            "The ghost twists it's hands like it wants to play with something.",
+            "The ghost fidgets it's hands.",
+        };
         sentiment = new List<string>{"ball", "scissors", "chat"};
         name = "Devil's Hands";
         hp = 12;
