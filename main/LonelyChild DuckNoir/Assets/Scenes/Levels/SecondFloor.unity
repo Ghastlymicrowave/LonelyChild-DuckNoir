@@ -8594,11 +8594,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7355964660409907142, guid: ea8b72bb051dcfb488efa8d9684fbc52, type: 3}
   m_PrefabInstance: {fileID: 499546980}
   m_PrefabAsset: {fileID: 0}
---- !u!20 &502184404 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 7372691695036122804, guid: 0ed7f10be7789994aa9da570a3d947a1, type: 3}
-  m_PrefabInstance: {fileID: 6747558757562819444}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &515768906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15949,7 +15944,7 @@ PrefabInstance:
     - target: {fileID: 5245018518127386483, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 502184404}
+      objectReference: {fileID: 0}
     - target: {fileID: 5245018518467073852, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -22041,7 +22036,7 @@ PrefabInstance:
     - target: {fileID: 5245018518127386483, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 502184404}
+      objectReference: {fileID: 0}
     - target: {fileID: 5245018518467073852, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -28862,7 +28857,7 @@ PrefabInstance:
     - target: {fileID: 5245018518127386483, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 502184404}
+      objectReference: {fileID: 0}
     - target: {fileID: 5245018518467073852, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -31185,7 +31180,7 @@ PrefabInstance:
     - target: {fileID: 5245018518127386483, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 502184404}
+      objectReference: {fileID: 0}
     - target: {fileID: 5245018518467073852, guid: 248e75fa7eaffa6488817c1d7ab2bfc9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -31273,7 +31268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5489812395538621616, guid: c1305184ce78f5a40a6231dab4e7260d, type: 3}
       propertyPath: sceneName
-      value: ForAnakin
+      value: FirstFloor
       objectReference: {fileID: 0}
     - target: {fileID: 5489812395538621617, guid: c1305184ce78f5a40a6231dab4e7260d, type: 3}
       propertyPath: m_Name
