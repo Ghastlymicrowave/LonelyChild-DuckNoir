@@ -1224,6 +1224,7 @@ public class BoredGhost : EnemyClass{
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
         //attackPrefabNames
         talkActions = new TalkEnum[][]{ 
+            new TalkEnum[]{TalkEnum.Talk},
             new TalkEnum[]{TalkEnum.Time,TalkEnum.Clocks,TalkEnum.Cycles},
             new TalkEnum[]{TalkEnum.Present,TalkEnum.Eternity,TalkEnum.Past},
             new TalkEnum[]{TalkEnum.Hope,TalkEnum.Future,TalkEnum.Doom,TalkEnum.Bid_Farewell} 

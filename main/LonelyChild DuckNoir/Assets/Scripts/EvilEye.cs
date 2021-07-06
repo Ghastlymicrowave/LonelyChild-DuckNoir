@@ -11,10 +11,12 @@ public class EvilEye : Activatable
         anim = GetComponent<Animator>();
         mouth =  GameObject.FindObjectOfType<Mouth>();
         mouth.eyesRequired.Add(this);
+        Debug.Log(mouth.eyesRequired);
     }
     public override void Activate(){
         if (mouth.eyesRequired.Contains(this)){
             mouth.eyesRequired.Remove(this);
+            Debug.Log(mouth.eyesRequired);
         }
         mouth.Activate();
         anim.Play("EyeDie",0);

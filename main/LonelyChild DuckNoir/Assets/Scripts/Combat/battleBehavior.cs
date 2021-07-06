@@ -18,6 +18,7 @@ public class SpecialText{
 }
 public class battleBehavior : MonoBehaviour
 {
+    [SerializeField] bool GiveDebugItems = false;
     [SerializeField] Camera prioCam;
     public int talkIndex = 0;
     [SerializeField] TextMeshPro hpText;
@@ -116,6 +117,18 @@ public class battleBehavior : MonoBehaviour
                 cams[i].gameObject.SetActive(false);
             }
         }
+        
+        if (GiveDebugItems){
+            string[] st = System.Enum.GetNames(typeof(AttackActions));
+            for (int i = 0; i < st.Length; i++){
+                inventoryManager.attacks.Add((AttackActions)i);
+            }
+            st = System.Enum.GetNames(typeof(ItemsEnum));
+            for (int i = 0; i < st.Length; i++){
+                inventoryManager.items.Add(InventoryManager.GetItemFromId((ItemsEnum)i));
+            }
+        }
+        
     }
 
     void SendSignal(string signalName){

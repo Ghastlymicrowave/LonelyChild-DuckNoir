@@ -7,6 +7,7 @@ public class Mouth : Activatable
     Animator anim;
     [SerializeField] GameObject downwardInteractable;
     [SerializeField] GameObject lookInteractable;
+    [SerializeField] GameObject[] teethGroups;
     public List<EvilEye> eyesRequired;
     public bool open = false;
     void Start(){
@@ -14,6 +15,7 @@ public class Mouth : Activatable
     }
     public override void Activate()
     {
+        teethGroups[eyesRequired.Count].SetActive(false);
         if (eyesRequired.Count==0){
             open = true;
             downwardInteractable.SetActive(true);
