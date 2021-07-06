@@ -18,8 +18,8 @@ public class SettingsManager : MonoBehaviour
         //TODO: add default values
         options[0] = PlayerPrefs.GetFloat("hsmooth",0.3f);
         options[1] = PlayerPrefs.GetFloat("vsmooth",0.4f);
-        options[2] = PlayerPrefs.GetFloat("hsensitivity",0.6f);
-        options[3] = PlayerPrefs.GetFloat("vsensitivity",0.6f);
+        options[2] = PlayerPrefs.GetFloat("hsensitivity",0.7f);
+        options[3] = PlayerPrefs.GetFloat("vsensitivity",0.7f);
         options[4] = PlayerPrefs.GetFloat("musicVol",0.8f);
         options[5] = PlayerPrefs.GetFloat("sfxVol",0.8f);
         options[6] = PlayerPrefs.GetFloat("camSmooth",0.5f);

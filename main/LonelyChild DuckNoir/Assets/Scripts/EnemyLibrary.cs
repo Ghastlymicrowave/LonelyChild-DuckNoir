@@ -758,7 +758,7 @@ public class DevilsHands : EnemyClass
             "The ghost twists it's hands like it wants to play with something.",
             "The ghost fidgets it's hands.",
         };
-        sentiment = new List<string>{"ball", "scissors", "chat"};
+        sentiment = new List<string>{"ball", "chat"};
         name = "Devil's Hands";
         hp = 12;
         maxHP = 12;
@@ -875,13 +875,11 @@ public class DevilsHands : EnemyClass
             }),
             GenResponse(ButtonEnum.Talk,(int)ItemsEnum.Scissors,
             new EnemyReaction[] {
-                NewReaction(new string[] {"DamagePlayer","SentimentalItem"},
+                NewReaction(new string[] {"DamagePlayer"},
                 new string[]{
-                    "You hand the hands a pair of scissors."
-                },new object[][]{SingleMethod(3),SingleMethod("scissors",
-                new string[]{"\"My hands have been ACHING to do something this fun!\"",
-                "\"Oops, sorry! Didn’t mean to snip at you\"!"},
-                new string[]{"\"Snip Snip Snap! Oops...\""})})
+                    "You hand the hands a pair of scissors.",
+                    "\"Snip Snip Snap! Oops...\""
+                },new object[][]{SingleMethod(3)})
             }),
         };  
     }
