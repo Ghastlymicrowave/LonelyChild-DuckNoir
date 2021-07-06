@@ -58,6 +58,7 @@ public class GameSceneManager : MonoBehaviour
     }
     public void LoadCheckpoint(){
         inventoryManager.LoadJSON();
+        Debug.Log(inventoryManager.checkpointScene);
         SceneManager.LoadScene(inventoryManager.checkpointScene);
         newScene = true;
     }
