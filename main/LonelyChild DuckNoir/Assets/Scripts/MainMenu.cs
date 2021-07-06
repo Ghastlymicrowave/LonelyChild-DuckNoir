@@ -89,7 +89,7 @@ public class MainMenu : MonoBehaviour
         credits.SetActive(true);
     }
     
-    void CloseStuff()
+    public void CloseStuff()
     {
         if (optionsPanel != null && optionsPanel.gameObject.activeSelf)
         {

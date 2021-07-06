@@ -18,6 +18,7 @@ public class SpecialText{
 }
 public class battleBehavior : MonoBehaviour
 {
+    [SerializeField] Camera prioCam;
     public int talkIndex = 0;
     [SerializeField] TextMeshPro hpText;
     [SerializeField] GameObject playerHurt;
@@ -109,6 +110,12 @@ public class battleBehavior : MonoBehaviour
         Music.Play();
         SetEnemyHpDisplay();
         spVals = enemy.specialVals;
+        Camera[] cams = GameObject.FindObjectsOfType<Camera>();
+        for (int i = 0; i < cams.Length;i++){
+            if (cams[i] != prioCam){
+                cams[i].gameObject.SetActive(false);
+            }
+        }
     }
 
     void SendSignal(string signalName){
@@ -407,19 +414,23 @@ public class battleBehavior : MonoBehaviour
     public void EndCombat(){
         switch((endCon)battleEnded){
             case endCon.DEFEAT:
+            prioCam.gameObject.SetActive(false);
                 gameSceneManager.GameOver();
             break;
             case endCon.SENTIMENT:
             inventoryManager.ghostsRoaming.Remove(enemy.id);
             inventoryManager.ghostsAscended.Add(enemy.id);
+            prioCam.gameObject.SetActive(false);
                 gameSceneManager.ExitCombat();
             break;
             case endCon.RUN:
+            prioCam.gameObject.SetActive(false);
                 gameSceneManager.ExitCombat();
             break;
             case endCon.CRUCIFIX:
             inventoryManager.ghostsRoaming.Remove(enemy.id);
             inventoryManager.ghostsCrucified.Add(enemy.id);
+            prioCam.gameObject.SetActive(false);
                 gameSceneManager.ExitCombat();
             break;
         }

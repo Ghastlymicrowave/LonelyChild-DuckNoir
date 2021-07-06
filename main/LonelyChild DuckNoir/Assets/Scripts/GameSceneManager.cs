@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameSceneManager : MonoBehaviour
 {
+    Camera overworldCam;
     GameObject overworld;
     InventoryManager inventoryManager;
     SettingsManager settings;
@@ -64,6 +65,7 @@ public class GameSceneManager : MonoBehaviour
             Debug.Log("packing scene");
             PackEverything();
             enemyManager = GameObject.Find("Enemy Handler").GetComponent<EnemyManager>();
+            overworldCam = GameObject.Find("MainCam").GetComponent<Camera>();
         }
 
         switch(scene.name){
@@ -78,6 +80,7 @@ public class GameSceneManager : MonoBehaviour
         overworld.SetActive(false);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        overworldCam.gameObject.SetActive(false);
     }
     public void ExitCombat(){
         SceneManager.UnloadSceneAsync("CombatScene");
@@ -85,6 +88,8 @@ public class GameSceneManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         GameObject.FindObjectOfType<EnemyManager>().ReLoaded();
+        overworldCam.gameObject.SetActive(true);
+
     }
 
     public void Pause(){

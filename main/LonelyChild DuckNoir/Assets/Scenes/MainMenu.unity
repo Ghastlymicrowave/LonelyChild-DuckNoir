@@ -131,8 +131,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1000299283}
     m_Modifications:
     - target: {fileID: 1767462353436586162, guid: 862d0f3d53dc2d74695e65edb738f658, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 886703037}
+    - target: {fileID: 1767462353436586162, guid: 862d0f3d53dc2d74695e65edb738f658, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: JustClose
+      value: CloseStuff
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767462353436586162, guid: 862d0f3d53dc2d74695e65edb738f658, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2219872856022241096, guid: 862d0f3d53dc2d74695e65edb738f658, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -553,8 +561,16 @@ PrefabInstance:
       value: -1696.9246
       objectReference: {fileID: 0}
     - target: {fileID: 980614712071999414, guid: f9016636886d88a49b5ebfdbe67c5404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 886703037}
+    - target: {fileID: 980614712071999414, guid: f9016636886d88a49b5ebfdbe67c5404, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: JustClose
+      value: CloseStuff
+      objectReference: {fileID: 0}
+    - target: {fileID: 980614712071999414, guid: f9016636886d88a49b5ebfdbe67c5404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 980614712071999415, guid: f9016636886d88a49b5ebfdbe67c5404, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
