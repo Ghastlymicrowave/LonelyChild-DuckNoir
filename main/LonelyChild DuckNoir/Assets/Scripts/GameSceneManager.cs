@@ -14,6 +14,7 @@ public class GameSceneManager : MonoBehaviour
     public string combatSceneName = "CombatScene";
     public string pauseSceneName = "PauseScene";
     public int currentLevel = 0;
+    bool newScene = false;
 
     public AudioClip GetCombatAudio(){//0, 1, 2 
         return combatAudio[currentLevel];
@@ -47,6 +48,7 @@ public class GameSceneManager : MonoBehaviour
     public void TransitionScene(string sceneName){
         inventoryManager.SaveJSON();
         SceneManager.LoadScene(sceneName);
+        newScene = true;
     }
     public void LoadScene(string sceneName){
         SceneManager.LoadScene(sceneName);
@@ -57,6 +59,7 @@ public class GameSceneManager : MonoBehaviour
     public void LoadCheckpoint(){
         inventoryManager.LoadJSON();
         SceneManager.LoadScene(inventoryManager.checkpointScene);
+        newScene = true;
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {

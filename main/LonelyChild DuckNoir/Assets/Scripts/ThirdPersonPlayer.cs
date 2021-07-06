@@ -209,13 +209,8 @@ public class ThirdPersonPlayer : MonoBehaviour
                 currentSpeed = Mathf.Min(spdAccel + currentSpeed, maxSpd);
             }
 
-            if (UseCamLight){
-                thisAnimator.SetFloat("DirectionX",0f);
-                thisAnimator.SetFloat("DirectionY",1f);
-            }else{
-                thisAnimator.SetFloat("DirectionX",hinput);
-                thisAnimator.SetFloat("DirectionY",vinput);
-            }
+            thisAnimator.SetFloat("DirectionX",hinput);
+            thisAnimator.SetFloat("DirectionY",vinput);
             
             spotlightLerp = Quaternion.LookRotation(new Vector3(direction.x,direction.y,0f),Vector3.back);
         }else{

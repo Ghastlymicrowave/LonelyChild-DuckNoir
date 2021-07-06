@@ -46,10 +46,6 @@ public class MainMenu : MonoBehaviour
     public void PlayButton()
     {
         CloseStuff();
-        foreach (int ghost in ghostIDs)
-        {
-            inventoryManager.ghostsRoaming.Add(ghost);
-        }
         inventoryManager.ResetSave();
         gameSceneManager.TransitionScene("SecondFloor");//to start new game, otherwise, load current data and use that scene
 

@@ -13,7 +13,6 @@ public class InventoryManager : MonoBehaviour
     public List<int> ghostsAscended; // list of ghosts beaten with sentimental victory
     public List<int> ghostsCrucified; // list of ghosts beaten with crucifix
     GameSceneManager gameSceneManager;
-    InventoryManager inventoryManager;
     public string checkpointScene = "";
     public class ivItem
     {
@@ -48,7 +47,6 @@ public class InventoryManager : MonoBehaviour
         items = new List<ivItem>();
         Reset();
         gameSceneManager = gameObject.GetComponent<GameSceneManager>();
-        inventoryManager = gameSceneManager.GetComponent<InventoryManager>();
     }
 
     void Awake()
@@ -425,7 +423,10 @@ public class InventoryManager : MonoBehaviour
             ghostsAscended.AddRange(save.ascended);
             ghostsCrucified.Clear();
             ghostsCrucified.AddRange(save.crucified);
-            inventoryManager.checkpointScene = save.checkpointScene;
+            if (save.checkpointScene != null){
+                checkpointScene = save.checkpointScene;
+            }
+            
 
         }else{
             ResetSave();
