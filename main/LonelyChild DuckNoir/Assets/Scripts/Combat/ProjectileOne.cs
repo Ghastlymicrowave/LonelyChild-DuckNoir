@@ -29,6 +29,7 @@ public class ProjectileOne : MonoBehaviour
     float startTime;
     AttackLogic logic;
     float logicDuration;
+
     void Start()
     {
         //projectile.speed *= 0.0001f;
@@ -52,12 +53,29 @@ public class ProjectileOne : MonoBehaviour
         startTime = Time.time;
         logic = GameObject.FindObjectOfType<AttackLogic>();
         logicDuration = logic.attack.duration - logic.timer;
+        UpdateStuff();
     }
 
     // Update is called once per frame
     void Update()
     {
-        logicDuration -= Time.deltaTime;
+        UpdateStuff();
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        /*
+        if(col.gameObject.tag == "Player")
+        {
+            print("THIS WAS CALLED");
+            PlayerCursor playerCursor = col.GetComponent<PlayerCursor>();
+            playerCursor.Damage(projectile.damage);
+            Destroy(this.gameObject);
+        }
+        */
+    }
+    void UpdateStuff()
+    {
+          logicDuration -= Time.deltaTime;
         if (logicDuration<=0){
             Destroy(gameObject);
         }
@@ -125,17 +143,5 @@ public class ProjectileOne : MonoBehaviour
                 print("You messed up the projectileone");
                 break;
         }
-    }
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        /*
-        if(col.gameObject.tag == "Player")
-        {
-            print("THIS WAS CALLED");
-            PlayerCursor playerCursor = col.GetComponent<PlayerCursor>();
-            playerCursor.Damage(projectile.damage);
-            Destroy(this.gameObject);
-        }
-        */
     }
 }
