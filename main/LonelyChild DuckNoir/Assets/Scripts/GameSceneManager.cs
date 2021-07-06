@@ -72,6 +72,9 @@ public class GameSceneManager : MonoBehaviour
             overworldCam = GameObject.Find("MainCam").GetComponent<Camera>();
         }
 
+        SettingsManager manager = GetComponent<SettingsManager>();
+        manager.Invoke("UpdateSounds",1f);
+
         switch(scene.name){
             case "FirstFloor": currentLevel = 0; break;
             case "SecondFloor": currentLevel = 1; break;
