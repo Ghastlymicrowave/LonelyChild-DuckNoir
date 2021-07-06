@@ -136,10 +136,8 @@ public class TextManager : MonoBehaviour
             case 42: return stringsToArray("You picked up a spinning toy.",
             "If every other orphan wasn't mysteriously missing, you wouldn't want to be seen with this thing.");
             //Inspects
-            case 43: return stringsToArray("The bedroom. Locked.",
-            "Press 'Use with' to get the party started...");
-            case 44: return stringsToArray("The urinal.\nBelieve it or not, locked every night.",
-            "Press 'Use with' to get the party started...");
+            case 43: return stringsToArray("The bedroom. Locked.");
+            case 44: return stringsToArray("The urinal.\nBelieve it or not, locked every night.");
             case 45: return stringsToArray("\"Zzzz....\"\n\"...what are you lookin' at?....\"");
             //overworld Tutorial Text
             case 46: return stringsToArray("You found a page from the ghost hunting manual.\nPress E or LMB to continue.",
@@ -175,6 +173,11 @@ public class TextManager : MonoBehaviour
                 return stringsToArray("You picked up the showing room key!");
             case 57:
                 return new string[] {"Looks like that worked."};
+            case 58:
+                return new string[] {"This is the door to the basement.\nUnlocked.","Upon opening the door, however, the staircase leading to the basement door, along with the basement itself, falls about seven stories downward.", "You should have known it wouldn't be that simple."};
+            case 59:
+                return new string[] {"\"Hey, dude.\"\n\"Don't use the door behnd me.\""};
+            
         }
     }
 
