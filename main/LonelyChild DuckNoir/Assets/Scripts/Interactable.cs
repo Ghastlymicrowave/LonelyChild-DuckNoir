@@ -161,12 +161,13 @@ public class Interactable : MonoBehaviour
         if ((int)requiredItem == item.id){
             Debug.Log("used right item");
             needsItemUse = false;
-            playerRef.TriggerDialogue(usedRequiredItemTextId);
             if (deleteRequiredItem){
                 inventoryManager.items.Remove(item);
             }
             if(useKeyRing){
                 Trigger();
+            }else{
+                playerRef.TriggerDialogue(usedRequiredItemTextId);
             }
         }else{
             if (dialogueID>-1){
