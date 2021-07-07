@@ -107,7 +107,7 @@ namespace Combat
 
     public enum TalkEnum{
         Talk,
-        Requrest_Health,
+        Request_Health,
         Request_Proceed,
         Flirt,
         Chat,
