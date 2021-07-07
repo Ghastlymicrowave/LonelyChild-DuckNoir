@@ -479,9 +479,17 @@ PrefabInstance:
       value: ActivatableCue
       objectReference: {fileID: 0}
     - target: {fileID: 5700238959041983293, guid: 1ed4c80df09d5d54badbf820ce13d43e, type: 3}
+      propertyPath: sounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5700238959041983293, guid: 1ed4c80df09d5d54badbf820ce13d43e, type: 3}
       propertyPath: sounds.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: f095626a5ada8a74bbf53b8131a2ab5b, type: 3}
+    - target: {fileID: 5700238959041983293, guid: 1ed4c80df09d5d54badbf820ce13d43e, type: 3}
+      propertyPath: sounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5990047216405965967, guid: 1ed4c80df09d5d54badbf820ce13d43e, type: 3}
       propertyPath: m_RootOrder
       value: 4

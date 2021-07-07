@@ -140,7 +140,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -186,6 +186,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b780e1aaa10226c43965598c975e2dbc, type: 3}
   - {fileID: 8300000, guid: 07ab346ab059981418094cc238060b91, type: 3}
   isMusic: 0
+  isAmbient: 0
 --- !u!1 &3322247963341796718
 GameObject:
   m_ObjectHideFlags: 0

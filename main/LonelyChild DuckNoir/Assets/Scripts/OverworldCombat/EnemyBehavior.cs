@@ -80,7 +80,7 @@ public class EnemyBehavior : MonoBehaviour
             Vector3 targetPos = positionChunks[patrolChunk][currentPatrol].position;
             targetPos.z = transform.position.z;
             transform.position = Vector3.MoveTowards(transform.position, targetPos, (speed / 3) * Time.deltaTime);
-            if (Vector3.Distance(positionChunks[patrolChunk][currentPatrol].position, transform.position) < .5f)
+            if (Vector2.Distance(positionChunks[patrolChunk][currentPatrol].position, transform.position) < .5f)
             {
                 //Debug.Log("enemy "+enemyID.ToString()+" chunk:"+patrolChunk.ToString()+" of "+positionChunks.Length.ToString()+"   patrol:"+currentPatrol.ToString()+" of "+positionChunks[patrolChunk].Length.ToString());
                 if (patrolBackwards){

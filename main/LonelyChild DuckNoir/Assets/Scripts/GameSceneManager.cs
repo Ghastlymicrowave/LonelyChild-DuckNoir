@@ -84,10 +84,11 @@ public class GameSceneManager : MonoBehaviour
     }
     public void EnterCombat(){
         SceneManager.LoadScene(combatSceneName,LoadSceneMode.Additive);
+        overworldCam.gameObject.SetActive(false);
         overworld.SetActive(false);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        overworldCam.gameObject.SetActive(false);
+        
     }
     public void ExitCombat(){
         SceneManager.UnloadSceneAsync("CombatScene");
