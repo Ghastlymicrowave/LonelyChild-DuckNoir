@@ -5,6 +5,7 @@ using Combat;
 
 public class Interactable : MonoBehaviour
 {
+    [SerializeField] SimpleSoundCue activatablecue;//zack added this
     InventoryManager inventoryManager;
     TextManager textManager;
     GameSceneManager gameSceneManager;
@@ -79,6 +80,10 @@ public class Interactable : MonoBehaviour
         switch(action){
             case interactableAction.ACTIVATE:
                 activatable.Activate();
+                if (activatablecue != null)
+                {
+                    activatablecue.Trigger();
+                }
                 if (rand){
                         playerRef.TriggerDialogue(randomdialogueIDs[Random.Range(0,randomdialogueIDs.Length)]);
                     }else if (dialogueID>-1){
