@@ -27,7 +27,7 @@ public class PlayerSounds : SoundHolder
             if (timer<=0){
                 timer = Random.Range(minDelay,maxDelay);
                 audioSource.pitch = Random.Range(minPitch,maxPitch);
-                audioSource.PlayOneShot(sounds[Random.Range(0,sounds.Length)]);
+                audioSource.PlayOneShot(sounds[Random.Range(0,sounds.Length)],0.2f);
             }
         }
     }
