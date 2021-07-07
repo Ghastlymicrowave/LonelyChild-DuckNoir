@@ -290,6 +290,7 @@ public class ThirdPersonPlayer : MonoBehaviour
         {
             if (interactableTarget.isReady||Input.GetButtonDown("Interact") && dontUseTime ==0)//if triggered from mouse click or interact button
             {
+                sounds.EndFootsteps();
                 interactableTarget.Trigger();
                 lockedRotation = currentRotationLerpTarget;
                 

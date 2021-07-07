@@ -731,6 +731,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interactable (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1027598100455988840, guid: 9b0082740161f39469a3b3a0cc1ae58d, type: 3}
+      propertyPath: sounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: e4c98420422bafc449cf03f8e7bd2e08, type: 3}
+    - target: {fileID: 4991877840274049177, guid: 9b0082740161f39469a3b3a0cc1ae58d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e4c98420422bafc449cf03f8e7bd2e08, type: 3}
+    - target: {fileID: 4991877840274049177, guid: 9b0082740161f39469a3b3a0cc1ae58d, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6848799919435485228, guid: 9b0082740161f39469a3b3a0cc1ae58d, type: 3}
       propertyPath: m_IsActive
       value: 0

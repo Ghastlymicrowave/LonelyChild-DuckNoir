@@ -5,6 +5,7 @@ using Combat;
 
 public class Interactable : MonoBehaviour
 {
+    [SerializeField] SimpleSoundCue cue;
     InventoryManager inventoryManager;
     TextManager textManager;
     GameSceneManager gameSceneManager;
@@ -75,6 +76,12 @@ public class Interactable : MonoBehaviour
                     playerRef.TriggerDialogue(notCompleteItemUseTextID);
                 }
             return;
+        }
+        if (cue !=null){
+            cue.Trigger();
+            if (oneTimeUse){
+                cue.gameObject.transform.SetParent(this.gameObject.transform.parent);
+            }
         }
         switch(action){
             case interactableAction.ACTIVATE:
