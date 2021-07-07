@@ -117,7 +117,7 @@ public class OverworldInventory : MonoBehaviour
             inspectButton.SetActive(false);
         }
         
-        if (item.methodName !="" || player.ValidRequiresItem()){//use button
+        if (player.ValidRequiresItem()){//use button
             useButton.GetComponent<Button>().onClick.AddListener(delegate {UseItem(item);});//UseItem(item)
             if (player.ValidRequiresItem()){
                 useButton.transform.GetChild(0).GetComponent<Text>().text = "use with";

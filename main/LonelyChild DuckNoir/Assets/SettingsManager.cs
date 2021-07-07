@@ -14,7 +14,7 @@ public class SettingsManager : MonoBehaviour
         Load();
     }
     public void Load(){
-        options = new float[8];
+        options = new float[10];
         //TODO: add default values
         options[0] = PlayerPrefs.GetFloat("hsmooth",0.3f);
         options[1] = PlayerPrefs.GetFloat("vsmooth",0.4f);
@@ -22,8 +22,10 @@ public class SettingsManager : MonoBehaviour
         options[3] = PlayerPrefs.GetFloat("vsensitivity",0.7f);
         options[4] = PlayerPrefs.GetFloat("musicVol",0.8f);
         options[5] = PlayerPrefs.GetFloat("sfxVol",0.8f);
-        options[6] = PlayerPrefs.GetFloat("camSmooth",0.5f);
+        options[6] = PlayerPrefs.GetFloat("camSmooth",0.4f);
         options[7] = PlayerPrefs.GetFloat("OverShoulder",1f);
+        options[8] = PlayerPrefs.GetFloat("PosSmooth",.4f);
+        options[9] = PlayerPrefs.GetFloat("RotSmooth",.4f);
     }
     public void UpdatePlayer(){
         ThirdPersonPlayer playerObj = GameObject.FindObjectOfType<ThirdPersonPlayer>();
@@ -48,6 +50,8 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat("sfxVol",options[5]);
         PlayerPrefs.SetFloat("camSmooth",options[6]);
         PlayerPrefs.SetFloat("OverShoulder",options[7]);
+        PlayerPrefs.SetFloat("PosSmooth",options[8]);
+        PlayerPrefs.SetFloat("RotSmooth",options[9]);
     }
 
     public void ChangeOptionSingular(int option, float value){

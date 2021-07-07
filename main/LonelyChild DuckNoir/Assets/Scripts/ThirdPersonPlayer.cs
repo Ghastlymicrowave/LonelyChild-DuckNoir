@@ -57,6 +57,8 @@ public class ThirdPersonPlayer : MonoBehaviour
     bool UseCamLight = false;
     [SerializeField]Transform actualCamera;
     [SerializeField] PlayerSounds sounds;
+    float posSmooth = .5f;
+    float rotSmooth = .5f;
     void Start()
     {
         actualCamera.SetParent(null);
@@ -89,12 +91,15 @@ public class ThirdPersonPlayer : MonoBehaviour
     }
 
     public void UpdateOptions(float[] inputArray){
-        HmouseSmoothing = Mathf.Clamp(1-Mathf.Pow(inputArray[0],2),0.001f,1f);
-        VmouseSmoothing = Mathf.Clamp(1-Mathf.Pow(inputArray[1],2),0.001f,1f);
+        HmouseSmoothing = Mathf.Clamp(1-Mathf.Pow(inputArray[0],.25f),0.05f,1f);
+        VmouseSmoothing = Mathf.Clamp(1-Mathf.Pow(inputArray[1],.25f),0.05f,1f);
         HmouseSensitivity = inputArray[2];
         VmouseSensitivity = inputArray[3];
-        CameraSmooth = Mathf.Clamp(1-Mathf.Pow(inputArray[6],2),0.001f,1f);
+        CameraSmooth = Mathf.Clamp(1-Mathf.Pow(inputArray[6],.25f),0.05f,1f);
         UseCamLight = (Mathf.RoundToInt(inputArray[7])==1);
+        posSmooth = Mathf.Clamp(1-Mathf.Pow(inputArray[8],.25f),0.05f,1f);
+        rotSmooth = Mathf.Clamp(1-Mathf.Pow(inputArray[9],.25f),0.05f,1f);
+
         CheckCams();
     }
 
@@ -226,8 +231,8 @@ public class ThirdPersonPlayer : MonoBehaviour
     }
 
     void UpdateActualCam(){
-        actualCamera.transform.position = Vector3.Lerp(actualCamera.transform.position,cameraTransform.GetChild(0).transform.position,0.2f);
-        actualCamera.transform.rotation = Quaternion.Lerp(actualCamera.transform.rotation,cameraTransform.GetChild(0).transform.rotation,0.2f);
+        actualCamera.transform.position = Vector3.Lerp(actualCamera.transform.position,cameraTransform.GetChild(0).transform.position,posSmooth);
+        actualCamera.transform.rotation = Quaternion.Lerp(actualCamera.transform.rotation,cameraTransform.GetChild(0).transform.rotation,rotSmooth);
     }
 
     public void SetMouseMode(bool locked){
@@ -272,6 +277,7 @@ public class ThirdPersonPlayer : MonoBehaviour
 
         if (InventoryOpen){
             thisAnimator.SetBool("Moving",false);
+            sounds.EndFootsteps();
             return;
         }
 
@@ -293,6 +299,7 @@ public class ThirdPersonPlayer : MonoBehaviour
         
 
         if (Input.GetButtonDown("Pause")){
+            sounds.EndFootsteps();
             SetMouseMode(false);
             gameSceneManager.Pause();
         }
@@ -333,7 +340,7 @@ public class ThirdPersonPlayer : MonoBehaviour
         if(interactableTarget!=null){
             interactableTarget.CheckItemUse(item);
         }else{
-            UseItem(item);
+            //UseItem(item);
         }
     }
     public void UseItem(InventoryManager.ivItem item){//if can't use on interactable, use normally
