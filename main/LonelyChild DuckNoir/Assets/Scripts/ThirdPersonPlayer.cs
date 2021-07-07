@@ -56,6 +56,7 @@ public class ThirdPersonPlayer : MonoBehaviour
     [SerializeField] Transform camLight;
     bool UseCamLight = false;
     [SerializeField]Transform actualCamera;
+    [SerializeField] PlayerSounds sounds;
     void Start()
     {
         actualCamera.SetParent(null);
@@ -203,6 +204,7 @@ public class ThirdPersonPlayer : MonoBehaviour
         thisAnimator.SetBool("Moving",isMoving);
         Vector2 direction = new Vector2(hinput,vinput);
         if (isMoving){
+            sounds.BeginFootseps();
             if (currentSpeed<initalSpd){//moving from standstill
                 currentSpeed = initalSpd;
             }else{
@@ -214,6 +216,7 @@ public class ThirdPersonPlayer : MonoBehaviour
             
             spotlightLerp = Quaternion.LookRotation(new Vector3(direction.x,direction.y,0f),Vector3.back);
         }else{
+            sounds.EndFootsteps();
             currentSpeed = Mathf.Max(0f,currentSpeed - currentSpeed * Kfriction);
             if (currentSpeed < Sfriction){
                 currentSpeed = 0f;
