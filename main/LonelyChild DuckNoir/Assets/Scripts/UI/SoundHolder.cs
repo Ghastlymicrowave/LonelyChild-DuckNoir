@@ -17,7 +17,11 @@ public class SoundHolder : MonoBehaviour
             if (isMusic){
                 volume = manager.GetOptions()[4];
             }else{
-                volume = manager.GetOptions()[5];
+                if(isAmbient){
+                    volume = manager.GetOptions()[10];
+                }else{
+                    volume = manager.GetOptions()[5];
+                }
             }
         }
         audioSource.volume = volume;
@@ -28,6 +32,9 @@ public class SoundHolder : MonoBehaviour
     }
     public bool IsMusic(){
         return isMusic;
+    }
+    public bool IsAmbient(){
+        return isAmbient;
     }
     public void Play(){
         audioSource.Play();

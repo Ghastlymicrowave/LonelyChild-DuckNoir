@@ -17,6 +17,7 @@ public class OverworldAmbientSound : SoundHolder
         timer -= Time.deltaTime;
         if (timer<=0){
             timer = Random.Range(minDelay,maxDelay);
+            PlayRandom();
         }
     }
     public void PlayRandom(){

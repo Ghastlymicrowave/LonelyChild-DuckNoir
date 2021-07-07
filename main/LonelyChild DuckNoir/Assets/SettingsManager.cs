@@ -26,6 +26,8 @@ public class SettingsManager : MonoBehaviour
         options[7] = PlayerPrefs.GetFloat("OverShoulder",1f);
         options[8] = PlayerPrefs.GetFloat("PosSmooth",.4f);
         options[9] = PlayerPrefs.GetFloat("RotSmooth",.4f);
+        options[10] = PlayerPrefs.GetFloat("ambientVol",0.7f);
+
     }
     public void UpdatePlayer(){
         ThirdPersonPlayer playerObj = GameObject.FindObjectOfType<ThirdPersonPlayer>();
@@ -52,6 +54,7 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat("OverShoulder",options[7]);
         PlayerPrefs.SetFloat("PosSmooth",options[8]);
         PlayerPrefs.SetFloat("RotSmooth",options[9]);
+        PlayerPrefs.SetFloat("ambientVol",options[10]);
     }
 
     public void ChangeOptionSingular(int option, float value){
@@ -66,7 +69,11 @@ public class SettingsManager : MonoBehaviour
             if (sounds[i].IsMusic()){
                 sounds[i].SetVol(options[4]);
             }else{
+                if (sounds[i].IsAmbient()){
+                    sounds[i].SetVol(options[10]);
+                }else{
                 sounds[i].SetVol(options[5]);
+                }
             }
         }
     }
