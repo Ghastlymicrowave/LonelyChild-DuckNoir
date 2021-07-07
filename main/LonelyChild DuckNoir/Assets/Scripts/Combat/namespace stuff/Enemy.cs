@@ -107,8 +107,8 @@ namespace Combat
 
     public enum TalkEnum{
         Talk,
-        Requrest_Health,
-        Requrest_Proceed,
+        Request_Health,
+        Request_Proceed,
         Flirt,
         Chat,
         ChatTwo,
