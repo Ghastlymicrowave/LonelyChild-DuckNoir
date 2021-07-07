@@ -991,7 +991,7 @@ public class Tutorial : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
         talkActions = new TalkEnum[][]{ 
             new TalkEnum[]{TalkEnum.Talk} ,
-            new TalkEnum[]{TalkEnum.Chat,TalkEnum.Requrest_Health,TalkEnum.Requrest_Proceed} ,
+            new TalkEnum[]{TalkEnum.Chat,TalkEnum.Request_Health,TalkEnum.Request_Proceed} ,
             new TalkEnum[]{} 
         };
         specialVals = new int[]{0,0};
@@ -1088,7 +1088,7 @@ public class Tutorial : EnemyClass
                     "\"As you can see, this is a classic example of a talk that doesn’t make a bulb light up.\"\n\"Doesn’t proceed combat, but a great opportunity to get to know your enemy nonetheless.\""
                 },new object[][]{})
             },new int[]{1}),
-            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Requrest_Health,
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Request_Health,
             new EnemyReaction[] {
                 NewReaction(new string[] {"DamagePlayer"},
                 new string[]{
@@ -1097,7 +1097,7 @@ public class Tutorial : EnemyClass
                     "\"As you can see, some talks can do special things like heal you.\"\n\"Later on, some may damage you, too, so be careful.\""
                 },new object[][]{SingleMethod(-4)})
             },new int[]{1}),
-            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Requrest_Proceed,
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Request_Proceed,
             new EnemyReaction[] {
                 NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks","SentimentalItem"},
                 new string[]{
