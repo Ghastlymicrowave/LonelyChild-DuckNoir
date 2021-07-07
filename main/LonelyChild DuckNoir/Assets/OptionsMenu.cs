@@ -16,6 +16,8 @@ public class OptionsMenu : MonoBehaviour
     //[SerializeField] OptionContainerBool
 
     public void Cancel(){
+        settings.Load();
+        VisuallyUpdateSettings();
         settings.UpdateSounds();
         this.gameObject.SetActive(false);
     }
