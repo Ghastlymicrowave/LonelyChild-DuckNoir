@@ -647,7 +647,7 @@ public class GremlinOfDeceit : EnemyClass
 {//example of an actual enemy
     public GremlinOfDeceit(battleBehavior battle = null) : base(battle)
     {
-        sentiment = new List<string>{"chat"};
+        sentiment = new List<string>{"talk","chat","compliment","ask"};
         name = "The Gremlin Of Deceit";
         hp = 15;
         maxHP = 15;
@@ -665,7 +665,17 @@ public class GremlinOfDeceit : EnemyClass
             
             "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy"};
         talkActions = new TalkEnum[][]{ 
-            new TalkEnum[]{TalkEnum.Chat} 
+            new TalkEnum[]{TalkEnum.Talk}, 
+            new TalkEnum[]{TalkEnum.Chat,TalkEnum.Encourage,TalkEnum.Eternity},
+            new TalkEnum[]{TalkEnum.Time,TalkEnum.Compliment},
+            new TalkEnum[]{TalkEnum.Cycles,TalkEnum.Ask}
+        };
+        
+        splashTexts= new string[]{
+            "\"I've always been here, you can't remove me, can't erase- it behooves me.\"",
+            "\"Struggle all you're willing to try, you can't remove such a fly guy!\"",
+            "\"The appirition cackles non-stop.\"",
+            "\"The appirition babbles something about drawing on and erasing the fabric of the universe.\"",
         };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/GremlinOfDeceitDisplay";
@@ -673,18 +683,15 @@ public class GremlinOfDeceit : EnemyClass
         sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Eraser);
 
         sentimentalSuccess = new string[]{
-            "You held out the Eraser...\nIt felt... right.",
-            "\"Oh my gods!\"\n\"My power is eviscerated with one fell blow?\"",
-            "\"No!\"\n\"No! No! No!\"",
-            "\"...\"",
-            "\"I didn't bring these ghouls here, if you must know...\"",
-            "\"There really is someone down below.\"\n\"Oh!\"",
-            "\"You better find your way out while you still can.\""
+            "\"Oh ye gods!  My power is evaporated by one fell blow?",
+            "\"No! \"Very well, if you must know… \"",
+            "I did not bring these ghosts and ghouls here.  There is someone down below...Oh!"
+
         };
         sentimentalFaliure = new string[]{
             "The ghost hesitates and looks at the Eraser...",
             "Does this Eraser mean something to it?",
-            "\"You dare!?\"\n\"Haven't you learned not to challenge my authority\""
+            "\"You dare!?\"\n\"Haven't you learned not to challenge my authority!\""
             
         };
 
@@ -704,7 +711,7 @@ public class GremlinOfDeceit : EnemyClass
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
                     "You attacked with the FirePoker...",
-                    "\"Oooo, that burns so sweet...\"\n\"But I know just the right spots!\""
+                    "\"Oooo, that burns!\""
                 },new object[][]{SingleMethod((object)3)})
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,
@@ -727,16 +734,88 @@ public class GremlinOfDeceit : EnemyClass
                     "\"Besides...\"\n\"You know what happens when you sneak food...\""
                 },new object[][]{SingleMethod((object)2)})
             }),
-            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
-            new EnemyReaction[] {
-                NewReaction(new string[] {"DamageEnemy"},
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Talk,
+            new EnemyReaction[]{
+                NewReaction(new string[]{"ChangeTalks","SentimentalItem"},
                 new string[]{
-                    "You started talking with the ghost...",
-                    "\"Do you remember me?\"\n\"From nightmares long ago?\"",
-                    "\"Children draw from my form, you know!\"\n(Oh, my rhyming schemes!)",
-                    "\"Am I responsible for reality splitting at the seams?\"\n\"Perhaps...\""
-                },new object[][]{SingleMethod((object)4)})
-            }),
+                    "\"Come closer, little one, and I’ll give you a sweet treat!  I promise I am nice!  I won’t even bite!  I’ve got something over here you might like…\""
+                },new object[][]{SingleMethod(1),SingleMethod(
+                    "talk",
+                    new string[]{},
+                    new string[]{}
+                )})
+                }
+            ),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
+            new EnemyReaction[]{
+                NewReaction(new string[]{"ChangeTalks","SentimentalItem"},
+                new string[]{
+                },new object[][]{SingleMethod(2),SingleMethod(
+                    "chat",
+                    new string[]{"\"Do you remember me, little O?\" \"From nightmares long ago? Children draw my form, you know!",
+                        "\"Haha, oh rhyming schemes! Am I responsible for reality splitting at the seams?\"\n \"Perhaps...\""},
+                    new string[]{"\"You won't get anything saying that again, go and find a better friend.\""}
+                )})
+                }
+            ),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Encourage,
+            new EnemyReaction[]{
+                NewReaction(new string[]{},
+                new string[]{
+                    "\"What?!\"\n\"What would a child like you want encouraging a deceitful creature like me...?\""
+                },new object[][]{})
+                }
+            ),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Eternity,
+            new EnemyReaction[]{
+                NewReaction(new string[]{},
+                new string[]{
+                    "You ask the gremlin about his thoughts eternity.",
+                    "\"Oh, I’m eternity grateful for everything you see.\"\n\"Why not try and compliment me?"
+                },new object[][]{})
+                }
+            ),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Time,
+            new EnemyReaction[]{
+                NewReaction(new string[]{"ChangeTalks"},
+                new string[]{
+                    "\"TikTok goes the ever clicking clock…\"\n\"sometimes forward...sometimes not!"
+                },new object[][]{SingleMethod(1)})
+                }
+            ),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Compliment,
+            new EnemyReaction[]{
+                NewReaction(new string[]{"ChangeTalks","SentimentalItem"},
+                new string[]{
+                    "You compliment the Gremlin on his fine smile."
+                },new object[][]{SingleMethod(3),SingleMethod(
+                    "compliment",
+                    new string[]{
+                    "\"Oh, compliments are good for me!\" \"I eat them up as you can see."},
+                    new string[]{"\"Keep the compliments rolling, don't stop! The longer you wait the more you will rot!\""})})
+                }
+            ),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Cycles,
+            new EnemyReaction[]{
+                NewReaction(new string[]{"ChangeTalks"},
+                new string[]{
+                    "You talk to the gremlin about the cyclical nature of playing video games.", 
+                    "\"Ah such fun! The thrill of the hunt.\" \"A game is time well spent.\""
+                },new object[][]{SingleMethod(1)})
+                }
+            ),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Ask,
+            new EnemyReaction[]{
+                NewReaction(new string[]{"ChangeTalks","SentimentalItem"},
+                new string[]{
+                    "You ask the gremlin about his rhyming.",
+                    "\"Why there’s no rhyming here, dear boy.\"\n\"I only have the world to play with as my little toy.\""
+                },new object[][]{SingleMethod(4),SingleMethod(
+                    "ask",
+                    new string[]{},
+                    new string[]{})})
+                }
+            ),
         };  
     }
 }
