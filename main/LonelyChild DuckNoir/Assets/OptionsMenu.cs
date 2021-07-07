@@ -13,6 +13,8 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] OptionContainer SfxVolContainer;
     [SerializeField] OptionContainer CamSmoothContainer;
     [SerializeField] OptionContainer OverShoulderContainer;
+    [SerializeField] OptionContainer CameraFollowSmoothContainer;
+    [SerializeField] OptionContainer CameraRotateSmoothContainer;
     //[SerializeField] OptionContainerBool
 
     public void Cancel(){
@@ -38,6 +40,8 @@ public class OptionsMenu : MonoBehaviour
         options.Add(SfxVolContainer.value);
         options.Add(CamSmoothContainer.value);
         options.Add(OverShoulderContainer.value);
+        options.Add(CameraFollowSmoothContainer.value);
+        options.Add(CameraRotateSmoothContainer.value);
         Debug.Log(settings);
         settings.ChangeOptions(options.ToArray());
         this.gameObject.SetActive(false);
@@ -53,6 +57,8 @@ public class OptionsMenu : MonoBehaviour
         SfxVolContainer.ChangeValueExternal(options[5]);
         CamSmoothContainer.ChangeValueExternal(options[6]);
         OverShoulderContainer.ChangeValueExternal(options[7]);
+        CameraFollowSmoothContainer.ChangeValueExternal(options[8]);
+        CameraRotateSmoothContainer.ChangeValueExternal(options[9]);
     }
 
     public void RealtimeUpdateSingular(int option){
