@@ -9,6 +9,7 @@ public class SoundHolder : MonoBehaviour
     [SerializeField] public AudioSource audioSource;
     [SerializeField] protected AudioClip[] sounds;
     [SerializeField] protected bool isMusic = false;
+    [SerializeField] protected bool isAmbient = false;//TODO Add some settings for this
     void Start(){
         SettingsManager manager = GameObject.FindObjectOfType<SettingsManager>();
         float volume = 1f;
