@@ -374,6 +374,7 @@ public class InventoryManager : MonoBehaviour
         Debug.LogWarning(save.checkpointScene.ToString());
         Debug.LogWarning("saved at: "+file);
         File.WriteAllText(file,JsonUtility.ToJson(save));
+        Debug.LogWarning("LOAD (SAVE) Success: "+save.checkpointScene);
     }
     public bool JSONExists(){
         return (File.Exists(jsonFile()));
@@ -381,15 +382,17 @@ public class InventoryManager : MonoBehaviour
 
     public bool IsFreshSave(){
         string file = jsonFile();
+        Debug.Log("file Exists: "+ (File.Exists(file)).ToString());
         if (File.Exists(file)){
             string contents = File.ReadAllText(file);
             SaveData save = new SaveData();
             try {
                 save = JsonUtility.FromJson<SaveData>(contents);
-                if (save.checkpointScene != "MainMenu"||save.checkpointScene != "SecondFloor"){
-                    return true;
-                }else{
+                Debug.Log(save.checkpointScene);
+                if (save.checkpointScene != "MainMenu"&&save.checkpointScene != "SecondFloor" && save.checkpointScene!=""){
                     return false;
+                }else{
+                    return true;
                 }
             }catch{
                 return true;
@@ -427,12 +430,12 @@ public class InventoryManager : MonoBehaviour
             if (save.checkpointScene != null){
                 checkpointScene = save.checkpointScene;
             }
-            Debug.Log("file loaded, checkpoint: "+checkpointScene.ToString());
+            Debug.Log("LOAD SUCCESS, file loaded, checkpoint: "+checkpointScene.ToString());
 
         }else{
             ResetSave();
             LoadJSON();
-            Debug.LogWarning("file loaded with error, checkpoint: "+checkpointScene.ToString());
+            Debug.LogWarning("LOAD FAIL file loaded with error, checkpoint: "+checkpointScene.ToString());
 
         }
     }
