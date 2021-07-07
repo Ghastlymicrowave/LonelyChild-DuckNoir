@@ -28,10 +28,11 @@ public class MainMenu : MonoBehaviour
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
         gameSceneManager = tm.gameObject.GetComponent<GameSceneManager>();
-
+        Debug.Log(inventoryManager.IsFreshSave());
         if (!inventoryManager.IsFreshSave())
         {
             ContinueButton.SetActive(true);
+            inventoryManager.LoadJSON();
         }
         else
         {
@@ -64,7 +65,8 @@ public class MainMenu : MonoBehaviour
     }
     public void Continue()
     {
-        gameSceneManager.TransitionScene(inventoryManager.checkpointScene);
+        Debug.Log("CHECKPOINT SCENE: "+inventoryManager.checkpointScene);
+        gameSceneManager.LoadScene(inventoryManager.checkpointScene);
     }
     public void HowToPlayButton()
     {

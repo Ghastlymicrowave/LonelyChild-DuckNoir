@@ -288,7 +288,7 @@ public class Narcissist : EnemyClass
                     "\"How about I adopt some other orphan boy?\"\n\"Preferably someone I can berate into my OWN image.\""
 
                 },new object[][]{SingleMethod(3)})
-            },new int[]{0}),
+            }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Call_Him_Bald,
             new EnemyReaction[] {
                 NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks","SentimentalItem"},
@@ -299,7 +299,7 @@ public class Narcissist : EnemyClass
                     "\"...exactly like me?\""
 
                 },new object[][]{SingleMethod(new int[]{1}),SingleMethod(1),SingleMethod("call_him_bald",new string[]{},new string[]{})})
-            },new int[]{0}),
+            }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Compliment,
             new EnemyReaction[] {
                 NewReaction(new string[] {"DamagePlayer"},
@@ -309,7 +309,7 @@ public class Narcissist : EnemyClass
                     "\"I’d like to adopt someone who respects my intellect a little bit more.\"\n\"I don’t have TIME to hear what I already know...\""
 
                 },new object[][]{SingleMethod(3)})
-            },new int[]{0}),
+            }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Gloat,
             new EnemyReaction[] {
                 NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks","SentimentalItem"},
@@ -321,7 +321,7 @@ public class Narcissist : EnemyClass
                     "\"But… I think something’s missing yet...\""
 
                 },new object[][]{SingleMethod(new int[]{2}),SingleMethod(2),SingleMethod("gloat",new string[]{},new string[]{})})
-            },new int[]{1}),
+            }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Insult,
             new EnemyReaction[] {
                 NewReaction(new string[] {},
@@ -331,7 +331,7 @@ public class Narcissist : EnemyClass
                     "\"I don’t have TIME for a one-note kid.\"\n\"You’re gonna have to try harder to impress me.\""
 
                 },new object[][]{})
-            },new int[]{1}),
+            }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Lecture,
             new EnemyReaction[] {
                 NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks","SentimentalItem"},
@@ -345,7 +345,7 @@ public class Narcissist : EnemyClass
                     "\"But… we can’t go home, not yet!\"\n\"I’m missing something important to me...\"",
                     "\"What was it...\"\n\"Do you happen to have it?\""
                 },new object[][]{SingleMethod(new int[]{3}),SingleMethod(3),SingleMethod("lecture",new string[]{},new string[]{})})
-            },new int[]{2}),
+            }),
         };
     }
 }
@@ -507,7 +507,7 @@ public class NiceDemonGuy : EnemyClass
         talkActions = new TalkEnum[][]{ 
             new TalkEnum[]{TalkEnum.Talk},
             new TalkEnum[]{TalkEnum.Chat,TalkEnum.Encourage,TalkEnum.Eternity}, 
-            new TalkEnum[]{TalkEnum.Hope,TalkEnum.Time,TalkEnum.Compliment},
+            new TalkEnum[]{TalkEnum.Hope,TalkEnum.Compliment},
             new TalkEnum[]{TalkEnum.Cycles,TalkEnum.Ask},
             new TalkEnum[]{TalkEnum.Check_in}
         };
@@ -593,7 +593,6 @@ public class NiceDemonGuy : EnemyClass
                 NewReaction(new string[] {"SentimentalItem","ChangeTalks"},
                 new string[]{
                     "You asked the nice demon guy what eternity feels like." , 
-                    
                 },new object[][]{SingleMethod("eternity",new string[]{
                     "\"Dropping in some heady philosophy, eh kid?  Well, I dunno exactly... things feel, sort of stretched.  Like things happen all at once or not at all.  Am I making any sense here?\""
                 },new string[]{
@@ -606,15 +605,6 @@ public class NiceDemonGuy : EnemyClass
                 new string[]{
                     "\"Hope?  Hope is something us demons do not have the luxury of even considering...sorry to bring the mood down, kid...\""
                 },new object[][]{SingleMethod(2)})
-            }),
-            GenResponse(ButtonEnum.Talk,(int)TalkEnum.Time,
-            new EnemyReaction[] {
-                NewReaction(new string[] {"SentimentalItem"},
-                new string[]{
-                    "You ask the nice demon guy what his experience of time is like.",
-                    "\"Wow kid, I didn’t peg ya for such a deep thinker.  Well, to be perfectly honest, being a demon guy, I don’t really understand the human concept of time, so I imagine the gulf between us on this matter is pretty immense!\"",  
-                    "Though, I do remember long ago, when I was much \"younger\" so to speak, playing with toys that could sort of, combine upon itself…? ah I’m rambling!\""
-                },new object[][]{SingleMethod("compliment",new string[]{},new string[]{})})
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Compliment,
             new EnemyReaction[] {
