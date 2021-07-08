@@ -18,6 +18,8 @@ public class MainMenu : MonoBehaviour
     public GameObject howToPlay;
     public GameObject credits;
 
+    public bool IsMain = false;
+
     void Start()
     {
 
@@ -28,17 +30,22 @@ public class MainMenu : MonoBehaviour
         tm = GameObject.Find("PersistentManager").GetComponent<TextManager>();
         inventoryManager = tm.gameObject.GetComponent<InventoryManager>();
         gameSceneManager = tm.gameObject.GetComponent<GameSceneManager>();
-        Debug.Log(inventoryManager.IsFreshSave());
-        if (!inventoryManager.IsFreshSave())
-        {
-            ContinueButton.SetActive(true);
-            inventoryManager.LoadJSON();
+
+        if (IsMain){
+            Debug.Log(inventoryManager.IsFreshSave());
+            if (!inventoryManager.IsFreshSave())
+            {
+                ContinueButton.SetActive(true);
+                inventoryManager.LoadJSON();
+            }
+            else
+            {
+                inventoryManager.ResetSave();
+                inventoryManager.LoadJSON();
+            }
         }
-        else
-        {
-            inventoryManager.ResetSave();
-            inventoryManager.LoadJSON();
-        }
+
+       
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None; //just in case it got reset from pause menu
@@ -85,6 +92,10 @@ public class MainMenu : MonoBehaviour
     {
         CloseStuff();
         credits.SetActive(true);
+    }
+
+    public void LoadMainMenu(){
+        gameSceneManager.LoadScene("MainMenu");
     }
     
     public void CloseStuff()

@@ -1353,7 +1353,7 @@ public class BoredGhost : EnemyClass{
                     "You try asking the ghost to keep talking.",
 "\"Again? You really are stubborn. Well, I've got all day, whatcha got?\""
                 },new object[][]{SingleMethod(1)})
-            }, new int[]{1}),
+            }, new int[]{2}),
 /////////////////////////////////////////////////////////
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Time,
             new EnemyReaction[] {
