@@ -608,12 +608,12 @@ public class NiceDemonGuy : EnemyClass
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Compliment,
             new EnemyReaction[] {
-                NewReaction(new string[] {"SentimentalItem"},
+                NewReaction(new string[] {"SentimentalItem","ChangeTalks"},
                 new string[]{
                     "You compliment the nice demon guy on his manners.", 
                 },new object[][]{SingleMethod("compliment",
                 new string[]{"\"Ah well, I appreciate that...you’re a nice kid...please don’t go down in that damn basement...\""},
-                new string[]{"\"Yeah that's sweet, but really do you really mean anything by that?\""})})
+                new string[]{"\"Yeah that's sweet, but really do you really mean anything by that?\""}),SingleMethod(3)})
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Cycles,
             new EnemyReaction[] {
@@ -911,7 +911,7 @@ public class DevilsHands : EnemyClass
             ///////// Talks
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Talk,
             new EnemyReaction[] {
-                NewReaction(new string[] {"DamageEnemy"},
+                NewReaction(new string[] {"DamagePlayer"},
                 new string[]{
                     "You started talking with the ghost...",
                     "It ignores you and starts swinging it's hands wildly!",
