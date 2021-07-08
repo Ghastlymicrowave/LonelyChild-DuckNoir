@@ -20,11 +20,8 @@ public class EndingManager : MonoBehaviour
         endingState = EndingState.Neutral;
 
     }
-
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter2D(Collider2D col)
     {
-        //update ending state based off of inventory manager.
         if (inventoryManager.ghostsAscended.Count == 0 && inventoryManager.ghostsCrucified.Count > 0)
         {
             //bad end
@@ -40,10 +37,6 @@ public class EndingManager : MonoBehaviour
             //neutral end
             endingState = EndingState.Neutral;
         }
-    }
-    void OnTriggerEnter2D(Collider2D col)
-    {
-  print("YEYEYEYEYEYEYEYE");
         if (col.gameObject.tag == "Player")
         {
             switch(endingState)

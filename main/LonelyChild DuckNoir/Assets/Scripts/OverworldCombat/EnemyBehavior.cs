@@ -65,7 +65,10 @@ public class EnemyBehavior : MonoBehaviour
                 TryRespawn();
             }
         }
-        sprite.LookAt(Camera.main.transform.position, Vector3.back);
+        if (Camera.main!=null){
+            sprite.LookAt(Camera.main.transform.position, Vector3.back);
+        }
+        
         SetSpriteFacing();
         if (pm != null)
         {

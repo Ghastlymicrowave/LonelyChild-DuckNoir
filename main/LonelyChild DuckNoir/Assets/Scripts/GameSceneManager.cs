@@ -98,8 +98,9 @@ public class GameSceneManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         GameObject.FindObjectOfType<EnemyManager>().ReLoaded();
-        overworldCam.gameObject.SetActive(true);
-
+        if (overworldCam !=null){
+            overworldCam.gameObject.SetActive(true);
+        }
     }
 
     public void Pause(){
