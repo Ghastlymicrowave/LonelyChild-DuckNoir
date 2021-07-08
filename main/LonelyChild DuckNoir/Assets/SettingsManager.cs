@@ -14,7 +14,7 @@ public class SettingsManager : MonoBehaviour
         Load();
     }
     public void Load(){
-        options = new float[10];
+        options = new float[11];
         //TODO: add default values
         options[0] = PlayerPrefs.GetFloat("hsmooth",0.3f);
         options[1] = PlayerPrefs.GetFloat("vsmooth",0.4f);
