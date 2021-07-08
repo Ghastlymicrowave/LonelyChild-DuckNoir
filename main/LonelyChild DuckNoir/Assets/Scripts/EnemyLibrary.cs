@@ -367,7 +367,7 @@ public class TroubledChild : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
             "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy"};
         talkActions = new TalkEnum[][]{ 
-            new TalkEnum[]{TalkEnum.Talk,TalkEnum.Scold},
+            new TalkEnum[]{TalkEnum.Talk},
             new TalkEnum[]{TalkEnum.Chat,TalkEnum.Console,TalkEnum.Encourage} 
         };
 
