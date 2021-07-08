@@ -683,9 +683,15 @@ public class GremlinOfDeceit : EnemyClass
         sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Eraser);
 
         sentimentalSuccess = new string[]{
-            "\"Oh ye gods!  My power is evaporated by one fell blow?",
-            "\"No! \"Very well, if you must know… \"",
-            "I did not bring these ghosts and ghouls here.  There is someone down below...Oh!"
+            "\"Oh ye gods!\"\n\"My power is evaporated by one fell blow?\"",
+            "\"No!\"\n\"NO!!!\"",
+            "...",
+            "\"Very well, if you must know…\"",
+            "\"There is someone below even me...\"",
+            "\"I did not bring these spectres here...\"\n\"I merely... should I say...\"",
+            "\"...adopted them?\"",
+            "\"You will never truly win.\"",
+            "\"You should find a way to escape while you still can.\""
 
         };
         sentimentalFaliure = new string[]{
