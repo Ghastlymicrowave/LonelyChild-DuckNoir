@@ -27,7 +27,6 @@ public class SoundHolder : MonoBehaviour
         audioSource.volume = volume;
     }
     public void SetVol(float vol){
-        Debug.Log("setting volume:"+vol.ToString());
         audioSource.volume = vol;
     }
     public bool IsMusic(){

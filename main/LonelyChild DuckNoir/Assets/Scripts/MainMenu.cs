@@ -104,8 +104,12 @@ public class MainMenu : MonoBehaviour
         {
             optionsPanel.Cancel();
         }
+        if (credits != null){
         credits.SetActive(false);
+        }
+        if (howToPlay!=null){
         howToPlay.SetActive(false);
+        }
 
     }
 
