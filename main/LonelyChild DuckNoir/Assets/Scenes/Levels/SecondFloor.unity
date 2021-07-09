@@ -34446,6 +34446,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1649788881}
     m_Modifications:
+    - target: {fileID: 386186107493119303, guid: b0f16e97aac7f6f4e94448eeed44b1c9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 669de1104fd38b9499d7b63076efc9dc, type: 2}
     - target: {fileID: 3657608955701505999, guid: b0f16e97aac7f6f4e94448eeed44b1c9, type: 3}
       propertyPath: m_Name
       value: Doorway_Prefab
