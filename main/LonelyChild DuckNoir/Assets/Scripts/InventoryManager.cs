@@ -352,10 +352,8 @@ public class InventoryManager : MonoBehaviour
         SaveData save = new SaveData();
         save.ascended = new int[0];
         save.crucified = new int[0];
-        //save.roaming = new int[3]{1,2,3};
         save.attacks = new int[1]{(int)AttackActions.Flashlight};
         save.items = new int[1]{(int)ItemsEnum.Apple};
-        //change back to PlayroomWB if needed
         save.checkpointScene = "SecondFloor";
         
         File.WriteAllText(file,JsonUtility.ToJson(save));
@@ -367,6 +365,10 @@ public class InventoryManager : MonoBehaviour
         save.attacks = new int[attacks.Count];
         for(int i =0; i < attacks.Count; i++){
             save.attacks[i] = (int)attacks[i];
+        }
+        save.items = new int[items.Count];
+        for(int i =0; i < items.Count; i++){
+            save.items[i] = (int)items[i].id;
         }
         save.crucified = ghostsCrucified.ToArray();
         //save.roaming = ghostsRoaming.ToArray();

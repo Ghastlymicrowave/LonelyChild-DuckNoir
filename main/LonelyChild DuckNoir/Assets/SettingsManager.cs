@@ -20,13 +20,13 @@ public class SettingsManager : MonoBehaviour
         options[1] = PlayerPrefs.GetFloat("vsmooth",0.4f);
         options[2] = PlayerPrefs.GetFloat("hsensitivity",0.7f);
         options[3] = PlayerPrefs.GetFloat("vsensitivity",0.7f);
-        options[4] = PlayerPrefs.GetFloat("musicVol",0.8f);
-        options[5] = PlayerPrefs.GetFloat("sfxVol",0.8f);
+        options[4] = PlayerPrefs.GetFloat("musicVol",0.5f);
+        options[5] = PlayerPrefs.GetFloat("sfxVol",0.7f);
         options[6] = PlayerPrefs.GetFloat("camSmooth",0.4f);
         options[7] = PlayerPrefs.GetFloat("OverShoulder",1f);
         options[8] = PlayerPrefs.GetFloat("PosSmooth",.4f);
         options[9] = PlayerPrefs.GetFloat("RotSmooth",.4f);
-        options[10] = PlayerPrefs.GetFloat("ambientVol",0.7f);
+        options[10] = PlayerPrefs.GetFloat("ambientVol",0.8f);
 
     }
     public void UpdatePlayer(){
