@@ -108,9 +108,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6754674874353905211, guid: 19e9a9724a9be6743bcc238eb862ee7d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: -975867427779547037, guid: 19e9a9724a9be6743bcc238eb862ee7d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 19e9a9724a9be6743bcc238eb862ee7d, type: 3}
       propertyPath: m_Name
       value: CEILING_FINAL
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 19e9a9724a9be6743bcc238eb862ee7d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2511811754567536238, guid: 19e9a9724a9be6743bcc238eb862ee7d, type: 3}
       propertyPath: m_Materials.Array.data[0]
