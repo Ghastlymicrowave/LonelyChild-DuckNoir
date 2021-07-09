@@ -150,7 +150,6 @@ public class Interactable : MonoBehaviour
         if (other.tag=="PlayerInteract"){
             playerRef.InteractableEntered(this);
         }
-        Debug.Log(other.tag);   
     }
 
     void OnTriggerExit(Collider other){

@@ -65,19 +65,16 @@ public abstract class EnemyClass
     public bool triggerIsReaction = false;
     public Sprite[,] GetSprites()
     {
-        Debug.Log("Getting sprites");
         Sprite[,] toReturn = new Sprite[3, animationFrames];
         
         for (int i = 1; i < animationFrames+1; i++)
         {
-            Debug.Log("current: "+i.ToString()+" out of frames: "+animationFrames.ToString());
             string istring = i.ToString();
             string loadstring = folderPath;
             if (istring.Length<2){istring = "0"+istring;}
             toReturn[0, i-1] = Resources.Load<Sprite>(loadstring + "Front" + istring);
             toReturn[1, i-1] = Resources.Load<Sprite>(loadstring + "Back" + istring);
             toReturn[2, i-1] = Resources.Load<Sprite>(loadstring + "Side" + istring);
-            Debug.Log(toReturn[0, i-1].ToString()+toReturn[0, i-1].ToString()+toReturn[0, i-1].ToString());
         }
         return toReturn;
     }
