@@ -84,11 +84,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cda5fae0687815d4e97f46e3b42d855d, type: 3}
   overworldAudio:
   - {fileID: 8300000, guid: b9d86c7d6a7264d4296d10c39304057d, type: 3}
-  - {fileID: 8300000, guid: b9d86c7d6a7264d4296d10c39304057d, type: 3}
+  - {fileID: 8300000, guid: 9e42439b022bf2045a9815e1a82bb2ee, type: 3}
   - {fileID: 8300000, guid: b9d86c7d6a7264d4296d10c39304057d, type: 3}
   combatSceneName: CombatScene
   pauseSceneName: PauseScene
-  loadCheckpoint: 0
   currentLevel: 0
 --- !u!114 &1862562792055543357
 MonoBehaviour:
@@ -214,5 +213,5 @@ MonoBehaviour:
   sounds:
   - {fileID: 8300000, guid: 9d9b76a161275be40910006eff7c0fdd, type: 3}
   - {fileID: 8300000, guid: 77e2e8a739dbccb47b92fba9799bdb8a, type: 3}
-  volume: 0.5
   isMusic: 0
+  isAmbient: 0
