@@ -83,7 +83,7 @@ public class battleBehavior : MonoBehaviour
     List<SpecialText> specialText;
     public int[] spVals = {0};
     float animSpdScale = 1f;
-    // Start is called before the first frame update
+    [SerializeField] GameObject helpPanel;
     void Start()
     {
         toInject = new List<string>();
@@ -143,7 +143,12 @@ public class battleBehavior : MonoBehaviour
             }
         }
     }
-    // Update is called once per frame
+    public void OpenHelpMenu(){
+        helpPanel.SetActive(true);
+    }
+    public void CloseHelpMenu(){
+        helpPanel.SetActive(false);
+    }
     void Update()
     {
         if (gamePosition == GamePosition.EnemyDialogue && timer > typeSpeed)
@@ -187,7 +192,6 @@ public class battleBehavior : MonoBehaviour
     }
 
     public void ButtonPress(int buttonNum){
-        click.Play();
         if (buttonNum == (int)ButtonEnum.Run || buttonNum == (int)ButtonEnum.Crucifix){
             SubButtonPressed((ButtonEnum)buttonNum,0);
         }else{
@@ -229,6 +233,7 @@ public class battleBehavior : MonoBehaviour
 
     void SubButtonPressed(ButtonEnum actionType, int actionID)
     {
+        click.Play();
         gamePosition = GamePosition.EnemyDialogue;
         textBox.SetActive(true);
         currentLine = 0;

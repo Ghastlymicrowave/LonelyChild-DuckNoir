@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Warp3
+  m_Shader: {fileID: -6465566751694194690, guid: 1d03d82f500cf9c4d82bb4b45ccc1db2, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_a3d1df3fab1e47969d7d0cb41fa36508:
+        m_Texture: {fileID: 2800000, guid: f533c8ccbc3aef146abab857fc02c472, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_c5b72063d072450c908a26e82d140f24:
+        m_Texture: {fileID: 2800000, guid: 37399028316586e46af87b244a9054a1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 769d38a3a538ccf41bb7c3bc41c5b396, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - Color_88639ee055e14eb799492b8afdde2922: {r: 0.6226415, g: 0.2731399, b: 0.4306327, a: 0}
+    - Vector2_1a303ec887c34812a2698d988a473d5f: {r: 1, g: 1, b: 0, a: 0}
+    - Vector2_2ce322ced2c94405a6934125ae410708: {r: 0.2, g: 0.1, b: 0, a: 0}
+    - Vector2_c2c6bcbacc9242c1b6152e5462d73dce: {r: 0.4, g: 0.4, b: 0, a: 0}
+    - Vector2_c474865157a94ffd8c8dd0b0edae98e8: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - Vector2_ea88bd72e6a44c92b34beff4a37386ab: {r: 1, g: 1, b: 0, a: 0}
+    - Vector2_f4b0eae984e04b15921c785469ca8312: {r: 0.2, g: -0.2, b: 0, a: 0}
+  m_BuildTextureStacks: []
