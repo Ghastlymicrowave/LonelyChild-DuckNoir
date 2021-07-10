@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EyeIdleAlt
+  m_Name: rotation
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,7 +19,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0, y: 0, z: 0}
+        value: {x: -90, y: 0, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -27,107 +27,35 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 0.75
-        value: {x: -13.365689, y: 17.713318, z: -6.7466507}
-        inSlope: {x: 3.2795608, y: -13.619575, z: 0}
-        outSlope: {x: 3.2795608, y: -13.619575, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.76666665
-        value: {x: -13.288479, y: 17.449493, z: -6.744579}
-        inSlope: {x: 6.0048513, y: -18.06938, z: 0.24752589}
-        outSlope: {x: 6.0048513, y: -18.06938, z: 0.24752589}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 1, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.78333336
-        value: {x: -13.1764145, y: 17.11, z: -6.738438}
-        inSlope: {x: 7.4357696, y: -22.699522, z: 0.4882711}
-        outSlope: {x: 7.4357696, y: -22.699522, z: 0.4882711}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.18512821, z: 0.33333334}
-      - serializedVersion: 3
-        time: 1.9833333
-        value: {x: 13.078098, y: 7.096017, z: -2.929926}
-        inSlope: {x: 0.008328712, y: 6.3305492, z: 0}
-        outSlope: {x: 0.008328712, y: 6.3305492, z: 0}
+        time: 1
+        value: {x: -90, y: 90, z: 0}
+        inSlope: {x: 0, y: 90, z: 0}
+        outSlope: {x: 0, y: 90, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 2
-        value: {x: 13.064649, y: 7.205, z: -2.9569945}
-        inSlope: {x: -1.6288995, y: 6.7473044, z: -3.215757}
-        outSlope: {x: -1.6288995, y: 6.7473044, z: -3.215757}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 1, z: 0.33333334}
-      - serializedVersion: 3
-        time: 2.0166667
-        value: {x: 13.0235615, y: 7.335797, z: -3.036035}
-        inSlope: {x: -3.3081565, y: 8.923483, z: -6.23662}
-        outSlope: {x: -3.3081565, y: 8.923483, z: -6.23662}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 1, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 2.55
-        value: {x: -10.272, y: 16.487, z: -13.569}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
+        value: {x: -90, y: 180, z: 0}
+        inSlope: {x: 0, y: 90, z: 0}
+        outSlope: {x: 0, y: 90, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 3.6
-        value: {x: 8.214303, y: -0.529, z: 6.0209217}
-        inSlope: {x: -11.163533, y: 1.4544449, z: 7.964227}
-        outSlope: {x: -11.163533, y: 1.4544449, z: 7.964227}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.11111276, y: 0.63922864, z: 0.33333334}
-      - serializedVersion: 3
-        time: 3.8166666
-        value: {x: 5.910618, y: -0.10722548, z: 5.6854606}
-        inSlope: {x: -10.1071415, y: 2.4102085, z: -12.3105135}
-        outSlope: {x: -10.1071415, y: 2.4102085, z: -12.3105135}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.1646277}
-      - serializedVersion: 3
-        time: 6.483333
-        value: {x: -6.375759, y: 9.021194, z: 3.3593361}
-        inSlope: {x: 0, y: 0.09634361, z: 12.247063}
-        outSlope: {x: 0, y: 0.09634361, z: 12.247063}
+        time: 3
+        value: {x: -90, y: 270, z: 0}
+        inSlope: {x: 0, y: 90, z: 0}
+        outSlope: {x: 0, y: 90, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 6.5
-        value: {x: -6.371138, y: 9.022, z: 3.565}
-        inSlope: {x: 0.55162054, y: 0, z: 12.432269}
-        outSlope: {x: 0.55162054, y: 0, z: 12.432269}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.6400684}
-      - serializedVersion: 3
-        time: 7.55
-        value: {x: 0, y: 0, z: 0}
+        time: 4
+        value: {x: -90, y: 360, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -137,7 +65,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: GameObject/eyesmooth/The_EYE
+    path: 
   m_PositionCurves: []
   m_ScaleCurves: []
   m_FloatCurves: []
@@ -150,7 +78,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 3512002206
+      path: 0
       attribute: 4
       script: {fileID: 0}
       typeID: 4
@@ -162,7 +90,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 7.55
+    m_StopTime: 4
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -183,7 +111,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: -90
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -191,26 +119,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.76666665
-        value: -13.288479
-        inSlope: 6.0048513
-        outSlope: 6.0048513
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 1
-      - serializedVersion: 3
-        time: 2.0166667
-        value: 13.0235615
-        inSlope: -3.3081565
-        outSlope: -3.3081565
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 1
-      - serializedVersion: 3
-        time: 2.55
-        value: -10.272
+        time: 1
+        value: -90
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -218,17 +128,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 3.6
-        value: 8.214303
-        inSlope: -11.163533
-        outSlope: -11.163533
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.11111276
-      - serializedVersion: 3
-        time: 6.483333
-        value: -6.375759
+        time: 2
+        value: -90
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -236,8 +137,17 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 7.55
-        value: 0
+        time: 3
+        value: -90
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4
+        value: -90
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -248,7 +158,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: GameObject/eyesmooth/The_EYE
+    path: 
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -264,53 +174,35 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.78333336
-        value: 17.11
-        inSlope: -22.699522
-        outSlope: -22.699522
-        tangentMode: 0
+        time: 1
+        value: 90
+        inSlope: 90
+        outSlope: 90
+        tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.18512821
+        outWeight: 0.33333334
       - serializedVersion: 3
         time: 2
-        value: 7.205
-        inSlope: 6.7473044
-        outSlope: 6.7473044
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 1
-      - serializedVersion: 3
-        time: 2.55
-        value: 16.487
-        inSlope: 0
-        outSlope: 0
+        value: 180
+        inSlope: 90
+        outSlope: 90
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 3.6
-        value: -0.529
-        inSlope: 1.4544449
-        outSlope: 1.4544449
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.63922864
-      - serializedVersion: 3
-        time: 6.5
-        value: 9.022
-        inSlope: 0
-        outSlope: 0
+        time: 3
+        value: 270
+        inSlope: 90
+        outSlope: 90
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 7.55
-        value: 0
+        time: 4
+        value: 360
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -321,7 +213,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: GameObject/eyesmooth/The_EYE
+    path: 
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -337,8 +229,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.75
-        value: -6.7466507
+        time: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -346,8 +238,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.9833333
-        value: -2.929926
+        time: 2
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -355,8 +247,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 2.55
-        value: -13.569
+        time: 3
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -364,25 +256,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 3.8166666
-        value: 5.6854606
-        inSlope: -12.3105135
-        outSlope: -12.3105135
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.1646277
-      - serializedVersion: 3
-        time: 6.5
-        value: 3.565
-        inSlope: 12.432269
-        outSlope: 12.432269
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.6400684
-      - serializedVersion: 3
-        time: 7.55
+        time: 4
         value: 0
         inSlope: 0
         outSlope: 0
@@ -394,7 +268,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: GameObject/eyesmooth/The_EYE
+    path: 
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves:
@@ -405,7 +279,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: GameObject/eyesmooth/The_EYE
+    path: 
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -415,7 +289,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: GameObject/eyesmooth/The_EYE
+    path: 
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -425,9 +299,9 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: GameObject/eyesmooth/The_EYE
+    path: 
     classID: 4
     script: {fileID: 0}
-  m_HasGenericRootTransform: 0
+  m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events: []
