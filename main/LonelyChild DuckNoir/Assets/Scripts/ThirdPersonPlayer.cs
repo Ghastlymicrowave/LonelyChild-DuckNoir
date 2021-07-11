@@ -90,6 +90,10 @@ public class ThirdPersonPlayer : MonoBehaviour
         actualCamera.transform.rotation = Quaternion.Lerp(actualCamera.transform.rotation,cameraTransform.GetChild(0).transform.rotation,1f);
     }
 
+    public void StopFootsteps(){
+        sounds.EndFootsteps();
+    }
+
     public void UpdateOptions(float[] inputArray){
         HmouseSmoothing = Mathf.Clamp(1-Mathf.Pow(inputArray[0],.25f),0.05f,1f);
         VmouseSmoothing = Mathf.Clamp(1-Mathf.Pow(inputArray[1],.25f),0.05f,1f);
@@ -262,6 +266,7 @@ public class ThirdPersonPlayer : MonoBehaviour
         }
         else
         {
+            sounds.EndFootsteps();
             rb.velocity = Vector2.zero;
             if (!InventoryOpen){
                 Look(true);
@@ -320,19 +325,24 @@ public class ThirdPersonPlayer : MonoBehaviour
         //the change 8:49 pm
         if(interactableTarget != null)
         {
-            InteractableLeft(interactableTarget);
-        }
-        if (interactableTarget != thisInteractable)
-        {
+            float distanceToThis = Vector3.Distance(thisInteractable.transform.position,transform.position);
+            float distanceToOld = Vector3.Distance(interactableTarget.transform.position,transform.position);
+            if (distanceToThis<distanceToOld){
+                InteractableLeft(interactableTarget);
+                interactableTarget = thisInteractable;
+                interactableTarget.indicator.SetActive(true);
+            }
+            
+        }else{
             interactableTarget = thisInteractable;
             interactableTarget.indicator.SetActive(true);
         }
     }
     public void InteractableLeft(Interactable thisInteractable)
     {
+        interactableTarget.indicator.SetActive(false);
         if (interactableTarget == thisInteractable)
         {
-            interactableTarget.indicator.SetActive(false);
             interactableTarget = null;
         }
     }
