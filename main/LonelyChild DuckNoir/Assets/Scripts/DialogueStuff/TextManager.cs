@@ -175,76 +175,16 @@ public class TextManager : MonoBehaviour
                 return new string[] {"This is the door to the basement.\nUnlocked.","Upon opening the door, however, the staircase leading to the basement door, along with the basement itself, falls about seven stories downward.", "You should have known it wouldn't be that simple."};
             case 59:
                 return new string[] {"\"Hey, dude.\"\n\"Don't use the door behnd me.\""};
+            case 60:
+                return new string[]{
+                    "If you're trying to get to the basement, I don't think the stairs will be much help to you.",
+                    "However, I think this weird mouth...portal thing might take you down there. But it's teeth would get in the way so you'll need to get rid of those somehow.",
+                    "There are a few creepy eye-things on this floor, so you might try checking out those."
+                };
+            case 61:
+                return new string[]{"It's a shame the stairs are broken, if you're serious about going into the basement i'd reccomend messing up the eyes with something sharp, like the fire poker by that new fireplace.",
+                "Do you ever remember a fireplace in that room? It must have been a new addition, i've never seen it before now."};
             
         }
     }
-
-    /*
-    //this will eventually be replace by the same method in battleBehavior, i'm keeping this here in case
-    //there are or will be any other dependencies for it for the time being.
-    public string[] GetEnemyTextByID(int id){//using switch because no loaded memory and fast
-        switch(id){
-            // I'm leaving 0-50 for item behaviors and versatile game dialogue.
-            case 0: return stringsToArray("You decided to do 'None' as your turn...",
-            "You're not sure what you thought would happen...",
-            "\"*Snide Judgement*\"");
-            case 1: return stringsToArray("You ate the apple...",
-            "and gained 5 health!",
-            "\"...\"");
-            case 2: return stringsToArray("You held the ball out to the being...",
-            "But it cannot see it!",
-            "Your machine needs more charge!",
-            "\"...\"");
-
-
-            //The start of test ghost 1
-            //Attack
-            case 51: return stringsToArray("You Attacked with the Flashlight...",
-            "It was especially effective!",
-            "\"Ow, who turned on the lights?\"");
-            case 52: return stringsToArray("You Attacked with the Theramin...",
-            "The ghost... liked it?",
-            "\"That's nice...\"",
-            "\"Not really my genre though.\"",
-            "\"I'm more of a 'Boos' kind of guy.\""
-            );
-            case 53: return stringsToArray("You Attacked with the Fire Poker...",
-            "It worked fine!",
-            "\"Hey, cut that out!\"");
-            case 54: return stringsToArray("You Attacked with the Garlic...",
-            "It worked fine!",
-            "\"I'm a ghost, not a vampire...\"");
-            //Talk
-            case 55: return stringsToArray("You smiled...",
-            "The ghost smiled back!",
-            "\"hehe.\"");
-            case 56: return stringsToArray("You flirted with the ghost...",
-            "He's not available!",
-            "\"I actually have a boofriend...\"");
-            case 57: return stringsToArray("You laugh...",
-            "\"...\"",
-            "\"You okay?\"");
-            case 58: return stringsToArray("You stare at the ghost...",
-            "The ghost stares back!",
-            "How productive!");
-            //alttalk
-            case 59: return stringsToArray("You ate the apple...",
-            "and gained 5 health!",
-            "\"...\"");
-            case 60: return stringsToArray("You ate the apple...",
-            "and gained 5 health!",
-            "\"...\"");
-            case 61: return stringsToArray("You ate the apple...",
-            "and gained 5 health!",
-            "\"...\"");
-            case 62: return stringsToArray("You ate the apple...",
-            "and gained 5 health!",
-            "\"...\"");
-            //sentimental
-            case 63: return stringsToArray("You showed the ball to the ghost...",
-            "It felt... right.",
-            "\"Thank you...\"");
-            default: Debug.Log("got bad text id");return null;
-        }
-    }*/
 }
