@@ -59,12 +59,10 @@ public class TextManager : MonoBehaviour
                 return new string[] {"Looks like that worked.", "Press E on the door again."};
             //Another Item
             case 12:
-                return stringsToArray("You picked up a key!", "Go to a door you need to open and press the button on the left side of your screen...",
-                "Press 'Use with' to get the party started...");
+                return stringsToArray("You picked up a key!", "Go to a door you need to open and press the button on the left side of your screen...");
                 // door stuff
             case 13:
-                return stringsToArray("A locked door...", "You'll need to unlock it before you can use it.",
-                "Press 'Use with' to get the party started...");
+                return stringsToArray("A locked door...", "You'll need to unlock it before you can use it.");
             case 14:
                 return stringsToArray("You unlocked the door!", "Click on the exclamation point to open it!");
             case 15:

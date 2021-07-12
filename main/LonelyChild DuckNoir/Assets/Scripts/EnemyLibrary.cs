@@ -231,7 +231,7 @@ public class Narcissist : EnemyClass
     public Narcissist(battleBehavior battle = null) : base(battle)
     {
         splashTexts = new string[]{
-            "The Narcissist looks down on you and mutters something about \"wanting to find someone who's just as arrogant as himself\"",
+            "The Narcissist looks down on you and mutters something about \"wanting to find someone who's just as arrogant as himself.\"",
             "The Narcissist hovers with what looks like chip crumbs in his beard.",
             "The Narcissist mutters something about wasted time.",
             "The Narcissist grumbles about his receding hair."
@@ -312,8 +312,8 @@ public class Narcissist : EnemyClass
                 NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks","SentimentalItem"},
                 new string[]{
                     "You gloat, going on about your appearance and your accomplishments.",
-                    "If you actually even one of the things you said you did, you’d surely earn a Nobel prize...",
-                    "\"YES, Finally!\" Another piece of the puzzle!\"",
+                    "If you actually did even one of the things you said you did, you’d surely earn a Nobel prize...",
+                    "\"YES! Finally!\" Another piece of the puzzle!\"",
                     "\"I’ve rubbed off on you already!\"\n\"The attitude AND the ego!\"",
                     "\"But… I think something’s missing yet...\""
 
@@ -961,8 +961,8 @@ public class PoorDog : EnemyClass
     public PoorDog(battleBehavior battle = null) : base(battle)
     {
         name = "Poor Dog";
-        hp = 14;
-        maxHP = 14;
+        hp = 10;
+        maxHP = 10;
         id = 1;
         //spritepath
         attackPrefabNames = new string[] {
@@ -1117,7 +1117,7 @@ public class Tutorial : EnemyClass
             new EnemyReaction[] {
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
-                    "You attack with the Theremin.\nIt’s not so effective",
+                    "You attack with the Theremin.\nIt’s not so effective.",
                     "\"You know, I’m resistant to this attack.\"\n\"You might wanna try the other attack.\""
                 },new object[][]{SingleMethod(1)}),
                 NewReaction(new string[] {"DamageEnemy"},
@@ -1389,7 +1389,7 @@ public class BoredGhost : EnemyClass{
             new EnemyReaction[] {
                 NewReaction(new string[] {"ChangeTalks","DamagePlayer"},
                 new string[]{
-                    "You tell the ghost to try living in the present",
+                    "You tell the ghost to try living in the present.",
 "\"LIVE in the present? I’d have to be living first. My time’s long gone. Judging by how weak you look, yours isn’t too long either.\"",
 "\"No offense to you, but you’re no match for the other spirits in this place.\"",
 "The ghost’s words painfully unsettle you…" 
@@ -1399,7 +1399,7 @@ public class BoredGhost : EnemyClass{
             new EnemyReaction[] {
                 NewReaction(new string[] {"ChangeTalks"},
                 new string[]{
-                    "You tell the ghost that they can try fondly remembering the past",
+                    "You tell the ghost that they can try fondly remembering the past.",
 "\"Why would I do that? There’s just enough behind me as there is going for me. By that I mean there’s nothing.\""
                 },new object[][]{SingleMethod(1)})
             }),
@@ -1412,14 +1412,14 @@ public class BoredGhost : EnemyClass{
                 },new object[][]{SingleMethod(3),SingleMethod(
                     "eternity",
                     new string[]{ "\"I can’t believe a living person of all things could emphasize with me... I feel like you really get it.\""},
-                    new string[]{"\"You’ve been nice to be, but unless you have something else to say you’d best be on your way\""}
+                    new string[]{"\"You’ve been nice to be, but unless you have something else to say you’d best be on your way.\""}
                 )})
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Hope,
             new EnemyReaction[] {
                 NewReaction(new string[] {"SentimentalItem"},
                 new string[]{
-                    "You tell the ghost that everything is going to be ok"
+                    "You tell the ghost that everything is going to be ok."
                 },new object[][]{SingleMethod(
                     "hope",
                     new string[]{"\"That… gives me hope. Do you really mean that?\""},
@@ -1430,7 +1430,7 @@ public class BoredGhost : EnemyClass{
             new EnemyReaction[] {
                 NewReaction(new string[] {"SentimentalItem"},
                 new string[]{
-                    "You tell the ghost that it’s future lies elsewhere, it just needs to go there"
+                    "You tell the ghost that it’s future lies elsewhere, it just needs to go there."
                 },new object[][]{SingleMethod(
                     "future",
                     new string[]{"\"You’re really right, there is more out there, I totally didn’t even think about that- i’ve been so caught up doing well… nothing I guess.\""},
@@ -1441,7 +1441,7 @@ public class BoredGhost : EnemyClass{
             new EnemyReaction[] {
                 NewReaction(new string[] {"ChangeTalks"},
                 new string[]{
-                    "You tell the ghost that it’s future lies elsewhere, it just needs to go there"
+                    "You tell the ghost that it’s future lies elsewhere, it just needs to go there."
                 },new object[][]{SingleMethod(2)})
             }),
 
