@@ -60,9 +60,13 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (stillInScene){
             if (currentRespawnTime>0){
+                Debug.Log("still in scene, trying to respawn");
                 currentRespawnTime = Mathf.Max(0f,currentRespawnTime-Time.deltaTime);
-            }else if (spawned==false){
-                TryRespawn();
+                if (currentRespawnTime<=0){
+                    if (spawned==false){
+                        TryRespawn();
+                    }
+                }
             }
         }
         if (Camera.main!=null){
