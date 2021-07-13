@@ -489,7 +489,7 @@ public class NiceDemonGuy : EnemyClass
             "The demon says \"Hey, i'm not like other demons, you can talk to me!\"",
             "The demon says, \"Lovely weather we're having, ain't it? Just kidding, I haven't seen the sun in decades\"."
         };
-        sentiment = new List<string>{"talk","eternity","time","cycles","compliment"};
+        sentiment = new List<string>{"talk","eternity","cycles","compliment"};
         name = "NiceDemonGuy";
         hp = 15;
         maxHP = 15;
