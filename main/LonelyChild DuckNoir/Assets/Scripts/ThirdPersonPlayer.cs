@@ -340,9 +340,9 @@ public class ThirdPersonPlayer : MonoBehaviour
     }
     public void InteractableLeft(Interactable thisInteractable)
     {
-        interactableTarget.indicator.SetActive(false);
         if (interactableTarget == thisInteractable)
         {
+            interactableTarget.indicator.SetActive(false);
             interactableTarget = null;
         }
     }
