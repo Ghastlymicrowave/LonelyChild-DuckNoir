@@ -784,7 +784,11 @@ public class GremlinOfDeceit : EnemyClass
             new EnemyReaction[]{
                 NewReaction(new string[]{"ChangeTalks"},
                 new string[]{
+<<<<<<< HEAD
                     "\"Tick tock goes the ever clicking clock…\"\n\"sometimes forward...sometimes not!"
+=======
+                    "\"Tick tock goes the ever clicking clock…\"\n\"sometimes forward... ...sometimes not!"
+>>>>>>> 51d5b0b3ede6e08d82d2600fddac4c3eb3e4415c
                 },new object[][]{SingleMethod(1)})
                 }
             ),
@@ -796,7 +800,7 @@ public class GremlinOfDeceit : EnemyClass
                 },new object[][]{SingleMethod(3),SingleMethod(
                     "compliment",
                     new string[]{
-                    "\"Oh, compliments are good for me!\" \"I eat them up as you can see."},
+                    "\"Oh, compliments are good for me!\" \"I eat them up as you can see.\""},
                     new string[]{"\"Keep the compliments rolling, don't stop! The longer you wait the more you will rot!\""})})
                 }
             ),
@@ -814,7 +818,7 @@ public class GremlinOfDeceit : EnemyClass
                 NewReaction(new string[]{"ChangeTalks","SentimentalItem"},
                 new string[]{
                     "You ask the gremlin about his rhyming.",
-                    "\"Why there’s no rhyming here, dear boy.\"\n\"I only have the world to play with as my little toy.\""
+                    "\"Why, there’s no rhyming here, dear boy!\"\n\"I only have the world to play with as my little toy.\""
                 },new object[][]{SingleMethod(4),SingleMethod(
                     "ask",
                     new string[]{},
@@ -1158,7 +1162,7 @@ public class Tutorial : EnemyClass
                     "You talk with the enemy ghost.",
                     "\"Oh, hey, you’re talkin’ to me!\"\n\"More of a lover than a fighter, I presume?\"",
                     "\"The talk system works differently than the attack system.\n\"Let me explain it to you.\"\"",
-                    "\"Your goal for a talk victory is to get every bulb lit on your scanner.\"\n\"Every unlit bulb represent a talk that you have to perform.\"",
+                    "\"Your goal for a talk victory is to get every bulb lit on your scanner.\"\n\"Every unlit bulb represents a talk that you have to perform.\"",
                     "\"But, here’s the catch:\"\n\"not every talk choice makes a bulb light up, and your talk choices change with every talk you get right.\"","\"Observe the way that your talk choices change after this next attack of mine.\""
 
                 }, new object[][]{SingleMethod(new int[]{1}),SingleMethod(1),SingleMethod("talk",new string[]{},new string[]{})})
