@@ -367,6 +367,14 @@ public class TroubledChild : EnemyClass
             new TalkEnum[]{TalkEnum.Talk},
             new TalkEnum[]{TalkEnum.Chat,TalkEnum.Console,TalkEnum.Encourage} 
         };
+        
+        splashTexts = new string[]{
+            "The ghost says, \"It's so dark down here, I can't even see who you are...\"",
+            "The ghost says, \"Do you have a light, I get scared of the dark...\"",
+            "The ghost says, \"Have you seen rosevelt? I really miss him.\"",
+            "The ghost says, \"Have you seen teddy?\"",
+            "The ghost says, \"It's so lonley down here... and dark...\""
+        };
 
         specialVals = new int[] {0,0};
         triggerIsReaction = true;
@@ -489,7 +497,7 @@ public class NiceDemonGuy : EnemyClass
             "The demon says \"Hey, i'm not like other demons, you can talk to me!\"",
             "The demon says, \"Lovely weather we're having, ain't it? Just kidding, I haven't seen the sun in decades\"."
         };
-        sentiment = new List<string>{"talk","eternity","time","cycles","compliment"};
+        sentiment = new List<string>{"talk","eternity","cycles","compliment"};
         name = "NiceDemonGuy";
         hp = 15;
         maxHP = 15;
@@ -617,7 +625,8 @@ public class NiceDemonGuy : EnemyClass
             new EnemyReaction[] {
                 NewReaction(new string[] {"SentimentalItem","ChangeTalks"},
                 new string[]{
-                    "\"Hope?  Hope is something us demons do not have the luxury of even considering...sorry to bring the mood down, kid...\""
+                    "You ask the nice demon about the cyclical nature of existence.  ",
+                    "Well you know, as a demon who lives for eternity, I’ve noticed that everything is cyclical.  Friends come and go, just like the leaves on a tree... oh man, I just made myself sad..."
                 },new object[][]{SingleMethod("cycles",
                 new string[]{},
                 new string[]{}),SingleMethod(4)})
@@ -829,8 +838,8 @@ public class DevilsHands : EnemyClass
     public DevilsHands(battleBehavior battle = null) : base(battle)
     {
         splashTexts = new string[]{
-            "The ghost twists it's hands like it wants to play with something.",
-            "The ghost fidgets it's hands.",
+            "The ghost twists its hands like it wants to play with something.",
+            "The ghost fidgets its hands.",
         };
         sentiment = new List<string>{"ball", "chat"};
         name = "Devil's Hands";
@@ -913,7 +922,7 @@ public class DevilsHands : EnemyClass
                 NewReaction(new string[] {"DamagePlayer"},
                 new string[]{
                     "You started talking with the ghost...",
-                    "It ignores you and starts swinging it's hands wildly!",
+                    "It ignores you and starts swinging its hands wildly!",
                     "\"When I was a young thing, I could never keep my hands still.\"\n\"Always fidgeting... fidget and fidget.\"",
                     "\"They punished me a lot... and now I look like this! Serves me right!\"",
                     "\"No good boy fidgets like that...\"\n\"...no good deeds can come from that...\""
@@ -925,7 +934,7 @@ public class DevilsHands : EnemyClass
                 new string[]{
                     "You have trouble trying to talk to the ghost...\nIt seems very distracted.",
                 },new object[][]{SingleMethod(1),SingleMethod("chat",
-                new string[]{"\"I just need something to do with my hands, you know? I used to have a toy i'd use all the time... back when I had two legs and whatnot- you know.\""},
+                new string[]{"\"I just need something to do with my hands, you know? I used to have a toy I'd use all the time... back when I had two legs and whatnot- you know.\""},
                 new string[]{"\"Hey, you got anything I can hold? anything that snips, bounces, rolls- that kind of thing? I just can't focus...\""})})
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Ask,
@@ -994,7 +1003,7 @@ public class PoorDog : EnemyClass
             "Does this ball mean something to it?",
             "\"I feel like there could be ball...?\"",
             "\"But... No see ball?????\"",
-            "It snaps out of it's trance, was there something you needed to do first?"
+            "It snaps out of its trance, was there something you needed to do first?"
         };
 
         responses = new EnemyResponse[]{

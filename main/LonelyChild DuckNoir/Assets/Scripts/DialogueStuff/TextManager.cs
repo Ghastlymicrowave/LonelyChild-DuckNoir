@@ -166,7 +166,7 @@ public class TextManager : MonoBehaviour
                 "Interact with the door again to open it."};
             case 55:
                 return new string[]{"You picked up the keyring! It makes you feel like a janitor.",
-                "With this, you won't need to use a key on a door from your inventroy, simply interact with a door, and if you have a key for it, it'll open!"};
+                "With this, you won't need to use a key on a door from your inventory, simply interact with a door, and if you have a key for it, it'll open!"};
             case 56:
                 return stringsToArray("You picked up the showing room key!");
             case 57:
@@ -182,7 +182,7 @@ public class TextManager : MonoBehaviour
                     "There are a few creepy eye-things on this floor, so you might try checking out those."
                 };
             case 61:
-                return new string[]{"It's a shame the stairs are broken, if you're serious about going into the basement I'd reccomend messing up the eyes with something sharp, like the fire poker by that new fireplace.",
+                return new string[]{"It's a shame the stairs are broken, if you're serious about going into the basement I'd recommended messing up the eyes with something sharp, like the fire poker by that new fireplace.",
                 "Do you ever remember a fireplace in that room? It must have been a new addition, i've never seen it before now."};
             
         }

@@ -60,9 +60,13 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (stillInScene){
             if (currentRespawnTime>0){
+                Debug.Log("still in scene, trying to respawn");
                 currentRespawnTime = Mathf.Max(0f,currentRespawnTime-Time.deltaTime);
-            }else if (spawned==false){
-                TryRespawn();
+                if (currentRespawnTime<=0){
+                    if (spawned==false){
+                        TryRespawn();
+                    }
+                }
             }
         }
         if (Camera.main!=null){
@@ -166,7 +170,6 @@ public class EnemyBehavior : MonoBehaviour
         if (Vector3.Distance(player.transform.position,targetPos)>10f){
             spawned=true;
             visualGhost.SetActive(true);
-            chasePlayer = false;
             patrol = true;
             //TODO: add a spawned animation, probably by smoothing the position from a set z value. (so it arrises from the floor)
         }
