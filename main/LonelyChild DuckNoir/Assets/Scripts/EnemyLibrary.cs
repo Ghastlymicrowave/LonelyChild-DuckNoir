@@ -773,7 +773,7 @@ public class GremlinOfDeceit : EnemyClass
             new EnemyReaction[]{
                 NewReaction(new string[]{},
                 new string[]{
-                    "You ask the gremlin about his thoughts eternity.",
+                    "You ask the gremlin about his thoughts on eternity.",
                     "\"Oh, I’m eternity grateful for everything you see.\"\n\"Why not try and compliment me?"
                 },new object[][]{})
                 }
@@ -782,7 +782,7 @@ public class GremlinOfDeceit : EnemyClass
             new EnemyReaction[]{
                 NewReaction(new string[]{"ChangeTalks"},
                 new string[]{
-                    "\"TikTok goes the ever clicking clock…\"\n\"sometimes forward...sometimes not!"
+                    "\"Tick tock goes the ever clicking clock…\"\n\"sometimes forward... ...sometimes not!"
                 },new object[][]{SingleMethod(1)})
                 }
             ),
@@ -812,7 +812,7 @@ public class GremlinOfDeceit : EnemyClass
                 NewReaction(new string[]{"ChangeTalks","SentimentalItem"},
                 new string[]{
                     "You ask the gremlin about his rhyming.",
-                    "\"Why there’s no rhyming here, dear boy.\"\n\"I only have the world to play with as my little toy.\""
+                    "\"Why, there’s no rhyming here, dear boy!\"\n\"I only have the world to play with as my little toy.\""
                 },new object[][]{SingleMethod(4),SingleMethod(
                     "ask",
                     new string[]{},
