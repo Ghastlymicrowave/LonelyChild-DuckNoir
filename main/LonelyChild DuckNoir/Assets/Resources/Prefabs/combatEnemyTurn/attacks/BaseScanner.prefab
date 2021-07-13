@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bCol: {fileID: 67973536015729997}
-  boxColor: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 1, g: 1, b: 1, a: 1}
   arbitraryHeight: 0.5
   iconType: 3
-  showCube: 1
+  show: 0
 --- !u!61 &67973536015729997
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -120,10 +120,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bCol: {fileID: 67973536116280683}
-  boxColor: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 1, g: 1, b: 1, a: 1}
   arbitraryHeight: 0.5
   iconType: 3
-  showCube: 1
+  show: 0
 --- !u!61 &67973536116280683
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -236,10 +236,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bCol: {fileID: 67973536252602337}
-  boxColor: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 1, g: 1, b: 1, a: 1}
   arbitraryHeight: 0.5
   iconType: 3
-  showCube: 1
+  show: 0
 --- !u!61 &67973536252602337
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -311,10 +311,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bCol: {fileID: 67973536281020353}
-  boxColor: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 1, g: 1, b: 1, a: 1}
   arbitraryHeight: 0.5
   iconType: 3
-  showCube: 1
+  show: 0
 --- !u!61 &67973536281020353
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -386,10 +386,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bCol: {fileID: 67973536315812576}
-  boxColor: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 1, g: 1, b: 1, a: 1}
   arbitraryHeight: 0.5
   iconType: 3
-  showCube: 1
+  show: 0
 --- !u!61 &67973536315812576
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -461,10 +461,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bCol: {fileID: 67973536462506414}
-  boxColor: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 1, g: 1, b: 1, a: 1}
   arbitraryHeight: 0.5
   iconType: 3
-  showCube: 1
+  show: 0
 --- !u!61 &67973536462506414
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -536,10 +536,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bCol: {fileID: 67973536564544646}
-  boxColor: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 1, g: 1, b: 1, a: 1}
   arbitraryHeight: 0.5
   iconType: 3
-  showCube: 1
+  show: 0
 --- !u!61 &67973536564544646
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -611,10 +611,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bCol: {fileID: 67973536926184780}
-  boxColor: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 1, g: 1, b: 1, a: 1}
   arbitraryHeight: 0.5
   iconType: 3
-  showCube: 1
+  show: 0
 --- !u!61 &67973536926184780
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -859,10 +859,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bCol: {fileID: 67973537153306954}
-  boxColor: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 1, g: 1, b: 1, a: 1}
   arbitraryHeight: 0.5
   iconType: 3
-  showCube: 1
+  show: 0
 --- !u!61 &67973537153306954
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -999,6 +999,7 @@ MonoBehaviour:
     status: 
     minDamage: 0
     maxDamage: 0
+  timer: 0
 --- !u!1 &67973537364025904
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,10 +1045,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bCol: {fileID: 67973537364025906}
-  boxColor: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 1, g: 1, b: 1, a: 1}
   arbitraryHeight: 0.5
   iconType: 3
-  showCube: 1
+  show: 0
 --- !u!61 &67973537364025906
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1119,10 +1120,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bCol: {fileID: 67973537508256080}
-  boxColor: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 1, g: 1, b: 1, a: 1}
   arbitraryHeight: 0.5
   iconType: 3
-  showCube: 1
+  show: 0
 --- !u!61 &67973537508256080
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1174,8 +1175,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4457493621574018828}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -0.073, z: 0}
-  m_LocalScale: {x: 0.021673352, y: 0.025565587, z: 1}
+  m_LocalPosition: {x: -0.003, y: -0.004, z: 0}
+  m_LocalScale: {x: 0.9875, y: 0.975, z: 1}
   m_Children: []
   m_Father: {fileID: 9135304886556964312}
   m_RootOrder: 0
@@ -1220,7 +1221,7 @@ SpriteMask:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d7ad4c19748eeb14f9b181e27dca3bc1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ff42e7bc78212434a9905a36526bd234, type: 3}
   m_MaskAlphaCutoff: 0
   m_FrontSortingLayerID: 0
   m_BackSortingLayerID: 0
