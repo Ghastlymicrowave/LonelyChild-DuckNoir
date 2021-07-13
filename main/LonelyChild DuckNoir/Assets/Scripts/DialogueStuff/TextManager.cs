@@ -12,18 +12,18 @@ public class TextManager : MonoBehaviour
     public static string[] GetTextByID(int id){//using switch because no loaded memory and fast
         switch(id){
             case 0: return stringsToArray("That didn't work");
-            case 1: return stringsToArray("This is the tutorial for The Lonely Child's BETA VERSION!~.\nYou may click anywhere to read more.",
+            case 1: return stringsToArray("This is the tutorial for The Lonely Child!\nYou may click anywhere to read more.",
             "Use WASD To move and the mouse to interact with things.",
             "Interactables show up as '!' and can be clicked on to engage text and maybe add an item to your inventory.",
             "The ghosts walking around out there... if they touch you...",
-            "You'll be sucked into turn based combat.",
+            "You'll be sucked into turn based combat!",
             "You'll be able to attack with four weapons, with enemies having various weaknesses and resistances to them.",
             "During the enemy's turn, you'll have to dodge their attacks on your ghost finder using the mouse.",
             "Deal enough damage, and you'll be able to end the battle in one of two ways:",
             "Crucify (Mean and unfulfilling, but fast)\nOr...",
             "Select the right 'Talk' functionality, and then...",
-            "Show them the right sentimental item from your inventory to save their soul.\n(Long, but you're a good person I guess.)",
-            "Get to the end and defeat the boss to beat the Beta version!~",
+            "Show them the right sentimental item from your inventory to save their soul.\n(Long, but you're a good person, I guess.)",
+            "Get to the end and defeat the boss to beat the Game!",
             "But don't think it'll be that easy, however...",
             "There's puzzles to solve... An orphanage to navigate...",
             "And...\nOf course...",
@@ -34,7 +34,7 @@ public class TextManager : MonoBehaviour
             "Consider your decision wisely.");
             //items / attacks
             case 3: return stringsToArray("You picked up a Theremin!",
-            "This is an attack dealing sound damage in battle.",
+            "This is a bizarre instrument that deals sound damage in battle.",
             "So THIS is where you left it.");
             case 4: return stringsToArray("You picked up a Fire Poker!",
             "This is an attack dealing physical damage in battle.",
@@ -43,7 +43,7 @@ public class TextManager : MonoBehaviour
             "This is an attack dealing smell damage in battle.",
             "How long has this been sitting here?");
             case 6: return stringsToArray("You picked up a ball.",
-            "Looks like it'd be fun to play with.");
+            "It appears to be covered in drool.");
             case 7: return stringsToArray("You picked up an apple.",
             "How long has this been here?");
             case 8: return stringsToArray("You picked up a Photo.",
@@ -141,7 +141,7 @@ public class TextManager : MonoBehaviour
             case 46: return stringsToArray("You found a page from the ghost hunting manual.\nPress E or LMB to continue.",
             "\"Out there, when you're hunting for ghosts inside of haunted areas, you might just need to read something.\"",
             "\"Not everyone knows this, but reading in a haunted house is actually much different from normal reading.\"\n\"Here's how you read in a haunted house:\"",
-            "\"First, approach the thing you want to read and press 'E' on your keyboard.\"\n\"(The wierd looks you will get for walking around with a keyboard are irrelevant, ignore them.)\"",
+            "\"First, approach the thing you want to read and press 'E' on your keyboard.\"\n\"(The weird looks you will get for walking around with a keyboard are irrelevant, ignore them.)\"",
             "\"Second, press E again until you're done reading!\"\n\"Happy hunting!\"");
             case 47:
                 return stringsToArray("The library door, locked.\nYou'll need to unlock it before you can use it.", "If you find a key, pick it up with E.");
@@ -172,7 +172,7 @@ public class TextManager : MonoBehaviour
             case 57:
                 return new string[] {"Looks like that worked."};
             case 58:
-                return new string[] {"This is the door to the basement.\nUnlocked.","Upon opening the door, however, the staircase leading to the basement door, along with the basement itself, falls about seven stories downward.", "You should have known it wouldn't be that simple."};
+                return new string[] {"This is the door to the basement.\nUnlocked.","Upon opening, however, the staircase leading to the basement door, along with the basement itself, falls about seven stories downward.", "You should have known it wouldn't be that simple."};
             case 59:
                 return new string[] {"\"Hey, dude.\"\n\"Don't use the door behnd me.\""};
             case 60:
@@ -182,7 +182,7 @@ public class TextManager : MonoBehaviour
                     "There are a few creepy eye-things on this floor, so you might try checking out those."
                 };
             case 61:
-                return new string[]{"It's a shame the stairs are broken, if you're serious about going into the basement i'd reccomend messing up the eyes with something sharp, like the fire poker by that new fireplace.",
+                return new string[]{"It's a shame the stairs are broken, if you're serious about going into the basement I'd reccomend messing up the eyes with something sharp, like the fire poker by that new fireplace.",
                 "Do you ever remember a fireplace in that room? It must have been a new addition, i've never seen it before now."};
             
         }

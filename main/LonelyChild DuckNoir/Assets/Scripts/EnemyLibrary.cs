@@ -487,7 +487,7 @@ public class NiceDemonGuy : EnemyClass
         splashTexts = new string[]{
             "The demon says \"Man, things have really changed around here, I remember when this place wasn't run down\".",
             "The demon says \"Hey, i'm not like other demons, you can talk to me!\"",
-            "The demon says, \"Lovely weather we're having? Just kidding, I haven't seen the sun in decades\"."
+            "The demon says, \"Lovely weather we're having, ain't it? Just kidding, I haven't seen the sun in decades\"."
         };
         sentiment = new List<string>{"talk","eternity","time","cycles","compliment"};
         name = "NiceDemonGuy";
@@ -514,7 +514,8 @@ public class NiceDemonGuy : EnemyClass
         sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Russian_Doll);
 
         sentimentalSuccess = new string[]{
-            "\"Hey, woah kid…I…I remember this thing! Yeah, woah like eons ago, I mean like a looooooong time ago, when my consciousness was just beginning to grasp the very idea of what it meant to exist, I remember playing with this thing...\"",
+            "\"Hey, woah kid…I…I remember this thing! Yeah, woah like eons ago,\" \"I mean like a looooooong time ago, when my consciousness was just beginning to grasp the very idea of what it meant to exist,\"",
+            "I remember playing with this thing...\"",
             "\"Yeah it was so fun and fascinating,  ha!\"  \"I even remember thinking this is how you strange human creatures work...  Boy, perspectives really do change huh?\"",
             "A bright light begins to surround the surprisingly nice demon guy.",  
             "\"Oh snap!  Looks like I’m moving to some sort of other plain of existence.  Certainly it’s not everlasting paradise; I’m a demon after all, but hey at least I won’t be working for that crackpot downstairs.",  
@@ -532,7 +533,7 @@ public class NiceDemonGuy : EnemyClass
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
                     "You attacked with the theremin...",
-                    "\"Say, you're good with that thing!\"\n\"Down there...\""
+                    "\"Say, you're good with that thing!",
                 },new object[][]{SingleMethod((object)1)})
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,
@@ -610,7 +611,7 @@ public class NiceDemonGuy : EnemyClass
                     "You compliment the nice demon guy on his manners.", 
                 },new object[][]{SingleMethod("compliment",
                 new string[]{"\"Ah well, I appreciate that...you’re a nice kid...please don’t go down in that damn basement...\""},
-                new string[]{"\"Yeah that's sweet, but really do you really mean anything by that?\""}),SingleMethod(3)})
+                new string[]{"\"Yeah that's sweet, but really, do you really mean anything by that?\""}),SingleMethod(3)})
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Cycles,
             new EnemyReaction[] {
@@ -671,8 +672,8 @@ public class GremlinOfDeceit : EnemyClass
         splashTexts= new string[]{
             "\"I've always been here, you can't remove me, can't erase- it behooves me.\"",
             "\"Struggle all you're willing to try, you can't remove such a fly guy!\"",
-            "\"The appirition cackles non-stop.\"",
-            "\"The appirition babbles something about drawing on and erasing the fabric of the universe.\"",
+            "\"The apparition cackles non-stop.\"",
+            "\"The apparition babbles something about drawing on and erasing the fabric of the universe.\"",
         };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/GremlinOfDeceitDisplay";
@@ -714,7 +715,8 @@ public class GremlinOfDeceit : EnemyClass
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
                     "You attacked with the FirePoker...",
-                    "\"Oooo, that burns!\""
+                    "\"Oooo, that burns!\"",
+                    "(and I liked it)",
                 },new object[][]{SingleMethod((object)3)})
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,
@@ -782,7 +784,11 @@ public class GremlinOfDeceit : EnemyClass
             new EnemyReaction[]{
                 NewReaction(new string[]{"ChangeTalks"},
                 new string[]{
+<<<<<<< HEAD
+                    "\"Tick tock goes the ever clicking clock…\"\n\"sometimes forward...sometimes not!"
+=======
                     "\"Tick tock goes the ever clicking clock…\"\n\"sometimes forward... ...sometimes not!"
+>>>>>>> 51d5b0b3ede6e08d82d2600fddac4c3eb3e4415c
                 },new object[][]{SingleMethod(1)})
                 }
             ),
@@ -878,7 +884,7 @@ public class DevilsHands : EnemyClass
                     "You attacked with the theremin...",
                     "\"I've always thought of taking up music.\"",
                     "\"They would never let me.\"\n\"Too much noise\"",
-                    "\"The devil plays music.\"\n\"Young ones like me should practice more... wholesome passtimes.\""
+                    "\"The devil plays music.\"\n\"Young ones like me should practice more... wholesome pastimes.\""
                 },new object[][]{SingleMethod((object)3)})
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,
@@ -886,7 +892,7 @@ public class DevilsHands : EnemyClass
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
                     "You attacked with the FirePoker...",
-                    "\"Oh, that familiar sting!\"\n\"What's wrong with you?\""
+                    "\"Oh, that old familiar sting!\"\n\"What's wrong with you?\""
                 },new object[][]{SingleMethod((object)3)})
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,
@@ -1249,7 +1255,7 @@ public enum moods{
             new EnemyReaction[] {
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
-                    "You attacked with the FirePoker...",
+                    "You attacked with the Fire Poker...",
                     "The ghost is unphased",
                     "\"I couldn't feel that... I haven't been able to feel for a while...\"",
                     "\"Ouch that hurts...? is that want you want me to say?\""
@@ -1332,7 +1338,7 @@ public class BoredGhost : EnemyClass{
                 NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks"},
                 new string[]{
                     "You try asking the ghost to talk to you.",
-"\"Ok, I guess i’ll talk to you… I haven’t done anything this interesting in years I guess.\""
+"\"Ok, I guess I’ll talk to you… I haven’t done anything this interesting in years I guess.\""
                 },new object[][]{SingleMethod(new int[]{1}),SingleMethod(1)})
             }, new int[]{0}),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Talk,
@@ -1411,7 +1417,7 @@ public class BoredGhost : EnemyClass{
 "\"Wow, someone actually gets it. I thought I was totally alone."
                 },new object[][]{SingleMethod(3),SingleMethod(
                     "eternity",
-                    new string[]{ "\"I can’t believe a living person of all things could emphasize with me... I feel like you really get it.\""},
+                    new string[]{ "\"I can’t believe a living person of all things could empathize with me... I feel like you really get it.\""},
                     new string[]{"\"You’ve been nice to be, but unless you have something else to say you’d best be on your way.\""}
                 )})
             }),
