@@ -324,7 +324,7 @@ public class Narcissist : EnemyClass
                 NewReaction(new string[] {},
                 new string[]{
                     "You insult the narcissist once more.\nThis time, going after his flabby body.",
-                    "\"Hey, I appreciate the moxxy, kid, but are insults really the only thing you’ve got?\"",
+                    "\"Hey, I appreciate the moxie, kid, but are insults really the only thing you’ve got?\"",
                     "\"I don’t have TIME for a one-note kid.\"\n\"You’re gonna have to try harder to impress me.\""
 
                 },new object[][]{})
@@ -403,7 +403,7 @@ public class TroubledChild : EnemyClass
             new EnemyReaction[] {
                 NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks"},
                 new string[]{
-                    "\"Yay! My teddy! Ok, i’ll talk to you, you must be nicer than those other guys\"",
+                    "\"Yay! My teddy! Ok, I’ll talk to you, you must be nicer than those other guys\"",
                 },new object[][]{SingleMethod(new int[]{1}),SingleMethod(1)})
             },new int[]{0}),
             GenResponse(ButtonEnum.Items,(int)ItemsEnum.Teddy_Bear,
@@ -1156,7 +1156,7 @@ public class Tutorial : EnemyClass
                     "You talk with the enemy ghost.",
                     "\"Oh, hey, you’re talkin’ to me!\"\n\"More of a lover than a fighter, I presume?\"",
                     "\"The talk system works differently than the attack system.\n\"Let me explain it to you.\"\"",
-                    "\"Your goal for a talk victory is to get every bulb lit on your scanner.\"\n\"Every unlit bulb represent a talk that you have to perform.\"",
+                    "\"Your goal for a talk victory is to get every bulb lit on your scanner.\"\n\"Every unlit bulb represents a talk that you have to perform.\"",
                     "\"But, here’s the catch:\"\n\"not every talk choice makes a bulb light up, and your talk choices change with every talk you get right.\"","\"Observe the way that your talk choices change after this next attack of mine.\""
 
                 }, new object[][]{SingleMethod(new int[]{1}),SingleMethod(1),SingleMethod("talk",new string[]{},new string[]{})})
