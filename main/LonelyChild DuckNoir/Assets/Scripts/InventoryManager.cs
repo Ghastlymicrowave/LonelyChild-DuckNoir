@@ -105,7 +105,7 @@ public class InventoryManager : MonoBehaviour
                 return new ivItem(
                     "Staircase Key",
                     "I might actually be able to get somewhere with this.",
-                    new string[]{"I want to say this was to unlock the gate by the showing room."},
+                    new string[]{"I want to say this was to unlock the door by the showing room."},
                     "",
                     new string[]{""}, 
                     (int)ItemsEnum.StaircaseKey,
@@ -205,7 +205,7 @@ public class InventoryManager : MonoBehaviour
                 return new ivItem(
                     "Spinning Toy",
                     "An idle plaything.",
-                    new string[]{"You never really liked these things,\nbut some people just can't leave their hands to themselves."},
+                    new string[]{"You never really liked these things,\nbut some people just can't keep their hands to themselves."},
                     "",
                     new string[]{""}, 
                     (int)ItemsEnum.Spinning_Toy,
@@ -214,7 +214,7 @@ public class InventoryManager : MonoBehaviour
                 return new ivItem(
                     "Key Ring",
                     "A ring used for storing keys",
-                    new string[]{"With this handy key ring you'll be able to open door without needing to open your inventory!",
+                    new string[]{"With this handy key ring you'll be able to open doors without needing to open your inventory!",
                     "Just interact with a door and if you have the key, you'll automatically unlock and open it!",
                     "You're not quite sure what an \"Inventory\" is. Is this a page torn out of some game manual?"},
                     "",
