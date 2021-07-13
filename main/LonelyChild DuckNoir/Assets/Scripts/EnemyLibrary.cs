@@ -868,7 +868,7 @@ public class DevilsHands : EnemyClass
         };
         sentimentalFaliure = new string[]{
             "The ghost hesitates and looks at the Spinning Toy...",
-            "For a moment, it's able to stand still.\nIt isn't long, though.",
+            "For a moment, it's able to stand still!\nIt wasn't for very long, though...",
             "Does this Spinning Toy mean something to it?"
         };
 
@@ -923,7 +923,7 @@ public class DevilsHands : EnemyClass
             new EnemyReaction[] {
                 NewReaction(new string[] {"DamagePlayer","SentimentalItem"},
                 new string[]{
-                    "You have trouble trying to talk to the ghost... It seems very distracted.",
+                    "You have trouble trying to talk to the ghost...\nIt seems very distracted.",
                 },new object[][]{SingleMethod(1),SingleMethod("chat",
                 new string[]{"\"I just need something to do with my hands, you know? I used to have a toy i'd use all the time... back when I had two legs and whatnot- you know.\""},
                 new string[]{"\"Hey, you got anything I can hold? anything that snips, bounces, rolls- that kind of thing? I just can't focus...\""})})
@@ -987,7 +987,7 @@ public class PoorDog : EnemyClass
             "You held out the ball...\nIt felt... right.",
             "\"BALL!?!?!???!?\"",
             "\"!?!BORK?!?!???!?WOOF?!!?!??!?WOOF?!?!??!?BARK!?!??!?\"",
-            "... Goodbye!"
+            "...\"Boof.\""
         };
         sentimentalFaliure = new string[]{
             "The ghost hesitates and looks at the ball...",
@@ -1095,7 +1095,7 @@ public class Tutorial : EnemyClass
         sentimentalFaliure = new string[]{
             "You present the manual.",
             "\"Ah, that’s my sentimental item...\"\n\"You might want to use that after you’ve lit all your bulbs...\"",
-            "\"Talk to me for more information.\""
+            "\"'Talk' to me for more information.\""
         };
 
         /*
@@ -1167,9 +1167,9 @@ public class Tutorial : EnemyClass
             new EnemyReaction[] {
                 NewReaction(new string[] {},
                 new string[]{
-                    "You chatted up the enemy ghost",
+                    "You chatted up the enemy ghost.",
                     "\"Nothing much, man how about you?\"",
-                    "\"As you can see, this is a classic example of a talk that doesn’t make a bulb light up.\"\n\"Doesn’t proceed combat, but a great opportunity to get to know your enemy nonetheless.\""
+                    "\"As you can see, this is a classic example of a talk that doesn’t make a bulb light up.\"","\"These don't proceed combat, but they're great opportunity to get to know your enemy, nonetheless.\""
                 },new object[][]{})
             },new int[]{1}),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Request_Health,
@@ -1230,7 +1230,7 @@ public enum moods{
         sentimentalSuccess = new string[]{
             "You showed the Photo to the ghost...",
             "It felt... right.",
-            "\"Thaaaank yyooouu\""
+            "\"Thaaaank yyooouu...\""
         };
         sentimentalFaliure = new string[]{
             "The ghost hesitates and looks at the Photo...",
@@ -1243,7 +1243,7 @@ public enum moods{
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
                     "You attacked with the theramin...",
-                    "The ghost looks indifferent",
+                    "The ghost looks indifferent.",
                     "\"Are you picking on me?\""
                 },new object[][]{SingleMethod((object)1)})
             }),
@@ -1252,9 +1252,9 @@ public enum moods{
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
                     "You attacked with the Fire Poker...",
-                    "The ghost is unphased",
+                    "The ghost is unphased.",
                     "\"I couldn't feel that... I haven't been able to feel for a while...\"",
-                    "\"Ouch that hurts...? is that want you want me to say?\""
+                    "\"Ouch, that hurts...?\"\n\"is that want you want me to say?\""
                 },new object[][]{SingleMethod((object)1)})
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,
@@ -1325,7 +1325,7 @@ public class BoredGhost : EnemyClass{
             "\"I think I see it… There’s a light… Maybe this is my future?\""
         };
         sentimentalFaliure = new string[]{
-            "\"No… I can’t… I can’t go anywhere, I don’t want to go anywhere. Things will be fine the way they have been. Things don’t need to change...\""
+            "\"No… I can’t… I can’t go anywhere, I don’t want to go anywhere.\"","\"Things will be fine the way they have been. Things don’t need to change...\""
         };
 
         responses = new EnemyResponse[]{
@@ -1334,7 +1334,7 @@ public class BoredGhost : EnemyClass{
                 NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks"},
                 new string[]{
                     "You try asking the ghost to talk to you.",
-"\"Ok, I guess I’ll talk to you… I haven’t done anything this interesting in years I guess.\""
+"\"Ok, I guess I’ll talk to you…\",\"I haven’t done anything this interesting in years.\""
                 },new object[][]{SingleMethod(new int[]{1}),SingleMethod(1)})
             }, new int[]{0}),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Talk,
@@ -1342,7 +1342,7 @@ public class BoredGhost : EnemyClass{
                 NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks"},
                 new string[]{
                     "You try asking the ghost to keep talking.",
-"\"You’ve got more to say? Try not being so boring this time I guess.\""
+"\"You’ve got more to say?\"\n\"Try not being so boring this time, I guess.\""
                 },new object[][]{SingleMethod(new int[]{2}),SingleMethod(1)})
             }, new int[]{1}),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Talk,
@@ -1350,7 +1350,7 @@ public class BoredGhost : EnemyClass{
                 NewReaction(new string[] {"ChangeTalks"},
                 new string[]{
                     "You try asking the ghost to keep talking.",
-"\"Again? You really are stubborn. Well, I've got all day, whatcha got?\""
+"\"Again? You really are stubborn.\"\n\"Well, I've got all day, whatcha got?\""
                 },new object[][]{SingleMethod(1)})
             }, new int[]{2}),
 /////////////////////////////////////////////////////////
@@ -1425,7 +1425,7 @@ public class BoredGhost : EnemyClass{
                 },new object[][]{SingleMethod(
                     "hope",
                     new string[]{"\"That… gives me hope. Do you really mean that?\""},
-                    new string[]{"\"But where will I go, what will I do? I’m trapped here for eternity..."}
+                    new string[]{"\"But where will I go, what will I do? I’m trapped here for eternity...\""}
                 )})
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Future,
@@ -1435,7 +1435,7 @@ public class BoredGhost : EnemyClass{
                     "You tell the ghost that it’s future lies elsewhere, it just needs to go there."
                 },new object[][]{SingleMethod(
                     "future",
-                    new string[]{"\"You’re really right, there is more out there, I totally didn’t even think about that- i’ve been so caught up doing well… nothing I guess.\""},
+                    new string[]{"\"You’re really right, there is more out there, I totally didn’t even think about that- I’ve been so caught up doing… ...nothing, I guess.\""},
                     new string[]{"\"Do you really think i’ll get there?\""}
                 )})
             }),
