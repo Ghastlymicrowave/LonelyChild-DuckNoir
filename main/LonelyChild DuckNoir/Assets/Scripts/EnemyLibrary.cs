@@ -830,8 +830,8 @@ public class DevilsHands : EnemyClass
     public DevilsHands(battleBehavior battle = null) : base(battle)
     {
         splashTexts = new string[]{
-            "The ghost twists it's hands like it wants to play with something.",
-            "The ghost fidgets it's hands.",
+            "The ghost twists its hands like it wants to play with something.",
+            "The ghost fidgets its hands.",
         };
         sentiment = new List<string>{"ball", "chat"};
         name = "Devil's Hands";
@@ -914,7 +914,7 @@ public class DevilsHands : EnemyClass
                 NewReaction(new string[] {"DamagePlayer"},
                 new string[]{
                     "You started talking with the ghost...",
-                    "It ignores you and starts swinging it's hands wildly!",
+                    "It ignores you and starts swinging its hands wildly!",
                     "\"When I was a young thing, I could never keep my hands still.\"\n\"Always fidgeting... fidget and fidget.\"",
                     "\"They punished me a lot... and now I look like this! Serves me right!\"",
                     "\"No good boy fidgets like that...\"\n\"...no good deeds can come from that...\""
@@ -926,7 +926,7 @@ public class DevilsHands : EnemyClass
                 new string[]{
                     "You have trouble trying to talk to the ghost...\nIt seems very distracted.",
                 },new object[][]{SingleMethod(1),SingleMethod("chat",
-                new string[]{"\"I just need something to do with my hands, you know? I used to have a toy i'd use all the time... back when I had two legs and whatnot- you know.\""},
+                new string[]{"\"I just need something to do with my hands, you know? I used to have a toy I'd use all the time... back when I had two legs and whatnot- you know.\""},
                 new string[]{"\"Hey, you got anything I can hold? anything that snips, bounces, rolls- that kind of thing? I just can't focus...\""})})
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Ask,
@@ -995,7 +995,7 @@ public class PoorDog : EnemyClass
             "Does this ball mean something to it?",
             "\"I feel like there could be ball...?\"",
             "\"But... No see ball?????\"",
-            "It snaps out of it's trance, was there something you needed to do first?"
+            "It snaps out of its trance, was there something you needed to do first?"
         };
 
         responses = new EnemyResponse[]{
