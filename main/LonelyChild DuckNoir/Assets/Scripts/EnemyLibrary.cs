@@ -794,7 +794,7 @@ public class GremlinOfDeceit : EnemyClass
                 },new object[][]{SingleMethod(3),SingleMethod(
                     "compliment",
                     new string[]{
-                    "\"Oh, compliments are good for me!\" \"I eat them up as you can see."},
+                    "\"Oh, compliments are good for me!\" \"I eat them up as you can see.\""},
                     new string[]{"\"Keep the compliments rolling, don't stop! The longer you wait the more you will rot!\""})})
                 }
             ),
