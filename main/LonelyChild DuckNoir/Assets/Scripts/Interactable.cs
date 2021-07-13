@@ -31,6 +31,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] int usedRequiredItemTextId;
     [SerializeField] string sceneName;
     [SerializeField] bool useKeyRing = false;
+    [SerializeField] bool overrideKeyRing = false;
     void Start(){
         inventoryManager = GameObject.Find("PersistentManager").GetComponent<InventoryManager>();
         gameSceneManager = inventoryManager.gameObject.GetComponent<GameSceneManager>();
@@ -45,14 +46,15 @@ public class Interactable : MonoBehaviour
         TALK,//just gives the player some text
         ATTACK,//Gives the player a new attack
         ITEMandATTACK,
-        CHANGELEVEL
+        CHANGELEVEL,
+        NOTHING
     }
 
     public bool HasItemUse(){
         return needsItemUse;
     }
     bool HasKeyRing(){
-        bool hasRing = false;
+        bool hasRing = overrideKeyRing;
         bool hasItem = false;
         for (int i = 0 ; i < inventoryManager.items.Count; i++){
             if (inventoryManager.items[i].id == (int)ItemsEnum.KeyRing){
@@ -68,6 +70,7 @@ public class Interactable : MonoBehaviour
         isReady=false;
         if (needsItemUse){
             if (HasKeyRing()){
+                Debug.Log("Keyringused");
                 needsItemUse = false;
                 Trigger();
                 return;
@@ -170,7 +173,7 @@ public class Interactable : MonoBehaviour
             if (deleteRequiredItem){
                 inventoryManager.items.Remove(item);
             }
-            if(useKeyRing){
+            if(useKeyRing||overrideKeyRing){
                 Trigger();
             }else{
                 playerRef.TriggerDialogue(usedRequiredItemTextId);

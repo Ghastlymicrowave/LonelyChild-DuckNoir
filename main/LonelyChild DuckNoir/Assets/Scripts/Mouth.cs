@@ -21,6 +21,5 @@ public class Mouth : Activatable
             downwardInteractable.SetActive(true);
             lookInteractable.SetActive(false);
         }
-        //play animation
     }
 }
