@@ -367,6 +367,14 @@ public class TroubledChild : EnemyClass
             new TalkEnum[]{TalkEnum.Talk},
             new TalkEnum[]{TalkEnum.Chat,TalkEnum.Console,TalkEnum.Encourage} 
         };
+        
+        splashTexts = new string[]{
+            "The ghost says, \"It's so dark down here, I can't even see who you are...\"",
+            "The ghost says, \"Do you have a light, I get scared of the dark...\"",
+            "The ghost says, \"Have you seen rosevelt? I really miss him.\"",
+            "The ghost says, \"Have you seen teddy?\"",
+            "The ghost says, \"It's so lonley down here... and dark...\""
+        };
 
         specialVals = new int[] {0,0};
         triggerIsReaction = true;
