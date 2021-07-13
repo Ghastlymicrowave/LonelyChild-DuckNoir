@@ -601,9 +601,9 @@ PrefabInstance:
         your turn, you will be able to choose from multiple\n attacks, \nmultiple
         talks, items from your inventory, running\n away, and crucifixion\n\nDuring
         the ghost's turn, you will have to dodge the enemy's\n attacks on your scanner
-        using the mouse.\n\nYou have two methods of dealing with these enemies. The\n
-        method you use will determine the ending you get.\n\nMethod 1: \n* Attack
-        the enemy until their hp is at zero.\n* Crucify the ghost to destroy it.\n\nMethod
+        using the mouse.\n\nYou have two methods of dealing with these enemies. The\nmethod
+        you use will determine the ending you get.\n\nMethod 1: \n* Attack the enemy
+        until their hp is at zero.\n* Crucify the ghost to destroy it.\n\nMethod
         2:\n\n* Choose the right 'Talk' functionality to gain the ghost's trust until
         all bulbs are lit.\n* Choose the right sentimental item from your inventory
         from\n your inventory to save their soul.\n\nThe choice is yours.\n\nHave
@@ -1650,6 +1650,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6587634965331317486, guid: e9ec3f40a33a5a04a9ed0201eb9ad950, type: 3}
+      propertyPath: combatAudio.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b5178e06404596c4c9c5d74f012fcfd2, type: 3}
+    - target: {fileID: -6587634965331317486, guid: e9ec3f40a33a5a04a9ed0201eb9ad950, type: 3}
+      propertyPath: combatAudio.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: b5178e06404596c4c9c5d74f012fcfd2, type: 3}
     - target: {fileID: 477412931, guid: e9ec3f40a33a5a04a9ed0201eb9ad950, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
