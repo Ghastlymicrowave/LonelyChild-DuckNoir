@@ -403,7 +403,7 @@ public class TroubledChild : EnemyClass
             new EnemyReaction[] {
                 NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks"},
                 new string[]{
-                    "\"Yay! My teddy! Ok, i’ll talk to you, you must be nicer than those other guys\"",
+                    "\"Yay! My teddy! Ok, I’ll talk to you, you must be nicer than those other guys\"",
                 },new object[][]{SingleMethod(new int[]{1}),SingleMethod(1)})
             },new int[]{0}),
             GenResponse(ButtonEnum.Items,(int)ItemsEnum.Teddy_Bear,
