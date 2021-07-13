@@ -182,7 +182,7 @@ public class TextManager : MonoBehaviour
                     "There are a few creepy eye-things on this floor, so you might try checking out those."
                 };
             case 61:
-                return new string[]{"It's a shame the stairs are broken, if you're serious about going into the basement I'd reccomend messing up the eyes with something sharp, like the fire poker by that new fireplace.",
+                return new string[]{"It's a shame the stairs are broken, if you're serious about going into the basement I'd recommended messing up the eyes with something sharp, like the fire poker by that new fireplace.",
                 "Do you ever remember a fireplace in that room? It must have been a new addition, i've never seen it before now."};
             
         }

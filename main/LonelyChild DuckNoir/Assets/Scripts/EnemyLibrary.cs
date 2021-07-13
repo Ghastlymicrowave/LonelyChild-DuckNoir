@@ -617,7 +617,8 @@ public class NiceDemonGuy : EnemyClass
             new EnemyReaction[] {
                 NewReaction(new string[] {"SentimentalItem","ChangeTalks"},
                 new string[]{
-                    "\"Hope?  Hope is something us demons do not have the luxury of even considering...sorry to bring the mood down, kid...\""
+                    "You ask the nice demon about the cyclical nature of existence.  ",
+                    "Well you know, as a demon who lives for eternity, I’ve noticed that everything is cyclical.  Friends come and go, just like the leaves on a tree... oh man, I just made myself sad..."
                 },new object[][]{SingleMethod("cycles",
                 new string[]{},
                 new string[]{}),SingleMethod(4)})
