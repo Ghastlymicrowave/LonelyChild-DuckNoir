@@ -784,11 +784,7 @@ public class GremlinOfDeceit : EnemyClass
             new EnemyReaction[]{
                 NewReaction(new string[]{"ChangeTalks"},
                 new string[]{
-<<<<<<< HEAD
-                    "\"Tick tock goes the ever clicking clock…\"\n\"sometimes forward...sometimes not!"
-=======
-                    "\"Tick tock goes the ever clicking clock…\"\n\"sometimes forward... ...sometimes not!"
->>>>>>> 51d5b0b3ede6e08d82d2600fddac4c3eb3e4415c
+                    "\"Tick tock goes the ever clicking clock…\"\n\"sometimes forward... ...sometimes not!\""
                 },new object[][]{SingleMethod(1)})
                 }
             ),
