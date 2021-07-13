@@ -166,7 +166,7 @@ public class TextManager : MonoBehaviour
                 "Interact with the door again to open it."};
             case 55:
                 return new string[]{"You picked up the keyring! It makes you feel like a janitor.",
-                "With this, you won't need to use a key on a door from your inventroy, simply interact with a door, and if you have a key for it, it'll open!"};
+                "With this, you won't need to use a key on a door from your inventory, simply interact with a door, and if you have a key for it, it'll open!"};
             case 56:
                 return stringsToArray("You picked up the showing room key!");
             case 57:
