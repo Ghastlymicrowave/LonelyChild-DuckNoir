@@ -177,8 +177,11 @@ public class TextManager : MonoBehaviour
                 return new string[] {"\"Hey, dude.\"\n\"Don't use the door behnd me.\""};
             case 60:
                 return new string[]{
-                    "If you're trying to get to the basement, I don't think the stairs will be much help to you.",
-                    "However, I think this weird mouth...portal thing might take you down there. But it's teeth would get in the way so you'll need to get rid of those somehow.",
+                    "COOL GHOST: Oh hey kid!",
+                    "If you're trying to get to the basement, you can try the stairs, but...",
+                    "I don't think they're gonna help much.",
+                    "However, I think this weird mouth...portal thing might take you down there.",
+                    "But it's teeth would get in the way so you'll need to get rid of those somehow.",
                     "There are a few creepy eye-things on this floor, so you might try checking out those."
                 };
             case 61:

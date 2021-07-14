@@ -493,9 +493,9 @@ public class NiceDemonGuy : EnemyClass
     public NiceDemonGuy(battleBehavior battle = null) : base(battle)
     {
         splashTexts = new string[]{
-            "The demon says \"Man, things have really changed around here, I remember when this place wasn't run down\".",
+            "The demon says \"Man, I used to play with this wild toy a long time ago...\".",
             "The demon says \"Hey, i'm not like other demons, you can talk to me!\"",
-            "The demon says, \"Lovely weather we're having, ain't it? Just kidding, I haven't seen the sun in decades\"."
+            "The demon says, \"Stacking and unstacking, opening and closing, a really cool doll...\"."
         };
         sentiment = new List<string>{"talk","eternity","cycles","compliment"};
         name = "NiceDemonGuy";
@@ -524,9 +524,11 @@ public class NiceDemonGuy : EnemyClass
         sentimentalSuccess = new string[]{
             "\"Hey, woah kid…I…I remember this thing! Yeah, woah like eons ago,\" \"I mean like a looooooong time ago, when my consciousness was just beginning to grasp the very idea of what it meant to exist,\"",
             "I remember playing with this thing...\"",
-            "\"Yeah it was so fun and fascinating,  ha!\"  \"I even remember thinking this is how you strange human creatures work...  Boy, perspectives really do change huh?\"",
+            "\"Yeah it was so fun and fascinating,  ha!\"  \"I even remember thinking this is how you strange human creatures work...",
+        "Boy, perspectives really do change huh?",
             "A bright light begins to surround the surprisingly nice demon guy.",  
-            "\"Oh snap!  Looks like I’m moving to some sort of other plain of existence.  Certainly it’s not everlasting paradise; I’m a demon after all, but hey at least I won’t be working for that crackpot downstairs.",  
+            "\"Oh snap!  Looks like I’m moving to some sort of other plain of existence.",
+            "Certainly it’s not everlasting paradise; I’m a demon after all, but hey at least I won’t be working for that crackpot downstairs.",  
             "\"Thanks kid.\""
         };
         sentimentalFaliure = new string[]{
@@ -575,7 +577,8 @@ public class NiceDemonGuy : EnemyClass
             new EnemyReaction[] {
                 NewReaction(new string[] {"SentimentalItem","ChangeTalks"},
                 new string[]{
-                    "\"Woah, hey kid.  No one’s talked to me in years.  It’s gotten a little lonely to say the least.  But look, I’ll level with ya, I’m a demon and I like to do demon kinda stuff.\"", 
+                    "\"Woah, hey kid.  No one’s talked to me in years.  It’s gotten a little lonely to say the least.",
+                "But look, I’ll level with ya, I’m a demon and I like to do demon kinda stuff.", 
                     "\"You know, hauntings, possessions, the usual.  But I like you, so I’ll tell you what you wanna know, if you keep me engaged!\""
                 },new object[][]{SingleMethod("talk",new string[]{},new string[]{}),SingleMethod(1)})
             }),
@@ -590,8 +593,9 @@ public class NiceDemonGuy : EnemyClass
             new EnemyReaction[] {
                 NewReaction(new string[] {},
                 new string[]{
-                    "\"Oh well, I mean, I try my best!  It’s hard to get proper recognition when you’re a demon guy.\"",
-                    "\"Seems like all the people that are prone to compliments are scared of me... and the guys in my corner, well... let’s just say they aren’t too keen on sharing their feelings!\""
+                    "\"Oh well, I mean, I try my best!  It’s hard to get proper recognition when you’re a demon guy.",
+                    "\"Seems like all the people that are prone to compliments are scared of me... and the guys in my corner, well...",
+                    "let’s just say they aren’t too keen on sharing their feelings!\""
                 },new object[][]{})
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Eternity,
@@ -600,7 +604,8 @@ public class NiceDemonGuy : EnemyClass
                 new string[]{
                     "You asked the nice demon guy what eternity feels like." , 
                 },new object[][]{SingleMethod("eternity",new string[]{
-                    "\"Dropping in some heady philosophy, eh kid?  Well, I dunno exactly... things feel, sort of stretched.  Like things happen all at once or not at all.  Am I making any sense here?\""
+                    "\"Dropping in some heady philosophy, eh kid?  Well, I dunno exactly... things feel, sort of stretched.",
+                    "Like things happen all at once or not at all.  Am I making any sense here?"
                 },new string[]{
                     "\"Is what it is, were you going somewhere with this? Well get on with it.\""
                 }),SingleMethod(2)})
