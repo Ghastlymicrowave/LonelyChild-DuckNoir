@@ -55,6 +55,7 @@ public class MainMenu : MonoBehaviour
     {
         CloseStuff();
         inventoryManager.ResetSave();
+        inventoryManager.LoadJSON();
         gameSceneManager.TransitionScene("SecondFloor");//to start new game, otherwise, load current data and use that scene
 
     }
