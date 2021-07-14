@@ -522,9 +522,11 @@ public class NiceDemonGuy : EnemyClass
         sentimentalTrigger = new EnemyActionCase((int)ButtonEnum.Items,(int)ItemsEnum.Russian_Doll);
 
         sentimentalSuccess = new string[]{
-            "\"Hey, woah kid…I…I remember this thing! Yeah, woah like eons ago,\" \"I mean like a looooooong time ago, when my consciousness was just beginning to grasp the very idea of what it meant to exist,\"",
-            "I remember playing with this thing...\"",
-            "\"Yeah it was so fun and fascinating,  ha!\"  \"I even remember thinking this is how you strange human creatures work...",
+            "Hey, woah kid…I…I remember this thing! Yeah, woah like eons ago,",
+            "I mean like a looooooong time ago, when my consciousness was just beginning to grasp the very idea of what it meant to exist,",
+            "I remember playing with this thing...",
+            "Yeah it was so fun and fascinating,  ha!",  
+            "I even remember thinking this is how you strange human creatures work...",
         "Boy, perspectives really do change huh?",
             "A bright light begins to surround the surprisingly nice demon guy.",  
             "\"Oh snap!  Looks like I’m moving to some sort of other plain of existence.",
@@ -705,7 +707,10 @@ public class GremlinOfDeceit : EnemyClass
             "\"I did not bring these spectres here...\"\n\"I merely... should I say...\"",
             "\"...adopted them?\"",
             "\"You will never truly win.\"",
-            "\"You should find a way to escape while you still can.\""
+            "\"You should find a way to escape while you still can.\"",
+            "...",
+            "But...Your little orphan friends",
+            "I shall reunite you with them..."
 
         };
         sentimentalFaliure = new string[]{
@@ -759,7 +764,8 @@ public class GremlinOfDeceit : EnemyClass
             new EnemyReaction[]{
                 NewReaction(new string[]{"ChangeTalks","SentimentalItem"},
                 new string[]{
-                    "\"Come closer, little one, and I’ll give you a sweet treat!  I promise I am nice!  I won’t even bite!  I’ve got something over here you might like…\""
+                    "\"Come closer, little one, and I’ll give you a sweet treat!  I promise I am nice!  I won’t even bite!",
+                    "I’ve got something over here you might like…\""
                 },new object[][]{SingleMethod(1),SingleMethod(
                     "talk",
                     new string[]{},
@@ -773,8 +779,10 @@ public class GremlinOfDeceit : EnemyClass
                 new string[]{
                 },new object[][]{SingleMethod(2),SingleMethod(
                     "chat",
-                    new string[]{"\"Do you remember me, little O?\" \"From nightmares long ago? Children draw my form, you know!",
-                        "\"Haha, oh rhyming schemes! Am I responsible for reality splitting at the seams?\"\n \"Perhaps...\""},
+                    new string[]{"\"Do you remember me, little O?",
+                    "From nightmares long ago? Children draw my form, you know!",
+                        "\"Haha, oh rhyming schemes! Am I responsible for reality splitting at the seams?",
+                        "Perhaps...\""},
                     new string[]{"\"You won't get anything saying that again, go and find a better friend.\""}
                 )})
                 }
