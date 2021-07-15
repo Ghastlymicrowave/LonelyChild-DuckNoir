@@ -419,7 +419,7 @@ public class TroubledChild : EnemyClass
             "The ghost says, \"It's so dark down here, I can't even see who you are...\"",
             "The ghost says, \"Do you have a light, I get scared of the dark...\"",
             "The ghost says, \"Have you seen Roosevelt? I really miss him.\"",
-            "The ghost says, \"Have you seen my ted- er- Roosevelt?\"",
+            "The ghost says, \"Have you seen my ted- er- my Roosevelt?\"",
             "The ghost says, \"It's so lonely down here... and dark...\"",
             "The darkness closes in...",
             "The eye on the wall is dilated from the darkness of the room..."
@@ -447,16 +447,13 @@ public class TroubledChild : EnemyClass
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
                     "You attacked with the Theremin!",
-                    "\"Hey, you're playing pretty well!\"\n\"This reminds me of the works of Sir Cotus The Shrew!\"",
-                    "\"Huh!? You haven't heard of him!?\"",
-                    "\"Uh... Well... Of course you wouldn't!\"\n\"You're not refined enough!\"",
-                    "The ghost hides his embarrassment, taking heavy damage in the process."
-                },new object[][]{SingleMethod(3)}),
+                    "\"What is that sound?\""
+                },new object[][]{SingleMethod(1)}),
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
-                    "You attacked with the Theremin\nThe ghost seems to be in a lot of pain...",
-                    "\"Have you even played that thing before!?\"\n\"Turn it off, please!\""
-                },new object[][]{SingleMethod(4)})
+                    "You attacked with the Theremin!",
+                    "\"Well, it beats what I usually hear...\""
+                },new object[][]{SingleMethod(2)})
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Fire_Poker,
             new EnemyReaction[] {
@@ -486,7 +483,8 @@ public class TroubledChild : EnemyClass
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
                     "You attacked with the Flashlight...",
-                    "\"Thanks, it was dark in here...\""
+                    "\"Thanks, it was dark in here...\"",
+                    "The ghost was dissapointed when you put the Flashlight away...\nDo you need to use it at a different time?"
                 },new object[][]{SingleMethod((object)0)})
             }),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,

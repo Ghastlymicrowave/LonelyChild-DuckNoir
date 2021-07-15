@@ -469,7 +469,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1007449164}
   m_HandleRect: {fileID: 1007449163}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -895,7 +895,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7702230763314335053, guid: e9ec3f40a33a5a04a9ed0201eb9ad950, type: 3}
       propertyPath: enemyID
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7702230763314335055, guid: e9ec3f40a33a5a04a9ed0201eb9ad950, type: 3}
       propertyPath: m_RootOrder
@@ -1880,7 +1880,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -655.06744, y: 0}
+  m_AnchoredPosition: {x: -655.0675, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &727044050
