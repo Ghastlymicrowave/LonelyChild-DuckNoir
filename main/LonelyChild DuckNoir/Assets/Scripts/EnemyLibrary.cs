@@ -422,7 +422,9 @@ public class TroubledChild : EnemyClass
             "The ghost says, \"Have you seen my ted- er- my Roosevelt?\"",
             "The ghost says, \"It's so lonely down here... and dark...\"",
             "The darkness closes in...",
-            "The eye on the wall is dilated from the darkness of the room..."
+            "The eye on the wall is dilated from the darkness of the room...",
+            "He smells like burnt coals.",
+            "O feels uncomfortable."
         };
 
         specialVals = new int[] {0,0};
@@ -436,7 +438,9 @@ public class TroubledChild : EnemyClass
         sentimentalSuccess = new string[]{
             "\"Thanks so much for the talk, mister!\"\n\"It was really nice seeing someone around...\"",
             "\"It makes me feel like this place has a bit of hope!\"",
-            "\"So long!\""
+            "\"Like I...\"\n\"...have a bit of hope.\"",
+            "\"I guess it's time to move on.\"",
+            "\"Bye bye, mister!\""
         };
         sentimentalFaliure = new string[]{          
         };
@@ -492,7 +496,7 @@ public class TroubledChild : EnemyClass
                 NewReaction(new string[] {},
                 new string[]{
                     "\"No way, nuh-uh, not talking to you.\"",
-                    "\"Well, I might talk to you if you knew where Roosevelt was\""
+                    "\"Well, I might talk to you if you knew where Roosevelt was.\""
                 },new object[][]{})
             },new int[]{0}),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Talk,
@@ -506,7 +510,7 @@ public class TroubledChild : EnemyClass
             new EnemyReaction[] {
                 NewReaction(new string[] {"ChangeSpecialAbs","ChangeTalks"},
                 new string[]{
-                    "\"Yay! My teddy! Ok, I’ll talk to you, you must be nicer than those other guys\"",
+                    "\"Yay! My teddy! Ok, I’ll talk to you, you must be nicer than those other guys.\"",
                 },new object[][]{SingleMethod(new int[]{1}),SingleMethod(1)})
             },new int[]{0}),
             GenResponse(ButtonEnum.Items,(int)ItemsEnum.Teddy_Bear,
@@ -529,7 +533,7 @@ public class TroubledChild : EnemyClass
             new EnemyReaction[] {
                 NewReaction(new string[] {"SentimentalItem"},
                 new string[]{
-                    "You shine the Flashlight around the room"
+                    "You shine the Flashlight around the room."
                 },new object[][]{SingleMethod(
                     "light",
                     new string[]{"\"Wow, you’re really nice, thanks for lighting up the room!\""},
@@ -540,12 +544,12 @@ public class TroubledChild : EnemyClass
             new EnemyReaction[] {
                 NewReaction(new string[] {"ChangeSpecialRel"},
                 new string[]{
-                    "You shine the Flashlight around the room",
+                    "You shine the Flashlight around the room.",
 "\"Thanks a bunch, i’ve been in the dark for so long- it’s nice to see some light!\""
                 },new object[][]{SingleMethod(new int[]{-1,1})}),
                 NewReaction(new string[] {"ChangeSpecialRel"},
                 new string[]{
-                    "You shine the Flashlight around the room",
+                    "You shine the Flashlight around the room.",
 "\"Wow, you’re the kindest guy i’ve ever met! I like being able to see things!\""
                 },new object[][]{SingleMethod(new int[]{-1,1})})
             }),
@@ -567,11 +571,12 @@ public class TroubledChild : EnemyClass
                     "You try to start some small-talk with the ghost."
                 },new object[][]{SingleMethod(0),SingleMethod(
                     "chat",
-                    new string[]{ "\"It’s dark and quiet down here. You get used to the darkness somewhat, but never the sounds....\"",
-                    "\"The walls howl sometimes.\"\n\"It gets really freaky.\""},
+                    new string[]{ "\"It’s dark and quiet down here. You get used to the darkness somewhat, but never the sounds...\"",
+                    "\"The walls howl sometimes.\"\n\"It gets really freaky.\"",
+                    "\"Is there anything you could do about the dark?\""},
                     new string[]{"\"I know how it sounds, but the people in the basement do terrible things...\"",
                     "\"The results of the things they’ve done are still down there...\"",
-                    "\"Before you go, would you let me hold my teddy, pretty please?\""}
+                    "\"Before you go, would you let me hold my teddy, pretty please?\"\n\"And is there something you could do about the dark?\""}
                 )})
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Encourage,
@@ -767,8 +772,8 @@ public class GremlinOfDeceit : EnemyClass
     {
         sentiment = new List<string>{"talk","chat","compliment","ask"};
         name = "The Gremlin Of Deceit";
-        hp = 15;
-        maxHP = 15;
+        hp = 25;
+        maxHP = 25;
         id = 9;
 
         canRun = false;
@@ -792,8 +797,10 @@ public class GremlinOfDeceit : EnemyClass
         splashTexts= new string[]{
             "\"I've always been here, you can't remove me, can't erase- it behooves me.\"",
             "\"Struggle all you're willing to try, you can't remove such a fly guy!\"",
-            "\"The apparition cackles non-stop.\"",
-            "\"The apparition babbles something about drawing on and erasing the fabric of the universe.\"",
+            "The apparition cackles non-stop.",
+            "The apparition babbles something about drawing on and erasing the fabric of the universe.",
+            "O feels uncomfortable.",
+            "The blue glow glows brighter."
         };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/GremlinOfDeceitDisplay";
