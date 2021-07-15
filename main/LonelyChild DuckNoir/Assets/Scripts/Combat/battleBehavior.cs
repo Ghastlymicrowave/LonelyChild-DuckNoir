@@ -543,8 +543,7 @@ public class battleBehavior : MonoBehaviour
                         DamageEnemy(3);
                         toScroll.AddRange(new string[]{
                             "You attacked with the theremin...",
-                            "The ghost recoils at the pitch!",
-                            "\"Whine.... Turn it off...\""
+                            "It worked pretty well!"
                         });
                     break;
                     default: Missing(actionType,actionID);break;
