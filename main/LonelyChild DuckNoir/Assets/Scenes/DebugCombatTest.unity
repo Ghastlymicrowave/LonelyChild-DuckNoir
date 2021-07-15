@@ -469,8 +469,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1007449164}
   m_HandleRect: {fileID: 1007449163}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.9935311
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -895,7 +895,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7702230763314335053, guid: e9ec3f40a33a5a04a9ed0201eb9ad950, type: 3}
       propertyPath: enemyID
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7702230763314335055, guid: e9ec3f40a33a5a04a9ed0201eb9ad950, type: 3}
       propertyPath: m_RootOrder
@@ -1880,7 +1880,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -655.0675, y: 0}
+  m_AnchoredPosition: {x: -655.0674, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &727044050
@@ -4808,6 +4808,7 @@ MonoBehaviour:
   - {fileID: 721271627}
   - {fileID: 1481484752}
   - {fileID: 1973278962}
+  thisHealthbar: {fileID: 0}
   cameraShake: {fileID: 1625207813}
   subMenu: {fileID: 1481484756}
   gamePosition: 0
@@ -4823,7 +4824,9 @@ MonoBehaviour:
   Music: {fileID: 2126877264}
   scannerLogic: {fileID: 734580553}
   scanner: {fileID: 734580550}
+  healthbarAnim: {fileID: 0}
   spVals: 00000000
+  ghostHPanim: {fileID: 0}
   helpPanel: {fileID: 0}
 --- !u!82 &2126877260
 AudioSource:
@@ -5339,7 +5342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8799715230772906062, guid: 4452edd21234cb3439075be4bff3fa54, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8799715230772906062, guid: 4452edd21234cb3439075be4bff3fa54, type: 3}
       propertyPath: m_LocalPosition.x
