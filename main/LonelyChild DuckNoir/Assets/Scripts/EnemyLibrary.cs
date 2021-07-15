@@ -478,7 +478,8 @@ public class TroubledChild : EnemyClass
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
                     "You attacked with the Flashlight...",
-                    "\"Ooooh, I liked that...\""
+                    "\"Ooooh, I liked that...\"",
+                    "The ghost was dissapointed when you put the Flashlight away...\nDo you need to use it at a different time?"
                 },new object[][]{SingleMethod((object)0)}),
                 NewReaction(new string[] {"DamageEnemy"},
                 new string[]{
@@ -580,8 +581,10 @@ public class TroubledChild : EnemyClass
                     "You try to start some small-talk with the ghost."
                 },new object[][]{SingleMethod(0),SingleMethod(
                     "chat",
-                    new string[]{ "\"It’s dark and quiet down here. You get used to the lighting somewhat, but never the sounds. The walls howl sometimes. It gets really freaky.\""},
-                    new string[]{"\"I know I sound like i’m making it up, but the people in the basement would do terrible things, and the results of the things they’ve done are down there...\"",
+                    new string[]{ "\"It’s dark and quiet down here. You get used to the darkness somewhat, but never the sounds....\"",
+                    "\"The walls howl sometimes.\"\n\"It gets really freaky.\""},
+                    new string[]{"\"I know how it sounds, but the people in the basement do terrible things...\"",
+                    "\"The results of the things they’ve done are still down there...\"",
                     "\"Before you go, would you let me hold my teddy, pretty please?\""}
                 )})
             }),
@@ -590,7 +593,12 @@ public class TroubledChild : EnemyClass
                 NewReaction(new string[] {"ChangeTalks"},
                 new string[]{
                     "You try to raise the ghost’s spirits.",
-"\"What do you mean? I’m not afraid, just kinda lonely…\""
+            "\"What do you mean?\"\n\"I’m not afraid, just kinda lonely…\""
+                },new object[][]{SingleMethod(0)}),
+                NewReaction(new string[] {"ChangeTalks"},
+                new string[]{
+                    "You try to raise the ghost’s spirits.",
+            "\"Don't look at me like that!\"\n\"I'm lonely, not a wuss!\""
                 },new object[][]{SingleMethod(0)})
             }),
         };
