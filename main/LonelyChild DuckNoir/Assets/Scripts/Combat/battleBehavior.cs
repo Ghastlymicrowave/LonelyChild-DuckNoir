@@ -25,6 +25,7 @@ public class battleBehavior : MonoBehaviour
     [SerializeField] GameObject playerHurt;
     [SerializeField] DamageNum damageNumPrefab;
     [SerializeField] List<GameObject> toDisableOnEnd;
+    [SerializeField] Healthbar thisHealthbar;
     public Animator cameraShake;
     TextManager tm;
     public EnemyClass enemy;
@@ -63,11 +64,10 @@ public class battleBehavior : MonoBehaviour
     public ScannerLogic scannerLogic;
     public GameObject scanner;
     InventoryManager inventoryManager;
-    Image healthbarFilled;
     Vector2 healthbarSizeDelta;
     GameSceneManager gameSceneManager;
     GameObject enemyParent;
-    Animator healthbarAnim;
+    [SerializeField] Animator healthbarAnim;
     public enum endCon{
         SENTIMENT,
         DEFEAT,
@@ -83,6 +83,7 @@ public class battleBehavior : MonoBehaviour
     List<SpecialText> specialText;
     public int[] spVals = {0};
     float animSpdScale = 1f;
+    [SerializeField] Animator ghostHPanim;
     [SerializeField] GameObject helpPanel;
     void Start()
     {
@@ -96,8 +97,6 @@ public class battleBehavior : MonoBehaviour
         subMenu = GameObject.Find("SubmenuPanel").GetComponent<Submenu>();
         subMenu.gameObject.SetActive(false);
         scannerLogic.DecideLights(5-enemy.sentiment.Count);
-        healthbarFilled = GameObject.Find("HealthbarFilled").GetComponent<Image>();
-        healthbarSizeDelta = healthbarFilled.rectTransform.sizeDelta;
         hero = new HeroClass();
         enemyParent = GameObject.Find("EnemyParent");
         GameObject toInstantiate = (GameObject)Resources.Load(enemy.displayPrefabPath) as GameObject;
@@ -105,7 +104,6 @@ public class battleBehavior : MonoBehaviour
         enemyImageObj.transform.SetParent(enemyParent.transform);
         enemyImageObj.transform.localPosition = Vector3.zero;
         enemyImage = enemyImageObj.GetComponent<DisplayEnemy>();
-        healthbarAnim = healthbarFilled.transform.parent.GetComponent<Animator>();
         toScroll = new List<string>();
         Music.audioSource.clip = gameSceneManager.GetCombatAudio();
         Music.Play();
@@ -128,6 +126,9 @@ public class battleBehavior : MonoBehaviour
                 inventoryManager.items.Add(InventoryManager.GetItemFromId((ItemsEnum)i));
             }
         }
+
+        thisHealthbar.currentValue = 1f;
+        UpdatePlayerHp();
         
     }
 
@@ -182,8 +183,7 @@ public class battleBehavior : MonoBehaviour
         }
     }
     public void UpdatePlayerHp(){
-        healthbarFilled.rectTransform.sizeDelta = new Vector2((float)hero.hp/(float)hero.maxHP * healthbarSizeDelta.x,healthbarSizeDelta.y) ;
-        Debug.Log(healthbarFilled.fillAmount.ToString());
+        thisHealthbar.targetValue = (float)hero.hp/(float)hero.maxHP;
     }
     public void ButtonPress(ButtonEnum buttonNum)
     {
@@ -320,6 +320,8 @@ public class battleBehavior : MonoBehaviour
                 damage = Mathf.Max(damage+mod,1);
             }
             
+            
+
             enemy.hp -= damage;
             CheckEnemyAlive();
             Debug.Log("Dealt Damage: "+damage.ToString()+ "current HP: "+enemy.hp.ToString());
@@ -332,17 +334,28 @@ public class battleBehavior : MonoBehaviour
             float m = (float)enemy.maxHP;
             enemyImage.SetIdleSpd( animSpdScale * (-c+m)/m+1f);
             SetEnemyHpDisplay();
+            if (enemy.hp <= 0){
+                ghostHPanim.SetBool("noHP",true);
+                enemyImage.Weakened();
+            }else{
+                ghostHPanim.SetBool("noHP",false);
+            }
+
+            ghostHPanim.Play("Damage",0);
         }
         public void DamagePlayer(int damage){//can be negative to increase health
             hero.hp -= damage;
             if(damage > 0)
             {
+                thisHealthbar.Damage();
                 cameraShake.Play("CombatCam_Shake");
                 SendSignal("PLAYER_DAMAGED");
                 if (enemy.playerHurt){
                     enemy.playerHurt = false;
                     playerHurt.SetActive(true);
                 }
+            }else if (damage < 0){
+                thisHealthbar.Heal();
             }
             if (hero.hp <= 0)
             {hero.hp = 0; battleEnded = (int)endCon.DEFEAT;EndCombat(); }
@@ -400,6 +413,7 @@ public class battleBehavior : MonoBehaviour
         if (enemy.sentiment.Count<=0){
             battleEnded = (int)endCon.SENTIMENT;
             toScroll.AddRange(enemy.sentimentalSuccess);//combat ended
+            enemyImage.Ascended();
             DisableOnEnd();
         }else{
             toScroll.AddRange(enemy.sentimentalFaliure);
@@ -673,6 +687,7 @@ public class battleBehavior : MonoBehaviour
                 if (enemy.hp ==0){
                     //enemy banished
                     battleEnded = (int)endCon.CRUCIFIX;
+                    enemyImage.Crucified();
                     DisableOnEnd();
                     //add text about crucifix 
                     switch(Random.Range(0,4)){

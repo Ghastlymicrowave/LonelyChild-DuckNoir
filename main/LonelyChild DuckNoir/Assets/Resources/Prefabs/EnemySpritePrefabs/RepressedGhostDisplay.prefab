@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601c2f6c256835448987f6b672884a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxRand: 1
+  minSpd: 0.8
+  maxSpd: 1.2
+  thisSprite: {fileID: 0}
+  crucifiedSprite: {fileID: 0}
+  ascendedSprite: {fileID: 0}
+  weakendedSprite: {fileID: 0}
   statusSprites:
   - {fileID: 21300000, guid: 0e83b5dc511f02d40b80f685697f39b2, type: 3}
   - {fileID: 21300000, guid: 28b91dd6be9c4de4e96b287126bf0f69, type: 3}
@@ -84,6 +91,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4108659402153985992, guid: 19097b871d76ad3458a6d3ce8e7dd492, type: 3}
+      propertyPath: ascendedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 28b91dd6be9c4de4e96b287126bf0f69, type: 3}
+    - target: {fileID: 4108659402153985992, guid: 19097b871d76ad3458a6d3ce8e7dd492, type: 3}
+      propertyPath: crucifiedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8264206d9b6069b46b6d878956770614, type: 3}
+    - target: {fileID: 4108659402153985992, guid: 19097b871d76ad3458a6d3ce8e7dd492, type: 3}
+      propertyPath: weakendedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9fbb67092abbfda4196caea8b2fde8db, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19097b871d76ad3458a6d3ce8e7dd492, type: 3}
 --- !u!1 &8606576958087432493 stripped

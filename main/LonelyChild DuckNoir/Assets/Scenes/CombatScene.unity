@@ -1062,7 +1062,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1007449163}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9980455
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1403,12 +1403,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292102683}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9521, y: 0.7799998, z: -0.055000022}
-  m_LocalScale: {x: 0.09806686, y: 0.066909365, z: 0.066909365}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12.435502, y: 0.28024593, z: 0.12455365}
+  m_LocalScale: {x: 0.4903343, y: 0.34724244, z: 0.3472424}
   m_Children: []
-  m_Father: {fileID: 734580552}
-  m_RootOrder: 8
+  m_Father: {fileID: 662880630}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &292102685
 SpriteRenderer:
@@ -1473,6 +1473,7 @@ GameObject:
   - component: {fileID: 417154030}
   - component: {fileID: 417154029}
   - component: {fileID: 417154031}
+  - component: {fileID: 417154032}
   m_Layer: 5
   m_Name: Healthbar
   m_TagString: Untagged
@@ -1559,6 +1560,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &417154032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417154027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a9c0b45462a7d4dbe19ca1955d3916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthbarFill: {fileID: 847770274}
+  damageColor: {r: 1, g: 0.6084906, b: 0.6084906, a: 1}
+  healColor: {r: 0.6410701, g: 0.9811321, b: 0.63403344, a: 1}
+  defaultColor: {r: 0.6509804, g: 0.16862746, b: 0.16862746, a: 1}
+  transitonSpd: 0.2
+  colorTransitonSpd: 0.01
+  currentValue: 0
+  targetValue: 0
 --- !u!1 &419560509
 GameObject:
   m_ObjectHideFlags: 0
@@ -2737,6 +2758,7 @@ GameObject:
   - component: {fileID: 662880630}
   - component: {fileID: 662880632}
   - component: {fileID: 662880631}
+  - component: {fileID: 662880633}
   m_Layer: 0
   m_Name: TextMesh
   m_TagString: Untagged
@@ -2754,7 +2776,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.079}
   m_LocalScale: {x: 0.2, y: 0.19268775, z: 0.19268775}
-  m_Children: []
+  m_Children:
+  - {fileID: 292102684}
   m_Father: {fileID: 734580552}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2896,6 +2919,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &662880633
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662880629}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7e2ffaba4f9f69f43b4fc29e8abaccf6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &664732462
 GameObject:
   m_ObjectHideFlags: 0
@@ -3037,7 +3079,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -723.6427, y: 0.0000019073486}
+  m_AnchoredPosition: {x: -723.64264, y: 0.0000019073486}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &727044050
@@ -3169,7 +3211,6 @@ Transform:
   - {fileID: 1912775487}
   - {fileID: 1382243354}
   - {fileID: 662880630}
-  - {fileID: 292102684}
   m_Father: {fileID: 1973278963}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8371,6 +8412,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1973278963}
+  - component: {fileID: 1973278964}
   m_Layer: 0
   m_Name: scannerHolder
   m_TagString: Untagged
@@ -8393,6 +8435,25 @@ Transform:
   m_Father: {fileID: 89328493}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1973278964
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973278962}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1975008421
 GameObject:
   m_ObjectHideFlags: 0
@@ -8720,6 +8781,7 @@ MonoBehaviour:
   - {fileID: 721271627}
   - {fileID: 1481484752}
   - {fileID: 1973278962}
+  thisHealthbar: {fileID: 417154032}
   cameraShake: {fileID: 1625207813}
   subMenu: {fileID: 1481484756}
   gamePosition: 0
@@ -8735,7 +8797,9 @@ MonoBehaviour:
   Music: {fileID: 2126877264}
   scannerLogic: {fileID: 734580553}
   scanner: {fileID: 734580550}
+  healthbarAnim: {fileID: 417154031}
   spVals: 00000000
+  ghostHPanim: {fileID: 662880633}
   helpPanel: {fileID: 24816056}
 --- !u!82 &2126877260
 AudioSource:

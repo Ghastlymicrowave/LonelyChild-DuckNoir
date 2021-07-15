@@ -9,6 +9,10 @@ public class DisplayEnemy : MonoBehaviour
     [SerializeField] int maxRand = 1;
     [SerializeField] float minSpd = 0.8f;
     [SerializeField] float maxSpd = 1.2f;
+    [SerializeField] SpriteRenderer thisSprite;
+    [SerializeField] Sprite crucifiedSprite;
+    [SerializeField] Sprite ascendedSprite;
+    [SerializeField] Sprite weakendedSprite;
     Animator animator;
     battleBehavior battleBehavior;
     void Start(){
@@ -25,6 +29,23 @@ public class DisplayEnemy : MonoBehaviour
     public virtual void SetStatus(int status){
 
     }
+
+    public void Ascended(){
+        if (ascendedSprite!=null){
+            thisSprite.sprite = ascendedSprite;
+        }
+    }
+    public void Crucified(){
+        if (crucifiedSprite!=null){
+            thisSprite.sprite = crucifiedSprite;
+        }
+    }
+    public void Weakened(){
+        if (weakendedSprite!=null){
+            thisSprite.sprite = weakendedSprite;
+        }
+    }
+
     public void Attack(){
         animator.Play("Attack");
     }
