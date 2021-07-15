@@ -473,21 +473,7 @@ public class TroubledChild : EnemyClass
                     "\"AAGH!\"\n\"Not this again!\""
                 },new object[][]{SingleMethod(4)})
             }),
-            GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,
-            new EnemyReaction[] {
-                NewReaction(new string[] {"DamageEnemy"},
-                new string[]{
-                    "You attacked with the Flashlight...",
-                    "\"Ooooh, I liked that...\"",
-                    "The ghost was dissapointed when you put the Flashlight away...\nDo you need to use it at a different time?"
-                },new object[][]{SingleMethod((object)0)}),
-                NewReaction(new string[] {"DamageEnemy"},
-                new string[]{
-                    "You attacked with the Flashlight...",
-                    "\"Thanks, it was dark in here...\"",
-                    "The ghost was dissapointed when you put the Flashlight away...\nDo you need to use it at a different time?"
-                },new object[][]{SingleMethod((object)0)})
-            }),
+            
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Garlic,
             new EnemyReaction[] {
                 NewReaction(new string[] {"DamageEnemy"},
