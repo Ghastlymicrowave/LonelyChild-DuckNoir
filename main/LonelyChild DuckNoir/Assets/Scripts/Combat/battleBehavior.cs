@@ -369,6 +369,9 @@ public class battleBehavior : MonoBehaviour
                 enemy.sentiment.Remove(thisTag);
                 toScroll.AddRange(ifNew);
                 scannerLogic.DecideLights(5-enemy.sentiment.Count);
+                if (enemy.sentiment.Count<=0){
+                    enemyImage.Ascended();
+                }
             }else{
                 toScroll.AddRange(ifUsed);
             }
@@ -413,7 +416,7 @@ public class battleBehavior : MonoBehaviour
         if (enemy.sentiment.Count<=0){
             battleEnded = (int)endCon.SENTIMENT;
             toScroll.AddRange(enemy.sentimentalSuccess);//combat ended
-            enemyImage.Ascended();
+            
             DisableOnEnd();
         }else{
             toScroll.AddRange(enemy.sentimentalFaliure);
