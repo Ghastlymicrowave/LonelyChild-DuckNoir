@@ -440,7 +440,7 @@ public class TroubledChild : EnemyClass
                     new string[]{"\"Wow, you’re really nice, thanks for lighting up the room!\""},
                     new string[]{"\"Thanks, but I can see well enough now, you don’t need to keep shining that light everywhere.\""}
                 )})
-            },new int[]{-1,2}),
+            },new int[]{-1,1}),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Flashlight,
             new EnemyReaction[] {
                 NewReaction(new string[] {"ChangeSpecialRel"},
