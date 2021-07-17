@@ -15,7 +15,13 @@ public class Mouth : Activatable
     }
     public override void Activate()
     {
-        teethGroups[eyesRequired.Count].SetActive(false);
+        if (open){
+            anim.Play("Trans",0);
+        }
+        if (eyesRequired.Count<3){
+            teethGroups[eyesRequired.Count].SetActive(false);
+        }
+        
         if (eyesRequired.Count==0){
             open = true;
             downwardInteractable.SetActive(true);
