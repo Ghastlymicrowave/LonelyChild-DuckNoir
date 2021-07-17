@@ -6,6 +6,7 @@ public class PlayerCursor : MonoBehaviour
 {
     private AttackLogic attackLogic;
     public AudioSource audioSource;
+    public CircleCollider2D circle;
     private Camera cam;
     Vector3 realPos;
     Vector3 mousePos;
@@ -80,6 +81,7 @@ public class PlayerCursor : MonoBehaviour
         //flashing logic
         if (isFlashing)
         {
+            circle.enabled = false;
             invincibilityTimer += Time.deltaTime;
             isNormColor = !isNormColor;
             switch (isNormColor)
@@ -93,6 +95,7 @@ public class PlayerCursor : MonoBehaviour
             }
             if(invincibilityTimer > invincibilityDuration)
             {
+                circle.enabled = true;
                 isFlashing = false;
                 cursor.color = cursorNorm;
                 invincibilityTimer = 0f;
