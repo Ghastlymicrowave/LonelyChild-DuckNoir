@@ -5,8 +5,10 @@ using Combat;
 
 public class ProjectileOne : MonoBehaviour
 {
-    public enum ProjectileType { Regular, SineX, SineY, ReverseSineX, TurretOne, LocalRegular, Homing };
+    public enum ProjectileType {Regular, SineX, SineY, ReverseSineX, TurretOne, LocalRegular, Homing, GoodThenBad,None };
     public bool destroyOnCollision = true;
+    [SerializeField] SpriteRenderer spriteForGoodThenBad;
+    [SerializeField] BoxCollider2D colForGoodThenBad;
     public ProjectileType projectileType;
     //These six are only needed for turrets.
     [SerializeField] GameObject toShoot;
@@ -30,6 +32,9 @@ public class ProjectileOne : MonoBehaviour
     AttackLogic logic;
     float logicDuration;
 
+    float fullTimer = 0f;
+    Color tempp;
+
     void Start()
     {
         //projectile.speed *= 0.0001f;
@@ -41,6 +46,10 @@ public class ProjectileOne : MonoBehaviour
 
             currentDirection = (cursor.transform.position - transform.position).normalized;
 
+        }
+        if(projectileType == ProjectileType.GoodThenBad)
+        {
+            colForGoodThenBad.enabled = false;
         }
         if (projectileType == ProjectileType.Homing){
             cursor = GameObject.Find("Player Cursor");
@@ -59,6 +68,7 @@ public class ProjectileOne : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        fullTimer += Time.deltaTime;
         UpdateStuff();
     }
     void OnTriggerEnter2D(Collider2D col)
@@ -105,6 +115,21 @@ public class ProjectileOne : MonoBehaviour
                 Vector2 targ = (cursor.transform.position - transform.position).normalized;
                 rb.velocity = Vector2.Lerp(rb.velocity.normalized,targ,shootingTrackSpeed * Time.deltaTime).normalized * projectile.speed;
                 break;
+            case ProjectileType.GoodThenBad:
+                if(fullTimer < 1f)
+                {
+                    tempp = spriteForGoodThenBad.color;
+                    tempp.a = fullTimer;
+                    spriteForGoodThenBad.color = tempp;
+                }
+                else
+                {
+                    tempp = spriteForGoodThenBad.color;
+                    tempp.a = 1f;
+                    spriteForGoodThenBad.color = tempp;
+                    colForGoodThenBad.enabled = true;
+                }
+                break;
             case ProjectileType.LocalRegular:
                 rb.velocity = -transform.right * projectile.speed;
                 break;
@@ -140,7 +165,7 @@ public class ProjectileOne : MonoBehaviour
                 break;
 
             default:
-                print("You messed up the projectileone");
+                print("You reached default in the projectileone");
                 break;
         }
     }

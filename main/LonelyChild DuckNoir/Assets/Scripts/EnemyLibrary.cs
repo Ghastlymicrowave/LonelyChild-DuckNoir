@@ -1102,7 +1102,8 @@ public class PoorDog : EnemyClass
         //spritepath
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Turret1",
-            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
+            "Prefabs/combatEnemyTurn/attacks/Bone1(Attack)",
+            "Prefabs/combatEnemyTurn/attacks/Bone1(Attack)",
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
         talkActions = new TalkEnum[][]{ 
             new TalkEnum[]{TalkEnum.Pet,TalkEnum.Chat,TalkEnum.Fake_Throw}, 
