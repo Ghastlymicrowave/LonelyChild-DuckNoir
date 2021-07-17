@@ -8,6 +8,8 @@ public class Mouth : Activatable
     [SerializeField] GameObject downwardInteractable;
     [SerializeField] GameObject lookInteractable;
     [SerializeField] GameObject[] teethGroups;
+    [SerializeField] SimpleSoundCue activate;
+    [SerializeField] SimpleSoundCue enter;
     public List<EvilEye> eyesRequired;
     public bool open = false;
     void Start(){
@@ -15,14 +17,14 @@ public class Mouth : Activatable
     }
     public override void Activate()
     {
-        if (open){
-            anim.Play("Trans",0);
-        }
         if (eyesRequired.Count<3){
             teethGroups[eyesRequired.Count].SetActive(false);
         }
-        
-        if (eyesRequired.Count==0){
+        if (open){
+            anim.Play("Trans",0);
+            enter.Play();
+        }else if (eyesRequired.Count==0){
+            activate.Play();
             open = true;
             downwardInteractable.SetActive(true);
             lookInteractable.SetActive(false);
