@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8748845151303367871}
   - component: {fileID: 8748845151303367859}
   - component: {fileID: 7852327305750285526}
-  - component: {fileID: 5659742166898673415}
+  - component: {fileID: 4315480204728737415}
   m_Layer: 0
   m_Name: BoneEasier
   m_TagString: Projectile
@@ -110,14 +110,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8748845151303367868}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7957315, w: 0.60564965}
   m_LocalPosition: {x: 0, y: 1.7, z: -4.45}
   m_LocalScale: {x: 2.0473, y: 2.0473, z: 2.0473}
   m_Children:
   - {fileID: 887236199079686640}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -105.449}
 --- !u!212 &8748845151303367857
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -251,7 +251,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.01551944, y: 0.4}
   m_EdgeRadius: 0
---- !u!95 &5659742166898673415
+--- !u!95 &4315480204728737415
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -261,7 +261,7 @@ Animator:
   m_GameObject: {fileID: 8748845151303367868}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 43856d4f52076a841b88bd8cf077b5db, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9da3033084b606d41b55d9cccba144ba, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
