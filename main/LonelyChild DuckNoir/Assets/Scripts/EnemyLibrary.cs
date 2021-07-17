@@ -406,7 +406,6 @@ public class TroubledChild : EnemyClass
         //spritepath
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
-            "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2",
             "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_3",
             "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy",
             };
@@ -614,8 +613,7 @@ public class NiceDemonGuy : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_3",
             "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy",
-            "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
-            "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2"};
+            "Prefabs/combatEnemyTurn/attacks/Sine_Harder"};
         talkActions = new TalkEnum[][]{ 
             new TalkEnum[]{TalkEnum.Talk},
             new TalkEnum[]{TalkEnum.Chat,TalkEnum.Encourage,TalkEnum.Eternity}, 
@@ -783,7 +781,6 @@ public class GremlinOfDeceit : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
             "Prefabs/combatEnemyTurn/attacks/Mix_Easy",
-            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy2",
             "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
             
             "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy"};
@@ -1204,9 +1201,10 @@ public class Tutorial : EnemyClass
         id = 4;
         canRun = false;
         attackPrefabNames = new string[] {
-            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
-            "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2",
-            "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
+            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy_Tutorial",
+            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy2",
+            "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2_Tutorial",
+            "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy_Tutorial"};
         talkActions = new TalkEnum[][]{ 
             new TalkEnum[]{TalkEnum.Talk} ,
             new TalkEnum[]{TalkEnum.Chat,TalkEnum.Request_Health,TalkEnum.Request_Proceed} ,
