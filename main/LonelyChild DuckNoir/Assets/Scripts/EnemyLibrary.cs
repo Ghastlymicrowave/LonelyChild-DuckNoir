@@ -234,7 +234,9 @@ public class Narcissist : EnemyClass
             "The Narcissist looks down on you and mutters something about \"wanting to find someone who's just as arrogant as himself.\"",
             "The Narcissist hovers with what looks like chip crumbs in his beard.",
             "The Narcissist mutters something about wasted time.",
-            "The Narcissist grumbles about his receding hair."
+            "The Narcissist grumbles about his receding hair.",
+            "It smells pretentious in here.",
+            "Is that... fog?\nDid he bring a fog machine in here?"
         };
         name = "The Narcissist";
         hp = 20;
@@ -243,10 +245,13 @@ public class Narcissist : EnemyClass
         canRun = false;
         //spritepath
         attackPrefabNames = new string[] {
-            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
-            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy1",
+            "Prefabs/combatEnemyTurn/attacks/Spin_Narcissist_1",
             "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_2",
-            "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
+            "Prefabs/combatEnemyTurn/attacks/SineReverse_Narcissist_1",
+            "Prefabs/combatEnemyTurn/attacks/Spin_Narcissist_2"};
+
+        //  "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy1",
+        //  "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
         talkActions = new TalkEnum[][]{ 
             new TalkEnum[]{TalkEnum.Chat, TalkEnum.Call_Him_Bald} ,
             new TalkEnum[]{TalkEnum.Gloat, TalkEnum.Compliment, TalkEnum.Insult} ,
@@ -311,7 +316,7 @@ public class Narcissist : EnemyClass
                 new string[]{
                     "You attacked with the Flashlight...",
                     "\"Oooh, are you trying to get a good look at my glorious self?\"",
-                    "\"Let strike a pose for you!\"\n\"How's this one?\"\n\"How about this!?\"",
+                    "\"Let me strike a pose for you!\"\n\"How's this one?\"\n\"How about this!?\"",
                     "\"Now, stop wasting my TIME.\""
                 },new object[][]{SingleMethod((object)2)})
             }),
