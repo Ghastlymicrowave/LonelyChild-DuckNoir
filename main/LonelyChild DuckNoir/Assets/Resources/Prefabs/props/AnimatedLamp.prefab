@@ -26,7 +26,8 @@ GameObject:
   - component: {fileID: 7113253769019737539}
   - component: {fileID: 8420591541611207036}
   - component: {fileID: 5358350728172815211}
-  - component: {fileID: 7144138804401198752}
+  - component: {fileID: 8105666755872443178}
+  - component: {fileID: 8583795626571656611}
   m_Layer: 0
   m_Name: AnimatedLamp
   m_TagString: Untagged
@@ -113,22 +114,40 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2064214052206832847, guid: e9cf962874e59454589989ba69dfff21, type: 3}
---- !u!111 &7144138804401198752
-Animation:
+--- !u!95 &8105666755872443178
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3778597573076127264}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 0885abca4dd7db345875dba175e51099, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 0885abca4dd7db345875dba175e51099, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c598fdc310df6bc4eb045f392fb4a7f6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8583795626571656611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3778597573076127264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf8b3156c2c7ad2459db0557d7430408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 8105666755872443178}
+  minSpd: 0.8
+  maxSpd: 1.2
 --- !u!1 &6583061221105320069
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,15 +248,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9cf962874e59454589989ba69dfff21, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -1.0125618
+      value: 0.43844128
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9cf962874e59454589989ba69dfff21, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 11.964336
+      value: -4.469572
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9cf962874e59454589989ba69dfff21, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 17.585632
+      value: -3.8792498
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: e9cf962874e59454589989ba69dfff21, type: 3}
       propertyPath: m_Materials.Array.data[0]

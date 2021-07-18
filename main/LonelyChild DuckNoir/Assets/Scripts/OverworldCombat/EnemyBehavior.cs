@@ -31,6 +31,8 @@ public class EnemyBehavior : MonoBehaviour
     public bool stillInScene = true;
     EnemyClass thisEnemy;
     SpriteRenderer drawSprite;
+    float targetSpd = 1f;
+    float currentSpd =1f;
     Sprite[,] spriteList;
     private void Start()
     {
@@ -86,7 +88,13 @@ public class EnemyBehavior : MonoBehaviour
         {
             Vector3 targetPos = positionChunks[patrolChunk][currentPatrol].position;
             targetPos.z = transform.position.z;
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, (speed / 3) * Time.deltaTime);
+            if (Random.Range(0f,1f)<.2f){
+                targetSpd = Random.Range(.6f,1f);
+            }
+            currentSpd = Mathf.Lerp(currentSpd,targetSpd,0.01f);
+            float maxDist = Vector2.Distance(positionChunks[patrolChunk][currentPatrol].position, transform.position)/400f * currentSpd * speed/3f;
+            maxDist = Mathf.Clamp(maxDist,speed/6f * Time.deltaTime,(speed / 3f) * Time.deltaTime * currentSpd);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos,maxDist);
             if (Vector2.Distance(positionChunks[patrolChunk][currentPatrol].position, transform.position) < .5f)
             {
                 //Debug.Log("enemy "+enemyID.ToString()+" chunk:"+patrolChunk.ToString()+" of "+positionChunks.Length.ToString()+"   patrol:"+currentPatrol.ToString()+" of "+positionChunks[patrolChunk].Length.ToString());
