@@ -287,7 +287,7 @@ public class Narcissist : EnemyClass
                     "You attacked with the Theremin!",
                     "\"Hey, you're playing pretty well!\"\n\"This reminds me of the works of Sir Cotus The Shrew!\"",
                     "\"Huh!? You haven't heard of him!?\"",
-                    "\"Uh... Well... Of course you wouldn't!\"\n\"You're not refined enough!\"",
+                    "\"Uh... Well... Of course you wouldn't have!\"\n\"You're not refined enough!\"",
                     "The ghost hides his embarrassment, taking heavy damage in the process."
                 },new object[][]{SingleMethod(3)}),
                 NewReaction(new string[] {"DamageEnemy"},
