@@ -410,9 +410,13 @@ public class TroubledChild : EnemyClass
         canRun = false;
         //spritepath
         attackPrefabNames = new string[] {
-            "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
-            "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_3",
-            "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy",
+            "Prefabs/combatEnemyTurn/attacks/Spin_TC_1",
+            "Prefabs/combatEnemyTurn/attacks/Spin_TC_1",
+            "Prefabs/combatEnemyTurn/attacks/Spin_TC_1",
+            "Prefabs/combatEnemyTurn/attacks/Spin_TC_1"
+           // "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
+           // "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_3",
+           // "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy",
             };
         talkActions = new TalkEnum[][]{ 
             new TalkEnum[]{TalkEnum.Talk},
