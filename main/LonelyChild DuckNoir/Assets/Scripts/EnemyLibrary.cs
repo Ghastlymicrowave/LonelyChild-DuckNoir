@@ -966,6 +966,9 @@ public class DevilsHands : EnemyClass
         splashTexts = new string[]{
             "The ghost twists its hands like it wants to play with something.",
             "The ghost fidgets its hands.",
+            "So many hands, so many options!",
+            "The ghost twists its hands like it wants to play with something.",
+            "The ghost is tapping its many fingers impatiently."
         };
         sentiment = new List<string>{"ball", "chat"};
         name = "Devil's Hands";
@@ -974,16 +977,20 @@ public class DevilsHands : EnemyClass
         id = 8;
         //spritepath
         attackPrefabNames = new string[] {
-            "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_3",
-            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
-            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy1",
-            "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
-            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
-            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy1",
-            "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
-            "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy",
-            "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
-            "Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2"
+            "Prefabs/combatEnemyTurn/attacks/TurretDevilshands",
+            "Prefabs/combatEnemyTurn/attacks/TurretDevilshands2",
+            "Prefabs/combatEnemyTurn/attacks/TurretDevilshands3",
+            "Prefabs/combatEnemyTurn/attacks/Straight_Devil'sHands"
+           // "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_3",
+           // "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
+           // "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy1",
+            //"Prefabs/combatEnemyTurn/attacks/Sine_Harder",
+        //"Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
+          //"Prefabs/combatEnemyTurn/attacks/SineReverse_Easy1",
+         //"Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
+         //"Prefabs/combatEnemyTurn/attacks/Sine_TooEasy",
+          //"Prefabs/combatEnemyTurn/attacks/Sine_Harder",
+           //"Prefabs/combatEnemyTurn/attacks/SineReverse_Tooeasy2"
             };
         talkActions = new TalkEnum[][]{ 
             new TalkEnum[]{TalkEnum.Chat,TalkEnum.Ask,TalkEnum.Talk} 
