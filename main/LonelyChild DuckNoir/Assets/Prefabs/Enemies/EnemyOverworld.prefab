@@ -59,6 +59,9 @@ MonoBehaviour:
   defaultRespawnTime: 10
   unspawnedZ: 0
   stillInScene: 1
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 129
 --- !u!61 &6843191285701972374
 BoxCollider2D:
   m_ObjectHideFlags: 0

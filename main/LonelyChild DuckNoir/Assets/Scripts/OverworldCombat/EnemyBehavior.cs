@@ -34,6 +34,7 @@ public class EnemyBehavior : MonoBehaviour
     float targetSpd = 1f;
     float currentSpd =1f;
     Sprite[,] spriteList;
+    [SerializeField] LayerMask raycastMask;
     private void Start()
     {
         drawSprite = sprite.gameObject.GetComponent<SpriteRenderer>();
@@ -189,15 +190,25 @@ public class EnemyBehavior : MonoBehaviour
         currentRespawnTime = defaultRespawnTime;
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
-
-        if (col.gameObject.tag == "Player" && spawned)//pathfind
-        {
-            patrol = false;
-            player = col.gameObject;
+        if (col.gameObject.tag == "Player"){
+            Vector3 thisPos = transform.position;
+            Vector3 thatPos = player.transform.position;
+            thatPos.z = thisPos.z;
+            float dist = Vector3.Distance(thisPos,thatPos);
+            RaycastHit hit;
+            Physics.Raycast(transform.position,player.transform.position-transform.position, out hit,dist,raycastMask);
+            Debug.Log(col.gameObject.tag);
+            Debug.Log(hit.collider);
+            Debug.DrawRay(transform.position,(player.transform.position-transform.position).normalized*dist,Color.green,1f);
+            if (spawned && (hit.collider==null || hit.collider.tag == "PlayerInteract"))//pathfind
+            {
+                patrol = false;
+                player = col.gameObject;
+                Debug.Log("TRUE");
+            }
         }
-
     }
     void OnCollisionEnter2D(Collision2D collision)
     {

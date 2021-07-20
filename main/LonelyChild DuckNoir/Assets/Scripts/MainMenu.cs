@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public int[] ghostIDs;
@@ -93,6 +94,7 @@ public class MainMenu : MonoBehaviour
     {
         CloseStuff();
         credits.SetActive(true);
+        credits.transform.GetChild(1).GetChild(2).GetComponent<Scrollbar>().value = 1f;
     }
 
     public void LoadMainMenu(){
