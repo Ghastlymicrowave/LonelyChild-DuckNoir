@@ -20,8 +20,20 @@ public class DisplayEnemy : MonoBehaviour
         battleBehavior = GameObject.FindObjectOfType<battleBehavior>();
     }
     public void SetRand(){
-        animator.SetFloat("RandomSpeed",Random.Range(minSpd,maxSpd));
-        animator.SetInteger("RandomAnim",Random.Range(0,maxRand));
+        if (animator!=null){
+            
+        }else{
+            Debug.Log("Animator is null!");
+            animator = GetComponent<Animator>();
+            if (animator!=null){
+                animator.SetFloat("RandomSpeed",Random.Range(minSpd,maxSpd));
+                animator.SetInteger("RandomAnim",Random.Range(0,maxRand));
+            }else{
+                Debug.Log("animator still null, must not be attached");
+            }
+            
+        }
+        
     }
     protected int clampStatus(int status){
         return Mathf.Clamp(status,0,maxStatus);

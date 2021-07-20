@@ -257,7 +257,7 @@ public class Narcissist : EnemyClass
             new TalkEnum[]{TalkEnum.Chat, TalkEnum.Call_Him_Bald} ,
             new TalkEnum[]{TalkEnum.Gloat, TalkEnum.Compliment, TalkEnum.Insult} ,
             new TalkEnum[]{TalkEnum.Lecture},
-            new TalkEnum[]{} 
+            new TalkEnum[]{TalkEnum.ChatTwo} 
 
         };
         sentiment = new List<string>{"call_him_bald","gloat","lecture"};
@@ -328,6 +328,14 @@ public class Narcissist : EnemyClass
                     "You attacked with the Garlic...",
                     "\"The garlic isn't on this floor.\"\n\"I don't have TIME for children who CHEAT!\""
                 },new object[][]{SingleMethod((object)2)})
+            }),
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.ChatTwo,
+            new EnemyReaction[] {
+                NewReaction(new string[] {},
+                new string[]{
+                    "\"Do you have something you wanted to say...?\"",
+                    "\"I don't have all day you know, time is running out... or something like that.\""
+                },new object[][]{})
             }),
             GenResponse(ButtonEnum.Talk,(int)TalkEnum.Chat,
             new EnemyReaction[] {
@@ -1130,7 +1138,7 @@ public class PoorDog : EnemyClass
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
         talkActions = new TalkEnum[][]{ 
             new TalkEnum[]{TalkEnum.Pet,TalkEnum.Chat,TalkEnum.Fake_Throw}, 
-            new TalkEnum[]{} 
+            new TalkEnum[]{TalkEnum.ChatTwo} 
         };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/PoorDogDisplay";
@@ -1155,6 +1163,14 @@ public class PoorDog : EnemyClass
         };
 
         responses = new EnemyResponse[]{
+            GenResponse(ButtonEnum.Talk,(int)TalkEnum.ChatTwo,
+            new EnemyReaction[]{
+                NewReaction(new string[]{},
+                new string[]{
+                    "\"Woof Woof!\", the ghost ignores you and jumps around, expecting you to throw something..."
+                }, new object[][]{})
+            }
+            ),
             GenResponse(ButtonEnum.Attack,(int)AttackActions.Theremin,
             new EnemyReaction[] {
                 NewReaction(new string[] {"DamageEnemy"},
