@@ -790,13 +790,18 @@ public class GremlinOfDeceit : EnemyClass
         canRun = false;
         //spritepath
         attackPrefabNames = new string[] {
-            "Prefabs/combatEnemyTurn/attacks/Sine_Harder_Reverse",
+            "Prefabs/combatEnemyTurn/attacks/Spin_GOD",
+            "Prefabs/combatEnemyTurn/attacks/Spin_GOD",
+            "Prefabs/combatEnemyTurn/attacks/Spin_GOD",
+            "Prefabs/combatEnemyTurn/attacks/Spin_GOD",
+            "Prefabs/combatEnemyTurn/attacks/Spin_GOD"
+          /*  "Prefabs/combatEnemyTurn/attacks/Sine_Harder_Reverse",
             "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
             "Prefabs/combatEnemyTurn/attacks/Mix_Easy",
             "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
             
-            "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy"};
+            "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy"*/};
         talkActions = new TalkEnum[][]{ 
             new TalkEnum[]{TalkEnum.Talk}, 
             new TalkEnum[]{TalkEnum.Chat,TalkEnum.Encourage,TalkEnum.Eternity},
@@ -806,11 +811,10 @@ public class GremlinOfDeceit : EnemyClass
         
         splashTexts= new string[]{
             "\"I've always been here, you can't remove me, can't erase- it behooves me.\"",
-            "\"Struggle all you're willing to try, you can't remove such a fly guy!\"",
+            "\"Struggle all you're willing to try, you can't swat this fly!\"",
             "The apparition cackles non-stop.",
             "The apparition babbles something about drawing on and erasing the fabric of the universe.",
-            "O feels uncomfortable.",
-            "The blue glow glows brighter."
+            "O feels uncomfortable."
         };
         
         displayPrefabPath = "Prefabs/EnemySpritePrefabs/GremlinOfDeceitDisplay";
