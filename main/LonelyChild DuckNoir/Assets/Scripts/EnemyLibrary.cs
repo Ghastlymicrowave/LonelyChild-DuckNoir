@@ -404,16 +404,16 @@ public class TroubledChild : EnemyClass
     {
         
         name = "A Troubled Child";
-        hp = 15;
-        maxHP = 15;
+        hp = 25;
+        maxHP = 25;
         id = 6;
         canRun = false;
         //spritepath
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Spin_TC_1",
             "Prefabs/combatEnemyTurn/attacks/Sine_TC_1",
-            "Prefabs/combatEnemyTurn/attacks/Sine_TC_1",
-            "Prefabs/combatEnemyTurn/attacks/Sine_TC_1"
+            "Prefabs/combatEnemyTurn/attacks/Sine_TC_2",
+            "Prefabs/combatEnemyTurn/attacks/TurretTC"
            // "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
            // "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_3",
            // "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy",
@@ -778,8 +778,8 @@ public class GremlinOfDeceit : EnemyClass
     {
         sentiment = new List<string>{"talk","chat","compliment","ask"};
         name = "The Gremlin Of Deceit";
-        hp = 25;
-        maxHP = 25;
+        hp = 30;
+        maxHP = 30;
         id = 9;
 
         canRun = false;
