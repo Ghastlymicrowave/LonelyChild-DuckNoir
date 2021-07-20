@@ -222,6 +222,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnCollision: 1
+  spriteForGoodThenBad: {fileID: 0}
+  colForGoodThenBad: {fileID: 0}
   projectileType: 0
   toShoot: {fileID: 0}
   shootingTrackDuration: 0.75
@@ -237,7 +239,7 @@ MonoBehaviour:
       status: 
       minDamage: 0
       maxDamage: 0
-    damage: 3
+    damage: 4
     speed: 0.5
     secondarySpeed: 6
     secondaryValue: 3

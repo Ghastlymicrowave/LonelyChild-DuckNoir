@@ -792,9 +792,11 @@ public class GremlinOfDeceit : EnemyClass
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Spin_GOD",
             "Prefabs/combatEnemyTurn/attacks/Spin_GOD",
-            "Prefabs/combatEnemyTurn/attacks/Spin_GOD",
-            "Prefabs/combatEnemyTurn/attacks/Spin_GOD",
-            "Prefabs/combatEnemyTurn/attacks/Spin_GOD"
+            "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_GOD",
+            "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_GOD",
+            "Prefabs/combatEnemyTurn/attacks/GOD WRATH"
+          
+           
           /*  "Prefabs/combatEnemyTurn/attacks/Sine_Harder_Reverse",
             "Prefabs/combatEnemyTurn/attacks/Sine_Harder",
             "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",

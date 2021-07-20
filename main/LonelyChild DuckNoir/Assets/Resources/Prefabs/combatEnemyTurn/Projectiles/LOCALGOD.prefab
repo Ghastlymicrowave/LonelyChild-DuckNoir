@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 1554646062898304289}
   - component: {fileID: 1554646062898304301}
   - component: {fileID: 1938695496}
+  - component: {fileID: 4407798830752856425}
   m_Layer: 0
-  m_Name: TurretGOD
+  m_Name: LOCALGOD
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,14 +28,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1554646062898304290}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
   m_LocalPosition: {x: 0, y: 1.7, z: -4.45}
-  m_LocalScale: {x: 1.50214, y: 1.50214, z: 1.50214}
+  m_LocalScale: {x: 0.6422113, y: 0.6422113, z: 0.6422113}
   m_Children:
-  - {fileID: 121948709799326818}
+  - {fileID: 6965109895030216814}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &1554646062898304303
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 999
-  m_Sprite: {fileID: 21300000, guid: af8dd5b5c9f702242abdc4c5212c881e, type: 3}
-  m_Color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
+  m_Sprite: {fileID: 21300000, guid: d786c4e0b7959de42829812124f31278, type: 3}
+  m_Color: {r: 0.9716981, g: 0.30709326, b: 0.30709326, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -94,7 +95,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1554646062898304290}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -122,11 +123,11 @@ MonoBehaviour:
   destroyOnCollision: 1
   spriteForGoodThenBad: {fileID: 0}
   colForGoodThenBad: {fileID: 0}
-  projectileType: 4
-  toShoot: {fileID: 1554646062898304290, guid: b3236f641ff56b9409774d9b677f3930, type: 3}
-  shootingTrackDuration: 0.6
-  shootingCooldownDuration: 0.35
-  shootingTrackSpeed: 15
+  projectileType: 5
+  toShoot: {fileID: 0}
+  shootingTrackDuration: 0.75
+  shootingCooldownDuration: 0.25
+  shootingTrackSpeed: 1
   projectile:
     baseAttack:
       projectiles: []
@@ -149,7 +150,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1554646062898304290}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -159,16 +160,32 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.1377778, y: 1.1377778}
+    oldSize: {x: 0.33333334, y: 0.33333334}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.06, y: 0.06}
+  m_Size: {x: 5.11, y: 1.95}
   m_EdgeRadius: 0
---- !u!1 &6361393497781727752
+--- !u!58 &4407798830752856425
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554646062898304290}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.0275
+--- !u!1 &6965109895030216802
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,37 +193,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 121948709799326818}
-  - component: {fileID: 79736057343846300}
-  - component: {fileID: 5871895295000556888}
+  - component: {fileID: 6965109895030216814}
+  - component: {fileID: 6965109895030216815}
+  - component: {fileID: 8794218152186700197}
   m_Layer: 0
-  m_Name: StraightDownProjectile (2)
+  m_Name: StraightDownProjectile (1)
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &121948709799326818
+--- !u!4 &6965109895030216814
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6361393497781727752}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.028570177, y: 0.021488937, z: 0.051592633}
+  m_GameObject: {fileID: 6965109895030216802}
+  m_LocalRotation: {x: 0.49999973, y: 0.5000003, z: -0.5000003, w: 0.49999973}
+  m_LocalPosition: {x: 0, y: -0, z: -0.002}
+  m_LocalScale: {x: 0.02253279, y: 0.02253279, z: 0.02253279}
   m_Children: []
   m_Father: {fileID: 1554646062898304302}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
---- !u!212 &79736057343846300
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
+--- !u!212 &6965109895030216815
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6361393497781727752}
+  m_GameObject: {fileID: 6965109895030216802}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -240,8 +257,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 999
-  m_Sprite: {fileID: 21300000, guid: 3d4dd71ff02cc1d44921a0bc8c99f3f6, type: 3}
-  m_Color: {r: 0.4528302, g: 0.0021359965, b: 0.0021359965, a: 1}
+  m_Sprite: {fileID: 21300000, guid: f8b44636296fbdc4c88033cc531e240a, type: 3}
+  m_Color: {r: 0.9433962, g: 0.35154858, b: 0.35154858, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -251,17 +268,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
---- !u!95 &5871895295000556888
+--- !u!95 &8794218152186700197
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6361393497781727752}
+  m_GameObject: {fileID: 6965109895030216802}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 418595c6aac23d84ea5897bff27931eb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
