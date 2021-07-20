@@ -1447,14 +1447,14 @@ public class BoredGhost : EnemyClass{
     public BoredGhost(battleBehavior battle = null) : base(battle){
         sentiment = new List<string>{"time","eternity","future","hope"};
         name = "Bored Ghost";
-        hp = 20;
-        maxHP = 20;
+        hp = 18;
+        maxHP = 18;
         id = 3;
         attackPrefabNames = new string[] {
-            "Prefabs/combatEnemyTurn/attacks/Straight_Easy 5",
-            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy2",
-            "Prefabs/combatEnemyTurn/attacks/SineReverse_Easy1",
-            "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy"};
+            "Prefabs/combatEnemyTurn/attacks/Sine_BG_1",
+            "Prefabs/combatEnemyTurn/attacks/Sine_BG_1",
+            "Prefabs/combatEnemyTurn/attacks/None_BG",
+            "Prefabs/combatEnemyTurn/attacks/None_BG_2"};
         //attackPrefabNames
         talkActions = new TalkEnum[][]{ 
             new TalkEnum[]{TalkEnum.Talk},
