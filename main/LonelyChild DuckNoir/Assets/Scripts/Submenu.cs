@@ -74,6 +74,9 @@ public class Submenu : MonoBehaviour
         btn.onClick.AddListener(delegate {battleBehavior.ExternalSubButtonPressed(actionID);});
         Text text = item.transform.GetChild(0).GetComponent<Text>();
         text.text = GetActionName(actionType,actionID);
+        if (actionType==(int)ButtonEnum.Talk&&actionID==(int)TalkEnum.ChatTwo){
+            text.text = "Talk";
+        }
     }
 }
     
