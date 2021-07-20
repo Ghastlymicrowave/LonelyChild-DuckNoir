@@ -50852,6 +50852,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1749398525}
     m_Modifications:
+    - target: {fileID: 502835017597483078, guid: b7108854fe4e2b34294cf46169f82eb0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 502835017597483078, guid: b7108854fe4e2b34294cf46169f82eb0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 502835017597483078, guid: b7108854fe4e2b34294cf46169f82eb0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 5094577821577950382, guid: b7108854fe4e2b34294cf46169f82eb0, type: 3}
       propertyPath: m_Name
       value: bookshelf (14)
@@ -50907,6 +50919,22 @@ PrefabInstance:
     - target: {fileID: 5618314364777721364, guid: b7108854fe4e2b34294cf46169f82eb0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -6.654
+      objectReference: {fileID: 0}
+    - target: {fileID: 5890901034914336516, guid: b7108854fe4e2b34294cf46169f82eb0, type: 3}
+      propertyPath: m_Size.x
+      value: 1.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 5890901034914336516, guid: b7108854fe4e2b34294cf46169f82eb0, type: 3}
+      propertyPath: m_Size.y
+      value: 1.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 5890901034914336516, guid: b7108854fe4e2b34294cf46169f82eb0, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5890901034914336516, guid: b7108854fe4e2b34294cf46169f82eb0, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7108854fe4e2b34294cf46169f82eb0, type: 3}
