@@ -610,10 +610,10 @@ public class battleBehavior : MonoBehaviour
             case ButtonEnum.Items:
                 switch(actionID){
                     case (int)ItemsEnum.Apple:
-                        DamagePlayer(-5);
+                        DamagePlayer(-8);
                         inventoryManager.RemoveItem((int)ItemsEnum.Apple);
                         toScroll.AddRange(new string[] {"You ate the apple...",
-                        "and gained 5 health!",
+                        "and gained some health!",
                         "\"...\""});
                     break;
                     case (int)ItemsEnum.Ball:
