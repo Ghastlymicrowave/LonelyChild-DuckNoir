@@ -236,7 +236,8 @@ public class Narcissist : EnemyClass
             "The Narcissist mutters something about wasted time.",
             "The Narcissist grumbles about his receding hair.",
             "It smells pretentious in here.",
-            "Is that... fog?\nDid he bring a fog machine in here?"
+            "Is that... fog?\nDid he bring a fog machine in here?",
+            "The Narcissist sets up a spotlight to light him up from behind...\nHe looks marvelous!"
         };
         name = "The Narcissist";
         hp = 20;
@@ -608,21 +609,23 @@ public class NiceDemonGuy : EnemyClass
     public NiceDemonGuy(battleBehavior battle = null) : base(battle)
     {
         splashTexts = new string[]{
-            "The demon says \"Long ago in old country, I played with little toy...\".",
-            "The demon says \"Unlike other demon men, I am approachable, comrade.\"",
-            "The demon says, \"Sweet babushka...\"."
+            "The demon says, \"Long ago in old country, I played with little toy...\".",
+            "The demon says, \"Unlike other demon men, I am approachable, comrade.\"",
+            "The demon says, \"Sweet babushka...\".",
+            "The thick scent of borscht fills the room."
         };
         sentiment = new List<string>{"talk","eternity","cycles","compliment"};
-        name = "NiceDemonGuy";
+        name = "Nice Demon Guy";
         hp = 15;
         maxHP = 15;
         id = 7;
         //spritepath
         attackPrefabNames = new string[] {
-            "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_3",
+            "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_NDG"
+          /*  "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_3",
             "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy",
-            "Prefabs/combatEnemyTurn/attacks/Sine_Harder"};
+            "Prefabs/combatEnemyTurn/attacks/Sine_Harder"*/};
         talkActions = new TalkEnum[][]{ 
             new TalkEnum[]{TalkEnum.Talk},
             new TalkEnum[]{TalkEnum.Chat,TalkEnum.Encourage,TalkEnum.Eternity}, 
