@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6639604194792531873
+--- !u!1001 &112494048817147163
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -74,19 +74,19 @@ PrefabInstance:
     - target: {fileID: 67973537289529056, guid: 103d8a021d4a52346bfd0184ef81e220, type: 3}
       propertyPath: attack.spawnLocations.Array.data[0]
       value: 
-      objectReference: {fileID: 6689500504566318482}
+      objectReference: {fileID: 107757842722840691}
     - target: {fileID: 67973537289529056, guid: 103d8a021d4a52346bfd0184ef81e220, type: 3}
       propertyPath: attack.spawnLocations.Array.data[1]
       value: 
-      objectReference: {fileID: 6689500505541700297}
+      objectReference: {fileID: 107757842158767912}
     - target: {fileID: 67973537289529056, guid: 103d8a021d4a52346bfd0184ef81e220, type: 3}
       propertyPath: attack.spawnLocations.Array.data[2]
       value: 
-      objectReference: {fileID: 6689500504566318482}
+      objectReference: {fileID: 107757842722840691}
     - target: {fileID: 67973537289529056, guid: 103d8a021d4a52346bfd0184ef81e220, type: 3}
       propertyPath: attack.spawnLocations.Array.data[3]
       value: 
-      objectReference: {fileID: 6689500505541700297}
+      objectReference: {fileID: 107757842158767912}
     - target: {fileID: 67973537289529057, guid: 103d8a021d4a52346bfd0184ef81e220, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -133,7 +133,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 67973537289529063, guid: 103d8a021d4a52346bfd0184ef81e220, type: 3}
       propertyPath: m_Name
-      value: Sine_NDG
+      value: Sine_NDG_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 67973537289529063, guid: 103d8a021d4a52346bfd0184ef81e220, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 67973537364025907, guid: 103d8a021d4a52346bfd0184ef81e220, type: 3}
       propertyPath: m_LocalPosition.y
@@ -141,13 +145,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 103d8a021d4a52346bfd0184ef81e220, type: 3}
---- !u!4 &6689500504566318482 stripped
+--- !u!4 &107757842158767912 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 67973537364025907, guid: 103d8a021d4a52346bfd0184ef81e220, type: 3}
-  m_PrefabInstance: {fileID: 6639604194792531873}
+  m_PrefabInstance: {fileID: 112494048817147163}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &6689500505541700297 stripped
+--- !u!4 &107757842722840691 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 67973536116280680, guid: 103d8a021d4a52346bfd0184ef81e220, type: 3}
-  m_PrefabInstance: {fileID: 6639604194792531873}
+  m_PrefabInstance: {fileID: 112494048817147163}
   m_PrefabAsset: {fileID: 0}

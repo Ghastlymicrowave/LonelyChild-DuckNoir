@@ -623,7 +623,7 @@ public class NiceDemonGuy : EnemyClass
         attackPrefabNames = new string[] {
             "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_NDG",
             "Prefabs/combatEnemyTurn/attacks/Sine_NDG",
-            "Prefabs/combatEnemyTurn/attacks/Sine_NDG"
+            "Prefabs/combatEnemyTurn/attacks/Sine_NDG_2"
           /*  "Prefabs/combatEnemyTurn/attacks/Straight_Wide_Easy_3",
             "Prefabs/combatEnemyTurn/attacks/Straight_TooEasy",
             "Prefabs/combatEnemyTurn/attacks/Sine_TooEasy",
