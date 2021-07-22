@@ -150,13 +150,13 @@ public class Interactable : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other){
-        if (other.tag=="PlayerInteract"){
+        if (other.tag=="PlayerInteract" && this.enabled){
             playerRef.InteractableEntered(this);
         }
     }
 
     void OnTriggerExit(Collider other){
-        if (other.tag=="PlayerInteract"){
+        if (other.tag=="PlayerInteract" && this.enabled){
             playerRef.InteractableLeft(this);
         }
     }
