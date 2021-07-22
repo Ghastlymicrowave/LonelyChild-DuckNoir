@@ -56,9 +56,7 @@ public class battleBehavior : MonoBehaviour
     //our scroll
     public GameObject speechTail;
     //VisualAid used for speech
-    public AudioSource tick;
-    public AudioSource click;
-    public AudioSource Damage;
+    public CombatSounds snds;
     //audio for textscroller
     public SoundHolder Music;
     public ScannerLogic scannerLogic;
@@ -172,7 +170,7 @@ public class battleBehavior : MonoBehaviour
                     else
                     {
                         StartCoroutine(theScroll = TextScroll(toScroll[currentLine]));
-                        click.Play();
+                        snds.Click();
                     }
                 }
                 else if (isTyping && !cancelTyping)
@@ -233,7 +231,7 @@ public class battleBehavior : MonoBehaviour
 
     void SubButtonPressed(ButtonEnum actionType, int actionID)
     {
-        click.Play();
+        snds.Click();
         gamePosition = GamePosition.EnemyDialogue;
         textBox.SetActive(true);
         currentLine = 0;
@@ -276,7 +274,7 @@ public class battleBehavior : MonoBehaviour
             { }
             else
             {
-                tick.Play();
+                snds.Tick();
             }
             fillerText.text += lineOfText[letter];
             letter += 1;

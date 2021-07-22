@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCursor : MonoBehaviour
 {
     private AttackLogic attackLogic;
-    public AudioSource audioSource;
+    public CombatSounds audioSource;
     public CircleCollider2D circle;
     private Camera cam;
     Vector3 realPos;
@@ -36,7 +36,7 @@ public class PlayerCursor : MonoBehaviour
         //camera.main is amateur, but there's no reason for cameras to change in battle, so it's probably fine.
         cam = Camera.main;
         attackLogic = transform.parent.GetComponent<AttackLogic>();
-        audioSource = attackLogic.bb.Damage;
+        audioSource = attackLogic.bb.snds;
         rb = gameObject.GetComponent<Rigidbody2D>();
         if (cursor == null)
         {
@@ -108,7 +108,7 @@ public class PlayerCursor : MonoBehaviour
         if (isFlashing == false)
         {
             attackLogic.Damage(damage);
-            audioSource.Play();
+            audioSource.Damage();
             isFlashing = true;
         }
     }
